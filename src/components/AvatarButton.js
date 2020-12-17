@@ -57,6 +57,10 @@ const styles = (theme) => ({
   menuIcon: {
     color: '#314963',
     fontSize: 24
+  },
+  menuText: {
+    color: '#314963',
+    fontSize: 14
   }
 });
 
@@ -114,31 +118,31 @@ class AvatarButton extends PureComponent {
                     <ListItemIcon className={this.props.classes.menuIconWrapper}>
                       <FontAwesomeIcon icon={faUser} className={this.props.classes.menuIcon} />
                     </ListItemIcon>
-                    <ListItemText primary="My Profile" />
+                    <ListItemText className={this.props.classes.menuText} primary="My Profile" />
                   </MenuItem>
                   <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
                     <ListItemIcon className={this.props.classes.menuIconWrapper}>
                       <FontAwesomeIcon icon={faCrown} className={this.props.classes.menuIcon} />
                     </ListItemIcon>
-                    <ListItemText primary="Membership" />
+                    <ListItemText className={this.props.classes.menuText} primary="Membership" />
                   </MenuItem>
                   <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
                     <ListItemIcon className={this.props.classes.menuIconWrapper}>
                       <FontAwesomeIcon icon={faShoppingCart} className={this.props.classes.menuIcon} />
                     </ListItemIcon>
-                    <ListItemText primary="Buy Bid Credit" />
+                    <ListItemText className={this.props.classes.menuText} primary="Buy Bid Credit" />
                   </MenuItem>
                   <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
                     <ListItemIcon className={this.props.classes.menuIconWrapper}>
                       <FontAwesomeIcon icon={faSignOutAlt} className={this.props.classes.menuIcon} />
                     </ListItemIcon>
-                    <ListItemText primary="Logout" />
+                    <ListItemText className={this.props.classes.menuText} primary="Logout" />
                   </MenuItem>
                   <MenuItem onClick={this.onToggleOnline} className={this.props.classes.menuItem}>
                     <ListItemIcon className={this.props.classes.menuIconWrapper}>
                       <Switch checked={this.state.online} />
                     </ListItemIcon>
-                    <ListItemText primary="Online" />
+                    <ListItemText className={this.props.classes.menuText} primary="Online" />
                   </MenuItem>
                 </MenuList>
               </ClickAwayListener>
