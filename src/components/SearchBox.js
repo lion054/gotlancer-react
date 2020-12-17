@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Icon, InputBase } from '@material-ui/core';
+import { InputBase } from '@material-ui/core';
 import { fade, withStyles } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
@@ -59,7 +59,7 @@ class SearchBox extends PureComponent {
         <i className="fa fa-search" style={{ color: '#0F996D', fontSize: 12 }} />
       </div>
       <div className={this.props.classes.icon + ' ' + this.props.classes.rightIcon}>
-        <i className="fa. fa-chevron-down" style={{ color: '#CED8E1', fontSize: 11 }} />
+        <i className="fa fa-chevron-down" style={{ color: '#CED8E1', fontSize: 11 }} />
       </div>
       <InputBase
         placeholder="Search"
