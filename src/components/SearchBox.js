@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { InputBase } from '@material-ui/core';
 import { fade, withStyles } from '@material-ui/core/styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const styles = (theme) => ({
   root: {
@@ -56,10 +58,10 @@ class SearchBox extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <div className={this.props.classes.icon}>
-        <i className="fa fa-search" style={{ color: '#0F996D', fontSize: 12 }} />
+        <FontAwesomeIcon icon={faSearch} color="#0F996D" size="sm" />
       </div>
       <div className={this.props.classes.icon + ' ' + this.props.classes.rightIcon}>
-        <i className="fa fa-chevron-down" style={{ color: '#CED8E1', fontSize: 11 }} />
+        <FontAwesomeIcon icon={faChevronDown} color="#CED8E1" size="sm" />
       </div>
       <InputBase
         placeholder="Search"
