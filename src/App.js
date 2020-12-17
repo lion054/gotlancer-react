@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
-import 'font-awesome/css/font-awesome.css';
 import './App.css';
 
 import MyOverview from './scenes/MyOverview';
