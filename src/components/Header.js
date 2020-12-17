@@ -2,22 +2,17 @@ import React, { PureComponent } from 'react';
 import {
   AppBar,
   Badge,
-  ClickAwayListener,
-  Grow,
   IconButton,
-  ListItemIcon,
-  ListItemText,
   Menu,
   MenuItem,
-  MenuList,
-  Paper,
-  Popper,
-  Switch,
-  Toolbar
+  Toolbar,
+  withStyles,
+  withTheme,
+  withWidth
 } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faCog, faCrown, faEnvelope, faShoppingCart, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
-import { withStyles } from '@material-ui/core/styles';
+import { faBell, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { compose } from 'recompose';
 
 import AvatarButton from './AvatarButton';
 import MenuButton from './MenuButton';
@@ -36,19 +31,6 @@ const styles = (theme) => ({
     top: 15,
     right: 'unset',
     left: 15
-  },
-  menuItem: {
-    '&:hover > .MuiListItemIcon-root > svg': {
-      color: '#0F996D'
-    }
-  },
-  menuIconWrapper: {
-    marginRight: theme.spacing(1),
-    justifyContent: 'center'
-  },
-  menuIcon: {
-    color: '#ADBDCD',
-    fontSize: 24
   }
 });
 
@@ -56,9 +38,7 @@ class Header extends PureComponent {
   state = {
     projectsEl: null,
     hireEl: null,
-    reportsEl: null,
-    avatarEl: null,
-    online: true
+    reportsEl: null
   }
 
   onOpenProjects = (event) => this.setState({ projectsEl: event.currentTarget })
@@ -72,14 +52,6 @@ class Header extends PureComponent {
   onOpenReports = (event) => this.setState({ reportsEl: event.currentTarget })
 
   onCloseReports = () => this.setState({ reportsEl: null })
-
-  onOpenAvatar = (event) => this.setState({ avatarEl: event.currentTarget })
-
-  onCloseAvatar = () => this.setState({ avatarEl: null })
-
-  getAvatarPopoverId = () => !!this.state.avatarEl ? 'avatar-popover' : undefined
-
-  onToggleOnline = () => this.setState({ online: !this.state.online })
 
   render = () => (
     <div className={this.props.classes.root}>
@@ -140,71 +112,15 @@ class Header extends PureComponent {
               <FontAwesomeIcon icon={faBell} color="#ADBDCD" size="1x" />
             </IconButton>
           </Badge>
-          <AvatarButton
-            aria-describedby={this.getAvatarPopoverId()}
-            onClick={this.onOpenAvatar}
-          />
-          <Popper
-            open={!!this.state.avatarEl}
-            anchorEl={this.state.avatarEl}
-            role={undefined}
-            transition
-            disablePortal
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={this.onCloseAvatar}>
-                    <MenuList autoFocusItem={!!this.state.avatarEl} id="avatar-menu-list">
-                      <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
-                        <ListItemIcon className={this.props.classes.menuIconWrapper}>
-                          <FontAwesomeIcon icon={faCog} className={this.props.classes.menuIcon} />
-                        </ListItemIcon>
-                        <ListItemText primary="Settings" />
-                      </MenuItem>
-                      <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
-                        <ListItemIcon className={this.props.classes.menuIconWrapper}>
-                          <FontAwesomeIcon icon={faUser} className={this.props.classes.menuIcon} />
-                        </ListItemIcon>
-                        <ListItemText primary="My Profile" />
-                      </MenuItem>
-                      <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
-                        <ListItemIcon className={this.props.classes.menuIconWrapper}>
-                          <FontAwesomeIcon icon={faCrown} className={this.props.classes.menuIcon} />
-                        </ListItemIcon>
-                        <ListItemText primary="Membership" />
-                      </MenuItem>
-                      <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
-                        <ListItemIcon className={this.props.classes.menuIconWrapper}>
-                          <FontAwesomeIcon icon={faShoppingCart} className={this.props.classes.menuIcon} />
-                        </ListItemIcon>
-                        <ListItemText primary="Buy Bid Credit" />
-                      </MenuItem>
-                      <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
-                        <ListItemIcon className={this.props.classes.menuIconWrapper}>
-                          <FontAwesomeIcon icon={faSignOutAlt} className={this.props.classes.menuIcon} />
-                        </ListItemIcon>
-                        <ListItemText primary="Logout" />
-                      </MenuItem>
-                      <MenuItem onClick={this.onToggleOnline} className={this.props.classes.menuItem}>
-                        <ListItemIcon className={this.props.classes.menuIconWrapper}>
-                          <Switch checked={this.state.online} />
-                        </ListItemIcon>
-                        <ListItemText primary="Online" />
-                      </MenuItem>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper>
+          <AvatarButton />
         </Toolbar>
       </AppBar>
     </div>
   )
 }
 
-export default withStyles(styles)(Header);
+export default compose(
+  withWidth(),
+  withTheme,
+  withStyles(styles)
+)(Header);
