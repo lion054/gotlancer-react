@@ -36,9 +36,12 @@ const styles = (theme) => ({
     right: 'unset',
     left: 15
   },
-  icon: {
-    color: theme.palette.text.disabled,
-    fontSize: 32
+  label: {
+    color: '#314963',
+    '&:hover': {
+      color: '#0F996D'
+    },
+    fontSize: 14
   }
 });
 
@@ -89,11 +92,11 @@ class Header extends PureComponent {
         open={!!this.state.projectsEl}
         onClose={this.onCloseProjects}
       >
-        <MenuItem>Find Work</MenuItem>
-        <MenuItem>Saved Jobs</MenuItem>
-        <MenuItem>Proposals</MenuItem>
-        <MenuItem>My Stats</MenuItem>
-        <MenuItem>My Project</MenuItem>
+        <MenuItem className={this.props.classes.label}>Find Work</MenuItem>
+        <MenuItem className={this.props.classes.label}>Saved Jobs</MenuItem>
+        <MenuItem className={this.props.classes.label}>Proposals</MenuItem>
+        <MenuItem className={this.props.classes.label}>My Stats</MenuItem>
+        <MenuItem className={this.props.classes.label}>My Project</MenuItem>
       </Menu>
       <MenuButton color="inherit" onClick={this.onOpenHire}>Hire</MenuButton>
       <Menu
@@ -103,9 +106,9 @@ class Header extends PureComponent {
         open={!!this.state.hireEl}
         onClose={this.onCloseHire}
       >
-        <MenuItem>Find Freelancer</MenuItem>
-        <MenuItem>Saved Freelancer</MenuItem>
-        <MenuItem>Hired Freelancer</MenuItem>
+        <MenuItem className={this.props.classes.label}>Find Freelancer</MenuItem>
+        <MenuItem className={this.props.classes.label}>Saved Freelancer</MenuItem>
+        <MenuItem className={this.props.classes.label}>Hired Freelancer</MenuItem>
       </Menu>
       <MenuButton color="inherit" onClick={this.onOpenReports}>Reports</MenuButton>
       <Menu
@@ -115,13 +118,13 @@ class Header extends PureComponent {
         open={!!this.state.reportsEl}
         onClose={this.onCloseReports}
       >
-        <MenuItem>Overview</MenuItem>
-        <MenuItem>My Reports</MenuItem>
-        <MenuItem>Proposal History</MenuItem>
-        <MenuItem>Transaction History</MenuItem>
-        <MenuItem>Payment History</MenuItem>
-        <MenuItem>Withdrawal History</MenuItem>
-        <MenuItem>Dispute List</MenuItem>
+        <MenuItem className={this.props.classes.label}>Overview</MenuItem>
+        <MenuItem className={this.props.classes.label}>My Reports</MenuItem>
+        <MenuItem className={this.props.classes.label}>Proposal History</MenuItem>
+        <MenuItem className={this.props.classes.label}>Transaction History</MenuItem>
+        <MenuItem className={this.props.classes.label}>Payment History</MenuItem>
+        <MenuItem className={this.props.classes.label}>Withdrawal History</MenuItem>
+        <MenuItem className={this.props.classes.label}>Dispute List</MenuItem>
       </Menu>
       <SearchBox />
       <div style={{ flex: 1 }} />
