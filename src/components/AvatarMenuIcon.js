@@ -182,10 +182,10 @@ class AvatarMenuIcon extends PureComponent {
           },{
             element: () => (
               <Fragment>
+                <ListItemText classes={{ primary: this.props.classes.label }} primary="Online" />
                 <ListItemIcon>
                   <Switch checked={this.state.online} />
                 </ListItemIcon>
-                <ListItemText classes={{ primary: this.props.classes.label }} primary="Online" />
               </Fragment>
             ),
             onClick: () => {
