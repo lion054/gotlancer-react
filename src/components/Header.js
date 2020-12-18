@@ -91,6 +91,8 @@ class Header extends PureComponent {
         keepMounted
         open={!!this.state.projectsEl}
         onClose={this.onCloseProjects}
+        getContentAnchorEl={null} // menu should be display below anchor
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
       >
         <MenuItem className={this.props.classes.label}>Find Work</MenuItem>
         <MenuItem className={this.props.classes.label}>Saved Jobs</MenuItem>
@@ -105,6 +107,8 @@ class Header extends PureComponent {
         keepMounted
         open={!!this.state.hireEl}
         onClose={this.onCloseHire}
+        getContentAnchorEl={null} // menu should be display below anchor
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
       >
         <MenuItem className={this.props.classes.label}>Find Freelancer</MenuItem>
         <MenuItem className={this.props.classes.label}>Saved Freelancer</MenuItem>
@@ -117,6 +121,8 @@ class Header extends PureComponent {
         keepMounted
         open={!!this.state.reportsEl}
         onClose={this.onCloseReports}
+        getContentAnchorEl={null} // menu should be display below anchor
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
       >
         <MenuItem className={this.props.classes.label}>Overview</MenuItem>
         <MenuItem className={this.props.classes.label}>My Reports</MenuItem>
@@ -159,8 +165,6 @@ class Header extends PureComponent {
       <AvatarMenuIcon />
     </Toolbar>
   )
-
-  toggleDrawer(opened) {}
 }
 
 export default compose(

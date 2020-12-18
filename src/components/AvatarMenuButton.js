@@ -36,7 +36,7 @@ const styles = (theme) => ({
   },
   menuIcon: {
     color: '#314963',
-    fontSize: 20
+    fontSize: 18
   },
   menuText: {
     color: '#314963',
@@ -91,6 +91,8 @@ class AvatarMenuButton extends PureComponent {
         keepMounted
         open={!!this.state.avatarEl}
         onClose={this.onCloseMenu}
+        getContentAnchorEl={null} // menu should be display below anchor
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
       >
         <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
           <ListItemIcon className={this.props.classes.menuIconWrapper}>
