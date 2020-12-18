@@ -47,14 +47,16 @@ const styles = (theme) => ({
 const TitleTypography = withStyles({
   root: {
     color: '#314963',
-    textAlign: 'right'
+    textAlign: 'right',
+    whiteSpace: 'nowrap'
   }
 })(Typography);
 
 const BalanceTypography = withStyles({
   root: {
     color: '#ADBDCD',
-    textAlign: 'right'
+    textAlign: 'right',
+    whiteSpace: 'nowrap'
   }
 })(Typography);
 
