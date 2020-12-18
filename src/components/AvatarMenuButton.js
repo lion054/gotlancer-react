@@ -1,6 +1,5 @@
 import React, { Fragment, PureComponent } from 'react';
 import {
-  Avatar,
   ButtonBase,
   ClickAwayListener,
   Grow,
@@ -23,26 +22,20 @@ const styles = (theme) => ({
   },
   title: {
     color: '#314963',
-    fontSize: 16,
+    fontSize: 12,
     textAlign: 'right'
   },
   subtitle: {
     color: '#ADBDCD',
-    fontSize: 14,
+    fontSize: 12,
     textAlign: 'right'
   },
   avatarWrapper: {
     display: 'inline-block',
-    marginLeft: theme.spacing(2)
+    marginLeft: theme.spacing(1.5)
   },
-  avatar: {
-    backgroundColor: 'transparent',
+  avatarIcon: {
     color: theme.palette.text.disabled,
-    '&:hover': {
-      color: theme.palette.grey.dark
-    }
-  },
-  icon: {
     fontSize: 32
   },
   menuItem: {
@@ -64,7 +57,7 @@ const styles = (theme) => ({
   }
 });
 
-class AvatarButton extends PureComponent {
+class AvatarMenuButton extends PureComponent {
   state = {
     avatarEl: null,
     online: true
@@ -88,9 +81,7 @@ class AvatarButton extends PureComponent {
           <div className={this.props.classes.subtitle}>$100.00 USD</div>
         </div>
         <div className={this.props.classes.avatarWrapper}>
-          <Avatar className={this.props.classes.avatar}>
-            <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.icon} />
-          </Avatar>
+          <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.avatarIcon} />
         </div>
       </ButtonBase>
       <Popper
@@ -154,4 +145,4 @@ class AvatarButton extends PureComponent {
   )
 }
 
-export default withStyles(styles)(AvatarButton);
+export default withStyles(styles)(AvatarMenuButton);
