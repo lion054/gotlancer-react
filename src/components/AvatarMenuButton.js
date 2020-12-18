@@ -63,9 +63,9 @@ class AvatarMenuButton extends PureComponent {
     online: true
   }
 
-  onOpenAvatar = (event) => this.setState({ avatarEl: event.currentTarget })
+  onOpenMenu = (event) => this.setState({ avatarEl: event.currentTarget })
 
-  onCloseAvatar = () => this.setState({ avatarEl: null })
+  onCloseMenu = () => this.setState({ avatarEl: null })
 
   onToggleOnline = () => this.setState({ online: !this.state.online })
 
@@ -74,7 +74,7 @@ class AvatarMenuButton extends PureComponent {
       <ButtonBase
         className={this.props.classes.root}
         aria-describedby={!!this.state.avatarEl ? 'avatar-popover' : undefined}
-        onClick={this.onOpenAvatar}
+        onClick={this.onOpenMenu}
       >
         <div style={{ display: 'inline-block' }}>
           <div className={this.props.classes.title}>Hi, Apurba</div>
@@ -97,33 +97,33 @@ class AvatarMenuButton extends PureComponent {
             style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
           >
             <Paper>
-              <ClickAwayListener onClickAway={this.onCloseAvatar}>
+              <ClickAwayListener onClickAway={this.onCloseMenu}>
                 <MenuList autoFocusItem={!!this.state.avatarEl} id="avatar-menu-list">
-                  <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
+                  <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
                     <ListItemIcon className={this.props.classes.menuIconWrapper}>
                       <FontAwesomeIcon icon={faCog} className={this.props.classes.menuIcon} />
                     </ListItemIcon>
-                    <ListItemText primary="Settings" />
+                    <ListItemText className={this.props.classes.menuText} primary="Settings" />
                   </MenuItem>
-                  <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
+                  <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
                     <ListItemIcon className={this.props.classes.menuIconWrapper}>
                       <FontAwesomeIcon icon={faUser} className={this.props.classes.menuIcon} />
                     </ListItemIcon>
                     <ListItemText className={this.props.classes.menuText} primary="My Profile" />
                   </MenuItem>
-                  <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
+                  <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
                     <ListItemIcon className={this.props.classes.menuIconWrapper}>
                       <FontAwesomeIcon icon={faCrown} className={this.props.classes.menuIcon} />
                     </ListItemIcon>
                     <ListItemText className={this.props.classes.menuText} primary="Membership" />
                   </MenuItem>
-                  <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
+                  <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
                     <ListItemIcon className={this.props.classes.menuIconWrapper}>
                       <FontAwesomeIcon icon={faShoppingCart} className={this.props.classes.menuIcon} />
                     </ListItemIcon>
                     <ListItemText className={this.props.classes.menuText} primary="Buy Bid Credit" />
                   </MenuItem>
-                  <MenuItem onClick={this.onCloseAvatar} className={this.props.classes.menuItem}>
+                  <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
                     <ListItemIcon className={this.props.classes.menuIconWrapper}>
                       <FontAwesomeIcon icon={faSignOutAlt} className={this.props.classes.menuIcon} />
                     </ListItemIcon>
