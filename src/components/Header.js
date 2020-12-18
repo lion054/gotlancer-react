@@ -8,11 +8,12 @@ import {
   MenuItem,
   Toolbar,
   withStyles,
+  withTheme,
   withWidth
 } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { compose } from 'recompose';
+import { compose } from 'redux';
 
 import AvatarMenuButton from './AvatarMenuButton';
 import AvatarMenuIcon from './AvatarMenuIcon';
@@ -30,16 +31,16 @@ const styles = (theme) => ({
     marginRight: theme.spacing(3)
   },
   badge: {
-    backgroundColor: theme.palette.success.dark,
+    backgroundColor: theme.palette.success.main,
     color: theme.palette.common.white,
     top: 15,
     right: 'unset',
     left: 15
   },
   label: {
-    color: '#314963',
+    color: theme.palette.text.primary,
     '&:hover': {
-      color: '#0F996D'
+      color: theme.palette.success.main
     },
     fontSize: 14
   }
@@ -136,12 +137,12 @@ class Header extends PureComponent {
       <div style={{ flex: 1 }} />
       <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
         <IconButton color="inherit">
-          <FontAwesomeIcon icon={faEnvelope} color="#ADBDCD" size="1x" />
+          <FontAwesomeIcon icon={faEnvelope} color={this.props.theme.palette.text.secondary} size="1x" />
         </IconButton>
       </Badge>
       <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
         <IconButton color="inherit">
-          <FontAwesomeIcon icon={faBell} color="#ADBDCD" size="1x" />
+          <FontAwesomeIcon icon={faBell} color={this.props.theme.palette.text.secondary} size="1x" />
         </IconButton>
       </Badge>
       <AvatarMenuButton />
@@ -154,12 +155,12 @@ class Header extends PureComponent {
       <div style={{ flex: 1 }} />
       <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
         <IconButton color="inherit">
-          <FontAwesomeIcon icon={faEnvelope} color="#ADBDCD" size="1x" />
+          <FontAwesomeIcon icon={faEnvelope} color={this.props.theme.palette.text.secondary} size="1x" />
         </IconButton>
       </Badge>
       <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
         <IconButton color="inherit">
-          <FontAwesomeIcon icon={faBell} color="#ADBDCD" size="1x" />
+          <FontAwesomeIcon icon={faBell} color={this.props.theme.palette.text.secondary} size="1x" />
         </IconButton>
       </Badge>
       <AvatarMenuIcon />
@@ -169,5 +170,6 @@ class Header extends PureComponent {
 
 export default compose(
   withWidth(),
-  withStyles(styles)
+  withStyles(styles),
+  withTheme
 )(Header);

@@ -15,44 +15,49 @@ import {
 } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+
+import { updateThemeMode } from '../controllers/app/actions';
 
 const styles = (theme) => ({
   avatarIcon: {
-    color: theme.palette.text.disabled,
+    color: theme.palette.text.secondary,
     fontSize: 32
   },
   menuList: {
     minWidth: 300
   },
   close: {
-    color: '#314963',
+    color: theme.palette.text.secondary,
     fontSize: 20
   },
   avatarWrapper: {
     marginRight: 12
   },
   label: {
-    color: '#314963',
+    color: theme.palette.text.primary,
     fontSize: 14
   },
   collapse: {
+    color: theme.palette.text.secondary,
     fontSize: 16
   }
 });
 
-const TitleTypography = withStyles({
+const TitleTypography = withStyles((theme) => ({
   root: {
-    color: '#314963',
+    color: theme.palette.text.primary,
     whiteSpace: 'nowrap'
   }
-})(Typography);
+}))(Typography);
 
-const BalanceTypography = withStyles({
+const BalanceTypography = withStyles((theme) => ({
   root: {
-    color: '#ADBDCD',
+    color: theme.palette.text.secondary,
     whiteSpace: 'nowrap'
   }
-})(Typography);
+}))(Typography);
 
 class AvatarMenuIcon extends PureComponent {
   state = {
@@ -106,7 +111,6 @@ class AvatarMenuIcon extends PureComponent {
       >
         <FontAwesomeIcon
           icon={this.state.currentDir === dir ? faChevronUp : faChevronDown}
-          color="#314963"
           className={this.props.classes.collapse}
         />
       </IconButton>
@@ -205,6 +209,23 @@ class AvatarMenuIcon extends PureComponent {
           },{
             element: () => (
               <Fragment>
+                <ListItemText classes={{ primary: this.props.classes.label }} primary="Dark Theme" />
+                <ListItemIcon>
+                  <Switch checked={this.props.themeMode === 'dark'} />
+                </ListItemIcon>
+              </Fragment>
+            ),
+            onClick: () => {
+              if (this.props.themeMode === 'dark') {
+                this.props.updateThemeMode('light');
+              } else {
+                this.props.updateThemeMode('dark');
+              }
+              return false;
+            }
+          },{
+            element: () => (
+              <Fragment>
                 <ListItemText classes={{ primary: this.props.classes.label }} primary="Online" />
                 <ListItemIcon>
                   <Switch checked={this.state.online} />
@@ -222,4 +243,17 @@ class AvatarMenuIcon extends PureComponent {
   )
 }
 
-export default withStyles(styles)(AvatarMenuIcon);
+const mapStateToProps = ({
+  app: { themeMode }
+}) => ({
+  themeMode
+});
+
+const mapDispatchToProps = (dispacth) => ({
+  updateThemeMode: (mode) => dispacth(updateThemeMode(mode))
+});
+
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, mapDispatchToProps)
+)(AvatarMenuIcon);

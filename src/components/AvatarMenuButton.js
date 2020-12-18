@@ -11,23 +11,27 @@ import {
 } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faCrown, faShoppingCart, faSignOutAlt, faUser, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+
+import { updateThemeMode } from '../controllers/app/actions';
 
 const styles = (theme) => ({
   root: {
-    borderRadius: 20,
-    marginLeft: 12
+    borderRadius: theme.spacing(3),
+    marginLeft: theme.spacing(1.5)
   },
   avatarWrapper: {
     marginLeft: theme.spacing(1.5),
     display: 'inline-block'
   },
   avatarIcon: {
-    color: theme.palette.text.disabled,
-    fontSize: 32
+    color: theme.palette.text.secondary,
+    fontSize: theme.spacing(4)
   },
   menuItem: {
     '&:hover > .MuiListItemIcon-root > svg': {
-      color: '#0F996D'
+      color: theme.palette.success.main
     }
   },
   menuIconWrapper: {
@@ -35,30 +39,30 @@ const styles = (theme) => ({
     justifyContent: 'center'
   },
   menuIcon: {
-    color: '#314963',
+    color: theme.palette.text.secondary,
     fontSize: 18
   },
   menuText: {
-    color: '#314963',
+    color: theme.palette.text.primary,
     fontSize: 14
   }
 });
 
-const TitleTypography = withStyles({
+const TitleTypography = withStyles((theme) => ({
   root: {
-    color: '#314963',
+    color: theme.palette.text.primary,
     textAlign: 'right',
     whiteSpace: 'nowrap'
   }
-})(Typography);
+}))(Typography);
 
-const BalanceTypography = withStyles({
+const BalanceTypography = withStyles((theme) => ({
   root: {
-    color: '#ADBDCD',
+    color: theme.palette.text.secondary,
     textAlign: 'right',
     whiteSpace: 'nowrap'
   }
-})(Typography);
+}))(Typography);
 
 class AvatarMenuButton extends PureComponent {
   state = {
@@ -71,6 +75,14 @@ class AvatarMenuButton extends PureComponent {
   onCloseMenu = () => this.setState({ avatarEl: null })
 
   onToggleOnline = () => this.setState({ online: !this.state.online })
+
+  onToggleThemeMode = () => {
+    if (this.props.themeMode === 'dark') {
+      this.props.updateThemeMode('light');
+    } else {
+      this.props.updateThemeMode('dark');
+    }
+  }
 
   render = () => (
     <Fragment>
@@ -126,6 +138,12 @@ class AvatarMenuButton extends PureComponent {
           </ListItemIcon>
           <ListItemText classes={{ primary: this.props.classes.menuText }} primary="Logout" />
         </MenuItem>
+        <MenuItem onClick={this.onToggleThemeMode} className={this.props.classes.menuItem}>
+          <ListItemIcon className={this.props.classes.menuIconWrapper}>
+            <Switch checked={this.props.themeMode === 'dark'} />
+          </ListItemIcon>
+          <ListItemText classes={{ primary: this.props.classes.menuText }} primary="Dark Mode" />
+        </MenuItem>
         <MenuItem onClick={this.onToggleOnline} className={this.props.classes.menuItem}>
           <ListItemIcon className={this.props.classes.menuIconWrapper}>
             <Switch checked={this.state.online} />
@@ -137,4 +155,17 @@ class AvatarMenuButton extends PureComponent {
   )
 }
 
-export default withStyles(styles)(AvatarMenuButton);
+const mapStateToProps = ({
+  app: { themeMode }
+}) => ({
+  themeMode
+});
+
+const mapDispatchToProps = (dispacth) => ({
+  updateThemeMode: (mode) => dispacth(updateThemeMode(mode))
+});
+
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, mapDispatchToProps)
+)(AvatarMenuButton);

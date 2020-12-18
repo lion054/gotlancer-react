@@ -1,16 +1,17 @@
 import React, { PureComponent } from 'react';
-import { InputBase } from '@material-ui/core';
+import { InputBase, withTheme } from '@material-ui/core';
 import { fade, withStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { compose } from 'redux';
 
 const styles = (theme) => ({
   root: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: fade(theme.palette.background.paper, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
+      backgroundColor: fade(theme.palette.background.paper, 0.25)
     },
     marginLeft: 0,
     width: '100%',
@@ -32,7 +33,7 @@ const styles = (theme) => ({
     right: 0
   },
   inputWrapper: {
-    borderColor: '#E7ECF2',
+    borderColor: theme.palette.divider,
     borderStyle: 'solid',
     borderWidth: 1,
     borderRadius: theme.shape.borderRadius
@@ -58,10 +59,10 @@ class SearchBox extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <div className={this.props.classes.icon}>
-        <FontAwesomeIcon icon={faSearch} color="#0F996D" size="sm" />
+        <FontAwesomeIcon icon={faSearch} color={this.props.theme.palette.success.main} size="sm" />
       </div>
       <div className={this.props.classes.icon + ' ' + this.props.classes.rightIcon}>
-        <FontAwesomeIcon icon={faChevronDown} color="#CED8E1" size="sm" />
+        <FontAwesomeIcon icon={faChevronDown} color={this.props.theme.palette.divider} size="sm" />
       </div>
       <InputBase
         placeholder="Search"
@@ -75,4 +76,7 @@ class SearchBox extends PureComponent {
   )
 }
 
-export default withStyles(styles)(SearchBox);
+export default compose(
+  withStyles(styles),
+  withTheme
+)(SearchBox);
