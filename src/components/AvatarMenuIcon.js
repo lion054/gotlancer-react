@@ -10,6 +10,7 @@ import {
   MenuItem,
   MenuList,
   Switch,
+  Typography,
   withStyles
 } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,24 +19,35 @@ import { faChevronDown, faChevronUp, faUserCircle } from '@fortawesome/free-soli
 const styles = (theme) => ({
   avatarIcon: {
     color: theme.palette.text.disabled,
-    fontSize: 60
+    fontSize: 32
   },
-  drawerAvatar: {
+  avatarWrapper: {
     marginRight: 12
-  },
-  title: {
-    color: '#314963',
-    fontSize: 25
-  },
-  subtitle: {
-    color: '#ADBDCD',
-    fontSize: 25
   },
   label: {
     color: '#314963',
-    fontSize: 24
+    fontSize: 14
+  },
+  collapse: {
+    fontSize: 16
   }
 });
+
+const TitleTypography = withStyles({
+  root: {
+    color: '#314963',
+    textAlign: 'right',
+    whiteSpace: 'nowrap'
+  }
+})(Typography);
+
+const BalanceTypography = withStyles({
+  root: {
+    color: '#ADBDCD',
+    textAlign: 'right',
+    whiteSpace: 'nowrap'
+  }
+})(Typography);
 
 class AvatarMenuIcon extends PureComponent {
   state = {
@@ -89,6 +101,8 @@ class AvatarMenuIcon extends PureComponent {
       >
         <FontAwesomeIcon
           icon={this.state.currentDir === dir ? faChevronUp : faChevronDown}
+          color="#314963"
+          className={this.props.classes.collapse}
         />
       </IconButton>
     </ListItemSecondaryAction>
@@ -121,12 +135,12 @@ class AvatarMenuIcon extends PureComponent {
           {this.renderListItems('', [{
             element: () => (
               <Fragment>
-                <div className={this.props.classes.drawerAvatar}>
+                <div className={this.props.classes.avatarWrapper}>
                   <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.avatarIcon} />
                 </div>
                 <div style={{ display: 'inline-block' }}>
-                  <div className={this.props.classes.title}>Hi, Apurba</div>
-                  <div className={this.props.classes.subtitle}>$100.00 USD</div>
+                  <TitleTypography variant="body2" display="block">Hi, Apurba</TitleTypography>
+                  <BalanceTypography variant="caption" display="block">$100.00 USD</BalanceTypography>
                 </div>
               </Fragment>
             )
