@@ -13,8 +13,7 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 const styles = (theme) => ({
   avatarIcon: {
     color: theme.palette.text.disabled,
-    fontSize: 60,
-    marginRight: 27
+    fontSize: 60
   },
   title: {
     color: '#314963',
