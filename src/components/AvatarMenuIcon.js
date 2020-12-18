@@ -14,12 +14,19 @@ import {
   withStyles
 } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
 const styles = (theme) => ({
   avatarIcon: {
     color: theme.palette.text.disabled,
     fontSize: 32
+  },
+  menuList: {
+    minWidth: 300
+  },
+  close: {
+    color: '#314963',
+    fontSize: 20
   },
   avatarWrapper: {
     marginRight: 12
@@ -36,7 +43,6 @@ const styles = (theme) => ({
 const TitleTypography = withStyles({
   root: {
     color: '#314963',
-    textAlign: 'right',
     whiteSpace: 'nowrap'
   }
 })(Typography);
@@ -44,7 +50,6 @@ const TitleTypography = withStyles({
 const BalanceTypography = withStyles({
   root: {
     color: '#ADBDCD',
-    textAlign: 'right',
     whiteSpace: 'nowrap'
   }
 })(Typography);
@@ -131,7 +136,7 @@ class AvatarMenuIcon extends PureComponent {
         open={this.state.drawerOpened}
         onClose={this.handleDrawer}
       >
-        <MenuList>
+        <MenuList classes={{ root: this.props.classes.menuList }}>
           {this.renderListItems('', [{
             element: () => (
               <Fragment>
@@ -142,6 +147,10 @@ class AvatarMenuIcon extends PureComponent {
                   <TitleTypography variant="body2" display="block">Hi, Apurba</TitleTypography>
                   <BalanceTypography variant="caption" display="block">$100.00 USD</BalanceTypography>
                 </div>
+                <div style={{ flex: 1 }} />
+                <IconButton color="inherit" onClick={this.handleDrawer}>
+                  <FontAwesomeIcon icon={faTimes} className={this.props.classes.close} />
+                </IconButton>
               </Fragment>
             )
           },{
