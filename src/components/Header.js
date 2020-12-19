@@ -71,10 +71,12 @@ class Header extends PureComponent {
     <div className={this.props.classes.root}>
       <AppBar position="static" color="transparent" elevation={0}>
         {(this.props.width === 'lg' || this.props.width === 'xl') && (
-          <Grid container justify="center">
+          <Grid container>
+            <Grid item lg={2} />
             <Grid item lg={8}>
               {this.renderDesktop()}
             </Grid>
+            <Grid item lg={2} />
           </Grid>
         )}
         {this.props.width === 'md' && this.renderDesktop()}

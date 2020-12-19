@@ -25,10 +25,11 @@ const styles = (theme) => ({
 class Footer extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
-      <Grid container justify="center">
-        <Grid item lg={8}>
+      <Grid container>
+        <Grid item lg={2} />
+        <Grid item lg={8} xs={12}>
           <Grid container>
-            <Grid item lg={3}>
+            <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
                   <Typography component="div" variant="body2" color="textPrimary">
@@ -61,7 +62,7 @@ class Footer extends PureComponent {
                 </ListItem>
               </List>
             </Grid>
-            <Grid item lg={3}>
+            <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
                   <Typography component="div" variant="body2" color="textPrimary">
@@ -94,7 +95,7 @@ class Footer extends PureComponent {
                 </ListItem>
               </List>
             </Grid>
-            <Grid item lg={3}>
+            <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
                   <Typography component="div" variant="body2" color="textPrimary">
@@ -130,7 +131,7 @@ class Footer extends PureComponent {
                 </ListItem>
               </List>
             </Grid>
-            <Grid item lg={3}>
+            <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
                   <Typography component="div" variant="body2" color="textPrimary">
@@ -159,6 +160,7 @@ class Footer extends PureComponent {
           {(this.props.width === 'xl' || this.props.width === 'lg' || this.props.width === 'md') && this.renderDesktop()}
           {(this.props.width === 'sm' || this.props.width === 'xs') && this.renderMobile()}
         </Grid>
+        <Grid item lg={2} />
       </Grid>
     </div>
   )
