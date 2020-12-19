@@ -6,10 +6,13 @@ import {
   List,
   ListItem,
   ListItemText,
+  Toolbar,
   Typography,
-  withStyles
+  withStyles,
+  withTheme
 } from '@material-ui/core';
 import { Apple, Shop, Facebook, Twitter, Language, LinkedIn, YouTube } from '@material-ui/icons';
+import { compose } from 'redux';
 
 const styles = (theme) => ({
   root: {
@@ -24,6 +27,9 @@ const styles = (theme) => ({
   label: {
     color: theme.palette.text.primary,
     fontSize: 14
+  },
+  bottomLink: {
+    marginLeft: theme.spacing(1.5)
   }
 });
 
@@ -153,28 +159,28 @@ class Footer extends PureComponent {
             </Grid>
           </Grid>
           <Divider />
-          <Grid container>
-            <Grid item lg={6}>
-              <Typography>&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
-              <Link className={this.props.classes.label} href="#">Privacy</Link>
-              <Link className={this.props.classes.label} href="#">Terms</Link>
-              <Link className={this.props.classes.label} href="#">Sitemap</Link>
-            </Grid>
-            <Grid item lg={6}>
-              <Language />
-              <Link className={this.props.classes.label} href="#">English (US)</Link>
-              <Shop />
-              <Apple />
-              <Facebook />
-              <Twitter />
-              <LinkedIn />
-              <YouTube />
-            </Grid>
-          </Grid>
+          <Toolbar>
+            <Typography variant="caption" color="textPrimary">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
+            <Link className={this.props.classes.label + ' ' + this.props.classes.bottomLink} href="#">Privacy</Link>
+            <Link className={this.props.classes.label + ' ' + this.props.classes.bottomLink} href="#">Terms</Link>
+            <Link className={this.props.classes.label + ' ' + this.props.classes.bottomLink} href="#">Sitemap</Link>
+            <div style={{ flex: 1 }} />
+            <Language style={{ color: this.props.theme.palette.text.secondary }} />
+            <Link className={this.props.classes.label} href="#">English (US)</Link>
+            <Shop style={{ color: this.props.theme.palette.text.secondary }} />
+            <Apple style={{ color: this.props.theme.palette.text.secondary }} />
+            <Facebook style={{ color: this.props.theme.palette.text.secondary }} />
+            <Twitter style={{ color: this.props.theme.palette.text.secondary }} />
+            <LinkedIn style={{ color: this.props.theme.palette.text.secondary }} />
+            <YouTube style={{ color: this.props.theme.palette.text.secondary }} />
+          </Toolbar>
         </Grid>
       </Grid>
     </div>
   )
 }
 
-export default withStyles(styles)(Footer);
+export default compose(
+  withStyles(styles),
+  withTheme
+)(Footer);
