@@ -189,7 +189,7 @@ class Footer extends PureComponent {
     <Grid container>
       <Grid item lg={6}>
         <Toolbar>
-          <Typography variant="caption">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
+          <Typography variant="caption" color="textPrimary">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
           <Link className={this.props.classes.label + ' ' + this.props.classes.bottomLink} href="#">Privacy</Link>
           <Link className={this.props.classes.label + ' ' + this.props.classes.bottomLink} href="#">Terms</Link>
           <Link className={this.props.classes.label + ' ' + this.props.classes.bottomLink} href="#">Sitemap</Link>

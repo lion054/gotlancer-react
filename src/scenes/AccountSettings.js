@@ -149,7 +149,7 @@ class AccountSettings extends PureComponent {
         </Grid>
       </Box>
       <Box mt={8} mb={8} textAlign="center">
-        <Typography variant="body2">Is there any problem? we can help</Typography>
+        <Typography variant="body2" color="textSecondary">Is there any problem? we can help</Typography>
         <Link href="#" style={{ color: this.props.theme.palette.success.main }}>Contact Support</Link>
       </Box>
       <Footer />
