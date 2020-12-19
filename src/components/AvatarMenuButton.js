@@ -26,8 +26,7 @@ const styles = (theme) => ({
     display: 'inline-block'
   },
   avatarIcon: {
-    color: theme.palette.text.secondary,
-    fontSize: theme.spacing(4)
+    color: theme.palette.text.secondary
   },
   menuItem: {
     '&:hover > .MuiListItemIcon-root > svg': {
@@ -40,11 +39,11 @@ const styles = (theme) => ({
   },
   menuIcon: {
     color: theme.palette.text.secondary,
-    fontSize: 18
+    fontSize: theme.spacing(2.5)
   },
   menuText: {
     color: theme.palette.text.primary,
-    fontSize: 14
+    fontSize: theme.spacing(1.9)
   }
 });
 
@@ -96,7 +95,7 @@ class AvatarMenuButton extends PureComponent {
           <BalanceTypography variant="caption" display="block">$100.00 USD</BalanceTypography>
         </div>
         <div className={this.props.classes.avatarWrapper}>
-          <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.avatarIcon} />
+          <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.avatarIcon} size="3x" />
         </div>
       </Button>
       <Menu

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = (theme) => ({
   root: {
     color: theme.palette.text.primary,
-    fontSize: 12,
+    fontSize: theme.spacing(1.75),
     fontWeight: 600
   }
 });

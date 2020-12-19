@@ -51,7 +51,7 @@ const styles = (theme) => ({
         width: '28ch'
       }
     },
-    fontSize: 13
+    fontSize: theme.spacing(1.75)
   }
 });
 

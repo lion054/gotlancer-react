@@ -26,23 +26,23 @@ const styles = (theme) => ({
     boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)'
   },
   logo: {
-    width: 125,
-    height: 33,
+    width: theme.spacing(16),
+    height: theme.spacing(4),
     marginRight: theme.spacing(3)
   },
   badge: {
     backgroundColor: theme.palette.success.main,
     color: theme.palette.common.white,
-    top: 15,
+    top: theme.spacing(2),
     right: 'unset',
-    left: 15
+    left: theme.spacing(2)
   },
   label: {
     color: theme.palette.text.primary,
     '&:hover': {
       color: theme.palette.success.main
     },
-    fontSize: 14
+    fontSize: theme.spacing(1.75)
   }
 });
 

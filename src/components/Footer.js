@@ -22,12 +22,12 @@ const styles = (theme) => ({
   },
   title: {
     color: theme.palette.text.primary,
-    fontSize: 12,
+    fontSize: theme.spacing(1.5),
     fontWeight: 'bold'
   },
   label: {
     color: theme.palette.text.primary,
-    fontSize: 14
+    fontSize: theme.spacing(1.75)
   },
   bottomLink: {
     marginLeft: theme.spacing(1.5)

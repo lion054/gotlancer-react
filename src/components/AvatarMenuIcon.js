@@ -23,25 +23,25 @@ import { updateThemeMode } from '../controllers/app/actions';
 const styles = (theme) => ({
   avatarIcon: {
     color: theme.palette.text.secondary,
-    fontSize: 32
+    fontSize: theme.spacing(4)
   },
   menuList: {
-    minWidth: 300
+    minWidth: theme.spacing(37.5)
   },
   close: {
     color: theme.palette.text.secondary,
-    fontSize: 20
+    fontSize: theme.spacing(2.5)
   },
   avatarWrapper: {
-    marginRight: 12
+    marginRight: theme.spacing(1.5)
   },
   label: {
     color: theme.palette.text.primary,
-    fontSize: 14
+    fontSize: theme.spacing(2)
   },
   collapse: {
     color: theme.palette.text.secondary,
-    fontSize: 16
+    fontSize: theme.spacing(2)
   }
 });
 
