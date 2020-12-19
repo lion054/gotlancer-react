@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import { InputBase, withTheme } from '@material-ui/core';
-import { fade, withStyles } from '@material-ui/core/styles';
+import { InputBase, fade, withTheme, withStyles } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { compose } from 'redux';

@@ -11,6 +11,7 @@ import {
 } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faCrown, faShoppingCart, faSignOutAlt, faUser, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
@@ -47,22 +48,6 @@ const styles = (theme) => ({
   }
 });
 
-const TitleTypography = withStyles((theme) => ({
-  root: {
-    color: theme.palette.text.primary,
-    textAlign: 'right',
-    whiteSpace: 'nowrap'
-  }
-}))(Typography);
-
-const BalanceTypography = withStyles((theme) => ({
-  root: {
-    color: theme.palette.text.secondary,
-    textAlign: 'right',
-    whiteSpace: 'nowrap'
-  }
-}))(Typography);
-
 class AvatarMenuButton extends PureComponent {
   state = {
     avatarEl: null,
@@ -91,8 +76,8 @@ class AvatarMenuButton extends PureComponent {
         onClick={this.onOpenMenu}
       >
         <div style={{ display: 'inline-block' }}>
-          <TitleTypography variant="body2" display="block">Hi, Apurba</TitleTypography>
-          <BalanceTypography variant="caption" display="block">$100.00 USD</BalanceTypography>
+          <Typography variant="body2" display="block" color="textPrimary" noWrap align="right">Hi, Apurba</Typography>
+          <Typography variant="body2" display="block" color="textSecondary" noWrap align="right">$100.00 USD</Typography>
         </div>
         <div className={this.props.classes.avatarWrapper}>
           <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.avatarIcon} size="3x" />
@@ -107,7 +92,13 @@ class AvatarMenuButton extends PureComponent {
         getContentAnchorEl={null} // menu should be display below anchor
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
       >
-        <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
+        <MenuItem
+          onClick={() => {
+            this.onCloseMenu();
+            this.props.history.push('/account_settings');
+          }}
+          className={this.props.classes.menuItem}
+        >
           <ListItemIcon className={this.props.classes.menuIconWrapper}>
             <FontAwesomeIcon icon={faCog} className={this.props.classes.menuIcon} />
           </ListItemIcon>
@@ -165,6 +156,7 @@ const mapDispatchToProps = (dispacth) => ({
 });
 
 export default compose(
+  withRouter,
   withStyles(styles),
   connect(mapStateToProps, mapDispatchToProps)
 )(AvatarMenuButton);

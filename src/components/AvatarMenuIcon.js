@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
@@ -44,20 +45,6 @@ const styles = (theme) => ({
     fontSize: theme.spacing(2)
   }
 });
-
-const TitleTypography = withStyles((theme) => ({
-  root: {
-    color: theme.palette.text.primary,
-    whiteSpace: 'nowrap'
-  }
-}))(Typography);
-
-const BalanceTypography = withStyles((theme) => ({
-  root: {
-    color: theme.palette.text.secondary,
-    whiteSpace: 'nowrap'
-  }
-}))(Typography);
 
 class AvatarMenuIcon extends PureComponent {
   state = {
@@ -148,8 +135,8 @@ class AvatarMenuIcon extends PureComponent {
                   <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.avatarIcon} />
                 </div>
                 <div style={{ display: 'inline-block' }}>
-                  <TitleTypography variant="body2" display="block">Hi, Apurba</TitleTypography>
-                  <BalanceTypography variant="caption" display="block">$100.00 USD</BalanceTypography>
+                  <Typography variant="body2" display="block" color="textPrimary" noWrap>Hi, Apurba</Typography>
+                  <Typography variant="body2" display="block" color="textSecondary" noWrap>$100.00 USD</Typography>
                 </div>
                 <div style={{ flex: 1 }} />
                 <IconButton color="inherit" onClick={this.handleDrawer}>
@@ -158,7 +145,10 @@ class AvatarMenuIcon extends PureComponent {
               </Fragment>
             )
           },{
-            label: 'Settings'
+            label: 'Settings',
+            onClick: () => {
+              this.props.history.push('/account_settings');
+            }
           },{
             label: 'My Profile'
           },{
@@ -254,6 +244,7 @@ const mapDispatchToProps = (dispacth) => ({
 });
 
 export default compose(
+  withRouter,
   withStyles(styles),
   connect(mapStateToProps, mapDispatchToProps)
 )(AvatarMenuIcon);

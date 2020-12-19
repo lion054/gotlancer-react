@@ -2,12 +2,16 @@ import React, { PureComponent } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
+import AccountSettings from './scenes/AccountSettings';
 import MyOverview from './scenes/MyOverview';
 import { connect } from 'react-redux';
 
 const routes = [{
   path: '/',
   component: MyOverview
+},{
+  path: '/account_settings',
+  component: AccountSettings
 }];
 
 const lightTheme = createMuiTheme({

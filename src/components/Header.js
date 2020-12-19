@@ -14,6 +14,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
 
 import AvatarMenuButton from './AvatarMenuButton';
 import AvatarMenuIcon from './AvatarMenuIcon';
@@ -84,7 +85,7 @@ class Header extends PureComponent {
 
   renderDesktop = () => (
     <Toolbar>
-      <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo.png')} />
+      <img alt="" className={this.props.classes.logo} src={require(`../assets/images/gl-logo-${this.props.themeMode}.png`)} />
       <MenuButton color="inherit" onClick={this.onOpenProjects}>Projects</MenuButton>
       <Menu
         id="projects-menu"
@@ -151,7 +152,7 @@ class Header extends PureComponent {
 
   renderMobile = () => (
     <Toolbar>
-      <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo.png')} />
+      <img alt="" className={this.props.classes.logo} src={require(`../assets/images/gl-logo-${this.props.themeMode}.png`)} />
       <div style={{ flex: 1 }} />
       <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
         <IconButton color="inherit">
@@ -168,8 +169,15 @@ class Header extends PureComponent {
   )
 }
 
+const mapStateToProps = ({
+  app: { themeMode }
+}) => ({
+  themeMode
+});
+
 export default compose(
   withWidth(),
   withStyles(styles),
-  withTheme
+  withTheme,
+  connect(mapStateToProps)
 )(Header);
