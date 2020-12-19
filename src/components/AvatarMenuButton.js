@@ -1,5 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 import {
+  Box,
   Button,
   ListItemIcon,
   ListItemText,
@@ -7,7 +8,8 @@ import {
   MenuItem,
   Switch,
   Typography,
-  withStyles
+  withStyles,
+  withTheme
 } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faCrown, faShoppingCart, faSignOutAlt, faUser, faUserCircle } from '@fortawesome/free-solid-svg-icons';
@@ -19,32 +21,12 @@ import { updateThemeMode } from '../controllers/app/actions';
 
 const styles = (theme) => ({
   root: {
-    borderRadius: theme.spacing(3),
-    marginLeft: theme.spacing(1.5)
-  },
-  avatarWrapper: {
-    marginLeft: theme.spacing(1.5),
-    display: 'inline-block'
-  },
-  avatarIcon: {
-    color: theme.palette.text.secondary
+    borderRadius: theme.spacing(3)
   },
   menuItem: {
     '&:hover > .MuiListItemIcon-root > svg': {
       color: theme.palette.success.main
     }
-  },
-  menuIconWrapper: {
-    marginRight: theme.spacing(1),
-    justifyContent: 'center'
-  },
-  menuIcon: {
-    color: theme.palette.text.secondary,
-    fontSize: theme.spacing(2.5)
-  },
-  menuText: {
-    color: theme.palette.text.primary,
-    fontSize: theme.spacing(1.9)
   }
 });
 
@@ -70,19 +52,21 @@ class AvatarMenuButton extends PureComponent {
 
   render = () => (
     <Fragment>
-      <Button
-        className={this.props.classes.root}
-        aria-describedby={!!this.state.avatarEl ? 'avatar-popover' : undefined}
-        onClick={this.onOpenMenu}
-      >
-        <div style={{ display: 'inline-block' }}>
-          <Typography variant="body2" display="block" color="textPrimary" noWrap align="right">Hi, Apurba</Typography>
-          <Typography variant="body2" display="block" color="textSecondary" noWrap align="right">$100.00 USD</Typography>
-        </div>
-        <div className={this.props.classes.avatarWrapper}>
-          <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.avatarIcon} size="3x" />
-        </div>
-      </Button>
+      <Box ml={1.5}>
+        <Button
+          className={this.props.classes.root}
+          aria-describedby={!!this.state.avatarEl ? 'avatar-popover' : undefined}
+          onClick={this.onOpenMenu}
+        >
+          <Box display="inline-block">
+            <Typography variant="body2" display="block" color="textPrimary" noWrap align="right">Hi, Apurba</Typography>
+            <Typography variant="body2" display="block" color="textSecondary" noWrap align="right">$100.00 USD</Typography>
+          </Box>
+          <Box ml={1.5} display="inline-block">
+            <FontAwesomeIcon icon={faUserCircle} color={this.props.theme.palette.text.secondary} size="3x" />
+          </Box>
+        </Button>
+      </Box>
       <Menu
         id="avatar-menu"
         anchorEl={this.state.avatarEl}
@@ -99,46 +83,77 @@ class AvatarMenuButton extends PureComponent {
           }}
           className={this.props.classes.menuItem}
         >
-          <ListItemIcon className={this.props.classes.menuIconWrapper}>
-            <FontAwesomeIcon icon={faCog} className={this.props.classes.menuIcon} />
+          <ListItemIcon>
+            <Box mr={1.5} width="100%" textAlign="center">
+              <FontAwesomeIcon icon={faCog} color={this.props.theme.palette.text.secondary} size="2x" />
+            </Box>
           </ListItemIcon>
-          <ListItemText classes={{ primary: this.props.classes.menuText }} primary="Settings" />
+          <ListItemText primary="Settings" primaryTypographyProps={{
+            variant: 'body1',
+            color: 'textPrimary'
+          }} />
         </MenuItem>
         <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
-          <ListItemIcon className={this.props.classes.menuIconWrapper}>
-            <FontAwesomeIcon icon={faUser} className={this.props.classes.menuIcon} />
+          <ListItemIcon>
+            <Box mr={1.5} width="100%" textAlign="center">
+              <FontAwesomeIcon icon={faUser} color={this.props.theme.palette.text.secondary} size="2x" />
+            </Box>
           </ListItemIcon>
-          <ListItemText classes={{ primary: this.props.classes.menuText }} primary="My Profile" />
+          <ListItemText primary="My Profile" primaryTypographyProps={{
+            variant: 'body1',
+            color: 'textPrimary'
+          }} />
         </MenuItem>
         <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
-          <ListItemIcon className={this.props.classes.menuIconWrapper}>
-            <FontAwesomeIcon icon={faCrown} className={this.props.classes.menuIcon} />
+          <ListItemIcon>
+            <Box mr={1.5} width="100%" textAlign="center">
+              <FontAwesomeIcon icon={faCrown} color={this.props.theme.palette.text.secondary} size="2x" />
+            </Box>
           </ListItemIcon>
-          <ListItemText classes={{ primary: this.props.classes.menuText }} primary="Membership" />
+          <ListItemText primary="Membership" primaryTypographyProps={{
+            variant: 'body1',
+            color: 'textPrimary'
+          }} />
         </MenuItem>
         <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
-          <ListItemIcon className={this.props.classes.menuIconWrapper}>
-            <FontAwesomeIcon icon={faShoppingCart} className={this.props.classes.menuIcon} />
+          <ListItemIcon>
+            <Box mr={1.5} width="100%" textAlign="center">
+              <FontAwesomeIcon icon={faShoppingCart} color={this.props.theme.palette.text.secondary} size="2x" />
+            </Box>
           </ListItemIcon>
-          <ListItemText classes={{ primary: this.props.classes.menuText }} primary="Buy Bid Credit" />
+          <ListItemText primary="Buy Bid Credit" primaryTypographyProps={{
+            variant: 'body1',
+            color: 'textPrimary'
+          }} />
         </MenuItem>
         <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
-          <ListItemIcon className={this.props.classes.menuIconWrapper}>
-            <FontAwesomeIcon icon={faSignOutAlt} className={this.props.classes.menuIcon} />
+          <ListItemIcon>
+            <Box mr={1.5} width="100%" textAlign="center">
+              <FontAwesomeIcon icon={faSignOutAlt} color={this.props.theme.palette.text.secondary} size="2x" />
+            </Box>
           </ListItemIcon>
-          <ListItemText classes={{ primary: this.props.classes.menuText }} primary="Logout" />
+          <ListItemText primary="Logout" primaryTypographyProps={{
+            variant: 'body1',
+            color: 'textPrimary'
+          }} />
         </MenuItem>
         <MenuItem onClick={this.onToggleThemeMode} className={this.props.classes.menuItem}>
-          <ListItemIcon className={this.props.classes.menuIconWrapper}>
+          <ListItemIcon>
             <Switch checked={this.props.themeMode === 'dark'} />
           </ListItemIcon>
-          <ListItemText classes={{ primary: this.props.classes.menuText }} primary="Dark Mode" />
+          <ListItemText primary="Dark Mode" primaryTypographyProps={{
+            variant: 'body1',
+            color: 'textPrimary'
+          }} />
         </MenuItem>
         <MenuItem onClick={this.onToggleOnline} className={this.props.classes.menuItem}>
-          <ListItemIcon className={this.props.classes.menuIconWrapper}>
+          <ListItemIcon>
             <Switch checked={this.state.online} />
           </ListItemIcon>
-          <ListItemText classes={{ primary: this.props.classes.menuText }} primary="Online" />
+          <ListItemText primary="Online" primaryTypographyProps={{
+            variant: 'body1',
+            color: 'textPrimary'
+          }} />
         </MenuItem>
       </Menu>
     </Fragment>
@@ -158,5 +173,6 @@ const mapDispatchToProps = (dispacth) => ({
 export default compose(
   withRouter,
   withStyles(styles),
+  withTheme,
   connect(mapStateToProps, mapDispatchToProps)
 )(AvatarMenuButton);

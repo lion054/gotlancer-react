@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import {
   AppBar,
   Badge,
+  Box,
   Grid,
   IconButton,
   Menu,
@@ -28,8 +29,7 @@ const styles = (theme) => ({
   },
   logo: {
     width: theme.spacing(16),
-    height: theme.spacing(4),
-    marginRight: theme.spacing(3)
+    height: theme.spacing(4)
   },
   badge: {
     backgroundColor: theme.palette.success.main,
@@ -85,7 +85,9 @@ class Header extends PureComponent {
 
   renderDesktop = () => (
     <Toolbar>
-      <img alt="" className={this.props.classes.logo} src={require(`../assets/images/gl-logo-${this.props.themeMode}.png`)} />
+      <Box mr={3}>
+        <img alt="" className={this.props.classes.logo} src={require(`../assets/images/gl-logo-${this.props.themeMode}.png`)} />
+      </Box>
       <MenuButton color="inherit" onClick={this.onOpenProjects}>Projects</MenuButton>
       <Menu
         id="projects-menu"

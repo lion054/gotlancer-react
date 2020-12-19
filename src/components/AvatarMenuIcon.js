@@ -1,5 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 import {
+  Box,
   Collapse,
   Divider,
   Drawer,
@@ -11,7 +12,8 @@ import {
   MenuList,
   Switch,
   Typography,
-  withStyles
+  withStyles,
+  withTheme
 } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
@@ -22,27 +24,8 @@ import { connect } from 'react-redux';
 import { updateThemeMode } from '../controllers/app/actions';
 
 const styles = (theme) => ({
-  avatarIcon: {
-    color: theme.palette.text.secondary,
-    fontSize: theme.spacing(4)
-  },
   menuList: {
     minWidth: theme.spacing(37.5)
-  },
-  close: {
-    color: theme.palette.text.secondary,
-    fontSize: theme.spacing(2.5)
-  },
-  avatarWrapper: {
-    marginRight: theme.spacing(1.5)
-  },
-  label: {
-    color: theme.palette.text.primary,
-    fontSize: theme.spacing(2)
-  },
-  collapse: {
-    color: theme.palette.text.secondary,
-    fontSize: theme.spacing(2)
   }
 });
 
@@ -80,7 +63,10 @@ class AvatarMenuIcon extends PureComponent {
         }
       }}>
         {item.element ? item.element() : (
-          <ListItemText classes={{ primary: this.props.classes.label }} primary={item.label} />
+          <ListItemText primary={item.label} primaryTypographyProps={{
+            variant: 'body1',
+            color: 'textPrimary'
+          }} />
         )}
         {item.items && this.renderCollapseButton(this.getDir(dir, index))}
       </MenuItem>
@@ -98,7 +84,8 @@ class AvatarMenuIcon extends PureComponent {
       >
         <FontAwesomeIcon
           icon={this.state.currentDir === dir ? faChevronUp : faChevronDown}
-          className={this.props.classes.collapse}
+          color={this.props.theme.palette.text.secondary}
+          size="1x"
         />
       </IconButton>
     </ListItemSecondaryAction>
@@ -120,7 +107,7 @@ class AvatarMenuIcon extends PureComponent {
   render = () => (
     <Fragment>
       <IconButton color="inherit" onClick={this.handleDrawer}>
-        <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.avatarIcon} />
+        <FontAwesomeIcon icon={faUserCircle} color={this.props.theme.palette.text.secondary} size="1x" />
       </IconButton>
       <Drawer
         anchor="right"
@@ -131,16 +118,16 @@ class AvatarMenuIcon extends PureComponent {
           {this.renderListItems('', [{
             element: () => (
               <Fragment>
-                <div className={this.props.classes.avatarWrapper}>
-                  <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.avatarIcon} />
-                </div>
-                <div style={{ display: 'inline-block' }}>
+                <Box mr={1.5}>
+                  <FontAwesomeIcon icon={faUserCircle} color={this.props.theme.palette.text.secondary} size="2x" />
+                </Box>
+                <Box display="inline-block">
                   <Typography variant="body2" display="block" color="textPrimary" noWrap>Hi, Apurba</Typography>
                   <Typography variant="body2" display="block" color="textSecondary" noWrap>$100.00 USD</Typography>
-                </div>
+                </Box>
                 <div style={{ flex: 1 }} />
                 <IconButton color="inherit" onClick={this.handleDrawer}>
-                  <FontAwesomeIcon icon={faTimes} className={this.props.classes.close} />
+                  <FontAwesomeIcon icon={faTimes} color={this.props.theme.palette.text.secondary} size="1x" />
                 </IconButton>
               </Fragment>
             )
@@ -199,7 +186,10 @@ class AvatarMenuIcon extends PureComponent {
           },{
             element: () => (
               <Fragment>
-                <ListItemText classes={{ primary: this.props.classes.label }} primary="Dark Theme" />
+                <ListItemText primary="Dark Theme" primaryTypographyProps={{
+                  variant: 'body1',
+                  color: 'textPrimary'
+                }} />
                 <ListItemIcon>
                   <Switch checked={this.props.themeMode === 'dark'} />
                 </ListItemIcon>
@@ -216,7 +206,10 @@ class AvatarMenuIcon extends PureComponent {
           },{
             element: () => (
               <Fragment>
-                <ListItemText classes={{ primary: this.props.classes.label }} primary="Online" />
+                <ListItemText primary="Online" primaryTypographyProps={{
+                  variant: 'body1',
+                  color: 'textPrimary'
+                }} />
                 <ListItemIcon>
                   <Switch checked={this.state.online} />
                 </ListItemIcon>
@@ -246,5 +239,6 @@ const mapDispatchToProps = (dispacth) => ({
 export default compose(
   withRouter,
   withStyles(styles),
+  withTheme,
   connect(mapStateToProps, mapDispatchToProps)
 )(AvatarMenuIcon);
