@@ -1,17 +1,21 @@
 import React, { PureComponent } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { colors, createMuiTheme, ThemeProvider } from '@material-ui/core';
 
 import AccountSettings from './scenes/AccountSettings';
-import MyOverview from './scenes/MyOverview';
+import Home from './scenes/Home';
+import PersonalInfo from './scenes/PersonalInfo';
 import { connect } from 'react-redux';
 
 const routes = [{
   path: '/',
-  component: MyOverview
+  component: Home
 },{
   path: '/account_settings',
   component: AccountSettings
+},{
+  path: '/account_settings/personal_info',
+  component: PersonalInfo
 }];
 
 const lightTheme = createMuiTheme({
@@ -22,6 +26,14 @@ const lightTheme = createMuiTheme({
     MuiButton: {
       text: {
         textTransform: 'unset'
+      },
+      contained: {
+        textTransform: 'unset',
+        backgroundColor: colors.grey[900],
+        color: colors.common.white,
+        '&:hover': {
+          backgroundColor: colors.grey[600]
+        }
       }
     }
   }
@@ -35,6 +47,14 @@ const darkTheme = createMuiTheme({
     MuiButton: {
       text: {
         textTransform: 'unset'
+      },
+      contained: {
+        textTransform: 'unset',
+        backgroundColor: colors.grey[900],
+        color: colors.common.white,
+        '&:hover': {
+          backgroundColor: colors.grey[600]
+        }
       }
     }
   }

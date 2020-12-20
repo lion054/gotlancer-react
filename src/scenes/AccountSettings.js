@@ -10,6 +10,7 @@ import {
   withStyles,
   withTheme
 } from '@material-ui/core';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 import Header from '../components/Header';
@@ -50,7 +51,7 @@ class AccountSettings extends PureComponent {
             <Grid container spacing={2}>
               <Grid item lg={4} md={6} xs={12}>
                 <Card className={this.props.classes.card}>
-                  <CardActionArea>
+                  <CardActionArea onClick={() => this.props.history.push('/account_settings/personal_info')}>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/personal-info.svg')} />
                       <Typography variant="body1">Personal info &gt;</Typography>
@@ -163,5 +164,6 @@ class AccountSettings extends PureComponent {
 
 export default compose(
   withStyles(styles),
-  withTheme
+  withTheme,
+  withRouter
 )(AccountSettings);

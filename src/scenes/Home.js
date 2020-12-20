@@ -13,7 +13,7 @@ const styles = (theme) => ({
   }
 })
 
-class MyOverview extends PureComponent {
+class Home extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
@@ -23,4 +23,4 @@ class MyOverview extends PureComponent {
   )
 }
 
-export default withStyles(styles)(MyOverview);
+export default withStyles(styles)(Home);
