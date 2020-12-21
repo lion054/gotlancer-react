@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { colors, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import AccountSettings from './scenes/AccountSettings';
 import Home from './scenes/Home';
@@ -90,15 +92,17 @@ const darkTheme = createMuiTheme({
 class Content extends PureComponent {
   render = () => (
     <ThemeProvider theme={this.props.themeMode === 'dark' ? darkTheme : lightTheme}>
-      <BrowserRouter>
-        <div className="App">
-          <Switch>
-            {routes.map(({ path, component }, index) => (
-              <Route key={index} exact path={path} component={component} />
-            ))}
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <MuiPickersUtilsProvider utils={MomentUtils}>
+        <BrowserRouter>
+          <div className="App">
+            <Switch>
+              {routes.map(({ path, component }, index) => (
+                <Route key={index} exact path={path} component={component} />
+              ))}
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </MuiPickersUtilsProvider>
     </ThemeProvider>
   )
 }
