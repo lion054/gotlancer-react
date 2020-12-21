@@ -35,6 +35,23 @@ const lightTheme = createMuiTheme({
           backgroundColor: colors.grey[600]
         }
       }
+    },
+    MuiOutlinedInput: {
+      root: {
+        '&:hover $notchedOutline': {
+          borderColor: colors.green[300]
+        },
+        '&$focused $notchedOutline': {
+          borderColor: colors.green[500]
+        }
+      }
+    },
+    MuiInputLabel: {
+      outlined: {
+        '&$shrink': {
+          color: colors.green[500]
+        }
+      }
     }
   }
 });
@@ -54,6 +71,16 @@ const darkTheme = createMuiTheme({
         color: colors.common.white,
         '&:hover': {
           backgroundColor: colors.grey[600]
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      root: {
+        '&:hover $notchedOutline': {
+          borderColor: colors.green[300]
+        },
+        '&$focused $notchedOutline': {
+          borderColor: colors.green[500]
         }
       }
     }

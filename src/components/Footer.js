@@ -18,7 +18,7 @@ import { compose } from 'redux';
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.action.selected
   }
 });
 

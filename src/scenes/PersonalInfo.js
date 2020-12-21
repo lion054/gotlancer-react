@@ -30,20 +30,12 @@ const styles = (theme) => ({
   cardContent: {
     height: theme.spacing(16)
   },
-  expandIcon: { // Avoid rotation of icon
+  expandIcon: { // Avoid rotation of collapse icon
     '&$expanded': {
       transform: 'unset'
     }
   },
-  expanded: {}, // Avoid rotation of icon
-  textLabel: {
-    color: theme.palette.success.main
-  },
-  textInput: {
-    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: theme.palette.success.main
-    }
-  }
+  expanded: {} // Avoid rotation of collapse icon
 })
 
 class PersonalInfo extends PureComponent {
@@ -93,8 +85,8 @@ class PersonalInfo extends PureComponent {
           <Typography>{this.state.currentEntry === 'LegalName' ? 'Cancel' : 'Edit'}</Typography>
         )}
         classes={{
-          expandIcon: this.props.classes.expandIcon, // Avoid rotation of icon
-          expanded: this.props.classes.expanded // Avoid rotation of icon
+          expandIcon: this.props.classes.expandIcon, // Avoid rotation of collapse icon
+          expanded: this.props.classes.expanded // Avoid rotation of collapse icon
         }}
         aria-label="Expand"
         aria-controls="additional-actions1-content"
@@ -115,17 +107,7 @@ class PersonalInfo extends PureComponent {
           </Box>
           <Grid container spacing={2}>
             <Grid item sm={6}>
-              <TextField
-                label="First name"
-                variant="outlined"
-                fullWidth
-                className={this.props.classes.textInput}
-                InputLabelProps={{
-                  classes: {
-                    focused: this.props.classes.textLabel
-                  }
-                }}
-              />
+              <TextField label="First name" variant="outlined" fullWidth />
             </Grid>
             <Grid item sm={6}>
               <TextField label="Last name" variant="outlined" fullWidth />
