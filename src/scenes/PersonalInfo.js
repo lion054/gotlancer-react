@@ -1,10 +1,13 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
   Box,
   Breadcrumbs,
+  Card,
+  CardActionArea,
+  CardContent,
   Grid,
   Link,
   MenuItem,
@@ -14,6 +17,8 @@ import {
   withTheme
 } from '@material-ui/core';
 import { KeyboardDatePicker } from '@material-ui/pickers';
+import { Autocomplete } from '@material-ui/lab';
+import { countries, countryToFlag } from '../countries';
 import capitalize from 'capitalize';
 import moment from 'moment';
 import { compose } from 'redux';
@@ -26,20 +31,28 @@ const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper
   },
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid'
-  },
-  cardContent: {
-    height: theme.spacing(16)
-  },
   expandIcon: { // Avoid rotation of collapse icon
     '&$expanded': {
       transform: 'unset'
     }
   },
-  expanded: {} // Avoid rotation of collapse icon
+  expanded: {}, // Avoid rotation of collapse icon
+  country: {
+    fontSize: theme.spacing(2),
+    '& > span': {
+      marginRight: theme.spacing(1.25),
+      fontSize: theme.spacing(1.25)
+    }
+  },
+  card: {
+    borderRadius: theme.spacing(1.5),
+    borderColor: theme.palette.divider,
+    borderStyle: 'solid'
+  },
+  cardIcon: {
+    width: theme.spacing(8),
+    height: theme.spacing(7)
+  }
 })
 
 class PersonalInfo extends PureComponent {
@@ -49,13 +62,19 @@ class PersonalInfo extends PureComponent {
     lastName: '',
     gender: '',
     dateOfBirth: null,
+    country: '',
+    street: '',
+    aptSuite: '',
+    city: '',
+    county: '',
+    postCode: '',
     loading: false
   }
 
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2}>
+      <Box mt={8} ml={2} mr={2} mb={8}>
         <Grid container>
           <Grid item md={2} />
           <Grid item md={8}>
@@ -146,16 +165,112 @@ class PersonalInfo extends PureComponent {
                     </Box>
                   )
                 })}
+                {this.renderEntry({
+                  id: 'Address',
+                  title: 'Address',
+                  formattedValue: this.state.firstName + ' ' + this.state.lastName,
+                  details: (
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <Box mb={2}>
+                          <Typography>Use a permanent address where you can receive mail.</Typography>
+                        </Box>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Autocomplete
+                          fullWidth
+                          options={countries}
+                          classes={{
+                            option: this.props.classes.country
+                          }}
+                          autoHighlight
+                          getOptionLabel={(option) => option.label}
+                          renderOption={(option) => (
+                            <Fragment>
+                              <span>{countryToFlag(option.code)}</span>
+                              {option.label} ({option.code}) +{option.phone}
+                            </Fragment>
+                          )}
+                          renderInput={(params) => (
+                            <TextField
+                              {...params}
+                              label="Choose a country"
+                              variant="outlined"
+                              inputProps={{
+                                ...params.inputProps,
+                                autoComplete: 'new-password', // disable autocomplete and autofill
+                              }}
+                            />
+                          )}
+                          onChange={(value) => console.log(value)}
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          variant="outlined"
+                          label="Street address"
+                          value={this.state.street}
+                          onChange={e => this.setState({ street: e.target.value })}
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextField
+                          variant="outlined"
+                          label="Flat, suite. (optional)"
+                          value={this.state.aptSuite}
+                          onChange={e => this.setState({ aptSuite: e.target.value })}
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          variant="outlined"
+                          label="City/Town"
+                          value={this.state.city}
+                          onChange={e => this.setState({ city: e.target.value })}
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          variant="outlined"
+                          label="County"
+                          value={this.state.county}
+                          onChange={e => this.setState({ county: e.target.value })}
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          variant="outlined"
+                          label="Postcode"
+                          value={this.state.postCode}
+                          onChange={e => this.setState({ postCode: e.target.value })}
+                          fullWidth
+                        />
+                      </Grid>
+                    </Grid>
+                  )
+                })}
               </Grid>
-              <Grid item lg={6}></Grid>
+              <Grid item lg={2} />
+              <Grid item lg={4}>
+                <Card className={this.props.classes.card}>
+                  <CardActionArea onClick={() => {}}>
+                    <CardContent>
+                      <img alt="" className={this.props.classes.cardIcon} src={require('../assets/images/account-settings/personal-info.svg')} />
+                      <Typography variant="body1">Let's make your account more secure</Typography>
+                      <Typography variant="body2">Your account security: Medium</Typography>
+                      <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
             </Grid>
           </Grid>
           <Grid item md={2} />
         </Grid>
-      </Box>
-      <Box mt={8} mb={8} textAlign="center">
-        <Typography variant="body2" color="textSecondary">Is there any problem? we can help</Typography>
-        <Link href="#" style={{ color: this.props.theme.palette.success.main }}>Contact Support</Link>
       </Box>
       <Footer />
     </div>
