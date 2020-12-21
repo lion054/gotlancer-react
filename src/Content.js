@@ -85,6 +85,13 @@ const darkTheme = createMuiTheme({
           borderColor: colors.green[500]
         }
       }
+    },
+    MuiInputLabel: {
+      outlined: {
+        '&$shrink': {
+          color: colors.green[500]
+        }
+      }
     }
   }
 });
