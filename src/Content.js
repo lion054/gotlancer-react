@@ -6,6 +6,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import AccountSettings from './scenes/AccountSettings';
 import Home from './scenes/Home';
+import IdentityVerification from './scenes/IdentityVerification';
 import LoginSecurity from './scenes/LoginSecurity';
 import PaymentsPayouts from './scenes/PaymentsPayouts';
 import PersonalInfo from './scenes/PersonalInfo';
@@ -26,6 +27,9 @@ const routes = [{
 },{
   path: '/account_settings/payments_payouts',
   component: PaymentsPayouts
+},{
+  path: '/account_settings/identity_verification',
+  component: IdentityVerification
 }];
 
 const lightTheme = createMuiTheme({
@@ -44,6 +48,9 @@ const lightTheme = createMuiTheme({
         '&:hover': {
           backgroundColor: colors.grey[600]
         }
+      },
+      outlined: {
+        textTransform: 'unset'
       }
     },
     MuiOutlinedInput: {
@@ -95,6 +102,9 @@ const darkTheme = createMuiTheme({
         '&:hover': {
           backgroundColor: colors.grey[600]
         }
+      },
+      outlined: {
+        textTransform: 'unset'
       }
     },
     MuiOutlinedInput: {

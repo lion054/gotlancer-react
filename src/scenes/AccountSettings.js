@@ -84,10 +84,10 @@ class AccountSettings extends PureComponent {
               </Grid>
               <Grid item lg={4} md={6} xs={12}>
                 <Card className={this.props.classes.card}>
-                  <CardActionArea>
+                  <CardActionArea onClick={() => this.props.history.push('/account_settings/identity_verification')}>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/verify-identity.svg')} />
-                      <Typography variant="body1">Verify identity &gt;</Typography>
+                      <Typography variant="body1">Identity verification &gt;</Typography>
                       <Typography variant="body2">Verify your identity for get paid from gotlancer and secured your account with Gotlancer.</Typography>
                     </CardContent>
                   </CardActionArea>
