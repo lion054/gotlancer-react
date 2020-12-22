@@ -19,13 +19,14 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCircle, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import MuiPhoneNumber from 'material-ui-phone-number';
-import OTPInput, { ResendOTP } from 'otp-input-react';
 import moment from 'moment';
 import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoadingButton from '../components/LoadingButton';
+import OtpInput from '../components/otp';
+import ResendTimer from '../components/otp/ResendTimer';
 
 const styles = (theme) => ({
   root: {
@@ -54,17 +55,19 @@ const styles = (theme) => ({
     height: theme.spacing(7)
   },
   otpDigit: {
+    borderRadius: 5,
     fontSize: theme.spacing(3),
     borderColor: theme.palette.action.disabled,
     borderStyle: 'solid',
-    borderWidth: 1,
+    borderWidth: 2,
     '&:focus': {
+      borderRadius: 5,
       outlineColor: 'transparent',
       outlineStyle: 'solid',
       outlineWidth: 0,
       borderColor: theme.palette.success.main,
       borderStyle: 'solid',
-      borderWidth: 1
+      borderWidth: 2
     }
   },
   resendOtp: {
@@ -381,16 +384,16 @@ class LoginSecurity extends PureComponent {
             <Typography variant="body2" color="textPrimary">We texted your code to +91 98 000 00 000. It may take a minute to arrive.</Typography>
           </Box>
           <Box mt={2}>
-            <OTPInput
-              OTPLength={5}
+            <OtpInput
+              numDigits={5}
               autoFocus
-              inputClassName={this.props.classes.otpDigit}
+              digitCls={this.props.classes.otpDigit}
               value={this.state.otpText}
               onChange={(otpText) => this.setState({ otpText })}
             />
             <Box mt={2} display="flex" alignItems="center">
               <Typography variant="body2" color="textSecondary">Did not yet receive OTP?</Typography>
-              <ResendOTP
+              <ResendTimer
                 renderButton={({ disabled, onClick, remainingTime }) => (
                   <Box ml={1} display="flex" alignItems="center">
                     <Button variant="outlined" disabled={disabled} onClick={onClick} className={this.props.classes.resendOtp}>Resend OTP</Button>
