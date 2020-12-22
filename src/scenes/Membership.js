@@ -67,16 +67,16 @@ class Membership extends PureComponent {
                   </Box>
                   <Divider />
                   <Box mt={2}>
-                    <Typography>Upgrade to Pro</Typography>
+                    <Typography variant="subtitle1" color="textPrimary">Upgrade to Pro</Typography>
                   </Box>
                   <Box mt={1}>
-                    <Typography>Add a payment method using our secure payment system, then start your project with Gotlancer</Typography>
+                    <Typography variant="body2" color="textSecondary">Add a payment method using our secure payment system, then start your project with Gotlancer</Typography>
                   </Box>
                   <Box mt={2}>
                     <Button variant="contained">Upload File</Button>
                   </Box>
                   <Box mt={1}>
-                    <Typography>We will charge $14.99/mo</Typography>
+                    <Typography variant="body2" color="textSecondary">We will charge $14.99/mo</Typography>
                   </Box>
                 </Box>
               </Grid>
