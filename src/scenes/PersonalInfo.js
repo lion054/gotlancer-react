@@ -18,7 +18,6 @@ import {
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { Autocomplete } from '@material-ui/lab';
 import { countries, countryToFlag } from '../countries';
-import capitalize from 'capitalize';
 import moment from 'moment';
 import { compose } from 'redux';
 
@@ -123,7 +122,7 @@ class PersonalInfo extends PureComponent {
                 {this.renderEntry({
                   id: 'Gender',
                   title: 'Gender',
-                  formattedValue: capitalize(this.state.gender),
+                  formattedValue: this.state.gender,
                   details: (
                     <Box width="100%">
                       <TextField
@@ -134,8 +133,8 @@ class PersonalInfo extends PureComponent {
                         onChange={e => this.setState({ gender: e.target.value })}
                         fullWidth
                       >
-                        <MenuItem value="male">Male</MenuItem>
-                        <MenuItem value="female">Female</MenuItem>
+                        <MenuItem value="Male">Male</MenuItem>
+                        <MenuItem value="Female">Female</MenuItem>
                       </TextField>
                     </Box>
                   )

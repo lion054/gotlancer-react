@@ -6,6 +6,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import AccountSettings from './scenes/AccountSettings';
 import Home from './scenes/Home';
+import LoginSecurity from './scenes/LoginSecurity';
 import PersonalInfo from './scenes/PersonalInfo';
 import { connect } from 'react-redux';
 
@@ -18,6 +19,9 @@ const routes = [{
 },{
   path: '/account_settings/personal_info',
   component: PersonalInfo
+},{
+  path: '/account_settings/login_security',
+  component: LoginSecurity
 }];
 
 const lightTheme = createMuiTheme({
