@@ -95,7 +95,7 @@ class AccountSettings extends PureComponent {
               </Grid>
               <Grid item lg={4} md={6} xs={12}>
                 <Card className={this.props.classes.card}>
-                  <CardActionArea>
+                  <CardActionArea onClick={() => this.props.history.push('/account_settings/membership')}>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/membership.svg')} />
                       <Typography variant="body1">Membership &gt;</Typography>

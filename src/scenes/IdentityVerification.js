@@ -51,7 +51,6 @@ const styles = (theme) => ({
 class IdentityVerification extends PureComponent {
   state = {
     currentEntry: '',
-    fileUploads: [],
     loading: false
   }
 

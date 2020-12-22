@@ -8,6 +8,7 @@ import AccountSettings from './scenes/AccountSettings';
 import Home from './scenes/Home';
 import IdentityVerification from './scenes/IdentityVerification';
 import LoginSecurity from './scenes/LoginSecurity';
+import Membership from './scenes/Membership';
 import PaymentsPayouts from './scenes/PaymentsPayouts';
 import PersonalInfo from './scenes/PersonalInfo';
 import { connect } from 'react-redux';
@@ -30,6 +31,9 @@ const routes = [{
 },{
   path: '/account_settings/identity_verification',
   component: IdentityVerification
+},{
+  path: '/account_settings/membership',
+  component: Membership
 }];
 
 const lightTheme = createMuiTheme({
