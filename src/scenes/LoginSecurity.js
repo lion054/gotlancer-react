@@ -258,7 +258,7 @@ class LoginSecurity extends PureComponent {
               <Grid item lg={4}>
                 <Card className={this.props.classes.card}>
                   <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../assets/images/account-settings/personal-info.svg')} />
+                    <img alt="" className={this.props.classes.cardIcon} src={require('../assets/images/account-settings/login-info.svg')} />
                     <Typography variant="body1">Let's make your account more secure</Typography>
                     <Typography variant="body2">Your account security: Medium</Typography>
                     <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>

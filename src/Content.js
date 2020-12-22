@@ -7,6 +7,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import AccountSettings from './scenes/AccountSettings';
 import Home from './scenes/Home';
 import LoginSecurity from './scenes/LoginSecurity';
+import PaymentsPayouts from './scenes/PaymentsPayouts';
 import PersonalInfo from './scenes/PersonalInfo';
 import { connect } from 'react-redux';
 
@@ -22,6 +23,9 @@ const routes = [{
 },{
   path: '/account_settings/login_security',
   component: LoginSecurity
+},{
+  path: '/account_settings/payments_payouts',
+  component: PaymentsPayouts
 }];
 
 const lightTheme = createMuiTheme({
@@ -57,6 +61,19 @@ const lightTheme = createMuiTheme({
         '&$shrink': {
           color: colors.green[500]
         }
+      }
+    },
+    MuiTab: {
+      textColorInherit: {
+        color: 'rgba(0, 0, 0, 0.87)',
+        '&$selected': {
+          color: colors.green[500]
+        }
+      }
+    },
+    MuiTabs: {
+      indicator: {
+        backgroundColor: colors.green[500]
       }
     }
   }
@@ -95,6 +112,19 @@ const darkTheme = createMuiTheme({
         '&$shrink': {
           color: colors.green[500]
         }
+      }
+    },
+    MuiTab: {
+      textColorInherit: {
+        color: colors.common.white,
+        '&$selected': {
+          color: colors.green[500]
+        }
+      }
+    },
+    MuiTabs: {
+      indicator: {
+        backgroundColor: colors.green[500]
       }
     }
   }
