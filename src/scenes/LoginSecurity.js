@@ -72,7 +72,7 @@ const styles = (theme) => ({
     fontWeight: 'bold'
   },
   remainingTime: {
-    marginLeft: theme.spacing(2),
+    marginLeft: theme.spacing(1),
     color: theme.palette.error.main
   }
 })
@@ -392,9 +392,9 @@ class LoginSecurity extends PureComponent {
               <Typography variant="body2" color="textSecondary">Did not yet receive OTP?</Typography>
               <ResendOTP
                 renderButton={({ disabled, onClick, remainingTime }) => (
-                  <Box ml={2} display="flex" alignItems="center">
-                    <Button disabled={disabled} onClick={onClick} className={this.props.classes.resendOtp}>Resend OTP</Button>
-                    <Box ml={2}>
+                  <Box ml={1} display="flex" alignItems="center">
+                    <Button variant="outlined" disabled={disabled} onClick={onClick} className={this.props.classes.resendOtp}>Resend OTP</Button>
+                    <Box ml={1}>
                       <FontAwesomeIcon icon={faCircle} color={this.props.theme.palette.error.main} size="1x" />
                       <Typography variant="body2" display="inline" className={this.props.classes.remainingTime}>{remainingTime} sec</Typography>
                     </Box>
