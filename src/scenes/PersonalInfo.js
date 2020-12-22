@@ -17,13 +17,15 @@ import {
 } from '@material-ui/core';
 import { KeyboardDatePicker } from '@material-ui/pickers';
 import { Autocomplete } from '@material-ui/lab';
-import { countries, countryToFlag } from '../countries';
 import moment from 'moment';
 import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LoadingButton from '../components/LoadingButton';
+import { allCountries } from '../../node_modules/material-ui-phone-number/src/country_data';
+import '../../node_modules/material-ui-phone-number/src/styles.less';
+import '../../node_modules/material-ui-phone-number/src/flags.png';
 
 const styles = (theme) => ({
   root: {
@@ -177,16 +179,16 @@ class PersonalInfo extends PureComponent {
                       <Grid item xs={12}>
                         <Autocomplete
                           fullWidth
-                          options={countries}
+                          options={allCountries}
                           classes={{
                             option: this.props.classes.country
                           }}
                           autoHighlight
-                          getOptionLabel={(option) => option.label}
+                          getOptionLabel={(option) => option.name}
                           renderOption={(option) => (
                             <Fragment>
-                              <span>{countryToFlag(option.code)}</span>
-                              {option.label} ({option.code}) +{option.phone}
+                              <div className={`flag ${option.iso2} margin`} />
+                              {option.name} +{option.dialCode}
                             </Fragment>
                           )}
                           renderInput={(params) => (

@@ -38,13 +38,6 @@ const styles = (theme) => ({
     }
   },
   expanded: {}, // Avoid rotation of collapse icon
-  country: {
-    fontSize: theme.spacing(2),
-    '& > span': {
-      marginRight: theme.spacing(1.25),
-      fontSize: theme.spacing(1.25)
-    }
-  },
   card: {
     borderRadius: theme.spacing(1.5),
     borderColor: theme.palette.divider,
