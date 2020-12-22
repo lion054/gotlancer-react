@@ -76,9 +76,12 @@ class IdentityVerification extends PureComponent {
                 {this.renderEntry({
                   id: 'Document',
                   title: 'Document Verification',
-                  formattedValue: 'Verify your account and staty secured your account and get more facility from Gtoalancer',
+                  formattedValue: 'Not verified',
                   details: (
                     <Box>
+                      <Box mb={2}>
+                        <Typography variant="body2" color="textSecondary">Verify your account and staty secured your account and get more facility from Gtoalancer</Typography>
+                      </Box>
                       <Box mb={2}>
                         <Button variant="outlined" startIcon={<CloudUpload />}>Upload File</Button>
                       </Box>
