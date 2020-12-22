@@ -71,6 +71,8 @@ class PersonalInfo extends PureComponent {
     loading: false
   }
 
+  countries = allCountries.filter(country => !country.isAreaCode)
+
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
@@ -179,7 +181,7 @@ class PersonalInfo extends PureComponent {
                       <Grid item xs={12}>
                         <Autocomplete
                           fullWidth
-                          options={allCountries}
+                          options={this.countries}
                           classes={{
                             option: this.props.classes.country
                           }}
@@ -188,7 +190,8 @@ class PersonalInfo extends PureComponent {
                           renderOption={(option) => (
                             <Fragment>
                               <div className={`flag ${option.iso2} margin`} />
-                              {option.name} +{option.dialCode}
+                              <div style={{ flex: 1 }}>{option.name}</div>
+                              <div>+{option.dialCode}</div>
                             </Fragment>
                           )}
                           renderInput={(params) => (
