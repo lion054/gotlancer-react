@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 
 import AccountSettings from './scenes/AccountSettings';
 import Home from './scenes/Home';
+import GlobalPreferences from './scenes/AccountSettings/GlobalPreferences';
 import IdentityVerification from './scenes/AccountSettings/IdentityVerification';
 import LoginSecurity from './scenes/AccountSettings/LoginSecurity';
 import Membership from './scenes/AccountSettings/Membership';
@@ -40,6 +41,9 @@ const routes = [{
 },{
   path: '/account_settings/notifications',
   component: Notifications
+},{
+  path: '/account_settings/global_preferences',
+  component: GlobalPreferences
 }];
 
 class Content extends PureComponent {
