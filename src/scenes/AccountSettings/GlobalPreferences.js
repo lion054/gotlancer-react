@@ -21,6 +21,7 @@ import { compose } from 'redux';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import LoadingButton from '../../components/LoadingButton';
 
 const styles = (theme) => ({
   root: {
@@ -71,7 +72,8 @@ class GlobalPreferences extends PureComponent {
   state = {
     currentEntry: '',
     language: 'English',
-    timeZone: {}
+    timeZone: {},
+    loading: false
   }
 
   render = () => (
@@ -184,6 +186,18 @@ class GlobalPreferences extends PureComponent {
       <AccordionDetails>
         <Box width="100%">
           {details}
+          <Box mt={2}>
+            <LoadingButton
+              variant="contained"
+              size="large"
+              title="Save"
+              loading={this.state.currentEntry === id && this.state.loading}
+              onClick={() => {
+                this.setState({ loading: true });
+                setTimeout(() => this.setState({ loading: false, currentEntry: '' }), 3000);
+              }}
+            />
+          </Box>
         </Box>
       </AccordionDetails>
     </Accordion>
