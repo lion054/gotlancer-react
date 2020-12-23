@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { colors, createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core';
 import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { connect } from 'react-redux';
 
 import AccountSettings from './scenes/AccountSettings';
 import Home from './scenes/Home';
@@ -11,7 +12,8 @@ import LoginSecurity from './scenes/AccountSettings/LoginSecurity';
 import Membership from './scenes/AccountSettings/Membership';
 import PaymentsPayouts from './scenes/AccountSettings/PaymentsPayouts';
 import PersonalInfo from './scenes/AccountSettings/PersonalInfo';
-import { connect } from 'react-redux';
+
+import { darkTheme, lightTheme } from './themes';
 
 const routes = [{
   path: '/',
@@ -35,114 +37,6 @@ const routes = [{
   path: '/account_settings/membership',
   component: Membership
 }];
-
-const lightTheme = createMuiTheme({
-  palette: {
-    type: 'light'
-  },
-  overrides: {
-    MuiButton: {
-      text: {
-        textTransform: 'unset'
-      },
-      contained: {
-        textTransform: 'unset',
-        backgroundColor: colors.grey[900],
-        color: colors.common.white,
-        '&:hover': {
-          backgroundColor: colors.grey[600]
-        }
-      },
-      outlined: {
-        textTransform: 'unset'
-      }
-    },
-    MuiOutlinedInput: {
-      root: {
-        '&:hover $notchedOutline': {
-          borderColor: colors.green[300]
-        },
-        '&$focused $notchedOutline': {
-          borderColor: colors.green[500]
-        }
-      }
-    },
-    MuiInputLabel: {
-      outlined: {
-        '&$shrink': {
-          color: colors.green[500]
-        }
-      }
-    },
-    MuiTab: {
-      textColorInherit: {
-        color: 'rgba(0, 0, 0, 0.87)',
-        '&$selected': {
-          color: colors.green[500]
-        }
-      }
-    },
-    MuiTabs: {
-      indicator: {
-        backgroundColor: colors.green[500]
-      }
-    }
-  }
-});
-
-const darkTheme = createMuiTheme({
-  palette: {
-    type: 'dark'
-  },
-  overrides: {
-    MuiButton: {
-      text: {
-        textTransform: 'unset'
-      },
-      contained: {
-        textTransform: 'unset',
-        backgroundColor: colors.grey[900],
-        color: colors.common.white,
-        '&:hover': {
-          backgroundColor: colors.grey[600]
-        }
-      },
-      outlined: {
-        textTransform: 'unset'
-      }
-    },
-    MuiOutlinedInput: {
-      root: {
-        '&:hover $notchedOutline': {
-          borderColor: colors.green[300]
-        },
-        '&$focused $notchedOutline': {
-          borderColor: colors.green[500]
-        }
-      }
-    },
-    MuiInputLabel: {
-      outlined: {
-        '&$shrink': {
-          color: colors.green[500]
-        }
-      }
-    },
-    MuiTab: {
-      textColorInherit: {
-        color: colors.common.white,
-        '&$selected': {
-          color: colors.green[500]
-        }
-      }
-    },
-    MuiTabs: {
-      indicator: {
-        backgroundColor: colors.green[500]
-      }
-    }
-  }
-});
 
 class Content extends PureComponent {
   render = () => (
