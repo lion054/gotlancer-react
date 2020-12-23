@@ -55,7 +55,7 @@ class AccountSettings extends PureComponent {
                   <CardActionArea onClick={() => this.props.history.push('/account_settings/personal_info')}>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/personal-info.svg')} />
-                      <Box display="flex">
+                      <Box display="flex" alignItems="center">
                         <Typography variant="body1">Personal info</Typography>
                         <ChevronRight />
                       </Box>
@@ -69,7 +69,7 @@ class AccountSettings extends PureComponent {
                   <CardActionArea onClick={() => this.props.history.push('/account_settings/login_security')}>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/login-info.svg')} />
-                      <Box display="flex">
+                      <Box display="flex" alignItems="center">
                         <Typography variant="body1">Login &amp; Security</Typography>
                         <ChevronRight />
                       </Box>
@@ -83,7 +83,7 @@ class AccountSettings extends PureComponent {
                   <CardActionArea onClick={() => this.props.history.push('/account_settings/payments_payouts')}>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/payments-and-payouts.svg')} />
-                      <Box display="flex">
+                      <Box display="flex" alignItems="center">
                         <Typography variant="body1">Payments &amp; Payouts</Typography>
                         <ChevronRight />
                       </Box>
@@ -97,7 +97,7 @@ class AccountSettings extends PureComponent {
                   <CardActionArea onClick={() => this.props.history.push('/account_settings/identity_verification')}>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/verify-identity.svg')} />
-                      <Box display="flex">
+                      <Box display="flex" alignItems="center">
                         <Typography variant="body1">Identity Verification</Typography>
                         <ChevronRight />
                       </Box>
@@ -111,7 +111,7 @@ class AccountSettings extends PureComponent {
                   <CardActionArea onClick={() => this.props.history.push('/account_settings/membership')}>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/membership.svg')} />
-                      <Box display="flex">
+                      <Box display="flex" alignItems="center">
                         <Typography variant="body1">Membership</Typography>
                         <ChevronRight />
                       </Box>
@@ -125,7 +125,7 @@ class AccountSettings extends PureComponent {
                   <CardActionArea>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/business-account.svg')} />
-                      <Box display="flex">
+                      <Box display="flex" alignItems="center">
                         <Typography variant="body1">Business Account</Typography>
                         <ChevronRight />
                       </Box>
@@ -139,7 +139,7 @@ class AccountSettings extends PureComponent {
                   <CardActionArea>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/notifications.svg')} />
-                      <Box display="flex">
+                      <Box display="flex" alignItems="center">
                         <Typography variant="body1">Notifications</Typography>
                         <ChevronRight />
                       </Box>
@@ -153,7 +153,7 @@ class AccountSettings extends PureComponent {
                   <CardActionArea>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/global-preferences.svg')} />
-                      <Box display="flex">
+                      <Box display="flex" alignItems="center">
                         <Typography variant="body1">Global preferences</Typography>
                         <ChevronRight />
                       </Box>
@@ -167,7 +167,7 @@ class AccountSettings extends PureComponent {
                   <CardActionArea>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/invite-friends.svg')} />
-                      <Box display="flex">
+                      <Box display="flex" alignItems="center">
                         <Typography variant="body1">Invite friends</Typography>
                         <ChevronRight />
                       </Box>
