@@ -10,6 +10,7 @@ import Home from './scenes/Home';
 import IdentityVerification from './scenes/AccountSettings/IdentityVerification';
 import LoginSecurity from './scenes/AccountSettings/LoginSecurity';
 import Membership from './scenes/AccountSettings/Membership';
+import Notifications from './scenes/AccountSettings/Notifications';
 import PaymentsPayouts from './scenes/AccountSettings/PaymentsPayouts';
 import PersonalInfo from './scenes/AccountSettings/PersonalInfo';
 
@@ -36,6 +37,9 @@ const routes = [{
 },{
   path: '/account_settings/membership',
   component: Membership
+},{
+  path: '/account_settings/notifications',
+  component: Notifications
 }];
 
 class Content extends PureComponent {
