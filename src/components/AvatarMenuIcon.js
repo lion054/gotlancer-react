@@ -183,26 +183,26 @@ class AvatarMenuIcon extends PureComponent {
             }]
           },{
             label: 'Logout'
-          },{
-            element: () => (
-              <Fragment>
-                <ListItemText primary="Dark Theme" primaryTypographyProps={{
-                  variant: 'body1',
-                  color: 'textPrimary'
-                }} />
-                <ListItemIcon>
-                  <Switch checked={this.props.themeMode === 'dark'} />
-                </ListItemIcon>
-              </Fragment>
-            ),
-            onClick: () => {
-              if (this.props.themeMode === 'dark') {
-                this.props.updateThemeMode('light');
-              } else {
-                this.props.updateThemeMode('dark');
-              }
-              return false;
-            }
+          // },{
+          //   element: () => (
+          //     <Fragment>
+          //       <ListItemText primary="Dark Theme" primaryTypographyProps={{
+          //         variant: 'body1',
+          //         color: 'textPrimary'
+          //       }} />
+          //       <ListItemIcon>
+          //         <Switch checked={this.props.themeMode === 'dark'} />
+          //       </ListItemIcon>
+          //     </Fragment>
+          //   ),
+          //   onClick: () => {
+          //     if (this.props.themeMode === 'dark') {
+          //       this.props.updateThemeMode('light');
+          //     } else {
+          //       this.props.updateThemeMode('dark');
+          //     }
+          //     return false;
+          //   }
           },{
             element: () => (
               <Fragment>

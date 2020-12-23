@@ -137,7 +137,7 @@ class AvatarMenuButton extends PureComponent {
             color: 'textPrimary'
           }} />
         </MenuItem>
-        <MenuItem onClick={this.onToggleThemeMode} className={this.props.classes.menuItem}>
+        {/* <MenuItem onClick={this.onToggleThemeMode} className={this.props.classes.menuItem}>
           <ListItemIcon>
             <Switch checked={this.props.themeMode === 'dark'} />
           </ListItemIcon>
@@ -145,7 +145,7 @@ class AvatarMenuButton extends PureComponent {
             variant: 'body1',
             color: 'textPrimary'
           }} />
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem onClick={this.onToggleOnline} className={this.props.classes.menuItem}>
           <ListItemIcon>
             <Switch checked={this.state.online} />
