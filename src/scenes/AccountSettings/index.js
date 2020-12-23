@@ -13,8 +13,8 @@ import {
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 const styles = (theme) => ({
   root: {
@@ -53,7 +53,7 @@ class AccountSettings extends PureComponent {
                 <Card className={this.props.classes.card}>
                   <CardActionArea onClick={() => this.props.history.push('/account_settings/personal_info')}>
                     <CardContent className={this.props.classes.cardContent}>
-                      <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/personal-info.svg')} />
+                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/personal-info.svg')} />
                       <Typography variant="body1">Personal info &gt;</Typography>
                       <Typography variant="body2">Provide personal details and how we can reach you</Typography>
                     </CardContent>
@@ -64,7 +64,7 @@ class AccountSettings extends PureComponent {
                 <Card className={this.props.classes.card}>
                   <CardActionArea onClick={() => this.props.history.push('/account_settings/login_security')}>
                     <CardContent className={this.props.classes.cardContent}>
-                      <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/login-info.svg')} />
+                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/login-info.svg')} />
                       <Typography variant="body1">Login &amp; Security &gt;</Typography>
                       <Typography variant="body2">Update your email, password, mobile and secure your account</Typography>
                     </CardContent>
@@ -75,7 +75,7 @@ class AccountSettings extends PureComponent {
                 <Card className={this.props.classes.card}>
                   <CardActionArea onClick={() => this.props.history.push('/account_settings/payments_payouts')}>
                     <CardContent className={this.props.classes.cardContent}>
-                      <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/payments-and-payouts.svg')} />
+                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/payments-and-payouts.svg')} />
                       <Typography variant="body1">Payments &amp; Payouts &gt;</Typography>
                       <Typography variant="body2">Review payments, payouts and taxes</Typography>
                     </CardContent>
@@ -86,7 +86,7 @@ class AccountSettings extends PureComponent {
                 <Card className={this.props.classes.card}>
                   <CardActionArea onClick={() => this.props.history.push('/account_settings/identity_verification')}>
                     <CardContent className={this.props.classes.cardContent}>
-                      <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/verify-identity.svg')} />
+                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/verify-identity.svg')} />
                       <Typography variant="body1">Identity verification &gt;</Typography>
                       <Typography variant="body2">Verify your identity for get paid from gotlancer and secured your account with Gotlancer.</Typography>
                     </CardContent>
@@ -97,7 +97,7 @@ class AccountSettings extends PureComponent {
                 <Card className={this.props.classes.card}>
                   <CardActionArea onClick={() => this.props.history.push('/account_settings/membership')}>
                     <CardContent className={this.props.classes.cardContent}>
-                      <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/membership.svg')} />
+                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/membership.svg')} />
                       <Typography variant="body1">Membership &gt;</Typography>
                       <Typography variant="body2">Set your default language and timezone</Typography>
                     </CardContent>
@@ -108,7 +108,7 @@ class AccountSettings extends PureComponent {
                 <Card className={this.props.classes.card}>
                   <CardActionArea>
                     <CardContent className={this.props.classes.cardContent}>
-                      <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/business-account.svg')} />
+                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/business-account.svg')} />
                       <Typography variant="body1">Business Account &gt;</Typography>
                       <Typography variant="body2">Manage your team, group chat, task share, large project management</Typography>
                     </CardContent>
@@ -119,7 +119,7 @@ class AccountSettings extends PureComponent {
                 <Card className={this.props.classes.card}>
                   <CardActionArea>
                     <CardContent className={this.props.classes.cardContent}>
-                      <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/notifications.svg')} />
+                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/notifications.svg')} />
                       <Typography variant="body1">Notifications &gt;</Typography>
                       <Typography variant="body2">Choose notification preferences and how you want to be contacted</Typography>
                     </CardContent>
@@ -130,7 +130,7 @@ class AccountSettings extends PureComponent {
                 <Card className={this.props.classes.card}>
                   <CardActionArea>
                     <CardContent className={this.props.classes.cardContent}>
-                      <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/global-preferences.svg')} />
+                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/global-preferences.svg')} />
                       <Typography variant="body1">Global preferences &gt;</Typography>
                       <Typography variant="body2">Set your default language and timezone</Typography>
                     </CardContent>
@@ -141,7 +141,7 @@ class AccountSettings extends PureComponent {
                 <Card className={this.props.classes.card}>
                   <CardActionArea>
                     <CardContent className={this.props.classes.cardContent}>
-                      <img alt="" className={this.props.classes.icon} src={require('../assets/images/account-settings/invite-friends.svg')} />
+                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/invite-friends.svg')} />
                       <Typography variant="body1">Invite friends &gt;</Typography>
                       <Typography variant="body2">When they join and spend at least $100, you will get $30 instantly</Typography>
                     </CardContent>

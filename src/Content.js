@@ -6,11 +6,11 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 import AccountSettings from './scenes/AccountSettings';
 import Home from './scenes/Home';
-import IdentityVerification from './scenes/IdentityVerification';
-import LoginSecurity from './scenes/LoginSecurity';
-import Membership from './scenes/Membership';
-import PaymentsPayouts from './scenes/PaymentsPayouts';
-import PersonalInfo from './scenes/PersonalInfo';
+import IdentityVerification from './scenes/AccountSettings/IdentityVerification';
+import LoginSecurity from './scenes/AccountSettings/LoginSecurity';
+import Membership from './scenes/AccountSettings/Membership';
+import PaymentsPayouts from './scenes/AccountSettings/PaymentsPayouts';
+import PersonalInfo from './scenes/AccountSettings/PersonalInfo';
 import { connect } from 'react-redux';
 
 const routes = [{

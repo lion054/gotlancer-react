@@ -20,9 +20,9 @@ import {
 import { CloudUpload, Delete } from '@material-ui/icons';
 import { compose } from 'redux';
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import LoadingButton from '../components/LoadingButton';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import LoadingButton from '../../components/LoadingButton';
 
 const styles = (theme) => ({
   root: {
@@ -120,7 +120,7 @@ class IdentityVerification extends PureComponent {
               <Grid item lg={4}>
                 <Card className={this.props.classes.card}>
                   <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../assets/images/account-settings/verify-identity.svg')} />
+                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/verify-identity.svg')} />
                     <Typography variant="body1">Let's make your account more secure</Typography>
                     <Typography variant="body2">Your account security: Medium</Typography>
                     <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
