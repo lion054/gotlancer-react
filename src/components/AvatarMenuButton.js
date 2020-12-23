@@ -28,9 +28,13 @@ const styles = (theme) => ({
     }
   },
   menuItem: {
-    '&:hover > .MuiListItemIcon-root > svg': {
-      color: theme.palette.success.main
+    '&:hover > .MuiListItemIcon-root > .MuiBox-root > svg': {
+      color: theme.palette.info.main
     }
+  },
+  menuIcon: {
+    color: theme.palette.text.secondary,
+    fontSize: 20
   }
 });
 
@@ -89,7 +93,7 @@ class AvatarMenuButton extends PureComponent {
         >
           <ListItemIcon>
             <Box mr={1.5} width="100%" textAlign="center">
-              <FontAwesomeIcon icon={faCog} color={this.props.theme.palette.text.secondary} size="2x" />
+              <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faCog} />
             </Box>
           </ListItemIcon>
           <ListItemText primary="Settings" primaryTypographyProps={{
@@ -100,7 +104,7 @@ class AvatarMenuButton extends PureComponent {
         <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
           <ListItemIcon>
             <Box mr={1.5} width="100%" textAlign="center">
-              <FontAwesomeIcon icon={faUser} color={this.props.theme.palette.text.secondary} size="2x" />
+              <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faUser} />
             </Box>
           </ListItemIcon>
           <ListItemText primary="My Profile" primaryTypographyProps={{
@@ -111,7 +115,7 @@ class AvatarMenuButton extends PureComponent {
         <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
           <ListItemIcon>
             <Box mr={1.5} width="100%" textAlign="center">
-              <FontAwesomeIcon icon={faCrown} color={this.props.theme.palette.text.secondary} size="2x" />
+              <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faCrown} />
             </Box>
           </ListItemIcon>
           <ListItemText primary="Membership" primaryTypographyProps={{
@@ -122,7 +126,7 @@ class AvatarMenuButton extends PureComponent {
         <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
           <ListItemIcon>
             <Box mr={1.5} width="100%" textAlign="center">
-              <FontAwesomeIcon icon={faShoppingCart} color={this.props.theme.palette.text.secondary} size="2x" />
+              <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faShoppingCart} />
             </Box>
           </ListItemIcon>
           <ListItemText primary="Buy Bid Credit" primaryTypographyProps={{
@@ -133,7 +137,7 @@ class AvatarMenuButton extends PureComponent {
         <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
           <ListItemIcon>
             <Box mr={1.5} width="100%" textAlign="center">
-              <FontAwesomeIcon icon={faSignOutAlt} color={this.props.theme.palette.text.secondary} size="2x" />
+              <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faSignOutAlt} />
             </Box>
           </ListItemIcon>
           <ListItemText primary="Logout" primaryTypographyProps={{
@@ -152,7 +156,7 @@ class AvatarMenuButton extends PureComponent {
         </MenuItem> */}
         <MenuItem onClick={this.onToggleOnline} className={this.props.classes.menuItem}>
           <ListItemIcon>
-            <Switch checked={this.state.online} />
+            <Switch size="small" checked={this.state.online} />
           </ListItemIcon>
           <ListItemText primary="Online" primaryTypographyProps={{
             variant: 'body1',

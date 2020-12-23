@@ -48,7 +48,7 @@ const styles = (theme) => ({
   label: {
     color: theme.palette.text.primary,
     '&:hover': {
-      color: theme.palette.primary.main
+      color: theme.palette.info.main
     },
     fontSize: theme.spacing(1.75)
   }
