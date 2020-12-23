@@ -26,7 +26,6 @@ import { getHeaderHoverBackgroundColor } from '../themes';
 
 const styles = (theme) => ({
   root: {
-    flexGrow: 1,
     backgroundColor: theme.palette.type === 'dark' ? '#fafafa' : '#24292e'
   },
   logo: {
@@ -76,8 +75,8 @@ class Header extends PureComponent {
   render = () => {
     const textColor = this.props.theme.palette.theme === 'dark' ? this.props.theme.palette.grey[700] : this.props.theme.palette.grey[300];
     return (
-      <div className={this.props.classes.root}>
-        <AppBar position="static" color="transparent" elevation={1}>
+      <div style={{ flexGrow: 1, height: 64 }}>
+        <AppBar position="fixed" color="transparent" elevation={1} className={this.props.classes.root}>
           {(this.props.width === 'lg' || this.props.width === 'xl') && (
             <Grid container>
               <Grid item lg={2} />
