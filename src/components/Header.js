@@ -22,6 +22,7 @@ import AvatarMenuButton from './AvatarMenuButton';
 import AvatarMenuIcon from './AvatarMenuIcon';
 import MenuButton from './MenuButton';
 import SearchBox from './SearchBox';
+import { getHeaderHoverBackgroundColor } from '../themes';
 
 const styles = (theme) => ({
   root: {
@@ -31,6 +32,11 @@ const styles = (theme) => ({
   logo: {
     width: theme.spacing(5),
     height: theme.spacing(5)
+  },
+  icon: {
+    '&:hover': {
+      backgroundColor: getHeaderHoverBackgroundColor(theme)
+    }
   },
   badge: {
     backgroundColor: theme.palette.success.main,
@@ -96,7 +102,7 @@ class Header extends PureComponent {
           <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
         </MenuItem>
       </Box>
-      <MenuButton color="inherit" textColor={textColor} onClick={this.onOpenProjects}>Projects</MenuButton>
+      <MenuButton onClick={this.onOpenProjects}>Projects</MenuButton>
       <Menu
         id="projects-menu"
         anchorEl={this.state.projectsEl}
@@ -112,7 +118,7 @@ class Header extends PureComponent {
         <MenuItem className={this.props.classes.label}>My Stats</MenuItem>
         <MenuItem className={this.props.classes.label}>My Project</MenuItem>
       </Menu>
-      <MenuButton color="inherit" textColor={textColor} onClick={this.onOpenHire}>Hire</MenuButton>
+      <MenuButton onClick={this.onOpenHire}>Hire</MenuButton>
       <Menu
         id="hire-menu"
         anchorEl={this.state.hireEl}
@@ -126,7 +132,7 @@ class Header extends PureComponent {
         <MenuItem className={this.props.classes.label}>Saved Freelancer</MenuItem>
         <MenuItem className={this.props.classes.label}>Hired Freelancer</MenuItem>
       </Menu>
-      <MenuButton color="inherit" textColor={textColor} onClick={this.onOpenReports}>Reports</MenuButton>
+      <MenuButton onClick={this.onOpenReports}>Reports</MenuButton>
       <Menu
         id="reports-menu"
         anchorEl={this.state.reportsEl}
@@ -147,12 +153,12 @@ class Header extends PureComponent {
       <SearchBox textColor={textColor} />
       <div style={{ flex: 1 }} />
       <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
-        <IconButton color="inherit">
+        <IconButton className={this.props.classes.icon}>
           <FontAwesomeIcon icon={faEnvelope} color={textColor} size="1x" />
         </IconButton>
       </Badge>
       <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
-        <IconButton color="inherit">
+        <IconButton className={this.props.classes.icon}>
           <FontAwesomeIcon icon={faBell} color={textColor} size="1x" />
         </IconButton>
       </Badge>
@@ -167,12 +173,12 @@ class Header extends PureComponent {
       </MenuItem>
       <div style={{ flex: 1 }} />
       <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
-        <IconButton color="inherit">
+        <IconButton className={this.props.classes.icon}>
           <FontAwesomeIcon icon={faEnvelope} color={textColor} size="1x" />
         </IconButton>
       </Badge>
       <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
-        <IconButton color="inherit">
+        <IconButton className={this.props.classes.icon}>
           <FontAwesomeIcon icon={faBell} color={textColor} size="1x" />
         </IconButton>
       </Badge>

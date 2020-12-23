@@ -17,11 +17,15 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
+import { getHeaderHoverBackgroundColor } from '../themes';
 import { updateThemeMode } from '../controllers/app/actions';
 
 const styles = (theme) => ({
   root: {
-    borderRadius: theme.spacing(3)
+    borderRadius: theme.spacing(3),
+    '&:hover': {
+      backgroundColor: getHeaderHoverBackgroundColor(theme)
+    }
   },
   menuItem: {
     '&:hover > .MuiListItemIcon-root > svg': {
