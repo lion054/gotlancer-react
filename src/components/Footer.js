@@ -3,22 +3,31 @@ import {
   Box,
   Divider,
   Grid,
+  IconButton,
   Link,
   List,
   ListItem,
-  Toolbar,
+  MenuItem,
   Typography,
   withStyles,
   withTheme,
   withWidth
 } from '@material-ui/core';
 import { Apple, Shop, Facebook, Twitter, Language, LinkedIn, YouTube } from '@material-ui/icons';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.action.selected
+  },
+  logoWrapper: {
+    display: 'inline',
+    width: theme.spacing(16)
+  },
+  logo: {
+    width: theme.spacing(16)
   }
 });
 
@@ -166,62 +175,99 @@ class Footer extends PureComponent {
   )
 
   renderDesktop = () => (
-    <Toolbar>
-      <Typography variant="caption" color="textPrimary">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
-      <Box ml={1.5}>
-        <Link variant="body2" color="textPrimary" href="#">Privacy</Link>
-      </Box>
-      <Box ml={1.5}>
-        <Link variant="body2" color="textPrimary" href="#">Terms</Link>
-      </Box>
-      <Box ml={1.5}>
-        <Link variant="body2" color="textPrimary" href="#">Sitemap</Link>
+    <Box display="flex" alignItems="center" mt={1}>
+      <Box alignItems="center">
+        <MenuItem disableGutters className={this.props.classes.logoWrapper} onClick={() => this.props.history.push('/')}>
+          <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-long.svg')} />
+        </MenuItem>
+        <Box display="inline" ml={1}>
+          <Typography variant="caption" color="textPrimary">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
+        </Box>
+        <Box display="inline" ml={1.5}>
+          <Link variant="body2" color="textPrimary" href="#">Privacy</Link>
+        </Box>
+        <Box display="inline" ml={1.5}>
+          <Link variant="body2" color="textPrimary" href="#">Terms</Link>
+        </Box>
+        <Box display="inline" ml={1.5}>
+          <Link variant="body2" color="textPrimary" href="#">Sitemap</Link>
+        </Box>
       </Box>
       <div style={{ flex: 1 }} />
-      <Language style={{ color: this.props.theme.palette.text.secondary }} />
-      <Link variant="body2" color="textPrimary" href="#">English (US)</Link>
-      <Shop style={{ color: this.props.theme.palette.text.secondary }} />
-      <Apple style={{ color: this.props.theme.palette.text.secondary }} />
-      <Facebook style={{ color: this.props.theme.palette.text.secondary }} />
-      <Twitter style={{ color: this.props.theme.palette.text.secondary }} />
-      <LinkedIn style={{ color: this.props.theme.palette.text.secondary }} />
-      <YouTube style={{ color: this.props.theme.palette.text.secondary }} />
-    </Toolbar>
+      <Box alignItems="center">
+        <IconButton>
+          <Language style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+        <IconButton>
+          <Shop style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+        <IconButton>
+          <Apple style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+        <IconButton>
+          <Facebook style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+        <IconButton>
+          <Twitter style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+        <IconButton>
+          <LinkedIn style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+        <IconButton>
+          <YouTube style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+      </Box>
+    </Box>
   )
 
   renderMobile = () => (
-    <Grid container>
-      <Grid item lg={6}>
-        <Toolbar>
+    <Box alignItems="center" mt={1}>
+      <Box alignItems="center">
+        <MenuItem disableGutters className={this.props.classes.logoWrapper} onClick={() => this.props.history.push('/')}>
+          <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-long.svg')} />
+        </MenuItem>
+        <Box display="inline" ml={1}>
           <Typography variant="caption" color="textPrimary">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
-          <Box ml={1.5}>
-            <Link variant="body2" color="textPrimary" href="#">Privacy</Link>
-          </Box>
-          <Box ml={1.5}>
-            <Link variant="body2" color="textPrimary" href="#">Terms</Link>
-          </Box>
-          <Box ml={1.5}>
-            <Link variant="body2" color="textPrimary" href="#">Sitemap</Link>
-          </Box>
-        </Toolbar>
-      </Grid>
-      <Grid item lg={6} style={{ textAlign: 'right', verticalAlign: 'middle' }}>
-        <Toolbar style={{ justifyContent: 'flex-end' }}>
+        </Box>
+        <Box display="inline" ml={1.5}>
+          <Link variant="body2" color="textPrimary" href="#">Privacy</Link>
+        </Box>
+        <Box display="inline" ml={1.5}>
+          <Link variant="body2" color="textPrimary" href="#">Terms</Link>
+        </Box>
+        <Box display="inline" ml={1.5}>
+          <Link variant="body2" color="textPrimary" href="#">Sitemap</Link>
+        </Box>
+      </Box>
+      <Box alignItems="center">
+        <IconButton>
           <Language style={{ color: this.props.theme.palette.text.secondary }} />
-          <Link variant="body2" color="textPrimary" href="#">English (US)</Link>
+        </IconButton>
+        <IconButton>
           <Shop style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+        <IconButton>
           <Apple style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+        <IconButton>
           <Facebook style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+        <IconButton>
           <Twitter style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+        <IconButton>
           <LinkedIn style={{ color: this.props.theme.palette.text.secondary }} />
+        </IconButton>
+        <IconButton>
           <YouTube style={{ color: this.props.theme.palette.text.secondary }} />
-        </Toolbar>
-      </Grid>
-    </Grid>
+        </IconButton>
+      </Box>
+    </Box>
   )
 }
 
 export default compose(
+  withRouter,
   withWidth(),
   withStyles(styles),
   withTheme

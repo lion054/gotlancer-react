@@ -30,8 +30,7 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.type === 'dark' ? '#fafafa' : '#24292e'
   },
   logo: {
-    width: theme.spacing(5),
-    height: theme.spacing(5)
+    width: theme.spacing(5)
   },
   icon: {
     '&:hover': {
