@@ -17,7 +17,7 @@ import {
   withStyles,
   withTheme
 } from '@material-ui/core';
-import { CloudUpload, Delete } from '@material-ui/icons';
+import { ChevronRight, CloudUpload, Delete } from '@material-ui/icons';
 import { compose } from 'redux';
 
 import Header from '../../components/Header';
@@ -62,7 +62,7 @@ class IdentityVerification extends PureComponent {
           <Grid item md={2} />
           <Grid item md={8}>
             <Box mb={2}>
-              <Breadcrumbs aria-label="breadcrumb" separator=">">
+              <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
                 <Link color="inherit" href="/account_settings">Account</Link>
                 <Typography variant="body2" color="textSecondary">Identity Verification</Typography>
               </Breadcrumbs>

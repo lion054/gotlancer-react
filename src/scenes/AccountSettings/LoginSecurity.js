@@ -16,6 +16,7 @@ import {
   withStyles,
   withTheme
 } from '@material-ui/core';
+import { ChevronRight } from '@material-ui/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCircle, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import MuiPhoneNumber from 'material-ui-phone-number';
@@ -100,7 +101,7 @@ class LoginSecurity extends PureComponent {
           <Grid item md={2} />
           <Grid item md={8}>
             <Box mb={2}>
-              <Breadcrumbs aria-label="breadcrumb" separator=">">
+              <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
                 <Link color="inherit" href="/account_settings">Account</Link>
                 <Typography variant="body2" color="textSecondary">Login &amp; Security</Typography>
               </Breadcrumbs>
