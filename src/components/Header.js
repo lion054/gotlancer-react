@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
@@ -91,7 +92,9 @@ class Header extends PureComponent {
   renderDesktop = (textColor) => (
     <Toolbar>
       <Box mr={3}>
-        <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
+        <MenuItem onClick={() => this.props.history.push('/')}>
+          <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
+        </MenuItem>
       </Box>
       <MenuButton color="inherit" textColor={textColor} onClick={this.onOpenProjects}>Projects</MenuButton>
       <Menu
@@ -159,7 +162,9 @@ class Header extends PureComponent {
 
   renderMobile = (textColor) => (
     <Toolbar>
-      <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
+      <MenuItem onClick={() => this.props.history.push('/')}>
+        <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
+      </MenuItem>
       <div style={{ flex: 1 }} />
       <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
         <IconButton color="inherit">
@@ -183,6 +188,7 @@ const mapStateToProps = ({
 });
 
 export default compose(
+  withRouter,
   withWidth(),
   withStyles(styles),
   withTheme,
