@@ -30,6 +30,9 @@ const styles = (theme) => ({
   menuItem: {
     '&:hover > .MuiListItemIcon-root > .MuiBox-root > svg': {
       color: theme.palette.info.main
+    },
+    '&:hover > .MuiListItemText-root > .MuiTypography-root': {
+      color: theme.palette.info.main
     }
   },
   menuIcon: {
