@@ -9,22 +9,21 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-const styles = (theme) => ({
-  root: {
-    paddingRight: theme.spacing(8)
+const switchStyles = (theme) => ({
+  switchBase: {
+    color: theme.palette.info.main,
+    '&$checked': {
+      color: theme.palette.info.main
+    },
+    '&$checked + $track': {
+      backgroundColor: theme.palette.info.main
+    }
   },
-  title: {
-    color: theme.palette.text.primary,
-    width: '100%'
-  },
-  subtitle: {
-    color: theme.palette.text.secondary,
-    width: '100%'
-  },
-  action: {
-    paddingLeft: theme.spacing(1)
-  }
+  checked: {},
+  track: {}
 });
+
+const InfoSwitch = withStyles(switchStyles)(Switch);
 
 class SwitchListItem extends PureComponent {
   handleChange = (e) => {
@@ -42,7 +41,7 @@ class SwitchListItem extends PureComponent {
         )}
       </ListItemText>
       <ListItemSecondaryAction classes={{ root: this.props.classes.action }}>
-        <Switch color="primary" onChange={this.handleChange} />
+        <InfoSwitch color="primary" onChange={this.handleChange} />
       </ListItemSecondaryAction>
     </ListItem>
   )
@@ -53,5 +52,14 @@ SwitchListItem.propTypes = {
   subtitle: PropTypes.string,
   onChange: PropTypes.func
 }
+
+const styles = (theme) => ({
+  root: {
+    paddingRight: theme.spacing(8)
+  },
+  action: {
+    paddingLeft: theme.spacing(1)
+  }
+});
 
 export default withStyles(styles)(SwitchListItem);
