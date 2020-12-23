@@ -6,7 +6,6 @@ import {
   ListItemText,
   Menu,
   MenuItem,
-  Switch,
   Typography,
   withStyles,
   withTheme
@@ -19,6 +18,7 @@ import { connect } from 'react-redux';
 
 import { getHeaderHoverBackgroundColor } from '../themes';
 import { updateThemeMode } from '../controllers/app/actions';
+import InfoSwitch from '../components/InfoSwitch';
 
 const styles = (theme) => ({
   root: {
@@ -150,7 +150,7 @@ class AvatarMenuButton extends PureComponent {
         </MenuItem>
         {/* <MenuItem onClick={this.onToggleThemeMode} className={this.props.classes.menuItem}>
           <ListItemIcon>
-            <Switch checked={this.props.themeMode === 'dark'} />
+            <InfoSwitch checked={this.props.themeMode === 'dark'} />
           </ListItemIcon>
           <ListItemText primary="Dark Theme" primaryTypographyProps={{
             variant: 'body1',
@@ -159,7 +159,7 @@ class AvatarMenuButton extends PureComponent {
         </MenuItem> */}
         <MenuItem onClick={this.onToggleOnline} className={this.props.classes.menuItem}>
           <ListItemIcon>
-            <Switch size="small" checked={this.state.online} />
+            <InfoSwitch size="small" checked={this.state.online} />
           </ListItemIcon>
           <ListItemText primary="Online" primaryTypographyProps={{
             variant: 'body1',

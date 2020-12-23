@@ -3,27 +3,21 @@ import {
   ListItem,
   ListItemSecondaryAction,
   ListItemText,
-  Switch,
   Typography,
   withStyles
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-const switchStyles = (theme) => ({
-  switchBase: {
-    color: theme.palette.info.main,
-    '&$checked': {
-      color: theme.palette.info.main
-    },
-    '&$checked + $track': {
-      backgroundColor: theme.palette.info.main
-    }
-  },
-  checked: {},
-  track: {}
-});
+import InfoSwitch from './InfoSwitch';
 
-const InfoSwitch = withStyles(switchStyles)(Switch);
+const styles = (theme) => ({
+  root: {
+    paddingRight: theme.spacing(8)
+  },
+  action: {
+    paddingLeft: theme.spacing(1)
+  }
+});
 
 class SwitchListItem extends PureComponent {
   handleChange = (e) => {
@@ -52,14 +46,5 @@ SwitchListItem.propTypes = {
   subtitle: PropTypes.string,
   onChange: PropTypes.func
 }
-
-const styles = (theme) => ({
-  root: {
-    paddingRight: theme.spacing(8)
-  },
-  action: {
-    paddingLeft: theme.spacing(1)
-  }
-});
 
 export default withStyles(styles)(SwitchListItem);

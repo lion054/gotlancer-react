@@ -10,7 +10,6 @@ import {
   ListItemText,
   MenuItem,
   MenuList,
-  Switch,
   Typography,
   withStyles,
   withTheme
@@ -22,6 +21,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import { updateThemeMode } from '../controllers/app/actions';
+import InfoSwitch from '../components/InfoSwitch';
 
 const styles = (theme) => ({
   menuList: {
@@ -191,7 +191,7 @@ class AvatarMenuIcon extends PureComponent {
           //         color: 'textPrimary'
           //       }} />
           //       <ListItemIcon>
-          //         <Switch checked={this.props.themeMode === 'dark'} />
+          //         <InfoSwitch checked={this.props.themeMode === 'dark'} />
           //       </ListItemIcon>
           //     </Fragment>
           //   ),
@@ -211,7 +211,7 @@ class AvatarMenuIcon extends PureComponent {
                   color: 'textPrimary'
                 }} />
                 <ListItemIcon>
-                  <Switch checked={this.state.online} />
+                  <InfoSwitch checked={this.state.online} />
                 </ListItemIcon>
               </Fragment>
             ),
