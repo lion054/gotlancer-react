@@ -100,7 +100,7 @@ class PersonalInfo extends PureComponent {
                     <Grid container spacing={2}>
                       <Grid item xs={12}>
                         <Box mb={2}>
-                          <Typography>Write your name as per your identity, we will use this name for your identity Verification.</Typography>
+                          <Typography>Write your name as per your identity, we will use this name for your identity verification.</Typography>
                         </Box>
                       </Grid>
                       <Grid item sm={6}>

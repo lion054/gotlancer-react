@@ -41,30 +41,6 @@ const styles = (theme) => ({
   cardIcon: {
     width: theme.spacing(8),
     height: theme.spacing(7)
-  },
-  otpDigit: {
-    borderRadius: 5,
-    fontSize: theme.spacing(3),
-    borderColor: theme.palette.action.disabled,
-    borderStyle: 'solid',
-    borderWidth: 2,
-    '&:focus': {
-      borderRadius: 5,
-      outlineColor: 'transparent',
-      outlineStyle: 'solid',
-      outlineWidth: 0,
-      borderColor: theme.palette.success.main,
-      borderStyle: 'solid',
-      borderWidth: 2
-    }
-  },
-  resendOtp: {
-    color: theme.palette.success.main,
-    fontWeight: 'bold'
-  },
-  remainingTime: {
-    marginLeft: theme.spacing(1),
-    color: theme.palette.error.main
   }
 })
 
