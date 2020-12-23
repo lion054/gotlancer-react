@@ -25,11 +25,11 @@ import SearchBox from './SearchBox';
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
-    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)'
+    backgroundColor: theme.palette.type === 'dark' ? '#fafafa' : '#24292e'
   },
   logo: {
-    width: theme.spacing(16),
-    height: theme.spacing(4)
+    width: theme.spacing(5),
+    height: theme.spacing(5)
   },
   badge: {
     backgroundColor: theme.palette.success.main,
@@ -67,30 +67,33 @@ class Header extends PureComponent {
 
   onCloseReports = () => this.setState({ reportsEl: null })
 
-  render = () => (
-    <div className={this.props.classes.root}>
-      <AppBar position="static" color="transparent" elevation={0}>
-        {(this.props.width === 'lg' || this.props.width === 'xl') && (
-          <Grid container>
-            <Grid item lg={2} />
-            <Grid item lg={8}>
-              {this.renderDesktop()}
+  render = () => {
+    const textColor = this.props.theme.palette.theme === 'dark' ? this.props.theme.palette.grey[700] : this.props.theme.palette.grey[300];
+    return (
+      <div className={this.props.classes.root}>
+        <AppBar position="static" color="transparent" elevation={1}>
+          {(this.props.width === 'lg' || this.props.width === 'xl') && (
+            <Grid container>
+              <Grid item lg={2} />
+              <Grid item lg={8}>
+                {this.renderDesktop(textColor)}
+              </Grid>
+              <Grid item lg={2} />
             </Grid>
-            <Grid item lg={2} />
-          </Grid>
-        )}
-        {this.props.width === 'md' && this.renderDesktop()}
-        {(this.props.width === 'sm' || this.props.width === 'xs') && this.renderMobile()}
-      </AppBar>
-    </div>
-  )
+          )}
+          {this.props.width === 'md' && this.renderDesktop(textColor)}
+          {(this.props.width === 'sm' || this.props.width === 'xs') && this.renderMobile(textColor)}
+        </AppBar>
+      </div>
+    );
+  }
 
-  renderDesktop = () => (
+  renderDesktop = (textColor) => (
     <Toolbar>
       <Box mr={3}>
-        <img alt="" className={this.props.classes.logo} src={require(`../assets/images/gl-logo-${this.props.themeMode}.png`)} />
+        <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
       </Box>
-      <MenuButton color="inherit" onClick={this.onOpenProjects}>Projects</MenuButton>
+      <MenuButton color="inherit" textColor={textColor} onClick={this.onOpenProjects}>Projects</MenuButton>
       <Menu
         id="projects-menu"
         anchorEl={this.state.projectsEl}
@@ -106,7 +109,7 @@ class Header extends PureComponent {
         <MenuItem className={this.props.classes.label}>My Stats</MenuItem>
         <MenuItem className={this.props.classes.label}>My Project</MenuItem>
       </Menu>
-      <MenuButton color="inherit" onClick={this.onOpenHire}>Hire</MenuButton>
+      <MenuButton color="inherit" textColor={textColor} onClick={this.onOpenHire}>Hire</MenuButton>
       <Menu
         id="hire-menu"
         anchorEl={this.state.hireEl}
@@ -120,7 +123,7 @@ class Header extends PureComponent {
         <MenuItem className={this.props.classes.label}>Saved Freelancer</MenuItem>
         <MenuItem className={this.props.classes.label}>Hired Freelancer</MenuItem>
       </Menu>
-      <MenuButton color="inherit" onClick={this.onOpenReports}>Reports</MenuButton>
+      <MenuButton color="inherit" textColor={textColor} onClick={this.onOpenReports}>Reports</MenuButton>
       <Menu
         id="reports-menu"
         anchorEl={this.state.reportsEl}
@@ -138,37 +141,37 @@ class Header extends PureComponent {
         <MenuItem className={this.props.classes.label}>Withdrawal History</MenuItem>
         <MenuItem className={this.props.classes.label}>Dispute List</MenuItem>
       </Menu>
-      <SearchBox />
+      <SearchBox textColor={textColor} />
       <div style={{ flex: 1 }} />
       <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
         <IconButton color="inherit">
-          <FontAwesomeIcon icon={faEnvelope} color={this.props.theme.palette.text.secondary} size="1x" />
+          <FontAwesomeIcon icon={faEnvelope} color={textColor} size="1x" />
         </IconButton>
       </Badge>
       <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
         <IconButton color="inherit">
-          <FontAwesomeIcon icon={faBell} color={this.props.theme.palette.text.secondary} size="1x" />
+          <FontAwesomeIcon icon={faBell} color={textColor} size="1x" />
         </IconButton>
       </Badge>
-      <AvatarMenuButton />
+      <AvatarMenuButton textColor={textColor} />
     </Toolbar>
   )
 
-  renderMobile = () => (
+  renderMobile = (textColor) => (
     <Toolbar>
-      <img alt="" className={this.props.classes.logo} src={require(`../assets/images/gl-logo-${this.props.themeMode}.png`)} />
+      <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
       <div style={{ flex: 1 }} />
       <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
         <IconButton color="inherit">
-          <FontAwesomeIcon icon={faEnvelope} color={this.props.theme.palette.text.secondary} size="1x" />
+          <FontAwesomeIcon icon={faEnvelope} color={textColor} size="1x" />
         </IconButton>
       </Badge>
       <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
         <IconButton color="inherit">
-          <FontAwesomeIcon icon={faBell} color={this.props.theme.palette.text.secondary} size="1x" />
+          <FontAwesomeIcon icon={faBell} color={textColor} size="1x" />
         </IconButton>
       </Badge>
-      <AvatarMenuIcon />
+      <AvatarMenuIcon textColor={textColor} />
     </Toolbar>
   )
 }

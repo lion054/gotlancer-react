@@ -107,7 +107,7 @@ class AvatarMenuIcon extends PureComponent {
   render = () => (
     <Fragment>
       <IconButton color="inherit" onClick={this.handleDrawer}>
-        <FontAwesomeIcon icon={faUserCircle} color={this.props.theme.palette.text.secondary} size="1x" />
+        <FontAwesomeIcon icon={faUserCircle} color={this.props.textColor} size="1x" />
       </IconButton>
       <Drawer
         anchor="right"

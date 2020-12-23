@@ -58,10 +58,10 @@ class SearchBox extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <div className={this.props.classes.icon}>
-        <FontAwesomeIcon icon={faSearch} color={this.props.theme.palette.success.main} size="sm" />
+        <FontAwesomeIcon icon={faSearch} color={this.props.textColor} size="sm" />
       </div>
       <div className={this.props.classes.icon + ' ' + this.props.classes.rightIcon}>
-        <FontAwesomeIcon icon={faChevronDown} color={this.props.theme.palette.divider} size="sm" />
+        <FontAwesomeIcon icon={faChevronDown} color={this.props.textColor} size="sm" />
       </div>
       <InputBase
         placeholder="Search"
@@ -69,7 +69,12 @@ class SearchBox extends PureComponent {
           root: this.props.classes.inputWrapper,
           input: this.props.classes.inputContent
         }}
-        inputProps={{ 'aria-label': 'search' }}
+        inputProps={{
+          'aria-label': 'search',
+          style: {
+            color: this.props.textColor
+          }
+        }}
       />
     </div>
   )

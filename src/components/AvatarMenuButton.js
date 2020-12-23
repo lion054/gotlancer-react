@@ -59,11 +59,11 @@ class AvatarMenuButton extends PureComponent {
           onClick={this.onOpenMenu}
         >
           <Box display="inline-block">
-            <Typography variant="body2" display="block" color="textPrimary" noWrap align="right">Hi, Apurba</Typography>
-            <Typography variant="body2" display="block" color="textSecondary" noWrap align="right">$100.00 USD</Typography>
+            <Typography variant="body2" display="block" noWrap align="right" style={{ color: this.props.textColor }}>Hi, Apurba</Typography>
+            <Typography variant="body2" display="block" noWrap align="right" style={{ color: this.props.textColor }}>$100.00 USD</Typography>
           </Box>
           <Box ml={1.5} display="inline-block">
-            <FontAwesomeIcon icon={faUserCircle} color={this.props.theme.palette.text.secondary} size="3x" />
+            <FontAwesomeIcon icon={faUserCircle} color={this.props.textColor} size="3x" />
           </Box>
         </Button>
       </Box>
@@ -141,7 +141,7 @@ class AvatarMenuButton extends PureComponent {
           <ListItemIcon>
             <Switch checked={this.props.themeMode === 'dark'} />
           </ListItemIcon>
-          <ListItemText primary="Dark Mode" primaryTypographyProps={{
+          <ListItemText primary="Dark Theme" primaryTypographyProps={{
             variant: 'body1',
             color: 'textPrimary'
           }} />
