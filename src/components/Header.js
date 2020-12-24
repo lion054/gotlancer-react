@@ -94,7 +94,7 @@ class Header extends PureComponent {
   }
 
   renderDesktop = (textColor) => (
-    <Toolbar>
+    <Toolbar disableGutters>
       <Box mr={3}>
         <MenuItem onClick={() => this.props.history.push('/')}>
           <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
@@ -165,7 +165,7 @@ class Header extends PureComponent {
   )
 
   renderMobile = (textColor) => (
-    <Toolbar>
+    <Toolbar disableGutters>
       <MenuItem onClick={() => this.props.history.push('/')}>
         <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
       </MenuItem>
