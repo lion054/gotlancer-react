@@ -41,9 +41,7 @@ class Footer extends PureComponent {
             <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
-                  <Typography component="div" variant="body2" color="textPrimary">
-                    <Box fontWeight="fontWeightBold">NETWORK</Box>
-                  </Typography>
+                  <Typography variant="subtitle2" color="textPrimary">NETWORK</Typography>
                 </ListItem>
                 <ListItem>
                   <Link variant="body2" color="textPrimary" href="#">Browse Categories</Link>
@@ -74,9 +72,7 @@ class Footer extends PureComponent {
             <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
-                  <Typography component="div" variant="body2" color="textPrimary">
-                    <Box fontWeight="fontWeightBold">NETWORK</Box>
-                  </Typography>
+                  <Typography variant="subtitle2" color="textPrimary">NETWORK</Typography>
                 </ListItem>
                 <ListItem>
                   <Link variant="body2" color="textPrimary" href="#">Browse Categories</Link>
@@ -107,9 +103,7 @@ class Footer extends PureComponent {
             <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
-                  <Typography component="div" variant="body2" color="textPrimary">
-                    <Box fontWeight="fontWeightBold">COMPANY</Box>
-                  </Typography>
+                  <Typography variant="subtitle2" color="textPrimary">COMPANY</Typography>
                 </ListItem>
                 <ListItem>
                   <Link variant="body2" color="textPrimary" href="#">About Us</Link>
@@ -143,9 +137,7 @@ class Footer extends PureComponent {
             <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
-                  <Typography component="div" variant="body2" color="textPrimary">
-                    <Box fontWeight="fontWeightBold">FREELANCERS</Box>
-                  </Typography>
+                  <Typography variant="subtitle2" color="textPrimary">FREELANCERS</Typography>
                 </ListItem>
                 <ListItem>
                   <Link variant="body2" color="textPrimary" href="#">Freelancers by Skill</Link>

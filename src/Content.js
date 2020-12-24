@@ -8,14 +8,16 @@ import { connect } from 'react-redux';
 import AccountSettings from './scenes/AccountSettings';
 import Home from './scenes/Home';
 import GlobalPreferences from './scenes/AccountSettings/GlobalPreferences';
-import IdentityVerification from './scenes/AccountSettings/IdentityVerification';
+import InviteFriends from './scenes/AccountSettings/InviteFriends';
 import LoginSecurity from './scenes/AccountSettings/LoginSecurity';
 import Membership from './scenes/AccountSettings/Membership';
 import Notifications from './scenes/AccountSettings/Notifications';
 import PaymentsPayouts from './scenes/AccountSettings/PaymentsPayouts';
 import PersonalInfo from './scenes/AccountSettings/PersonalInfo';
+import VerifyIdentity from './scenes/AccountSettings/VerifyIdentity';
 
 import { darkTheme, lightTheme } from './themes';
+import ScrollToTop from './components/ScrollToTop';
 
 const routes = [{
   path: '/',
@@ -33,8 +35,8 @@ const routes = [{
   path: '/account_settings/payments_payouts',
   component: PaymentsPayouts
 },{
-  path: '/account_settings/identity_verification',
-  component: IdentityVerification
+  path: '/account_settings/verify_identity',
+  component: VerifyIdentity
 },{
   path: '/account_settings/membership',
   component: Membership
@@ -44,6 +46,9 @@ const routes = [{
 },{
   path: '/account_settings/global_preferences',
   component: GlobalPreferences
+},{
+  path: '/account_settings/invite_friends',
+  component: InviteFriends
 }];
 
 class Content extends PureComponent {
@@ -51,6 +56,7 @@ class Content extends PureComponent {
     <ThemeProvider theme={this.props.themeMode === 'dark' ? darkTheme : lightTheme}>
       <MuiPickersUtilsProvider utils={MomentUtils}>
         <BrowserRouter>
+          <ScrollToTop />
           <div className="App">
             <Switch>
               {routes.map(({ path, component }, index) => (

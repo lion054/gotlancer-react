@@ -47,7 +47,7 @@ class Membership extends PureComponent {
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
                 <Link color="inherit" href="/account_settings">Account</Link>
-                <Typography variant="body2" color="textSecondary">Membership</Typography>
+                <Typography color="textSecondary">Membership</Typography>
               </Breadcrumbs>
             </Box>
             <Box mb={2}>
@@ -86,7 +86,7 @@ class Membership extends PureComponent {
                 <Card className={this.props.classes.card}>
                   <CardContent>
                     <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/membership.svg')} />
-                    <Typography variant="body1">Let's make your account more secure</Typography>
+                    <Typography variant="subtitle2">Let's make your account more secure</Typography>
                     <Typography variant="body2">Your account security: Medium</Typography>
                     <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
                   </CardContent>

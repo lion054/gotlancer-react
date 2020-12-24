@@ -7,9 +7,11 @@ export const lightTheme = createMuiTheme({
   overrides: {
     MuiButton: {
       text: {
+        fontWeight: 'bold',
         textTransform: 'unset'
       },
       contained: {
+        fontWeight: 'bold',
         textTransform: 'unset',
         backgroundColor: colors.grey[900],
         color: colors.common.white,
@@ -18,6 +20,7 @@ export const lightTheme = createMuiTheme({
         }
       },
       outlined: {
+        fontWeight: 'bold',
         textTransform: 'unset'
       }
     },
@@ -50,6 +53,32 @@ export const lightTheme = createMuiTheme({
       indicator: {
         backgroundColor: colors.green[500]
       }
+    },
+    MuiTypography: {
+      h1: {
+        fontWeight: 'bold'
+      },
+      h2: {
+        fontWeight: 'bold'
+      },
+      h3: {
+        fontWeight: 'bold'
+      },
+      h4: {
+        fontWeight: 'bold'
+      },
+      h5: {
+        fontWeight: 'bold'
+      },
+      h6: {
+        fontWeight: 'bold'
+      },
+      subtitle1: {
+        fontWeight: 'bold'
+      },
+      subtitle2: {
+        fontWeight: 'bold'
+      }
     }
   }
 });
@@ -61,9 +90,11 @@ export const darkTheme = createMuiTheme({
   overrides: {
     MuiButton: {
       text: {
+        fontWeight: 'bold',
         textTransform: 'unset'
       },
       contained: {
+        fontWeight: 'bold',
         textTransform: 'unset',
         backgroundColor: colors.grey[900],
         color: colors.common.white,
@@ -72,6 +103,7 @@ export const darkTheme = createMuiTheme({
         }
       },
       outlined: {
+        fontWeight: 'bold',
         textTransform: 'unset'
       }
     },
@@ -103,6 +135,32 @@ export const darkTheme = createMuiTheme({
     MuiTabs: {
       indicator: {
         backgroundColor: colors.green[500]
+      }
+    },
+    MuiTypography: {
+      h1: {
+        fontWeight: 'bold'
+      },
+      h2: {
+        fontWeight: 'bold'
+      },
+      h3: {
+        fontWeight: 'bold'
+      },
+      h4: {
+        fontWeight: 'bold'
+      },
+      h5: {
+        fontWeight: 'bold'
+      },
+      h6: {
+        fontWeight: 'bold'
+      },
+      subtitle1: {
+        fontWeight: 'bold'
+      },
+      subtitle2: {
+        fontWeight: 'bold'
       }
     }
   }

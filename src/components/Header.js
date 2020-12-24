@@ -3,6 +3,7 @@ import {
   AppBar,
   Badge,
   Box,
+  Button,
   Grid,
   IconButton,
   Menu,
@@ -20,7 +21,6 @@ import { connect } from 'react-redux';
 
 import AvatarMenuButton from './AvatarMenuButton';
 import AvatarMenuIcon from './AvatarMenuIcon';
-import MenuButton from './MenuButton';
 import SearchBox from './SearchBox';
 import { getHeaderHoverBackgroundColor } from '../themes';
 
@@ -51,6 +51,16 @@ const styles = (theme) => ({
     fontSize: theme.spacing(1.75)
   }
 });
+
+const MenuButton = withStyles((theme) => ({
+  root: {
+    fontSize: theme.spacing(1.75),
+    color: theme.palette.type === 'dark' ? theme.palette.grey[700] : theme.palette.grey[300],
+    '&:hover': {
+      backgroundColor: getHeaderHoverBackgroundColor(theme)
+    }
+  }
+}))(Button);
 
 class Header extends PureComponent {
   state = {

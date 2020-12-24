@@ -27,7 +27,7 @@ const styles = (theme) => ({
     borderStyle: 'solid'
   },
   cardContent: {
-    height: theme.spacing(16)
+    height: theme.spacing(17)
   },
   icon: {
     width: theme.spacing(8),
@@ -56,7 +56,7 @@ class AccountSettings extends PureComponent {
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/personal-info.svg')} />
                       <Box display="flex" alignItems="center">
-                        <Typography variant="body1">Personal info</Typography>
+                        <Typography variant="subtitle2">Personal info</Typography>
                         <ChevronRight />
                       </Box>
                       <Typography variant="body2">Provide personal details and how we can reach you</Typography>
@@ -70,7 +70,7 @@ class AccountSettings extends PureComponent {
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/login-info.svg')} />
                       <Box display="flex" alignItems="center">
-                        <Typography variant="body1">Login &amp; Security</Typography>
+                        <Typography variant="subtitle2">Login &amp; Security</Typography>
                         <ChevronRight />
                       </Box>
                       <Typography variant="body2">Update your email, password, mobile and secure your account</Typography>
@@ -84,7 +84,7 @@ class AccountSettings extends PureComponent {
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/payments-and-payouts.svg')} />
                       <Box display="flex" alignItems="center">
-                        <Typography variant="body1">Payments &amp; Payouts</Typography>
+                        <Typography variant="subtitle2">Payments &amp; Payouts</Typography>
                         <ChevronRight />
                       </Box>
                       <Typography variant="body2">Review payments, payouts and taxes</Typography>
@@ -94,11 +94,11 @@ class AccountSettings extends PureComponent {
               </Grid>
               <Grid item lg={4} md={6} xs={12}>
                 <Card className={this.props.classes.card}>
-                  <CardActionArea onClick={() => this.props.history.push('/account_settings/identity_verification')}>
+                  <CardActionArea onClick={() => this.props.history.push('/account_settings/verify_identity')}>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/verify-identity.svg')} />
                       <Box display="flex" alignItems="center">
-                        <Typography variant="body1">Identity Verification</Typography>
+                        <Typography variant="subtitle2">Verify identity</Typography>
                         <ChevronRight />
                       </Box>
                       <Typography variant="body2">Verify your identity for get paid from gotlancer and secured your account with Gotlancer.</Typography>
@@ -112,7 +112,7 @@ class AccountSettings extends PureComponent {
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/membership.svg')} />
                       <Box display="flex" alignItems="center">
-                        <Typography variant="body1">Membership</Typography>
+                        <Typography variant="subtitle2">Membership</Typography>
                         <ChevronRight />
                       </Box>
                       <Typography variant="body2">Set your default language and timezone</Typography>
@@ -126,7 +126,7 @@ class AccountSettings extends PureComponent {
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/business-account.svg')} />
                       <Box display="flex" alignItems="center">
-                        <Typography variant="body1">Business Account</Typography>
+                        <Typography variant="subtitle2">Business Account</Typography>
                         <ChevronRight />
                       </Box>
                       <Typography variant="body2">Manage your team, group chat, task share, large project management</Typography>
@@ -140,7 +140,7 @@ class AccountSettings extends PureComponent {
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/notifications.svg')} />
                       <Box display="flex" alignItems="center">
-                        <Typography variant="body1">Notifications</Typography>
+                        <Typography variant="subtitle2">Notifications</Typography>
                         <ChevronRight />
                       </Box>
                       <Typography variant="body2">Choose notification preferences and how you want to be contacted</Typography>
@@ -154,7 +154,7 @@ class AccountSettings extends PureComponent {
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/global-preferences.svg')} />
                       <Box display="flex" alignItems="center">
-                        <Typography variant="body1">Global preferences</Typography>
+                        <Typography variant="subtitle2">Global preferences</Typography>
                         <ChevronRight />
                       </Box>
                       <Typography variant="body2">Set your default language and timezone</Typography>
@@ -164,11 +164,11 @@ class AccountSettings extends PureComponent {
               </Grid>
               <Grid item lg={4} md={6} xs={12}>
                 <Card className={this.props.classes.card}>
-                  <CardActionArea>
+                  <CardActionArea onClick={() => this.props.history.push('/account_settings/invite_friends')}>
                     <CardContent className={this.props.classes.cardContent}>
                       <img alt="" className={this.props.classes.icon} src={require('../../assets/images/account-settings/invite-friends.svg')} />
                       <Box display="flex" alignItems="center">
-                        <Typography variant="body1">Invite friends</Typography>
+                        <Typography variant="subtitle2">Invite friends</Typography>
                         <ChevronRight />
                       </Box>
                       <Typography variant="body2">When they join and spend at least $100, you will get $30 instantly</Typography>
