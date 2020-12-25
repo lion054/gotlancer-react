@@ -1,6 +1,7 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import {
   Box,
+  Menu,
   MenuItem,
   ListItemIcon,
   ListItemText,
@@ -28,10 +29,11 @@ import {
   Sidebar
 } from '@chatscope/chat-ui-kit-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faCog, faPaperPlane, faPaperclip, faSmile } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faCog, faEdit, faEllipsisV, faPaperPlane, faPaperclip, faQuoteLeft, faSmile, faTrash } from '@fortawesome/free-solid-svg-icons';
 import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import faker from 'faker';
 import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
 import { compose } from 'redux';
 
 import Header from '../components/Header';
@@ -44,6 +46,14 @@ const styles = (theme) => ({
   },
   search: {
     margin: theme.spacing(1)
+  },
+  menuItem: {
+    '&:hover > .MuiListItemIcon-root > .MuiBox-root > svg': {
+      color: theme.palette.info.main
+    },
+    '&:hover > .MuiListItemText-root > .MuiTypography-root': {
+      color: theme.palette.info.main
+    }
   },
   menuIcon: {
     minWidth: 'unset',
@@ -59,6 +69,8 @@ class Messenger extends PureComponent {
     currentConversation: {},
     messages: [],
     text: '',
+    moreEl: null,
+    moreId: '',
     emojiEl: null,
     settingEl: null,
     enterMode: 'send'
@@ -102,6 +114,7 @@ class Messenger extends PureComponent {
     for (let i = 0; i < 20; i++) {
       const direction = faker.random.boolean() ? 'incoming' : 'outgoing';
       messages.push({
+        id: uuidv4(),
         text: faker.lorem.sentence(),
         time: faker.date.past(),
         sender: direction === 'incoming' ? name : 'You',
@@ -175,6 +188,16 @@ class Messenger extends PureComponent {
     return past.format('LT'); // 0:30 PM
   }
 
+  onOpenMoreMenu = (e, id) => this.setState({
+    moreEl: e.currentTarget,
+    moreId: id
+  })
+
+  onCloseMoreMenu = () => this.setState({
+    moreEl: null,
+    moreId: ''
+  })
+
   handleAttach = (e) => {
     console.log(e);
   }
@@ -243,27 +266,54 @@ class Messenger extends PureComponent {
               )}
             </ConversationHeader>
             <MessageList>
-              {this.state.messages.map(({ text, time, sender, direction, position }, index) => (direction === 'incoming' && (position === 'single' || position === 'last')) ? (
+              {this.state.messages.map(({ id, text, time, sender, direction, position }, index) => (direction === 'incoming' && (position === 'single' || position === 'last')) ? (
                 <Message key={index} model={{
-                  message: text,
                   sentTime: moment(time).fromNow(),
                   sender,
                   direction,
-                  position
+                  position,
+                  type: 'custom'
                 }}>
                   <Avatar
                     src={this.state.currentConversation.avatar}
                     name={this.state.currentConversation.name}
                   />
+                  <Message.CustomContent>
+                    <span>{text}</span>
+                    <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
+                      <FontAwesomeIcon icon={faEllipsisV} />
+                    )} />
+                    {this.renderMoreMenu(id)}
+                  </Message.CustomContent>
                 </Message>
               ) : (
                 <Message key={index} avatarSpacer={direction === 'incoming'} model={{
-                  message: text,
                   sentTime: moment(time).fromNow(),
                   sender,
                   direction,
-                  position
-                }} />
+                  position,
+                  type: 'custom'
+                }}>
+                  <Message.CustomContent>
+                    {direction === 'outgoing' && (
+                      <Fragment>
+                        <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
+                          <FontAwesomeIcon icon={faEllipsisV} />
+                        )} />
+                        {this.renderMoreMenu(id)}
+                      </Fragment>
+                    )}
+                    <span>{text}</span>
+                    {direction === 'incoming' && (
+                      <Fragment>
+                        <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
+                          <FontAwesomeIcon icon={faEllipsisV} />
+                        )} />
+                        {this.renderMoreMenu(id)}
+                      </Fragment>
+                    )}
+                  </Message.CustomContent>
+                </Message>
               ))}
             </MessageList>
             <InputToolbox>
@@ -309,6 +359,52 @@ class Messenger extends PureComponent {
         </Box>
       </div>
     </div>
+  )
+
+  renderMoreMenu = (id) => (
+    <Menu
+      id={`${id}-more-menu`}
+      anchorEl={this.state.moreEl}
+      keepMounted
+      open={this.state.moreId === id}
+      onClose={this.onCloseMoreMenu}
+      getContentAnchorEl={null} // menu should be display below anchor
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
+    >
+      <MenuItem onClick={this.onCloseMoreMenu} className={this.props.classes.menuItem}>
+        <ListItemIcon>
+          <Box mr={1.5} width="100%" textAlign="center">
+            <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faTrash} />
+          </Box>
+        </ListItemIcon>
+        <ListItemText primary="Delete" primaryTypographyProps={{
+          variant: 'body1',
+          color: 'textPrimary'
+        }} />
+      </MenuItem>
+      <MenuItem onClick={this.onCloseMoreMenu} className={this.props.classes.menuItem}>
+        <ListItemIcon>
+          <Box mr={1.5} width="100%" textAlign="center">
+            <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faEdit} />
+          </Box>
+        </ListItemIcon>
+        <ListItemText primary="Edit" primaryTypographyProps={{
+          variant: 'body1',
+          color: 'textPrimary'
+        }} />
+      </MenuItem>
+      <MenuItem onClick={this.onCloseMoreMenu} className={this.props.classes.menuItem}>
+        <ListItemIcon>
+          <Box mr={1.5} width="100%" textAlign="center">
+            <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faQuoteLeft} />
+          </Box>
+        </ListItemIcon>
+        <ListItemText primary="Quote" primaryTypographyProps={{
+          variant: 'body1',
+          color: 'textPrimary'
+        }} />
+      </MenuItem>
+    </Menu>
   )
 
   renderEmojiPopover = () => (

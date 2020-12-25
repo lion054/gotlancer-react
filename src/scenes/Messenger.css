@@ -23,3 +23,11 @@
 .cs-chat-container .cs-message-input .cs-message-input__content-editor-wrapper:first-child {
   margin-left: unset;
 }
+
+.cs-message__custom-content .msg-more-action {
+  visibility: hidden;
+}
+
+.cs-message__custom-content:hover .msg-more-action {
+  visibility: visible;
+}
