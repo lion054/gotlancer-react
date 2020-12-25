@@ -5,7 +5,6 @@ import {
   AccordionSummary,
   Box,
   Breadcrumbs,
-  Card,
   CardContent,
   Grid,
   Link,
@@ -105,13 +104,11 @@ class GlobalPreferences extends PureComponent {
               </Grid>
               <Grid item lg={2} />
               <Grid item lg={4}>
-                <Card className={this.props.classes.card}>
-                  <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/global-preferences.svg')} />
-                    <Typography variant="subtitle2">Global preferences</Typography>
-                    <Typography variant="body2">Changing your cur rency updates how you see prices. You can change how you get payments in your payments &amp; payouts preferences.</Typography>
-                  </CardContent>
-                </Card>
+                <CardContent className={this.props.classes.card}>
+                  <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/global-preferences.svg')} />
+                  <Typography variant="subtitle2">Global preferences</Typography>
+                  <Typography variant="body2">Changing your cur rency updates how you see prices. You can change how you get payments in your payments &amp; payouts preferences.</Typography>
+                </CardContent>
               </Grid>
             </Grid>
           </Grid>

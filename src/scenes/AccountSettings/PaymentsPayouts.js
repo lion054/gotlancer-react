@@ -3,7 +3,6 @@ import {
   Box,
   Breadcrumbs,
   Button,
-  Card,
   CardContent,
   Grid,
   Link,
@@ -166,14 +165,12 @@ class PaymentsPayouts extends PureComponent {
               </Grid>
               <Grid item lg={2} />
               <Grid item lg={4}>
-                <Card className={this.props.classes.card}>
-                  <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/payments-and-payouts.svg')} />
-                    <Typography variant="subtitle2">Let's make your account more secure</Typography>
-                    <Typography variant="body2">Your account security: Medium</Typography>
-                    <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
-                  </CardContent>
-                </Card>
+                <CardContent className={this.props.classes.card}>
+                  <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/payments-and-payouts.svg')} />
+                  <Typography variant="subtitle2">Let's make your account more secure</Typography>
+                  <Typography variant="body2">Your account security: Medium</Typography>
+                  <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
+                </CardContent>
               </Grid>
             </Grid>
           </Grid>
