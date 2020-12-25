@@ -31,7 +31,8 @@ import {
   MessageInput,
   MessageList,
   Search,
-  Sidebar
+  Sidebar,
+  TypingIndicator
 } from '@chatscope/chat-ui-kit-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCog, faEdit, faEllipsisV, faPaperPlane, faPaperclip, faQuoteLeft, faSmile, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -77,6 +78,8 @@ class Messenger extends PureComponent {
     moreEl: null,
     moreId: '',
     dialogOpened: false,
+    typing: '',
+    timer: null,
     emojiEl: null,
     settingEl: null,
     enterMode: 'send'
@@ -92,6 +95,24 @@ class Messenger extends PureComponent {
       },
       messages: this.fetchRecentMessages(conversations[0])
     });
+    this.simulateRandomeTyping();
+  }
+
+  componentWillUnmount() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+  }
+
+  simulateRandomeTyping() {
+    const waitingTime = faker.random.number({ min: 5000, max: 10000 });
+    this.timer = setTimeout(() => {
+      this.setState({
+        typing: faker.random.boolean() ? 'Patrik is typing' : ''
+      });
+      this.simulateRandomeTyping();
+    }, waitingTime);
   }
 
   fetchConversations(search) {
@@ -350,40 +371,50 @@ class Messenger extends PureComponent {
               ))}
             </MessageList>
             <InputToolbox>
-              <input
-                id="contained-button-file"
-                multiple
-                type="file"
-                style={{ display: 'none' }}
-                onChange={this.handleAttach}
-              />
-              <label htmlFor="contained-button-file">
-                <div className="cs-button" style={{
-                  height: '100%',
-                  display: 'flex',
-                  alignItems: 'center'
-                }}>
-                  <FontAwesomeIcon icon={faPaperclip} />
-                </div>
-              </label>
-              <Button onClick={this.onOpenEmojiPopover} icon={(
-                <FontAwesomeIcon icon={faSmile} />
-              )} />
-              {this.renderEmojiPopover()}
-              <MessageInput
-                placeholder="Type message here"
-                attachButton={false}
-                sendButton={false}
-                value={this.state.text}
-                onChange={(text) => this.setState({ text })}
-              />
-              <Button onClick={this.handleSend} icon={(
-                <FontAwesomeIcon icon={faPaperPlane} />
-              )} />
-              <Button onClick={this.onOpenSettingPopover} icon={(
-                <FontAwesomeIcon icon={faCog} />
-              )} />
-              {this.renderSettingPopover()}
+              <Box height={21}>
+                {!!this.state.typing && (
+                  <TypingIndicator content={this.state.typing} />
+                )}
+              </Box>
+              <div style={{
+                display: 'flex',
+                borderTop: 'solid 1px #d1dbe4'
+              }}>
+                <input
+                  id="contained-button-file"
+                  multiple
+                  type="file"
+                  style={{ display: 'none' }}
+                  onChange={this.handleAttach}
+                />
+                <label htmlFor="contained-button-file">
+                  <div className="cs-button" style={{
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}>
+                    <FontAwesomeIcon icon={faPaperclip} />
+                  </div>
+                </label>
+                <Button onClick={this.onOpenEmojiPopover} icon={(
+                  <FontAwesomeIcon icon={faSmile} />
+                )} />
+                {this.renderEmojiPopover()}
+                <MessageInput
+                  placeholder="Type message here"
+                  attachButton={false}
+                  sendButton={false}
+                  value={this.state.text}
+                  onChange={(text) => this.setState({ text })}
+                />
+                <Button onClick={this.handleSend} icon={(
+                  <FontAwesomeIcon icon={faPaperPlane} />
+                )} />
+                <Button onClick={this.onOpenSettingPopover} icon={(
+                  <FontAwesomeIcon icon={faCog} />
+                )} />
+                {this.renderSettingPopover()}
+              </div>
             </InputToolbox>
           </ChatContainer>
         </MainContainer>
