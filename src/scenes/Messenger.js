@@ -1,6 +1,11 @@
 import React, { Fragment, PureComponent } from 'react';
 import {
   Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Menu,
   MenuItem,
   ListItemIcon,
@@ -24,7 +29,6 @@ import {
   Message,
   MessageInput,
   MessageList,
-  MessageSeparator,
   Search,
   Sidebar
 } from '@chatscope/chat-ui-kit-react';
@@ -71,6 +75,7 @@ class Messenger extends PureComponent {
     text: '',
     moreEl: null,
     moreId: '',
+    dialogOpened: false,
     emojiEl: null,
     settingEl: null,
     enterMode: 'send'
@@ -197,6 +202,10 @@ class Messenger extends PureComponent {
     moreEl: null,
     moreId: ''
   })
+
+  onOpenDialog = () => this.setState({ dialogOpened: true })
+
+  onCloseDialog = () => this.setState({ dialogOpened: false })
 
   handleAttach = (e) => {
     console.log(e);
@@ -358,6 +367,7 @@ class Messenger extends PureComponent {
           <Typography variant="body2" color="textSecondary" align="center">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
         </Box>
       </div>
+      {this.rnederDialog()}
     </div>
   )
 
@@ -371,7 +381,10 @@ class Messenger extends PureComponent {
       getContentAnchorEl={null} // menu should be display below anchor
       anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
     >
-      <MenuItem onClick={this.onCloseMoreMenu} className={this.props.classes.menuItem}>
+      <MenuItem onClick={() => {
+        this.onCloseMoreMenu();
+        this.onOpenDialog();
+      }} className={this.props.classes.menuItem}>
         <ListItemIcon>
           <Box mr={1.5} width="100%" textAlign="center">
             <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faTrash} />
@@ -405,6 +418,24 @@ class Messenger extends PureComponent {
         }} />
       </MenuItem>
     </Menu>
+  )
+
+  rnederDialog = () => (
+    <Dialog
+      open={this.state.dialogOpened}
+      onClose={this.onCloseDialog}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">Delete message</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">Are you sure to delete this message record?</DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={this.onCloseDialog} color="primary">No</Button>
+        <Button onClick={this.onCloseDialog} color="primary" autoFocus>Yes</Button>
+      </DialogActions>
+    </Dialog>
   )
 
   renderEmojiPopover = () => (
