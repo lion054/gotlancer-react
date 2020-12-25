@@ -48,7 +48,234 @@ import './Messenger.css';
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    height: '100%'
+    height: '100%',
+    '& .cs-main-container > .cs-sidebar.cs-sidebar--right': {
+      borderLeft: `solid 1px ${theme.palette.divider}`
+    },
+    '& .cs-main-container .cs-chat-container': {
+      borderRight: `solid 1px ${theme.palette.divider}`
+    },
+    '& .cs-message__content': {
+      backgroundColor: theme.palette.action.selected
+    },
+    '& .cs-message--outgoing .cs-message__content': {
+      backgroundColor: theme.palette.action.disabled
+    },
+    '& .cs-message.cs-message--incoming.cs-message--first .cs-message__content': {
+      backgroundColor: theme.palette.action.selected
+    },
+    '& .cs-message.cs-message--outgoing.cs-message--first .cs-message__content': {
+      backgroundColor: theme.palette.action.disabled
+    },
+    '& .cs-message-group__messages .cs-message .cs-message__content': {
+      backgroundColor: theme.palette.action.selected
+    },
+    '& .cs-message-group--incoming .cs-message-group__messages .cs-message .cs-message__content': {
+      backgroundColor: theme.palette.action.selected
+    },
+    '& .cs-message-group--outgoing .cs-message-group__messages .cs-message .cs-message__content': {
+      backgroundColor: theme.palette.action.disabled
+    },
+    '& .cs-message-separator': {
+      color: theme.palette.action.disabled
+    },
+    '& .cs-message-separator::before, .cs-message-separator::after': {
+      backgroundColor: theme.palette.action.disabled
+    },
+    '& .cs-avatar-group--xs .cs-avatar': {
+      borderRight: `1px solid ${theme.palette.background.default}`
+    },
+    '& .cs-avatar-group--md .cs-avatar': {
+      border: `2px solid ${theme.palette.background.default}`
+    },
+    '& .cs-avatar-group--lg .cs-avatar': {
+      border: `2px solid ${theme.palette.background.default}`
+    },
+    '& .cs-message-input__content-editor-wrapper': {
+      backgroundColor: theme.palette.action.selected
+    },
+    '& .cs-message-input--disabled .cs-message-input__content-editor-wrapper': {
+      backgroundColor: 'unset'
+    },
+    '& .cs-message-input__content-editor-container': {
+      backgroundColor: 'unset'
+    },
+    '& .cs-message-input__content-editor': {
+      backgroundColor: 'unset'
+    },
+    '& .cs-chat-container .cs-message-input': {
+      borderTop: `solid 1px ${theme.palette.action.divider}`
+    },
+    '& .cs-typing-indicator__dot': {
+      backgroundColor: theme.palette.action.active
+    },
+    '& .cs-typing-indicator__text': {
+      color: theme.palette.action.active
+    },
+    '& .cs-conversation-header': {
+      backgroundColor: theme.palette.background.default,
+      borderBottom: `solid 1px ${theme.palette.divider}`
+    },
+    '& .cs-conversation-header__avatar > .cs-avatar > .cs-status > .cs-status__bullet': {
+      borderColor: theme.palette.background.default
+    },
+    '& .cs-conversation-header__content .cs-conversation-header__user-name': {
+      backgroundColor: theme.palette.background.default
+    },
+    '& .cs-conversation-header__content .cs-conversation-header__info': {
+      backgroundColor: theme.palette.background.default
+    },
+    '& .cs-conversation:hover': {
+      backgroundColor: theme.palette.action.hover
+    },
+    '& .cs-conversation:hover > .cs-avatar > .cs-status > .cs-status__bullet': {
+      borderColor: theme.palette.action.hover
+    },
+    '& .cs-conversation.cs-conversation:active': {
+      backgroundColor: theme.palette.action.selected
+    },
+    '& .cs-conversation.cs-conversation:active > .cs-avatar > .cs-status > .cs-status__bullet': {
+      borderColor: theme.palette.action.selected
+    },
+    '& .cs-conversation.cs-conversation--active': {
+      color: theme.palette.text.secondary,
+      backgroundColor: theme.palette.action.selected
+    },
+    '& .cs-conversation.cs-conversation--active > .cs-avatar > .cs-status > .cs-status__bullet': {
+      borderColor: theme.palette.action.selected
+    },
+    '& .cs-conversation.cs-conversation--active .cs-conversation__name': {
+      color: theme.palette.text.primary
+    },
+    '& .cs-conversation.cs-conversation--active .cs-conversation__info': {
+      color: theme.palette.text.secondary
+    },
+    '& .cs-conversation__unread-dot': {
+      background: `radial-gradient(circle at 3px 3px, ${theme.palette.action.disabled}, ${theme.palette.action.active})`
+    },
+    '& .cs-conversation__unread': {
+      color: theme.palette.common.white,
+      backgroundColor: theme.palette.success.main,
+      minWidth: 16,
+      borderRadius: 8
+    },
+    '& .cs-status--selected': {
+      color: theme.palette.text.secondary,
+      backgroundColor: theme.palette.action.selected
+    },
+    '& .cs-status--available .cs-status__bullet': {
+      background: `radial-gradient(circle at 3px 3px, ${theme.palette.success.main}, ${theme.palette.success.dark})`
+    },
+    '& .cs-status--unavailable .cs-status__bullet': {
+      background: `radial-gradient(circle at 3px 3px, ${theme.palette.warning.main}, ${theme.palette.warning.dark})`
+    },
+    '& .cs-status--away .cs-status__bullet': {
+      background: `radial-gradient(circle at 3px 3px, ${theme.palette.error.main}, ${theme.palette.error.dark})`
+    },
+    '& .cs-status--dnd .cs-status__bullet': {
+      background: `radial-gradient(circle at 3px 3px, ${theme.palette.secondary.main}, ${theme.palette.secondary.dark})`
+    },
+    '& .cs-status--invisible .cs-status__bullet': {
+      background: `radial-gradient(circle at 3px 3px, ${theme.palette.background.paper}, ${theme.palette.action.selected})`
+    },
+    '& .cs-status--eager .cs-status__bullet': {
+      background: `radial-gradient(circle at 3px 3px, ${theme.palette.info.main}, ${theme.palette.info.dark})`
+    },
+    '& .cs-expansion-panel': {
+      border: `solid 1px ${theme.palette.divider}`
+    },
+    '& .cs-expansion-panel__header': {
+      backgroundColor: theme.palette.background.default
+    },
+    '& .cs-expansion-panel__header:hover': {
+      backgroundColor: theme.palette.action.hover
+    },
+    '& .cs-expansion-panel--open .cs-expansion-panel__header': {
+      backgroundColor: theme.palette.action.selected
+    },
+    '& .cs-search': {
+      backgroundColor: 'unset',
+      borderColor: theme.palette.divider,
+      borderStyle: 'solid',
+      borderWidth: 1
+    },
+    '& .cs-search__input': {
+      backgroundColor: 'unset'
+    },
+    '.cs-search__input:disabled': {
+      backgroundColor: 'unset'
+    },
+    '& .cs-search__search-icon': {
+      color: theme.palette.success.main
+    },
+    '& .cs-search__clear-icon': {
+      color: theme.palette.success.main
+    },
+    '.cs-search--disabled': {
+      backgroundColor: 'unset'
+    },
+    '& .cs-button': {
+      color: theme.palette.text.secondary
+    },
+    '& .cs-button.cs-button--border': {
+      border: `solid 1px ${theme.palette.divider}`
+    },
+    '& .cs-button--adduser': {
+      color: theme.palette.text.secondary
+    },
+    '& .cs-button--arrow': {
+      color: theme.palette.text.secondary
+    },
+    '& .cs-button--ellipsis': {
+      color: theme.palette.text.secondary
+    },
+    '& .cs-button--info': {
+      color: theme.palette.text.secondary
+    },
+    '& .cs-button--star': {
+      color: theme.palette.text.secondary
+    },
+    '& .cs-button--videocall': {
+      color: theme.palette.text.secondary
+    },
+    '& .cs-button--voicecall': {
+      color: theme.palette.text.secondary
+    },
+    '& .cs-button--send': {
+      color: theme.palette.text.secondary
+    },
+    '& .cs-button--attachment': {
+      color: theme.palette.text.secondary
+    },
+    '& .cs-loader::before': {
+      borderColor: theme.palette.primary.main
+    },
+    '& .cs-loader::after': {
+      borderColor: `${theme.palette.primary.dark} transparent transparent transparent`
+    },
+    '& .cs-status-list > li .cs-status--selected': {
+      color: theme.palette.text.primary,
+      backgroundColor: theme.palette.background.default
+    },
+    '& .cs-status-list > li .cs-status--selected .cs-status__name': {
+      color: theme.palette.text.primary,
+      backgroundColor: theme.palette.background.default
+    },
+    '& .cs-status-list > li:hover': {
+      backgroundColor: theme.palette.action.hover
+    },
+    '& .cs-status-list > li:focus': {
+      backgroundColor: theme.palette.background.default
+    },
+    '& .cs-status-list > li:active': {
+      backgroundColor: theme.palette.background.default
+    },
+    '& .ps__thumb-x': {
+      backgroundColor: theme.palette.action.active
+    },
+    '& .ps__thumb-y': {
+      backgroundColor: theme.palette.action.active
+    }
   },
   search: {
     margin: theme.spacing(1)
