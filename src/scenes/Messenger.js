@@ -1,5 +1,14 @@
 import React, { PureComponent } from 'react';
-import { Box, Typography, withStyles, withTheme } from '@material-ui/core';
+import {
+  Box,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+  Popover,
+  Typography,
+  withStyles,
+  withTheme
+} from '@material-ui/core';
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import {
   Avatar,
@@ -34,6 +43,10 @@ const styles = (theme) => ({
   },
   search: {
     margin: theme.spacing(1)
+  },
+  menuIcon: {
+    minWidth: 'unset',
+    marginRight: theme.spacing(2)
   }
 });
 
@@ -43,7 +56,9 @@ class Messenger extends PureComponent {
     conversations: [],
     activeIndex: -1,
     currentConversation: {},
-    messages: []
+    messages: [],
+    settingEl: null,
+    enterMode: 'send'
   }
 
   componentDidMount() {
@@ -163,7 +178,9 @@ class Messenger extends PureComponent {
 
   handleSend = () => {}
 
-  handleSetting = () => {}
+  onOpenSettingMenu = (event) => this.setState({ settingEl: event.currentTarget })
+
+  onCloseSettingMenu = () => this.setState({ settingEl: null })
 
   render = () => (
     <div className={this.props.classes.root}>
@@ -249,9 +266,10 @@ class Messenger extends PureComponent {
               <Button onClick={this.handleSend} icon={(
                 <FontAwesomeIcon icon={faPaperPlane} />
               )} />
-              <Button onClick={this.handleSetting} icon={(
+              <Button onClick={this.onOpenSettingMenu} icon={(
                 <FontAwesomeIcon icon={faCog} />
               )} />
+              {this.renderSettingMenu()}
             </InputToolbox>
           </ChatContainer>
         </MainContainer>
@@ -260,6 +278,54 @@ class Messenger extends PureComponent {
         </Box>
       </div>
     </div>
+  )
+
+  renderSettingMenu = () => (
+    <Popover
+      id="setting-menu"
+      anchorEl={this.state.settingEl}
+      open={!!this.state.settingEl}
+      onClose={this.onCloseSettingMenu}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      transformOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+    >
+      <Box width={this.props.theme.spacing(30)} m={2}>
+        <Box mb={1}>
+          <Typography variant="body2">Pressing Enter Key will:</Typography>
+        </Box>
+        <MenuItem className={this.props.classes.menuItem} onClick={() => {
+          this.setState({ enterMode: 'send' });
+          this.onCloseSettingMenu();
+        }}>
+          <ListItemIcon className={this.props.classes.menuIcon}>
+            <FontAwesomeIcon icon={faCheckCircle} color={this.state.enterMode === 'send' ? this.props.theme.palette.success.main : this.props.theme.palette.text.secondary} />
+          </ListItemIcon>
+          <ListItemText primary="Send a message" primaryTypographyProps={{
+            variant: 'body1',
+            style: {
+              color: this.state.enterMode === 'send' ? this.props.theme.palette.success.main : this.props.theme.palette.text.primary
+            }
+          }} />
+        </MenuItem>
+        <MenuItem className={this.props.classes.menuItem} onClick={() => {
+          this.setState({ enterMode: 'line-break' });
+          this.onCloseSettingMenu();
+        }}>
+          <ListItemIcon className={this.props.classes.menuIcon}>
+            <FontAwesomeIcon icon={faCheckCircle} color={this.state.enterMode === 'line-break' ? this.props.theme.palette.success.main : this.props.theme.palette.text.secondary} />
+          </ListItemIcon>
+          <ListItemText primary="Add a line break" primaryTypographyProps={{
+            variant: 'body1',
+            style: {
+              color: this.state.enterMode === 'line-break' ? this.props.theme.palette.success.main : this.props.theme.palette.text.primary
+            }
+          }} />
+        </MenuItem>
+        <Box mt={1}>
+          <Typography variant="body2">You can always use Shift+Enter or Ctrl+Enter to type multi-line messages.</Typography>
+        </Box>
+      </Box>
+    </Popover>
   )
 }
 
