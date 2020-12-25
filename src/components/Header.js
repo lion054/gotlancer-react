@@ -161,7 +161,7 @@ class Header extends PureComponent {
       <SearchBox textColor={textColor} />
       <div style={{ flex: 1 }} />
       <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
-        <IconButton className={this.props.classes.icon}>
+        <IconButton className={this.props.classes.icon} onClick={() => this.props.history.push('/messenger')}>
           <FontAwesomeIcon icon={faEnvelope} color={textColor} size="1x" />
         </IconButton>
       </Badge>

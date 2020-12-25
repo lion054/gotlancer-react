@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 
 import AccountSettings from './scenes/AccountSettings';
 import Home from './scenes/Home';
+import Messenger from './scenes/Messenger';
+
 import GlobalPreferences from './scenes/AccountSettings/GlobalPreferences';
 import InviteFriends from './scenes/AccountSettings/InviteFriends';
 import LoginSecurity from './scenes/AccountSettings/LoginSecurity';
@@ -49,6 +51,9 @@ const routes = [{
 },{
   path: '/account_settings/invite_friends',
   component: InviteFriends
+},{
+  path: '/messenger',
+  component: Messenger
 }];
 
 class Content extends PureComponent {

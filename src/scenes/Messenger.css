@@ -1,0 +1,25 @@
+.cs-input-toolbox {
+  border-top: solid 1px #d1dbe4;
+}
+
+.cs-chat-container .cs-input-toolbox {
+  padding-right: 0;
+}
+
+.cs-input-toolbox .cs-button {
+  padding: 0.2em 0.7em;
+  margin: unset;
+}
+
+.cs-chat-container .cs-message-input {
+  flex: 1;
+  border-top: none;
+}
+
+.cs-chat-container .cs-message-input .cs-message-input__content-editor-wrapper:last-child {
+  margin-right: unset;
+}
+
+.cs-chat-container .cs-message-input .cs-message-input__content-editor-wrapper:first-child {
+  margin-left: unset;
+}
