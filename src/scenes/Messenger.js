@@ -11,6 +11,7 @@ import {
   ListItemIcon,
   ListItemText,
   Popover,
+  Tooltip,
   Typography,
   withStyles,
   withTheme
@@ -121,7 +122,8 @@ class Messenger extends PureComponent {
       messages.push({
         id: uuidv4(),
         text: faker.lorem.sentence(),
-        time: faker.date.past(),
+        createdAt: faker.date.past(),
+        modifiedAt: faker.random.boolean() ? faker.date.past() : undefined,
         sender: direction === 'incoming' ? name : 'You',
         direction
       });
@@ -275,9 +277,9 @@ class Messenger extends PureComponent {
               )}
             </ConversationHeader>
             <MessageList>
-              {this.state.messages.map(({ id, text, time, sender, direction, position }, index) => (direction === 'incoming' && (position === 'single' || position === 'last')) ? (
+              {this.state.messages.map(({ id, text, createdAt, modifiedAt, sender, direction, position }, index) => (direction === 'incoming' && (position === 'single' || position === 'last')) ? (
                 <Message key={index} model={{
-                  sentTime: moment(time).fromNow(),
+                  sentTime: moment(createdAt).fromNow(),
                   sender,
                   direction,
                   position,
@@ -288,39 +290,61 @@ class Messenger extends PureComponent {
                     name={this.state.currentConversation.name}
                   />
                   <Message.CustomContent>
-                    <span>{text}</span>
-                    <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    )} />
-                    {this.renderMoreMenu(id)}
+                    <Box>
+                      <Box>
+                        <span>{text}</span>
+                        <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
+                          <FontAwesomeIcon icon={faEllipsisV} />
+                        )} />
+                        {this.renderMoreMenu(id)}
+                      </Box>
+                      {modifiedAt && (
+                        <Box>
+                          <Tooltip title={`Edited on ${moment(modifiedAt).format('LLLL')}`}>
+                            <Typography variant="body2" color="textSecondary">(edited)</Typography>
+                          </Tooltip>
+                        </Box>
+                      )}
+                    </Box>
                   </Message.CustomContent>
                 </Message>
               ) : (
                 <Message key={index} avatarSpacer={direction === 'incoming'} model={{
-                  sentTime: moment(time).fromNow(),
+                  sentTime: moment(createdAt).fromNow(),
                   sender,
                   direction,
                   position,
                   type: 'custom'
                 }}>
                   <Message.CustomContent>
-                    {direction === 'outgoing' && (
-                      <Fragment>
-                        <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
-                          <FontAwesomeIcon icon={faEllipsisV} />
-                        )} />
-                        {this.renderMoreMenu(id)}
-                      </Fragment>
-                    )}
-                    <span>{text}</span>
-                    {direction === 'incoming' && (
-                      <Fragment>
-                        <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
-                          <FontAwesomeIcon icon={faEllipsisV} />
-                        )} />
-                        {this.renderMoreMenu(id)}
-                      </Fragment>
-                    )}
+                    <Box>
+                      <Box>
+                        {direction === 'outgoing' && (
+                          <Fragment>
+                            <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
+                              <FontAwesomeIcon icon={faEllipsisV} />
+                            )} />
+                            {this.renderMoreMenu(id)}
+                          </Fragment>
+                        )}
+                        <span>{text}</span>
+                        {direction === 'incoming' && (
+                          <Fragment>
+                            <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
+                              <FontAwesomeIcon icon={faEllipsisV} />
+                            )} />
+                            {this.renderMoreMenu(id)}
+                          </Fragment>
+                        )}
+                      </Box>
+                      {modifiedAt && (
+                        <Box>
+                          <Tooltip title={`Edited on ${moment(modifiedAt).format('LLLL')}`}>
+                            <Typography variant="body2" color="textSecondary" align={direction === 'outgoing' ? 'right' : 'left'}>(edited)</Typography>
+                          </Tooltip>
+                        </Box>
+                      )}
+                    </Box>
                   </Message.CustomContent>
                 </Message>
               ))}
