@@ -29,6 +29,7 @@ import {
 } from '@chatscope/chat-ui-kit-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCog, faPaperPlane, faPaperclip, faSmile } from '@fortawesome/free-solid-svg-icons';
+import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import faker from 'faker';
 import moment from 'moment';
 import { compose } from 'redux';
@@ -57,6 +58,8 @@ class Messenger extends PureComponent {
     activeIndex: -1,
     currentConversation: {},
     messages: [],
+    text: '',
+    emojiEl: null,
     settingEl: null,
     enterMode: 'send'
   }
@@ -172,15 +175,27 @@ class Messenger extends PureComponent {
     return past.format('LT'); // 0:30 PM
   }
 
-  handleAttach = () => {}
+  handleAttach = (e) => {
+    console.log(e);
+  }
 
-  handlEmoji = () => {}
+  onOpenEmojiPopover = (event) => this.setState({ emojiEl: event.currentTarget })
 
-  handleSend = () => {}
+  onCloseEmojiPopover = () => this.setState({ emojiEl: null })
 
-  onOpenSettingMenu = (event) => this.setState({ settingEl: event.currentTarget })
+  handleEmoji = (event, emojiObject) => {
+    this.setState({
+      text: this.state.text + emojiObject.emoji
+    });
+  }
 
-  onCloseSettingMenu = () => this.setState({ settingEl: null })
+  handleSend = () => {
+    this.setState({ text: '' });
+  }
+
+  onOpenSettingPopover = (event) => this.setState({ settingEl: event.currentTarget })
+
+  onCloseSettingPopover = () => this.setState({ settingEl: null })
 
   render = () => (
     <div className={this.props.classes.root}>
@@ -252,24 +267,40 @@ class Messenger extends PureComponent {
               ))}
             </MessageList>
             <InputToolbox>
-              <Button onClick={this.handleAttach} icon={(
-                <FontAwesomeIcon icon={faPaperclip} />
-              )} />
-              <Button onClick={this.handlEmoji} icon={(
+              <input
+                id="contained-button-file"
+                multiple
+                type="file"
+                style={{ display: 'none' }}
+                onChange={this.handleAttach}
+              />
+              <label htmlFor="contained-button-file">
+                <div className="cs-button" style={{
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  <FontAwesomeIcon icon={faPaperclip} />
+                </div>
+              </label>
+              <Button onClick={this.onOpenEmojiPopover} icon={(
                 <FontAwesomeIcon icon={faSmile} />
               )} />
+              {this.renderEmojiPopover()}
               <MessageInput
                 placeholder="Type message here"
                 attachButton={false}
                 sendButton={false}
+                value={this.state.text}
+                onChange={(text) => this.setState({ text })}
               />
               <Button onClick={this.handleSend} icon={(
                 <FontAwesomeIcon icon={faPaperPlane} />
               )} />
-              <Button onClick={this.onOpenSettingMenu} icon={(
+              <Button onClick={this.onOpenSettingPopover} icon={(
                 <FontAwesomeIcon icon={faCog} />
               )} />
-              {this.renderSettingMenu()}
+              {this.renderSettingPopover()}
             </InputToolbox>
           </ChatContainer>
         </MainContainer>
@@ -280,12 +311,32 @@ class Messenger extends PureComponent {
     </div>
   )
 
-  renderSettingMenu = () => (
+  renderEmojiPopover = () => (
+    <Popover
+      id="emoji-menu"
+      anchorEl={this.state.emojiEl}
+      open={!!this.state.emojiEl}
+      onClose={this.onCloseEmojiPopover}
+      anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+      transformOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+    >
+      <Box width={this.props.theme.spacing(35)} m={2}>
+        <EmojiPicker
+          onEmojiClick={this.handleEmoji}
+          disableAutoFocus
+          skinTone={SKIN_TONE_MEDIUM_DARK}
+          groupNames={{ smileys_people: 'PEOPLE' }}
+        />
+      </Box>
+    </Popover>
+  )
+
+  renderSettingPopover = () => (
     <Popover
       id="setting-menu"
       anchorEl={this.state.settingEl}
       open={!!this.state.settingEl}
-      onClose={this.onCloseSettingMenu}
+      onClose={this.onCloseSettingPopover}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       transformOrigin={{ vertical: 'bottom', horizontal: 'right' }}
     >
@@ -295,7 +346,7 @@ class Messenger extends PureComponent {
         </Box>
         <MenuItem className={this.props.classes.menuItem} onClick={() => {
           this.setState({ enterMode: 'send' });
-          this.onCloseSettingMenu();
+          this.onCloseSettingPopover();
         }}>
           <ListItemIcon className={this.props.classes.menuIcon}>
             <FontAwesomeIcon icon={faCheckCircle} color={this.state.enterMode === 'send' ? this.props.theme.palette.success.main : this.props.theme.palette.text.secondary} />
@@ -309,7 +360,7 @@ class Messenger extends PureComponent {
         </MenuItem>
         <MenuItem className={this.props.classes.menuItem} onClick={() => {
           this.setState({ enterMode: 'line-break' });
-          this.onCloseSettingMenu();
+          this.onCloseSettingPopover();
         }}>
           <ListItemIcon className={this.props.classes.menuIcon}>
             <FontAwesomeIcon icon={faCheckCircle} color={this.state.enterMode === 'line-break' ? this.props.theme.palette.success.main : this.props.theme.palette.text.secondary} />
