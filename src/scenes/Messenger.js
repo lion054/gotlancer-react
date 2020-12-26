@@ -277,9 +277,6 @@ const styles = (theme) => ({
       backgroundColor: theme.palette.action.active
     }
   },
-  search: {
-    margin: theme.spacing(1)
-  },
   menuItem: {
     '&:hover > .MuiListItemIcon-root > .MuiBox-root > svg': {
       color: theme.palette.info.main
@@ -291,6 +288,10 @@ const styles = (theme) => ({
   menuIcon: {
     minWidth: 'unset',
     marginRight: theme.spacing(2)
+  },
+  sidebarFullWidth: {
+    maxWidth: 'unset !important',
+    flexBasis: 'unset !important'
   }
 });
 
@@ -300,6 +301,7 @@ class Messenger extends PureComponent {
     conversations: [],
     activeIndex: -1,
     currentConversation: {},
+    showOnlyRooms: false,
     messages: [],
     text: '',
     moreEl: null,
@@ -413,7 +415,8 @@ class Messenger extends PureComponent {
       currentConversation: {
         ...this.state.conversations[index]
       },
-      messages: this.fetchRecentMessages(this.state.conversations[index])
+      messages: this.fetchRecentMessages(this.state.conversations[index]),
+      showOnlyRooms: false
     });
   }
 
@@ -482,9 +485,11 @@ class Messenger extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <div style={{ height: 'calc(100% - 64px - 36px)' }}>
-        <MainContainer responsive>
-          <Sidebar position="left">
+      <div style={{
+        height: 'calc(100% - 64px - 36px)' // Exclude header and footer
+      }}>
+        <MainContainer responsive={!this.state.showOnlyRooms}>
+          <Sidebar position="left" className={this.state.showOnlyRooms ? this.props.classes.sidebarFullWidth : ''}>
             <Search
               placeholder="Search..."
               value={this.state.search}
@@ -508,9 +513,12 @@ class Messenger extends PureComponent {
               ))}
             </ConversationList>
           </Sidebar>
-          <ChatContainer style={{ height: '100%' }}>
+          <ChatContainer style={{
+            display: this.state.showOnlyRooms ? 'none' : 'flex',
+            flex: 1
+          }}>
             <ConversationHeader>
-              <ConversationHeader.Back />
+              <ConversationHeader.Back onClick={() => this.setState({ showOnlyRooms: true })} />
               {this.state.activeIndex !== -1 && (
                 <Avatar
                   src={this.state.currentConversation.avatar}
@@ -645,10 +653,10 @@ class Messenger extends PureComponent {
             </InputToolbox>
           </ChatContainer>
         </MainContainer>
-        <Box mt={1} mb={1} justifyContent="center">
-          <Typography variant="body2" color="textSecondary" align="center">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
-        </Box>
       </div>
+      <Box mt={1} mb={1} justifyContent="center">
+        <Typography variant="body2" color="textSecondary" align="center">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
+      </Box>
       {this.rnederDialog()}
     </div>
   )
