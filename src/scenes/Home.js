@@ -8,6 +8,7 @@ import {
   CardContent,
   CardHeader,
   Grid,
+  IconButton,
   LinearProgress,
   Tab,
   Tabs,
@@ -15,8 +16,12 @@ import {
   withStyles,
   withTheme
 } from '@material-ui/core';
+import { Rating } from '@material-ui/lab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faDollarSign, faHeart, faMapMarkedAlt, faStar } from '@fortawesome/free-solid-svg-icons';
+import pluralize from 'pluralize';
+import moment from 'moment';
+import { cloneDeep } from 'lodash';
 import faker from 'faker';
 import { compose } from 'redux';
 
@@ -27,8 +32,8 @@ const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper
   },
-  leftCard: {
-    borderRadius: theme.spacing(1.5),
+  profileCard: {
+    borderRadius: theme.spacing(0.5),
     borderColor: theme.palette.divider,
     borderStyle: 'solid',
     padding: 'unset'
@@ -94,6 +99,27 @@ const styles = (theme) => ({
   },
   logo: {
     width: theme.spacing(12)
+  },
+  jobCard: {
+    borderRadius: theme.spacing(1.5),
+    borderColor: theme.palette.divider,
+    borderStyle: 'solid',
+    padding: 'unset'
+  },
+  tag: {
+    padding: theme.spacing(0.5),
+    marginRight: theme.spacing(1),
+    borderRadius: theme.spacing(0.5)
+  },
+  buyerIcon: {
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+    backgroundColor: theme.palette.divider,
+    color: theme.palette.action.active
+  },
+  savedIcon: {
+    padding: theme.spacing(1),
+    border: `solid 1px ${theme.palette.divider}`
   }
 })
 
@@ -104,7 +130,52 @@ class Home extends PureComponent {
       avatar: faker.image.image(),
       name: faker.name.findName()
     },
-    progress: faker.random.number({ min: 0, max: 100 })
+    progress: faker.random.number({ min: 0, max: 100 }),
+    jobs: []
+  }
+
+  componentDidMount() {
+    const jobs = [];
+    for (let i = 0; i < 5; i++) {
+      const skills = [];
+      for (let j = 0; j < 3; j++) {
+        skills.push(faker.lorem.words(2));
+      }
+      jobs.push({
+        title: faker.lorem.sentence(3),
+        description: faker.lorem.sentences(5),
+        type: faker.random.boolean() ? 'HOURLY' : 'FIXED',
+        budget: {
+          min: faker.random.number({ min: 10, max: 20 }),
+          max: faker.random.number({ min: 30, max: 40 })
+        },
+        categories: faker.random.arrayElements([{
+          title: 'NDA',
+          backgroundColor: this.props.theme.palette.secondary.main
+        },{
+          title: 'URGENT',
+          backgroundColor: this.props.theme.palette.error.main
+        },{
+          title: 'FEATURED',
+          backgroundColor: this.props.theme.palette.warning.main
+        },{
+          title: 'TOP PROJECT',
+          backgroundColor: this.props.theme.palette.info.main
+        },{
+          title: 'LONG TERM',
+          backgroundColor: this.props.theme.palette.success.main
+        }]),
+        createdAt: faker.date.past(),
+        skills,
+        paymentMethod: faker.random.boolean(),
+        reviewCount: faker.random.number({ min: 0, max: 10 }),
+        reviewAverage: faker.random.number({ min: 0, max: 5 }),
+        location: faker.address.country(),
+        saved: faker.random.boolean(),
+        applied: faker.random.boolean()
+      });
+    }
+    this.setState({ jobs });
   }
 
   handleTabChange = (event, newValue) => {
@@ -174,7 +245,9 @@ class Home extends PureComponent {
                   {this.renderBidCredit()}
                 </Box>
               </Grid>
-              <Grid item md={8}></Grid>
+              <Grid item md={8}>
+                {this.renderJobList()}
+              </Grid>
               <Grid item md={2}></Grid>
             </Grid>
           </Grid>
@@ -192,7 +265,7 @@ class Home extends PureComponent {
   )
 
   renderTabsCard = () => (
-    <Card elevation={0} className={this.props.classes.leftCard}>
+    <Card elevation={0} className={this.props.classes.profileCard}>
       <CardContent style={{ padding: 0 }}>
         <Tabs value={this.state.activeTab} onChange={this.handleTabChange}>
           <Tab className={this.props.classes.tab} label="Profile" />
@@ -234,7 +307,7 @@ class Home extends PureComponent {
   )
 
   renderMembershipCard = () => (
-    <Card elevation={0} className={this.props.classes.leftCard}>
+    <Card elevation={0} className={this.props.classes.profileCard}>
       <CardHeader
         title="Membership"
         titleTypographyProps={{
@@ -256,7 +329,7 @@ class Home extends PureComponent {
   )
 
   renderBidCredit = () => (
-    <Card elevation={0} className={this.props.classes.leftCard}>
+    <Card elevation={0} className={this.props.classes.profileCard}>
       <CardHeader
         title="Bid Credit"
         titleTypographyProps={{
@@ -272,6 +345,133 @@ class Home extends PureComponent {
         <Button variant="outlined">Buy Proposal Credit</Button>
       </CardContent>
     </Card>
+  )
+
+  renderJobList = () => (
+    <Box ml={2} mr={2}>
+      {this.state.jobs.map((job, i) => (
+        <Box key={i} mb={1}>
+          <Card elevation={0} className={this.props.classes.jobCard}>
+            <CardContent>
+              <Box display="flex">
+                <Box flex={1}>
+                  <Typography variant="subtitle1">{job.title}</Typography>
+                  <Box mt={1}>
+                    {job.categories.map((category, j) => (
+                      <Typography
+                        key={j}
+                        component="span"
+                        variant="body2"
+                        className={this.props.classes.tag}
+                        style={{
+                          backgroundColor: category.backgroundColor,
+                          color: this.props.theme.palette.common.white
+                        }}
+                      >{category.title}</Typography>
+                    ))}
+                  </Box>
+                </Box>
+                <Typography variant="h5" color="textPrimary">${job.budget.min}-${job.budget.max} USD</Typography>
+              </Box>
+              <Box mt={1.5} display="flex">
+                <Box flex={1} mr={5}>
+                  <Typography variant="body2">{job.description}</Typography>
+                </Box>
+                <Typography variant="body2" color="textSecondary">{job.type}</Typography>
+              </Box>
+              <Box mt={1} display="flex">
+                <Box flex={1} mr={5}>
+                  {job.skills.map((skill, j) => (
+                    <Typography
+                      key={j}
+                      component="span"
+                      variant="body2"
+                      className={this.props.classes.tag}
+                      style={{
+                        backgroundColor: this.props.theme.palette.action.disabledBackground,
+                        color: this.props.theme.palette.text.secondary
+                      }}
+                    >{skill}</Typography>
+                  ))}
+                </Box>
+                <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
+              </Box>
+              <Box mt={1.5} display="flex" flexDirection="row">
+                {this.renderApplyBefore()}
+                {this.renderPaymentMethod(job.paymentMethod)}
+                {this.renderReview(job.reviewCount, job.reviewAverage)}
+                {this.renderLocation(job.location)}
+                <Box display="flex" alignItems="center">
+                  <IconButton
+                    className={this.props.classes.savedIcon}
+                    onClick={() => {
+                      const jobs = cloneDeep(this.state.jobs);
+                      jobs[i].saved = !jobs[i].saved;
+                      this.setState({ jobs });
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faHeart} style={{
+                      color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
+                    }} />
+                  </IconButton>
+                  <Box ml={1}>
+                    <Typography variant="body2" color="textPrimary" align="right">Saved</Typography>
+                  </Box>
+                </Box>
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+      ))}
+    </Box>
+  )
+
+  renderApplyBefore = () => (
+    <Box mr={2} display="flex" alignItems="center">
+      <Avatar className={this.props.classes.buyerIcon}>
+        <FontAwesomeIcon icon={faClock} />
+      </Avatar>
+      <Box ml={1}>
+        <Typography variant="body2" noWrap color="textPrimary">Apply before</Typography>
+        <Typography variant="body2" noWrap color="textSecondary">1 day 2 hours</Typography>
+      </Box>
+    </Box>
+  )
+
+  renderPaymentMethod = (value) => (
+    <Box mr={2} display="flex" alignItems="center">
+      <Avatar className={this.props.classes.buyerIcon}>
+        <FontAwesomeIcon icon={faDollarSign} />
+      </Avatar>
+      <Box ml={1}>
+        <Typography variant="body2" noWrap color="textPrimary">Payment method</Typography>
+        <Typography variant="body2" noWrap color="textSecondary">{value ? 'Verified' : 'Not verified'}</Typography>
+      </Box>
+    </Box>
+  )
+
+  renderReview = (count, average) => (
+    <Box mr={2} display="flex" alignItems="center">
+      <Avatar className={this.props.classes.buyerIcon}>
+        <FontAwesomeIcon icon={faStar} />
+      </Avatar>
+      <Box ml={1}>
+        <Typography variant="body2" noWrap color="textPrimary">{pluralize('Review', count, true)}</Typography>
+        <Rating name="read-only" value={average} readOnly />
+      </Box>
+    </Box>
+  )
+
+  renderLocation = (value) => (
+    <Box mr={2} display="flex" alignItems="center">
+      <Avatar className={this.props.classes.buyerIcon}>
+        <FontAwesomeIcon icon={faMapMarkedAlt} />
+      </Avatar>
+      <Box ml={1}>
+        <Typography variant="body2" noWrap color="textPrimary">Buyer country</Typography>
+        <Typography variant="body2" noWrap color="textSecondary" style={{ width: this.props.theme.spacing(11) }}>{value}</Typography>
+      </Box>
+    </Box>
   )
 }
 
