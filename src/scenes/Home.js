@@ -7,6 +7,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Divider,
   Grid,
   IconButton,
   LinearProgress,
@@ -356,30 +357,30 @@ class Home extends PureComponent {
               <Box display="flex">
                 <Box flex={1}>
                   <Typography variant="subtitle1">{job.title}</Typography>
-                  <Box mt={1}>
-                    {job.categories.map((category, j) => (
-                      <Typography
-                        key={j}
-                        component="span"
-                        variant="body2"
-                        className={this.props.classes.tag}
-                        style={{
-                          backgroundColor: category.backgroundColor,
-                          color: this.props.theme.palette.common.white
-                        }}
-                      >{category.title}</Typography>
-                    ))}
-                  </Box>
                 </Box>
                 <Typography variant="h5" color="textPrimary">${job.budget.min}-${job.budget.max} USD</Typography>
               </Box>
-              <Box mt={1.5} display="flex">
-                <Box flex={1} mr={5}>
-                  <Typography variant="body2">{job.description}</Typography>
+              <Box mt={1} display="flex">
+                <Box flex={1}>
+                  {job.categories.map((category, j) => (
+                    <Typography
+                      key={j}
+                      component="span"
+                      variant="body2"
+                      className={this.props.classes.tag}
+                      style={{
+                        backgroundColor: category.backgroundColor,
+                        color: this.props.theme.palette.common.white
+                      }}
+                    >{category.title}</Typography>
+                  ))}
                 </Box>
                 <Typography variant="body2" color="textSecondary">{job.type}</Typography>
               </Box>
-              <Box mt={1} display="flex">
+              <Box mt={1.5}>
+                <Typography variant="body2">{job.description}</Typography>
+              </Box>
+              <Box mt={1} mb={2.5} display="flex">
                 <Box flex={1} mr={5}>
                   {job.skills.map((skill, j) => (
                     <Typography
@@ -396,6 +397,7 @@ class Home extends PureComponent {
                 </Box>
                 <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
               </Box>
+              <Divider />
               <Box mt={1.5} display="flex" flexDirection="row">
                 {this.renderApplyBefore()}
                 {this.renderPaymentMethod(job.paymentMethod)}
