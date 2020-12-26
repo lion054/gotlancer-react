@@ -22,12 +22,22 @@ const styles = (theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.action.selected
   },
+  infoBar: {
+    [theme.breakpoints.up('md')]: {
+      display: 'flex'
+    }
+  },
   logoWrapper: {
     display: 'inline',
     width: theme.spacing(16)
   },
   logo: {
     width: theme.spacing(16)
+  },
+  spacer: {
+    [theme.breakpoints.up('md')]: {
+      flex: 1
+    }
   }
 });
 
@@ -158,16 +168,15 @@ class Footer extends PureComponent {
             </Grid>
           </Grid>
           <Divider />
-          {(this.props.width === 'xl' || this.props.width === 'lg' || this.props.width === 'md') && this.renderDesktop()}
-          {(this.props.width === 'sm' || this.props.width === 'xs') && this.renderMobile()}
+          {this.renderInfoBar()}
         </Grid>
         <Grid item lg={2} />
       </Grid>
     </div>
   )
 
-  renderDesktop = () => (
-    <Box display="flex" alignItems="center" mt={1}>
+  renderInfoBar = () => (
+    <Box alignItems="center" mt={1} className={this.props.classes.infoBar}>
       <Box alignItems="center">
         <MenuItem disableGutters className={this.props.classes.logoWrapper} onClick={() => this.props.history.push('/')}>
           <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-long.svg')} />
@@ -185,52 +194,7 @@ class Footer extends PureComponent {
           <Link variant="body2" color="textPrimary" href="#">Sitemap</Link>
         </Box>
       </Box>
-      <div style={{ flex: 1 }} />
-      <Box alignItems="center">
-        <IconButton>
-          <Language style={{ color: this.props.theme.palette.text.secondary }} />
-        </IconButton>
-        <IconButton>
-          <Shop style={{ color: this.props.theme.palette.text.secondary }} />
-        </IconButton>
-        <IconButton>
-          <Apple style={{ color: this.props.theme.palette.text.secondary }} />
-        </IconButton>
-        <IconButton>
-          <Facebook style={{ color: this.props.theme.palette.text.secondary }} />
-        </IconButton>
-        <IconButton>
-          <Twitter style={{ color: this.props.theme.palette.text.secondary }} />
-        </IconButton>
-        <IconButton>
-          <LinkedIn style={{ color: this.props.theme.palette.text.secondary }} />
-        </IconButton>
-        <IconButton>
-          <YouTube style={{ color: this.props.theme.palette.text.secondary }} />
-        </IconButton>
-      </Box>
-    </Box>
-  )
-
-  renderMobile = () => (
-    <Box alignItems="center" mt={1}>
-      <Box alignItems="center">
-        <MenuItem disableGutters className={this.props.classes.logoWrapper} onClick={() => this.props.history.push('/')}>
-          <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-long.svg')} />
-        </MenuItem>
-        <Box display="inline" ml={1}>
-          <Typography variant="caption" color="textPrimary">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
-        </Box>
-        <Box display="inline" ml={1.5}>
-          <Link variant="body2" color="textPrimary" href="#">Privacy</Link>
-        </Box>
-        <Box display="inline" ml={1.5}>
-          <Link variant="body2" color="textPrimary" href="#">Terms</Link>
-        </Box>
-        <Box display="inline" ml={1.5}>
-          <Link variant="body2" color="textPrimary" href="#">Sitemap</Link>
-        </Box>
-      </Box>
+      <div className={this.props.classes.spacer} />
       <Box alignItems="center">
         <IconButton>
           <Language style={{ color: this.props.theme.palette.text.secondary }} />
