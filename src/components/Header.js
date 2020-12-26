@@ -31,6 +31,16 @@ const styles = (theme) => ({
   logo: {
     width: theme.spacing(5)
   },
+  optional: {
+    [theme.breakpoints.only('xs')]: {
+      display: 'none'
+    }
+  },
+  search: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
+  },
   icon: {
     '&:hover': {
       backgroundColor: getHeaderHoverBackgroundColor(theme)
@@ -87,112 +97,94 @@ class Header extends PureComponent {
     return (
       <div style={{ flexGrow: 1, height: 64 }}>
         <AppBar position="fixed" color="transparent" elevation={1} className={this.props.classes.root}>
-          {(this.props.width === 'lg' || this.props.width === 'xl') && (
-            <Grid container>
-              <Grid item lg={2} />
-              <Grid item lg={8}>
-                {this.renderDesktop(textColor)}
-              </Grid>
-              <Grid item lg={2} />
+          <Grid container>
+            <Grid item md={2} />
+            <Grid item md={8} xs={12}>
+              <Toolbar disableGutters style={{ height: 64 }}>
+                <MenuItem onClick={() => this.props.history.push('/')} style={{ minWidth: this.props.theme.spacing(9) }}>
+                  <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
+                </MenuItem>
+                <Box className={this.props.classes.optional} ml={3}>
+                  <MenuButton onClick={this.onOpenProjects}>Projects</MenuButton>
+                  <Menu
+                    id="projects-menu"
+                    anchorEl={this.state.projectsEl}
+                    keepMounted
+                    open={!!this.state.projectsEl}
+                    onClose={this.onCloseProjects}
+                    getContentAnchorEl={null} // menu should be display below anchor
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
+                  >
+                    <MenuItem className={this.props.classes.label}>Find Work</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Saved Jobs</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Proposals</MenuItem>
+                    <MenuItem className={this.props.classes.label}>My Stats</MenuItem>
+                    <MenuItem className={this.props.classes.label}>My Project</MenuItem>
+                  </Menu>
+                </Box>
+                <Box className={this.props.classes.optional}>
+                  <MenuButton onClick={this.onOpenHire}>Hire</MenuButton>
+                  <Menu
+                    id="hire-menu"
+                    anchorEl={this.state.hireEl}
+                    keepMounted
+                    open={!!this.state.hireEl}
+                    onClose={this.onCloseHire}
+                    getContentAnchorEl={null} // menu should be display below anchor
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
+                  >
+                    <MenuItem className={this.props.classes.label}>Find Freelancer</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Saved Freelancer</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Hired Freelancer</MenuItem>
+                  </Menu>
+                </Box>
+                <Box className={this.props.classes.optional}>
+                  <MenuButton onClick={this.onOpenReports}>Reports</MenuButton>
+                  <Menu
+                    id="reports-menu"
+                    anchorEl={this.state.reportsEl}
+                    keepMounted
+                    open={!!this.state.reportsEl}
+                    onClose={this.onCloseReports}
+                    getContentAnchorEl={null} // menu should be display below anchor
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
+                  >
+                    <MenuItem className={this.props.classes.label}>Overview</MenuItem>
+                    <MenuItem className={this.props.classes.label}>My Reports</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Proposal History</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Transaction History</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Payment History</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Withdrawal History</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Dispute List</MenuItem>
+                  </Menu>
+                </Box>
+                <Box className={this.props.classes.search}>
+                  <SearchBox textColor={textColor} />
+                </Box>
+                <div style={{ flex: 1 }} />
+                <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
+                  <IconButton className={this.props.classes.icon} onClick={() => this.props.history.push('/messenger')}>
+                    <FontAwesomeIcon icon={faEnvelope} color={textColor} size="1x" />
+                  </IconButton>
+                </Badge>
+                <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
+                  <IconButton className={this.props.classes.icon}>
+                    <FontAwesomeIcon icon={faBell} color={textColor} size="1x" />
+                  </IconButton>
+                </Badge>
+                {this.props.width === 'xs' ? (
+                  <AvatarMenuIcon textColor={textColor} />
+                ) : (
+                  <AvatarMenuButton textColor={textColor} />
+                )}
+              </Toolbar>
             </Grid>
-          )}
-          {this.props.width === 'md' && this.renderDesktop(textColor)}
-          {(this.props.width === 'sm' || this.props.width === 'xs') && this.renderMobile(textColor)}
+            <Grid item md={2} />
+          </Grid>
         </AppBar>
       </div>
     );
   }
-
-  renderDesktop = (textColor) => (
-    <Toolbar disableGutters style={{ height: 64 }}>
-      <Box mr={3}>
-        <MenuItem onClick={() => this.props.history.push('/')}>
-          <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
-        </MenuItem>
-      </Box>
-      <MenuButton onClick={this.onOpenProjects}>Projects</MenuButton>
-      <Menu
-        id="projects-menu"
-        anchorEl={this.state.projectsEl}
-        keepMounted
-        open={!!this.state.projectsEl}
-        onClose={this.onCloseProjects}
-        getContentAnchorEl={null} // menu should be display below anchor
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
-      >
-        <MenuItem className={this.props.classes.label}>Find Work</MenuItem>
-        <MenuItem className={this.props.classes.label}>Saved Jobs</MenuItem>
-        <MenuItem className={this.props.classes.label}>Proposals</MenuItem>
-        <MenuItem className={this.props.classes.label}>My Stats</MenuItem>
-        <MenuItem className={this.props.classes.label}>My Project</MenuItem>
-      </Menu>
-      <MenuButton onClick={this.onOpenHire}>Hire</MenuButton>
-      <Menu
-        id="hire-menu"
-        anchorEl={this.state.hireEl}
-        keepMounted
-        open={!!this.state.hireEl}
-        onClose={this.onCloseHire}
-        getContentAnchorEl={null} // menu should be display below anchor
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
-      >
-        <MenuItem className={this.props.classes.label}>Find Freelancer</MenuItem>
-        <MenuItem className={this.props.classes.label}>Saved Freelancer</MenuItem>
-        <MenuItem className={this.props.classes.label}>Hired Freelancer</MenuItem>
-      </Menu>
-      <MenuButton onClick={this.onOpenReports}>Reports</MenuButton>
-      <Menu
-        id="reports-menu"
-        anchorEl={this.state.reportsEl}
-        keepMounted
-        open={!!this.state.reportsEl}
-        onClose={this.onCloseReports}
-        getContentAnchorEl={null} // menu should be display below anchor
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
-      >
-        <MenuItem className={this.props.classes.label}>Overview</MenuItem>
-        <MenuItem className={this.props.classes.label}>My Reports</MenuItem>
-        <MenuItem className={this.props.classes.label}>Proposal History</MenuItem>
-        <MenuItem className={this.props.classes.label}>Transaction History</MenuItem>
-        <MenuItem className={this.props.classes.label}>Payment History</MenuItem>
-        <MenuItem className={this.props.classes.label}>Withdrawal History</MenuItem>
-        <MenuItem className={this.props.classes.label}>Dispute List</MenuItem>
-      </Menu>
-      <SearchBox textColor={textColor} />
-      <div style={{ flex: 1 }} />
-      <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
-        <IconButton className={this.props.classes.icon} onClick={() => this.props.history.push('/messenger')}>
-          <FontAwesomeIcon icon={faEnvelope} color={textColor} size="1x" />
-        </IconButton>
-      </Badge>
-      <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
-        <IconButton className={this.props.classes.icon}>
-          <FontAwesomeIcon icon={faBell} color={textColor} size="1x" />
-        </IconButton>
-      </Badge>
-      <AvatarMenuButton textColor={textColor} />
-    </Toolbar>
-  )
-
-  renderMobile = (textColor) => (
-    <Toolbar disableGutters style={{ height: 64 }}>
-      <MenuItem onClick={() => this.props.history.push('/')}>
-        <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
-      </MenuItem>
-      <div style={{ flex: 1 }} />
-      <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
-        <IconButton className={this.props.classes.icon}>
-          <FontAwesomeIcon icon={faEnvelope} color={textColor} size="1x" />
-        </IconButton>
-      </Badge>
-      <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
-        <IconButton className={this.props.classes.icon}>
-          <FontAwesomeIcon icon={faBell} color={textColor} size="1x" />
-        </IconButton>
-      </Badge>
-      <AvatarMenuIcon textColor={textColor} />
-    </Toolbar>
-  )
 }
 
 const mapStateToProps = ({

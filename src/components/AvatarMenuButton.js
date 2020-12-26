@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import {
   Box,
   Button,
@@ -25,6 +25,12 @@ const styles = (theme) => ({
     borderRadius: theme.spacing(3),
     '&:hover': {
       backgroundColor: getHeaderHoverBackgroundColor(theme)
+    }
+  },
+  optional: {
+    display: 'inline-block',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
     }
   },
   menuItem: {
@@ -62,22 +68,20 @@ class AvatarMenuButton extends PureComponent {
   }
 
   render = () => (
-    <Fragment>
-      <Box ml={1.5}>
-        <Button
-          className={this.props.classes.root}
-          aria-describedby={!!this.state.avatarEl ? 'avatar-popover' : undefined}
-          onClick={this.onOpenMenu}
-        >
-          <Box display="inline-block">
-            <Typography variant="body2" display="block" noWrap align="right" style={{ color: this.props.textColor }}>Hi, Apurba</Typography>
-            <Typography variant="body2" display="block" noWrap align="right" style={{ color: this.props.textColor }}>$100.00 USD</Typography>
-          </Box>
-          <Box ml={1.5} display="inline-block">
-            <FontAwesomeIcon icon={faUserCircle} color={this.props.textColor} size="3x" />
-          </Box>
-        </Button>
-      </Box>
+    <Box ml={1.5}>
+      <Button
+        className={this.props.classes.root}
+        aria-describedby={!!this.state.avatarEl ? 'avatar-popover' : undefined}
+        onClick={this.onOpenMenu}
+      >
+        <Box mr={1.5} className={this.props.classes.optional}>
+          <Typography variant="body2" display="block" noWrap align="right" style={{ color: this.props.textColor }}>Hi, Apurba</Typography>
+          <Typography variant="body2" display="block" noWrap align="right" style={{ color: this.props.textColor }}>$100.00 USD</Typography>
+        </Box>
+        <Box display="inline-block">
+          <FontAwesomeIcon icon={faUserCircle} color={this.props.textColor} size="3x" />
+        </Box>
+      </Button>
       <Menu
         id="avatar-menu"
         anchorEl={this.state.avatarEl}
@@ -167,7 +171,7 @@ class AvatarMenuButton extends PureComponent {
           }} />
         </MenuItem>
       </Menu>
-    </Fragment>
+    </Box>
   )
 }
 
