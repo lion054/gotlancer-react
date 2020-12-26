@@ -16,7 +16,7 @@ import {
   withStyles,
   withTheme
 } from '@material-ui/core';
-import { Rating } from '@material-ui/lab';
+import { Pagination, Rating } from '@material-ui/lab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faDollarSign, faHeart, faMapMarkedAlt, faStar } from '@fortawesome/free-solid-svg-icons';
 import pluralize from 'pluralize';
@@ -423,6 +423,9 @@ class Home extends PureComponent {
           </Card>
         </Box>
       ))}
+      <Box mt={2} mb={4} display="flex" justifyContent="center">
+        <Pagination count={10} size="large" />
+      </Box>
     </Box>
   )
 
