@@ -6,6 +6,7 @@ import {
   Box,
   Breadcrumbs,
   Button,
+  Card,
   CardContent,
   Grid,
   InputBase,
@@ -110,11 +111,13 @@ class InviteFriends extends PureComponent {
               </Grid>
               <Grid item lg={2} />
               <Grid item lg={4}>
-                <CardContent className={this.props.classes.card}>
-                  <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/invite-friends.svg')} />
-                  <Typography variant="subtitle2">Track your referrals</Typography>
-                  <Typography variant="body2">Changing your cur rency updates how you see prices. You can change how you get payments in your payments &amp; payouts preferences.</Typography>
-                </CardContent>
+                <Card elevation={0} className={this.props.classes.card}>
+                  <CardContent>
+                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/invite-friends.svg')} />
+                    <Typography variant="subtitle2">Track your referrals</Typography>
+                    <Typography variant="body2">Changing your cur rency updates how you see prices. You can change how you get payments in your payments &amp; payouts preferences.</Typography>
+                  </CardContent>
+                </Card>
               </Grid>
             </Grid>
             <Box mt={2}>
