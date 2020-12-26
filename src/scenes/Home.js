@@ -6,6 +6,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  CardHeader,
   Grid,
   LinearProgress,
   Tab,
@@ -86,6 +87,13 @@ const styles = (theme) => ({
   },
   cardActions: {
     borderTop: `solid 1px ${theme.palette.divider}`
+  },
+  cardHeader: {
+    padding: theme.spacing(1, 2),
+    borderBottom: `solid 1px ${theme.palette.divider}`
+  },
+  logo: {
+    width: theme.spacing(12)
   }
 })
 
@@ -158,45 +166,13 @@ class Home extends PureComponent {
           <Grid item md={8}>
             <Grid container>
               <Grid item md={2}>
-                <Card elevation={0} className={this.props.classes.leftCard}>
-                  <CardContent style={{ padding: 0 }}>
-                    <Tabs value={this.state.activeTab} onChange={this.handleTabChange}>
-                      <Tab className={this.props.classes.tab} label="Profile" />
-                      <Tab className={this.props.classes.tab} label="Funds" />
-                    </Tabs>
-                    {this.renderTabPanel({
-                      index: 0,
-                      body: (
-                        <Box mt={1} mr={2} mb={2} ml={2}>
-                          <Box display="flex" alignItems="center">
-                            <Box display="inline" mr={1}>
-                              <Avatar src={this.state.user.avatar} />
-                            </Box>
-                            <Box display="inline" style={{
-                              width: 'calc(100% - 40px - 8px)' // width is needed for ellipsis of  sub element
-                            }}>
-                              <Typography variant="body2" noWrap>{this.state.user.name}</Typography>
-                              <Box alignItems="center">
-                                <Box mr={1} display="inline">
-                                  <FontAwesomeIcon icon={faStar} size="1x" />
-                                </Box>
-                                <Typography variant="body2" noWrap display="inline">TOP RATED</Typography>
-                              </Box>
-                            </Box>
-                          </Box>
-                          <Box mt={1}>
-                            <Typography variant="body2" className={this.getCompletedStyles()}>{this.state.progress}% completed</Typography>
-                            <LinearProgress variant="determinate" value={this.state.progress} classes={this.getProgressStyles()} />
-                            <Typography variant="body2">Pass the US English - level 1 (+ 10%)</Typography>
-                          </Box>
-                        </Box>
-                      )
-                    })}
-                  </CardContent>
-                  <CardActions className={this.props.classes.cardActions}>
-                    <Button>View profile</Button>
-                  </CardActions>
-                </Card>
+                {this.renderTabsCard()}
+                <Box mt={2}>
+                  {this.renderMembershipCard()}
+                </Box>
+                <Box mt={2}>
+                  {this.renderBidCredit()}
+                </Box>
               </Grid>
               <Grid item md={8}></Grid>
               <Grid item md={2}></Grid>
@@ -213,6 +189,89 @@ class Home extends PureComponent {
     <div role="tabpanel" hidden={this.state.activeTab !== index}>
       {body}
     </div>
+  )
+
+  renderTabsCard = () => (
+    <Card elevation={0} className={this.props.classes.leftCard}>
+      <CardContent style={{ padding: 0 }}>
+        <Tabs value={this.state.activeTab} onChange={this.handleTabChange}>
+          <Tab className={this.props.classes.tab} label="Profile" />
+          <Tab className={this.props.classes.tab} label="Funds" />
+        </Tabs>
+        {this.renderTabPanel({
+          index: 0,
+          body: (
+            <Box mt={1} mr={2} mb={2} ml={2}>
+              <Box display="flex" alignItems="center">
+                <Box display="inline" mr={1}>
+                  <Avatar src={this.state.user.avatar} />
+                </Box>
+                <Box display="inline" style={{
+                  width: 'calc(100% - 40px - 8px)' // width is needed for ellipsis of  sub element
+                }}>
+                  <Typography variant="body2" noWrap>{this.state.user.name}</Typography>
+                  <Box alignItems="center">
+                    <Box mr={1} display="inline">
+                      <FontAwesomeIcon icon={faStar} size="1x" />
+                    </Box>
+                    <Typography variant="body2" noWrap display="inline">TOP RATED</Typography>
+                  </Box>
+                </Box>
+              </Box>
+              <Box mt={1}>
+                <Typography variant="body2" className={this.getCompletedStyles()}>{this.state.progress}% completed</Typography>
+                <LinearProgress variant="determinate" value={this.state.progress} classes={this.getProgressStyles()} />
+                <Typography variant="body2">Pass the US English - level 1 (+ 10%)</Typography>
+              </Box>
+            </Box>
+          )
+        })}
+      </CardContent>
+      <CardActions className={this.props.classes.cardActions}>
+        <Button>View profile</Button>
+      </CardActions>
+    </Card>
+  )
+
+  renderMembershipCard = () => (
+    <Card elevation={0} className={this.props.classes.leftCard}>
+      <CardHeader
+        title="Membership"
+        titleTypographyProps={{
+          variant: 'subtitle1'
+        }}
+        className={this.props.classes.cardHeader}
+      />
+      <CardContent>
+        <Typography variant="body2">Current membership</Typography>
+        <Box display="flex" alignItems="center" mt={1} mb={2}>
+          <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-long.svg')} />
+          <Box ml={1}>
+            <Typography variant="body1">Basic</Typography>
+          </Box>
+        </Box>
+        <Button variant="outlined">Upgrade membership</Button>
+      </CardContent>
+    </Card>
+  )
+
+  renderBidCredit = () => (
+    <Card elevation={0} className={this.props.classes.leftCard}>
+      <CardHeader
+        title="Bid Credit"
+        titleTypographyProps={{
+          variant: 'subtitle1'
+        }}
+        className={this.props.classes.cardHeader}
+      />
+      <CardContent>
+        <Typography variant="body2">Available Bids</Typography>
+        <Box mt={1} mb={1}>
+          <Typography variant="body1">76</Typography>
+        </Box>
+        <Button variant="outlined">Buy Proposal Credit</Button>
+      </CardContent>
+    </Card>
   )
 }
 
