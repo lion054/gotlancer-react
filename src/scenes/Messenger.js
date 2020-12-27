@@ -36,7 +36,8 @@ import {
 } from '@chatscope/chat-ui-kit-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faCog, faEdit, faEllipsisV, faPaperPlane, faPaperclip, faQuoteLeft, faSmile, faTrash } from '@fortawesome/free-solid-svg-icons';
-import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
+import EmojiPicker from 'emojione-picker';
+import 'emojione-picker/css/picker.css';
 import faker from 'faker';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
@@ -468,10 +469,11 @@ class Messenger extends PureComponent {
 
   onCloseEmojiPopover = () => this.setState({ emojiEl: null })
 
-  handleEmoji = (event, emojiObject) => {
-    this.setState({
-      text: this.state.text + emojiObject.emoji
-    });
+  handleEmoji = (data) => {
+    console.log(data);
+    // this.setState({
+    //   text: this.state.text + emojiObject.emoji
+    // });
   }
 
   handleSend = () => {
@@ -739,10 +741,31 @@ class Messenger extends PureComponent {
     >
       <Box width={this.props.theme.spacing(35)} m={2}>
         <EmojiPicker
-          onEmojiClick={this.handleEmoji}
-          disableAutoFocus
-          skinTone={SKIN_TONE_MEDIUM_DARK}
-          groupNames={{ smileys_people: 'PEOPLE' }}
+          search={true}
+          // categories={{
+          //   people: {
+          //     title: 'People',
+          //     emoji: 'smile'
+          //   },
+          //   nature: {
+          //     title: 'Nature',
+          //     emoji: 'mouse'
+          //   },
+          //   food: {
+          //     title: 'Food & Drink',
+          //     emoji: 'burger'
+          //   }
+          // }}
+          // emojione={{
+          //   imageType: 'svg',
+          //   sprites: true,
+          //   imagePathSVGSprites: '../node_modules/emojione/assets/sprites/emojione.sprites.svg'
+          // }}
+          emojione={{
+            imageType: 'png',
+            sprites: true
+          }}
+          onChange={this.handleEmoji}
         />
       </Box>
     </Popover>
