@@ -88,7 +88,7 @@ class PersonalInfo extends PureComponent {
               </Breadcrumbs>
             </Box>
             <Box mb={2}>
-              <Typography variant="h5" color="textPrimary">Personal Info</Typography>
+              <Typography variant="h5">Personal Info</Typography>
             </Box>
             <Grid container>
               <Grid item lg={6}>

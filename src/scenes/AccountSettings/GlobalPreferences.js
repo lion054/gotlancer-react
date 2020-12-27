@@ -66,7 +66,7 @@ class GlobalPreferences extends PureComponent {
               </Breadcrumbs>
             </Box>
             <Box mb={2}>
-              <Typography variant="h5" color="textPrimary">Global preferences</Typography>
+              <Typography variant="h5">Global preferences</Typography>
             </Box>
             <Grid container>
               <Grid item lg={6}>

@@ -68,7 +68,7 @@ class VerifyIdentity extends PureComponent {
               </Breadcrumbs>
             </Box>
             <Box mb={2}>
-              <Typography variant="h5" color="textPrimary">Verify identity</Typography>
+              <Typography variant="h5">Verify identity</Typography>
             </Box>
             <Grid container>
               <Grid item lg={6}>

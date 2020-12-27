@@ -107,7 +107,7 @@ class LoginSecurity extends PureComponent {
               </Breadcrumbs>
             </Box>
             <Box mb={2}>
-              <Typography variant="h5" color="textPrimary">Login &amp; Security</Typography>
+              <Typography variant="h5">Login &amp; Security</Typography>
             </Box>
             <Grid container>
               <Grid item lg={6}>
@@ -375,7 +375,7 @@ class LoginSecurity extends PureComponent {
             <Typography variant="body2" color="textSecondary">After click on Sent OTP this screen will come (this another logic)</Typography>
           </Box>
           <Box mt={2}>
-            <Typography variant="body2" color="textPrimary">We texted your code to +91 98 000 00 000. It may take a minute to arrive.</Typography>
+            <Typography variant="body2">We texted your code to +91 98 000 00 000. It may take a minute to arrive.</Typography>
           </Box>
           <Box mt={2}>
             <OtpInput
@@ -423,7 +423,7 @@ class LoginSecurity extends PureComponent {
           <Box mt={2} display="flex" alignItems="center">
             <FontAwesomeIcon icon={faCheckCircle} color={this.props.theme.palette.success.main} size="1x" />
             <Box ml={1}>
-              <Typography variant="body2" color="textPrimary" display="inline">Your mobile number added successfully</Typography>
+              <Typography variant="body2" display="inline">Your mobile number added successfully</Typography>
             </Box>
           </Box>
           <Box mt={2}>

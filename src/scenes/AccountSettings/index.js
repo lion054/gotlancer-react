@@ -44,10 +44,10 @@ class AccountSettings extends PureComponent {
           <Grid item md={2} />
           <Grid item md={8}>
             <Box mb={2}>
-              <Typography variant="h5" color="textPrimary">Account Settings</Typography>
+              <Typography variant="h5">Account Settings</Typography>
             </Box>
             <Box mb={2}>
-              <Typography variant="body1" color="textPrimary">Apurba Das, designsfit@gmail.com · <Link href="#" style={{ color: this.props.theme.palette.success.main }}>Go to profile</Link></Typography>
+              <Typography variant="body1">Apurba Das, designsfit@gmail.com · <Link href="#" style={{ color: this.props.theme.palette.success.main }}>Go to profile</Link></Typography>
             </Box>
             <Grid container spacing={2}>
               <Grid item lg={4} md={6} xs={12}>

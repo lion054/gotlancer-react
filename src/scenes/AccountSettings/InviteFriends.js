@@ -95,7 +95,7 @@ class InviteFriends extends PureComponent {
               </Breadcrumbs>
             </Box>
             <Box mb={2}>
-              <Typography variant="h5" color="textPrimary">Invite friends to join the Gotlancer community</Typography>
+              <Typography variant="h5">Invite friends to join the Gotlancer community</Typography>
             </Box>
             <Grid container>
               <Grid item lg={6}>

@@ -51,14 +51,14 @@ class Membership extends PureComponent {
               </Breadcrumbs>
             </Box>
             <Box mb={2}>
-              <Typography variant="h5" color="textPrimary">Membership</Typography>
+              <Typography variant="h5">Membership</Typography>
             </Box>
             <Grid container>
               <Grid item lg={6}>
                 <Box>
                   <Divider />
                   <Box mt={2}>
-                    <Typography variant="subtitle1" color="textPrimary">Your current membership package</Typography>
+                    <Typography variant="subtitle1">Your current membership package</Typography>
                   </Box>
                   <Box mt={1} mb={2} display="flex">
                     <Typography variant="subtitle2" color="textSecondary">Free Membership</Typography>
@@ -68,7 +68,7 @@ class Membership extends PureComponent {
                   </Box>
                   <Divider />
                   <Box mt={2}>
-                    <Typography variant="subtitle1" color="textPrimary">Upgrade to Pro</Typography>
+                    <Typography variant="subtitle1">Upgrade to Pro</Typography>
                   </Box>
                   <Box mt={1}>
                     <Typography variant="body2" color="textSecondary">Add a payment method using our secure payment system, then start your project with Gotlancer</Typography>

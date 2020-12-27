@@ -49,7 +49,7 @@ class Notifications extends PureComponent {
               </Breadcrumbs>
             </Box>
             <Box mb={2}>
-              <Typography variant="h5" color="textPrimary">Notifications</Typography>
+              <Typography variant="h5">Notifications</Typography>
             </Box>
             <Grid container>
               <Grid item lg={6}>
@@ -119,7 +119,7 @@ class Notifications extends PureComponent {
   renderSection = ({ title, subtitle }) => (
     <Fragment>
       <Box mt={2}>
-        <Typography variant="subtitle1" color="textPrimary">{title}</Typography>
+        <Typography variant="subtitle1">{title}</Typography>
       </Box>
       <Box mt={1} mb={1}>
         <Typography variant="subtitle2" color="textSecondary">{subtitle}</Typography>

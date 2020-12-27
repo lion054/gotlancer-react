@@ -122,7 +122,7 @@ class AvatarMenuIcon extends PureComponent {
                   <FontAwesomeIcon icon={faUserCircle} color={this.props.theme.palette.text.secondary} size="2x" />
                 </Box>
                 <Box display="inline-block">
-                  <Typography variant="body2" display="block" color="textPrimary" noWrap>Hi, Apurba</Typography>
+                  <Typography variant="body2" display="block" noWrap>Hi, Apurba</Typography>
                   <Typography variant="body2" display="block" color="textSecondary" noWrap>$100.00 USD</Typography>
                 </Box>
                 <div style={{ flex: 1 }} />
