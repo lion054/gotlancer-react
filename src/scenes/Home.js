@@ -7,10 +7,15 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Checkbox,
+  FormControlLabel,
   Divider,
   Grid,
   IconButton,
+  InputAdornment,
   LinearProgress,
+  MenuItem,
+  OutlinedInput,
   Tab,
   Tabs,
   Typography,
@@ -19,7 +24,7 @@ import {
 } from '@material-ui/core';
 import { Pagination, Rating } from '@material-ui/lab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faDollarSign, faHeart, faMapMarkedAlt, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faDollarSign, faHeart, faMapMarkedAlt, faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 import pluralize from 'pluralize';
 import moment from 'moment';
 import { cloneDeep } from 'lodash';
@@ -101,6 +106,20 @@ const styles = (theme) => ({
   logo: {
     width: theme.spacing(12)
   },
+  newJobs: {
+    backgroundColor: theme.palette.primary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark
+    },
+    borderRadius: theme.spacing(1.5),
+    color: theme.palette.common.white,
+    fontSize: theme.spacing(1.25),
+    textTransform: 'uppercase'
+  },
+  search: {
+    padding: theme.spacing(2, 0, 2, 2),
+    fontSize: theme.spacing(1.5)
+  },
   jobCard: {
     borderRadius: theme.spacing(1.5),
     borderColor: theme.palette.divider,
@@ -134,6 +153,16 @@ const styles = (theme) => ({
   }
 })
 
+const GreenCheckbox = withStyles((theme) => ({
+  root: {
+    color: theme.palette.divider,
+    '&$checked': {
+      color: theme.palette.success.main
+    }
+  },
+  checked: {}
+}))(Checkbox);
+
 class Home extends PureComponent {
   state = {
     activeTab: 0,
@@ -142,6 +171,7 @@ class Home extends PureComponent {
       name: faker.name.findName()
     },
     progress: faker.random.number({ min: 0, max: 100 }),
+    newJobs: 32,
     jobs: []
   }
 
@@ -242,7 +272,15 @@ class Home extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2}>
+      <Box ml={2} mr={2}>
+        <Box height={this.props.theme.spacing(8)} display="flex" justifyContent="center" alignItems="center">
+          {!!this.state.newJobs && (
+            <MenuItem
+              className={this.props.classes.newJobs}
+              onClick={() => this.setState({ newJobs: 0 })}
+            >View {pluralize('new job', this.state.newJobs, true)}</MenuItem>
+          )}
+        </Box>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -259,7 +297,15 @@ class Home extends PureComponent {
               <Grid item md={8}>
                 {this.renderJobList()}
               </Grid>
-              <Grid item md={2}></Grid>
+              <Grid item md={2}>
+                {this.renderCategoryPicker()}
+                <Box mt={2}>
+                  {this.renderSubcategoryPicker()}
+                </Box>
+                <Box mt={2}>
+                  {this.renderTypePicker()}
+                </Box>
+              </Grid>
             </Grid>
           </Grid>
           <Grid item lg={2} />
@@ -360,6 +406,24 @@ class Home extends PureComponent {
 
   renderJobList = () => (
     <Box ml={2} mr={2}>
+      <OutlinedInput
+        fullWidth
+        type="text"
+        placeholder="Search for project"
+        inputProps={{
+          className: this.props.classes.search
+        }}
+        endAdornment={(
+          <InputAdornment position="end">
+            <IconButton>
+              <FontAwesomeIcon icon={faSearch} style={{ fontSize: '0.8em' }} />
+            </IconButton>
+          </InputAdornment>
+        )}
+      />
+      <Box mt={2} mb={2}>
+        <Typography variant="body2">{pluralize('job', 4500, true)} found</Typography>
+      </Box>
       {this.state.jobs.map((job, i) => (
         <Box key={i} mb={1}>
           <Card elevation={0} className={this.props.classes.jobCard}>
@@ -496,6 +560,112 @@ class Home extends PureComponent {
           <Typography variant="body2" noWrap color="textSecondary" style={{ width: this.props.theme.spacing(11) }}>{value}</Typography>
         </Box>
       </Box>
+    </Box>
+  )
+
+  renderCategoryPicker = () => (
+    <Box>
+      <Typography>Select category</Typography>
+      <FormControlLabel
+        control={(
+          <GreenCheckbox />
+        )}
+        label={(
+          <Typography variant="body2">All</Typography>
+        )}
+      />
+      <FormControlLabel
+        control={(
+          <GreenCheckbox />
+        )}
+        label={(
+          <Typography variant="body2">Website Development</Typography>
+        )}
+      />
+      <FormControlLabel
+        control={(
+          <GreenCheckbox />
+        )}
+        label={(
+          <Typography variant="body2">Graphic Design</Typography>
+        )}
+      />
+      <FormControlLabel
+        control={(
+          <GreenCheckbox />
+        )}
+        label={(
+          <Typography variant="body2">Digital Marketing</Typography>
+        )}
+      />
+    </Box>
+  )
+
+  renderSubcategoryPicker = () => (
+    <Box>
+      <Typography>Select sub-category</Typography>
+      <FormControlLabel
+        control={(
+          <GreenCheckbox />
+        )}
+        label={(
+          <Typography variant="body2">All</Typography>
+        )}
+      />
+      <FormControlLabel
+        control={(
+          <GreenCheckbox />
+        )}
+        label={(
+          <Typography variant="body2">Website Development</Typography>
+        )}
+      />
+      <FormControlLabel
+        control={(
+          <GreenCheckbox />
+        )}
+        label={(
+          <Typography variant="body2">Graphic Design</Typography>
+        )}
+      />
+      <FormControlLabel
+        control={(
+          <GreenCheckbox />
+        )}
+        label={(
+          <Typography variant="body2">Digital Marketing</Typography>
+        )}
+      />
+    </Box>
+  )
+
+  renderTypePicker = () => (
+    <Box>
+      <Typography>Project type</Typography>
+      <FormControlLabel
+        control={(
+          <GreenCheckbox />
+        )}
+        label={(
+          <Typography variant="body2">All</Typography>
+        )}
+      />
+      <FormControlLabel
+        control={(
+          <GreenCheckbox />
+        )}
+        label={(
+          <Typography variant="body2">Fixed price</Typography>
+        )}
+      />
+      <FormControlLabel
+        control={(
+          <GreenCheckbox />
+        )}
+        label={(
+          <Typography variant="body2">Hourly</Typography>
+        )}
+      />
     </Box>
   )
 }
