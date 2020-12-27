@@ -107,10 +107,16 @@ const styles = (theme) => ({
     borderStyle: 'solid',
     padding: 'unset'
   },
+  tagContainer: {
+    wordBreak: 'break-word'
+  },
   tag: {
+    marginBottom: theme.spacing(0.5),
     padding: theme.spacing(0.5),
     marginRight: theme.spacing(1),
-    borderRadius: theme.spacing(0.5)
+    borderRadius: theme.spacing(0.5),
+    display: 'inline-block',
+    whiteSpace: 'nowrap'
   },
   buyerIcon: {
     width: theme.spacing(4),
@@ -145,7 +151,7 @@ class Home extends PureComponent {
       jobs.push({
         title: faker.lorem.sentence(3),
         description: faker.lorem.sentences(5),
-        type: faker.random.boolean() ? 'HOURLY' : 'FIXED',
+        type: faker.random.arrayElement(['HOURLY', 'FIXED']),
         budget: {
           min: faker.random.number({ min: 10, max: 20 }),
           max: faker.random.number({ min: 30, max: 40 })
@@ -234,8 +240,8 @@ class Home extends PureComponent {
       <Header />
       <Box mt={8} ml={2} mr={2}>
         <Grid container>
-          <Grid item md={2} />
-          <Grid item md={8}>
+          <Grid item lg={2} />
+          <Grid item lg={8} xs={12}>
             <Grid container>
               <Grid item md={2}>
                 {this.renderTabsCard()}
@@ -252,7 +258,7 @@ class Home extends PureComponent {
               <Grid item md={2}></Grid>
             </Grid>
           </Grid>
-          <Grid item md={2} />
+          <Grid item lg={2} />
         </Grid>
       </Box>
       <Footer />
@@ -358,14 +364,14 @@ class Home extends PureComponent {
                 <Box flex={1}>
                   <Typography variant="subtitle1">{job.title}</Typography>
                 </Box>
-                <Typography variant="h5" color="textPrimary">${job.budget.min}-${job.budget.max} USD</Typography>
+                <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
               </Box>
               <Box mt={1} display="flex">
-                <Box flex={1}>
+                <Box className={this.props.classes.tagContainer} flex={1}>
                   {job.categories.map((category, j) => (
                     <Typography
                       key={j}
-                      component="span"
+                      component="div"
                       variant="body2"
                       className={this.props.classes.tag}
                       style={{
@@ -381,11 +387,11 @@ class Home extends PureComponent {
                 <Typography variant="body2">{job.description}</Typography>
               </Box>
               <Box mt={1} mb={2.5} display="flex">
-                <Box flex={1} mr={5}>
+                <Box className={this.props.classes.tagContainer} flex={1} mr={5}>
                   {job.skills.map((skill, j) => (
                     <Typography
                       key={j}
-                      component="span"
+                      component="div"
                       variant="body2"
                       className={this.props.classes.tag}
                       style={{
@@ -398,26 +404,28 @@ class Home extends PureComponent {
                 <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
               </Box>
               <Divider />
-              <Box mt={1.5} display="flex" flexDirection="row">
+              <Box className={this.props.classes.tagContainer} mt={1.5}>
                 {this.renderApplyBefore()}
                 {this.renderPaymentMethod(job.paymentMethod)}
                 {this.renderReview(job.reviewCount, job.reviewAverage)}
                 {this.renderLocation(job.location)}
-                <Box display="flex" alignItems="center">
-                  <IconButton
-                    className={this.props.classes.savedIcon}
-                    onClick={() => {
-                      const jobs = cloneDeep(this.state.jobs);
-                      jobs[i].saved = !jobs[i].saved;
-                      this.setState({ jobs });
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faHeart} style={{
-                      color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
-                    }} />
-                  </IconButton>
-                  <Box ml={1}>
-                    <Typography variant="body2" color="textPrimary" align="right">Saved</Typography>
+                <Box display="inline-block">
+                  <Box display="flex" alignItems="center">
+                    <IconButton
+                      className={this.props.classes.savedIcon}
+                      onClick={() => {
+                        const jobs = cloneDeep(this.state.jobs);
+                        jobs[i].saved = !jobs[i].saved;
+                        this.setState({ jobs });
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faHeart} style={{
+                        color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
+                      }} />
+                    </IconButton>
+                    <Box ml={1}>
+                      <Typography variant="body2" align="right">Saved</Typography>
+                    </Box>
                   </Box>
                 </Box>
               </Box>
@@ -432,49 +440,57 @@ class Home extends PureComponent {
   )
 
   renderApplyBefore = () => (
-    <Box mr={2} display="flex" alignItems="center">
-      <Avatar className={this.props.classes.buyerIcon}>
-        <FontAwesomeIcon icon={faClock} />
-      </Avatar>
-      <Box ml={1}>
-        <Typography variant="body2" noWrap color="textPrimary">Apply before</Typography>
-        <Typography variant="body2" noWrap color="textSecondary">1 day 2 hours</Typography>
+    <Box mr={2} display="inline-block">
+      <Box display="flex" alignItems="center">
+        <Avatar className={this.props.classes.buyerIcon}>
+          <FontAwesomeIcon icon={faClock} />
+        </Avatar>
+        <Box ml={1}>
+          <Typography variant="body2" noWrap>Apply before</Typography>
+          <Typography variant="body2" noWrap color="textSecondary">1 day 2 hours</Typography>
+        </Box>
       </Box>
     </Box>
   )
 
   renderPaymentMethod = (value) => (
-    <Box mr={2} display="flex" alignItems="center">
-      <Avatar className={this.props.classes.buyerIcon}>
-        <FontAwesomeIcon icon={faDollarSign} />
-      </Avatar>
-      <Box ml={1}>
-        <Typography variant="body2" noWrap color="textPrimary">Payment method</Typography>
-        <Typography variant="body2" noWrap color="textSecondary">{value ? 'Verified' : 'Not verified'}</Typography>
+    <Box mr={2} display="inline-block">
+      <Box display="flex" alignItems="center">
+        <Avatar className={this.props.classes.buyerIcon}>
+          <FontAwesomeIcon icon={faDollarSign} />
+        </Avatar>
+        <Box ml={1}>
+          <Typography variant="body2" noWrap>Payment method</Typography>
+          <Typography variant="body2" noWrap color="textSecondary">{value ? 'Verified' : 'Not verified'}</Typography>
+        </Box>
       </Box>
     </Box>
   )
 
   renderReview = (count, average) => (
-    <Box mr={2} display="flex" alignItems="center">
-      <Avatar className={this.props.classes.buyerIcon}>
-        <FontAwesomeIcon icon={faStar} />
-      </Avatar>
-      <Box ml={1}>
-        <Typography variant="body2" noWrap color="textPrimary">{pluralize('Review', count, true)}</Typography>
-        <Rating name="read-only" value={average} readOnly />
+    <Box mr={2} display="inline-block">
+      <Box display="flex" alignItems="center">
+        <Avatar className={this.props.classes.buyerIcon}>
+          <FontAwesomeIcon icon={faStar} />
+        </Avatar>
+        <Box ml={1}>
+          <Typography variant="body2" noWrap>{pluralize('Review', count, true)}</Typography>
+          <Rating name="read-only" value={average} readOnly />
+        </Box>
       </Box>
     </Box>
   )
 
   renderLocation = (value) => (
-    <Box mr={2} display="flex" alignItems="center">
-      <Avatar className={this.props.classes.buyerIcon}>
-        <FontAwesomeIcon icon={faMapMarkedAlt} />
-      </Avatar>
-      <Box ml={1}>
-        <Typography variant="body2" noWrap color="textPrimary">Buyer country</Typography>
-        <Typography variant="body2" noWrap color="textSecondary" style={{ width: this.props.theme.spacing(11) }}>{value}</Typography>
+    <Box mr={2} display="inline-block">
+      <Box display="flex" alignItems="center">
+        <Avatar className={this.props.classes.buyerIcon}>
+          <FontAwesomeIcon icon={faMapMarkedAlt} />
+        </Avatar>
+        <Box ml={1}>
+          <Typography variant="body2" noWrap>Buyer country</Typography>
+          <Typography variant="body2" noWrap color="textSecondary" style={{ width: this.props.theme.spacing(11) }}>{value}</Typography>
+        </Box>
       </Box>
     </Box>
   )
