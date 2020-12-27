@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import {
   Avatar,
   Box,
@@ -8,6 +8,7 @@ import {
   CardContent,
   CardHeader,
   Checkbox,
+  Drawer,
   FormControlLabel,
   Divider,
   Grid,
@@ -24,7 +25,7 @@ import {
 } from '@material-ui/core';
 import { Pagination, Rating } from '@material-ui/lab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faDollarSign, faHeart, faMapMarkedAlt, faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faClock, faDollarSign, faHeart, faMapMarkedAlt, faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 import pluralize from 'pluralize';
 import moment from 'moment';
 import { cloneDeep } from 'lodash';
@@ -37,6 +38,19 @@ import Footer from '../components/Footer';
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper
+  },
+  leftSideBar: {
+    [theme.breakpoints.up('md')]: {
+      width: 224
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
+  },
+  rightSideBar: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
   },
   profileCard: {
     borderRadius: theme.spacing(0.5),
@@ -103,8 +117,17 @@ const styles = (theme) => ({
     padding: theme.spacing(1, 2),
     borderBottom: `solid 1px ${theme.palette.divider}`
   },
-  logo: {
-    width: theme.spacing(12)
+  longLogo: {
+    width: theme.spacing(12),
+    [theme.breakpoints.down('md')]: {
+      display: 'none'
+    }
+  },
+  shortLogo: {
+    width: theme.spacing(4),
+    [theme.breakpoints.up('lg')]: {
+      display: 'none'
+    }
   },
   newJobs: {
     backgroundColor: theme.palette.primary.main,
@@ -115,6 +138,11 @@ const styles = (theme) => ({
     color: theme.palette.common.white,
     fontSize: theme.spacing(1.25),
     textTransform: 'uppercase'
+  },
+  menuButton: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
+    }
   },
   search: {
     padding: theme.spacing(2, 0, 2, 2),
@@ -172,7 +200,8 @@ class Home extends PureComponent {
     },
     progress: faker.random.number({ min: 0, max: 100 }),
     newJobs: 32,
-    jobs: []
+    jobs: [],
+    drawerOpened: false
   }
 
   componentDidMount() {
@@ -269,6 +298,8 @@ class Home extends PureComponent {
     return result;
   }
 
+  handleDrawer = () => this.setState({ drawerOpened: !this.state.drawerOpened })
+
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
@@ -283,28 +314,22 @@ class Home extends PureComponent {
         </Box>
         <Grid container>
           <Grid item lg={2} />
-          <Grid item lg={8} xs={12}>
-            <Grid container>
-              <Grid item md={2}>
-                {this.renderTabsCard()}
-                <Box mt={2}>
-                  {this.renderMembershipCard()}
-                </Box>
-                <Box mt={2}>
-                  {this.renderBidCredit()}
-                </Box>
-              </Grid>
-              <Grid item md={8}>
+          <Grid item lg={8} xs={12} style={{ display: 'flex' }}>
+            <Box className={this.props.classes.leftSideBar}>
+              {this.renderTabsCard()}
+              <Box mt={2}>
+                {this.renderMembershipCard()}
+              </Box>
+              <Box mt={2}>
+                {this.renderBidCredit()}
+              </Box>
+            </Box>
+            <Grid container style={{ flex: 1 }}>
+              <Grid item md={9}>
                 {this.renderJobList()}
               </Grid>
-              <Grid item md={2}>
-                {this.renderCategoryPicker()}
-                <Box mt={2}>
-                  {this.renderSubcategoryPicker()}
-                </Box>
-                <Box mt={2}>
-                  {this.renderTypePicker()}
-                </Box>
+              <Grid item md={3} className={this.props.classes.rightSideBar}>
+                {this.renderConditionBar()}
               </Grid>
             </Grid>
           </Grid>
@@ -312,6 +337,15 @@ class Home extends PureComponent {
         </Grid>
       </Box>
       <Footer />
+      <Drawer
+        anchor="left"
+        open={this.state.drawerOpened}
+        onClose={this.handleDrawer}
+      >
+        <Box m={2}>
+          {this.renderConditionBar()}
+        </Box>
+      </Drawer>
     </div>
   )
 
@@ -339,13 +373,10 @@ class Home extends PureComponent {
                 <Box display="inline" style={{
                   width: 'calc(100% - 40px - 8px)' // width is needed for ellipsis of  sub element
                 }}>
-                  <Typography variant="body2" noWrap>{this.state.user.name}</Typography>
-                  <Box alignItems="center">
-                    <Box mr={1} display="inline">
-                      <FontAwesomeIcon icon={faStar} size="1x" />
-                    </Box>
-                    <Typography variant="body2" noWrap display="inline">TOP RATED</Typography>
-                  </Box>
+                  <Typography variant="body2" noWrap style={{ overflow: 'hidden' }}>{this.state.user.name}</Typography>
+                  <Typography variant="body2" noWrap style={{ overflow: 'hidden' }}>
+                    <FontAwesomeIcon icon={faStar} size="1x" />  TOP RATED
+                  </Typography>
                 </Box>
               </Box>
               <Box mt={1}>
@@ -358,7 +389,7 @@ class Home extends PureComponent {
         })}
       </CardContent>
       <CardActions className={this.props.classes.cardActions}>
-        <Button>View profile</Button>
+        <Button fullWidth>View profile</Button>
       </CardActions>
     </Card>
   )
@@ -375,12 +406,13 @@ class Home extends PureComponent {
       <CardContent>
         <Typography variant="body2">Current membership</Typography>
         <Box display="flex" alignItems="center" mt={1} mb={2}>
-          <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-long.svg')} />
+          <img alt="" className={this.props.classes.longLogo} src={require('../assets/images/gotlancer-logo-long.svg')} />
+          <img alt="" className={this.props.classes.shortLogo} src={require('../assets/images/gotlancer-logo-short.svg')} />
           <Box ml={1}>
             <Typography variant="body1">Basic</Typography>
           </Box>
         </Box>
-        <Button variant="outlined">Upgrade membership</Button>
+        <Button variant="outlined" fullWidth>Upgrade membership</Button>
       </CardContent>
     </Card>
   )
@@ -399,28 +431,40 @@ class Home extends PureComponent {
         <Box mt={1} mb={1}>
           <Typography variant="body1">76</Typography>
         </Box>
-        <Button variant="outlined">Buy Proposal Credit</Button>
+        <Button variant="outlined" fullWidth>Buy Proposal Credit</Button>
       </CardContent>
     </Card>
   )
 
   renderJobList = () => (
     <Box ml={2} mr={2}>
-      <OutlinedInput
-        fullWidth
-        type="text"
-        placeholder="Search for project"
-        inputProps={{
-          className: this.props.classes.search
-        }}
-        endAdornment={(
-          <InputAdornment position="end">
-            <IconButton>
-              <FontAwesomeIcon icon={faSearch} style={{ fontSize: '0.8em' }} />
-            </IconButton>
-          </InputAdornment>
-        )}
-      />
+      <Box display="flex" flexDirection="row">
+        <Box mr={1} className={this.props.classes.menuButton}>
+          <IconButton onClick={() => this.setState({ drawerOpened: true })}>
+            <FontAwesomeIcon icon={faBars} />
+          </IconButton>
+        </Box>
+        <Box flex={1}>
+          <OutlinedInput
+            fullWidth
+            type="text"
+            placeholder="Search for project"
+            inputProps={{
+              className: this.props.classes.search
+            }}
+            endAdornment={(
+              <InputAdornment position="end">
+                <IconButton>
+                  <FontAwesomeIcon icon={faSearch} style={{ fontSize: '0.8em' }} />
+                </IconButton>
+              </InputAdornment>
+            )}
+            style={{
+              paddingRight: this.props.theme.spacing(0.5)
+            }}
+          />
+        </Box>
+      </Box>
       <Box mt={2} mb={2}>
         <Typography variant="body2">{pluralize('job', 4500, true)} found</Typography>
       </Box>
@@ -563,109 +607,143 @@ class Home extends PureComponent {
     </Box>
   )
 
+  renderConditionBar = () => (
+    <Fragment>
+      {this.renderCategoryPicker()}
+      <Box mt={2}>
+        {this.renderSubcategoryPicker()}
+      </Box>
+      <Box mt={2}>
+        {this.renderTypePicker()}
+      </Box>
+    </Fragment>
+  )
+
   renderCategoryPicker = () => (
     <Box>
       <Typography>Select category</Typography>
-      <FormControlLabel
-        control={(
-          <GreenCheckbox />
-        )}
-        label={(
-          <Typography variant="body2">All</Typography>
-        )}
-      />
-      <FormControlLabel
-        control={(
-          <GreenCheckbox />
-        )}
-        label={(
-          <Typography variant="body2">Website Development</Typography>
-        )}
-      />
-      <FormControlLabel
-        control={(
-          <GreenCheckbox />
-        )}
-        label={(
-          <Typography variant="body2">Graphic Design</Typography>
-        )}
-      />
-      <FormControlLabel
-        control={(
-          <GreenCheckbox />
-        )}
-        label={(
-          <Typography variant="body2">Digital Marketing</Typography>
-        )}
-      />
+      <Box>
+        <FormControlLabel
+          control={(
+            <GreenCheckbox />
+          )}
+          label={(
+            <Typography variant="body2">All</Typography>
+          )}
+        />
+      </Box>
+      <Box>
+        <FormControlLabel
+          control={(
+            <GreenCheckbox />
+          )}
+          label={(
+            <Typography variant="body2">Website Development</Typography>
+          )}
+        />
+      </Box>
+      <Box>
+        <FormControlLabel
+          control={(
+            <GreenCheckbox />
+          )}
+          label={(
+            <Typography variant="body2">Graphic Design</Typography>
+          )}
+        />
+      </Box>
+      <Box>
+        <FormControlLabel
+          control={(
+            <GreenCheckbox />
+          )}
+          label={(
+            <Typography variant="body2">Digital Marketing</Typography>
+          )}
+        />
+      </Box>
     </Box>
   )
 
   renderSubcategoryPicker = () => (
     <Box>
       <Typography>Select sub-category</Typography>
-      <FormControlLabel
-        control={(
-          <GreenCheckbox />
-        )}
-        label={(
-          <Typography variant="body2">All</Typography>
-        )}
-      />
-      <FormControlLabel
-        control={(
-          <GreenCheckbox />
-        )}
-        label={(
-          <Typography variant="body2">Website Development</Typography>
-        )}
-      />
-      <FormControlLabel
-        control={(
-          <GreenCheckbox />
-        )}
-        label={(
-          <Typography variant="body2">Graphic Design</Typography>
-        )}
-      />
-      <FormControlLabel
-        control={(
-          <GreenCheckbox />
-        )}
-        label={(
-          <Typography variant="body2">Digital Marketing</Typography>
-        )}
-      />
+      <Box>
+        <FormControlLabel
+          control={(
+            <GreenCheckbox />
+          )}
+          label={(
+            <Typography variant="body2">All</Typography>
+          )}
+        />
+      </Box>
+      <Box>
+        <FormControlLabel
+          control={(
+            <GreenCheckbox />
+          )}
+          label={(
+            <Typography variant="body2">Website Development</Typography>
+          )}
+        />
+      </Box>
+      <Box>
+        <FormControlLabel
+          control={(
+            <GreenCheckbox />
+          )}
+          label={(
+            <Typography variant="body2">Graphic Design</Typography>
+          )}
+        />
+      </Box>
+      <Box>
+        <FormControlLabel
+          control={(
+            <GreenCheckbox />
+          )}
+          label={(
+            <Typography variant="body2">Digital Marketing</Typography>
+          )}
+        />
+      </Box>
     </Box>
   )
 
   renderTypePicker = () => (
     <Box>
       <Typography>Project type</Typography>
-      <FormControlLabel
-        control={(
-          <GreenCheckbox />
-        )}
-        label={(
-          <Typography variant="body2">All</Typography>
-        )}
-      />
-      <FormControlLabel
-        control={(
-          <GreenCheckbox />
-        )}
-        label={(
-          <Typography variant="body2">Fixed price</Typography>
-        )}
-      />
-      <FormControlLabel
-        control={(
-          <GreenCheckbox />
-        )}
-        label={(
-          <Typography variant="body2">Hourly</Typography>
-        )}
-      />
+      <Box>
+        <FormControlLabel
+          control={(
+            <GreenCheckbox />
+          )}
+          label={(
+            <Typography variant="body2">All</Typography>
+          )}
+        />
+      </Box>
+      <Box>
+        <FormControlLabel
+          control={(
+            <GreenCheckbox />
+          )}
+          label={(
+            <Typography variant="body2">Fixed price</Typography>
+          )}
+        />
+      </Box>
+      <Box>
+        <FormControlLabel
+          control={(
+            <GreenCheckbox />
+          )}
+          label={(
+            <Typography variant="body2">Hourly</Typography>
+          )}
+        />
+      </Box>
     </Box>
   )
 }

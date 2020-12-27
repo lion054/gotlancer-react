@@ -94,12 +94,13 @@ class Header extends PureComponent {
 
   render = () => {
     const textColor = this.props.theme.palette.theme === 'dark' ? this.props.theme.palette.grey[700] : this.props.theme.palette.grey[300];
+    console.log(this.props.width);
     return (
       <div style={{ flexGrow: 1, height: 64 }}>
         <AppBar position="fixed" color="transparent" elevation={1} className={this.props.classes.root}>
           <Grid container>
-            <Grid item md={2} />
-            <Grid item md={8} xs={12}>
+            <Grid item lg={2} />
+            <Grid item lg={8} xs={12}>
               <Toolbar disableGutters style={{ height: 64 }}>
                 <MenuItem onClick={() => this.props.history.push('/')} style={{ minWidth: this.props.theme.spacing(9) }}>
                   <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
@@ -179,7 +180,7 @@ class Header extends PureComponent {
                 )}
               </Toolbar>
             </Grid>
-            <Grid item md={2} />
+            <Grid item lg={2} />
           </Grid>
         </AppBar>
       </div>
