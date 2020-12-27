@@ -21,7 +21,8 @@ import {
   Tabs,
   Typography,
   withStyles,
-  withTheme
+  withTheme,
+  withWidth
 } from '@material-ui/core';
 import { Pagination, Rating } from '@material-ui/lab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -38,6 +39,16 @@ import Footer from '../components/Footer';
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper
+  },
+  container: {
+    [theme.breakpoints.up('md')]: {
+      margin: theme.spacing(0, 2)
+    }
+  },
+  subcontainer: {
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(0, 2)
+    }
   },
   leftSideBar: {
     [theme.breakpoints.up('md')]: {
@@ -140,6 +151,7 @@ const styles = (theme) => ({
     textTransform: 'uppercase'
   },
   menuButton: {
+    marginRight: theme.spacing(1),
     [theme.breakpoints.up('md')]: {
       display: 'none'
     }
@@ -148,11 +160,14 @@ const styles = (theme) => ({
     padding: theme.spacing(2, 0, 2, 2),
     fontSize: theme.spacing(1.5)
   },
-  jobCard: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
-    padding: 'unset'
+  pagination: {
+    padding: theme.spacing(2, 0, 4, 0),
+    display: 'flex',
+    justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      borderTopColor: theme.palette.divider,
+      borderTopStyle: 'solid'
+    }
   },
   tagContainer: {
     wordBreak: 'break-word'
@@ -303,7 +318,7 @@ class Home extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box ml={2} mr={2}>
+      <Box className={this.props.classes.container}>
         <Box height={this.props.theme.spacing(8)} display="flex" justifyContent="center" alignItems="center">
           {!!this.state.newJobs && (
             <MenuItem
@@ -437,122 +452,227 @@ class Home extends PureComponent {
   )
 
   renderJobList = () => (
-    <Box ml={2} mr={2}>
-      <Box display="flex" flexDirection="row">
-        <Box mr={1} className={this.props.classes.menuButton}>
-          <IconButton onClick={() => this.setState({ drawerOpened: true })}>
-            <FontAwesomeIcon icon={faBars} />
-          </IconButton>
+    <Box className={this.props.classes.container}>
+      <Box className={this.props.classes.subcontainer}>
+        <Box display="flex" flexDirection="row">
+          <Box className={this.props.classes.menuButton}>
+            <IconButton onClick={() => this.setState({ drawerOpened: true })}>
+              <FontAwesomeIcon icon={faBars} />
+            </IconButton>
+          </Box>
+          <Box flex={1}>
+            <OutlinedInput
+              fullWidth
+              type="text"
+              placeholder="Search for project"
+              inputProps={{
+                className: this.props.classes.search
+              }}
+              endAdornment={(
+                <InputAdornment position="end">
+                  <IconButton>
+                    <FontAwesomeIcon icon={faSearch} style={{ fontSize: '0.8em' }} />
+                  </IconButton>
+                </InputAdornment>
+              )}
+              style={{
+                paddingRight: this.props.theme.spacing(0.5)
+              }}
+            />
+          </Box>
         </Box>
-        <Box flex={1}>
-          <OutlinedInput
-            fullWidth
-            type="text"
-            placeholder="Search for project"
-            inputProps={{
-              className: this.props.classes.search
-            }}
-            endAdornment={(
-              <InputAdornment position="end">
-                <IconButton>
-                  <FontAwesomeIcon icon={faSearch} style={{ fontSize: '0.8em' }} />
-                </IconButton>
-              </InputAdornment>
-            )}
-            style={{
-              paddingRight: this.props.theme.spacing(0.5)
-            }}
-          />
+        <Box mt={2} mb={2}>
+          <Typography variant="body2">{pluralize('job', 4500, true)} found</Typography>
         </Box>
       </Box>
-      <Box mt={2} mb={2}>
-        <Typography variant="body2">{pluralize('job', 4500, true)} found</Typography>
-      </Box>
-      {this.state.jobs.map((job, i) => (
-        <Box key={i} mb={1}>
-          <Card elevation={0} className={this.props.classes.jobCard}>
-            <CardContent>
-              <Box display="flex">
-                <Box flex={1}>
-                  <Typography variant="subtitle1">{job.title}</Typography>
-                </Box>
-                <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
-              </Box>
-              <Box mt={1} display="flex">
-                <Box className={this.props.classes.tagContainer} flex={1}>
-                  {job.categories.map((category, j) => (
-                    <Typography
-                      key={j}
-                      component="div"
-                      variant="body2"
-                      className={this.props.classes.tag}
-                      style={{
-                        backgroundColor: category.backgroundColor,
-                        color: this.props.theme.palette.common.white
-                      }}
-                    >{category.title}</Typography>
-                  ))}
-                </Box>
-                <Typography variant="body2" color="textSecondary">{job.type}</Typography>
-              </Box>
-              <Box mt={1.5}>
-                <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
-              </Box>
-              <Box mt={1} mb={2.5} display="flex">
-                <Box className={this.props.classes.tagContainer} flex={1} mr={5}>
-                  {job.skills.map((skill, j) => (
-                    <Typography
-                      key={j}
-                      component="div"
-                      variant="body2"
-                      className={this.props.classes.tag}
-                      style={{
-                        backgroundColor: this.props.theme.palette.action.disabledBackground,
-                        color: this.props.theme.palette.text.secondary
-                      }}
-                    >{skill}</Typography>
-                  ))}
-                </Box>
-                <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
-              </Box>
-              <Divider />
-              <Box className={this.props.classes.tagContainer} mt={1.5}>
-                {this.renderApplyBefore()}
-                {this.renderPaymentMethod(job.paymentMethod)}
-                {this.renderReview(job.reviewCount, job.reviewAverage)}
-                {this.renderLocation(job.location)}
-                <Box display="inline-block">
-                  <Box display="flex" alignItems="center">
-                    <IconButton
-                      className={this.props.classes.savedIcon}
-                      onClick={() => {
-                        const jobs = cloneDeep(this.state.jobs);
-                        jobs[i].saved = !jobs[i].saved;
-                        this.setState({ jobs });
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faHeart} style={{
-                        color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
-                      }} />
-                    </IconButton>
-                    <Box ml={1}>
-                      <Typography variant="body2" align="right">Saved</Typography>
-                    </Box>
-                  </Box>
-                </Box>
-              </Box>
-            </CardContent>
-          </Card>
-        </Box>
-      ))}
-      <Box mt={2} mb={4} display="flex" justifyContent="center">
-        <Pagination count={10} size="large" />
+      {this.state.jobs.map((job, i) => {
+        switch (this.props.width) {
+          case 'sm':
+          case 'xs':
+            return this.renderMobileJobCard(job, i);
+          default:
+            return this.renderDesktopJobCard(job, i);
+        }
+      })}
+      <Box className={this.props.classes.pagination}>
+        <Pagination count={10} size={this.getControlSize()} />
       </Box>
     </Box>
   )
 
+  getControlSize() {
+    switch (this.props.width) {
+      case 'sm':
+      case 'xs':
+        return 'small';
+      case 'md':
+        return 'medium';
+      default:
+        return 'large';
+    }
+  }
+
+  renderDesktopJobCard = (job, i) => (
+    <Card key={i} elevation={0} style={{
+      marginBottom: this.props.theme.spacing(1),
+      borderRadius: this.props.theme.spacing(1.5),
+      borderColor: this.props.theme.palette.divider,
+      borderStyle: 'solid',
+      padding: 'unset'
+    }}>
+      <CardContent>
+        <Box display="flex">
+          <Box flex={1}>
+            <Typography variant="subtitle1">{job.title}</Typography>
+          </Box>
+          <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
+        </Box>
+        <Box mt={1} display="flex">
+          <Box className={this.props.classes.tagContainer} flex={1}>
+            {job.categories.map((category, j) => (
+              <Typography
+                key={j}
+                component="div"
+                variant="body2"
+                className={this.props.classes.tag}
+                style={{
+                  backgroundColor: category.backgroundColor,
+                  color: this.props.theme.palette.common.white
+                }}
+              >{category.title}</Typography>
+            ))}
+          </Box>
+          <Typography variant="body2" color="textSecondary">{job.type}</Typography>
+        </Box>
+        <Box mt={1.5}>
+          <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
+        </Box>
+        <Box mt={1} mb={2.5} display="flex">
+          <Box className={this.props.classes.tagContainer} flex={1} mr={5}>
+            {job.skills.map((skill, j) => (
+              <Typography
+                key={j}
+                component="div"
+                variant="body2"
+                className={this.props.classes.tag}
+                style={{
+                  backgroundColor: this.props.theme.palette.action.disabledBackground,
+                  color: this.props.theme.palette.text.secondary
+                }}
+              >{skill}</Typography>
+            ))}
+          </Box>
+          <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
+        </Box>
+        <Divider />
+        <Box className={this.props.classes.tagContainer} mt={1.5}>
+          {this.renderApplyBefore()}
+          {this.renderPaymentMethod(job.paymentMethod)}
+          {this.renderReview(job.reviewCount, job.reviewAverage)}
+          {this.renderLocation(job.location)}
+          <Box display="inline-block">
+            <Box display="flex" alignItems="center">
+              <IconButton
+                className={this.props.classes.savedIcon}
+                onClick={() => {
+                  const jobs = cloneDeep(this.state.jobs);
+                  jobs[i].saved = !jobs[i].saved;
+                  this.setState({ jobs });
+                }}
+              >
+                <FontAwesomeIcon icon={faHeart} style={{
+                  color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
+                }} />
+              </IconButton>
+              <Box ml={1}>
+                <Typography variant="body2" align="right">Saved</Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </CardContent>
+    </Card>
+  )
+
+  renderMobileJobCard = (job, i) => (
+    <Card key={i} elevation={0} style={{
+      borderTopColor: this.props.theme.palette.divider,
+      borderTopStyle: 'solid'
+    }}>
+      <CardContent>
+        <Typography variant="subtitle1">{job.title}</Typography>
+        <Box mt={1} className={this.props.classes.tagContainer}>
+          {job.categories.map((category, j) => (
+            <Typography
+              key={j}
+              component="div"
+              variant="body2"
+              className={this.props.classes.tag}
+              style={{
+                backgroundColor: category.backgroundColor,
+                color: this.props.theme.palette.common.white
+              }}
+            >{category.title}</Typography>
+          ))}
+        </Box>
+        <Box mt={1.5}>
+          <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
+        </Box>
+        <Box mt={1.5} display="flex" alignItems="center">
+          <Box flex={1}>
+            <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
+          </Box>
+          <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
+        </Box>
+        <Box mt={1.5}>
+          <Typography variant="body2" color="textSecondary">{job.type}</Typography>
+        </Box>
+        <Box mt={1} mb={2.5} className={this.props.classes.tagContainer}>
+          {job.skills.map((skill, j) => (
+            <Typography
+              key={j}
+              component="div"
+              variant="body2"
+              className={this.props.classes.tag}
+              style={{
+                backgroundColor: this.props.theme.palette.action.disabledBackground,
+                color: this.props.theme.palette.text.secondary
+              }}
+            >{skill}</Typography>
+          ))}
+        </Box>
+        <Divider />
+        <Box className={this.props.classes.tagContainer} mt={1.5}>
+          {this.renderApplyBefore()}
+          {this.renderPaymentMethod(job.paymentMethod)}
+          {this.renderReview(job.reviewCount, job.reviewAverage)}
+          {this.renderLocation(job.location)}
+          <Box display="inline-block">
+            <Box display="flex" alignItems="center">
+              <IconButton
+                className={this.props.classes.savedIcon}
+                onClick={() => {
+                  const jobs = cloneDeep(this.state.jobs);
+                  jobs[i].saved = !jobs[i].saved;
+                  this.setState({ jobs });
+                }}
+              >
+                <FontAwesomeIcon icon={faHeart} style={{
+                  color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
+                }} />
+              </IconButton>
+              <Box ml={1}>
+                <Typography variant="body2" align="right">Saved</Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </CardContent>
+    </Card>
+  )
+
   renderApplyBefore = () => (
-    <Box mr={2} display="inline-block">
+    <Box mr={2} mb={1} display="inline-block">
       <Box display="flex" alignItems="center">
         <Avatar className={this.props.classes.buyerIcon}>
           <FontAwesomeIcon icon={faClock} />
@@ -566,7 +686,7 @@ class Home extends PureComponent {
   )
 
   renderPaymentMethod = (value) => (
-    <Box mr={2} display="inline-block">
+    <Box mr={2} mb={1} display="inline-block">
       <Box display="flex" alignItems="center">
         <Avatar className={this.props.classes.buyerIcon}>
           <FontAwesomeIcon icon={faDollarSign} />
@@ -580,21 +700,21 @@ class Home extends PureComponent {
   )
 
   renderReview = (count, average) => (
-    <Box mr={2} display="inline-block">
+    <Box mr={2} mb={1} display="inline-block">
       <Box display="flex" alignItems="center">
         <Avatar className={this.props.classes.buyerIcon}>
           <FontAwesomeIcon icon={faStar} />
         </Avatar>
         <Box ml={1}>
           <Typography variant="body2" noWrap>{pluralize('Review', count, true)}</Typography>
-          <Rating name="read-only" value={average} readOnly />
+          <Rating name="read-only" value={average} readOnly size="small" />
         </Box>
       </Box>
     </Box>
   )
 
   renderLocation = (value) => (
-    <Box mr={2} display="inline-block">
+    <Box mr={2} mb={1} display="inline-block">
       <Box display="flex" alignItems="center">
         <Avatar className={this.props.classes.buyerIcon}>
           <FontAwesomeIcon icon={faMapMarkedAlt} />
@@ -750,5 +870,6 @@ class Home extends PureComponent {
 
 export default compose(
   withStyles(styles),
-  withTheme
+  withTheme,
+  withWidth()
 )(Home);
