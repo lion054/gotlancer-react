@@ -118,6 +118,10 @@ const styles = (theme) => ({
     display: 'inline-block',
     whiteSpace: 'nowrap'
   },
+  description: {
+    height: theme.spacing(7.5), // 3 lines
+    overflow: 'hidden'
+  },
   buyerIcon: {
     width: theme.spacing(4),
     height: theme.spacing(4),
@@ -150,7 +154,7 @@ class Home extends PureComponent {
       }
       jobs.push({
         title: faker.lorem.sentence(3),
-        description: faker.lorem.sentences(5),
+        description: faker.lorem.sentences(10),
         type: faker.random.arrayElement(['HOURLY', 'FIXED']),
         budget: {
           min: faker.random.number({ min: 10, max: 20 }),
@@ -384,7 +388,7 @@ class Home extends PureComponent {
                 <Typography variant="body2" color="textSecondary">{job.type}</Typography>
               </Box>
               <Box mt={1.5}>
-                <Typography variant="body2">{job.description}</Typography>
+                <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
               </Box>
               <Box mt={1} mb={2.5} display="flex">
                 <Box className={this.props.classes.tagContainer} flex={1} mr={5}>
