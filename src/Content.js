@@ -6,7 +6,8 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { connect } from 'react-redux';
 
 import AccountSettings from './scenes/AccountSettings';
-import Home from './scenes/Home';
+import FindWork from './scenes/FindWork';
+import BuyerHome from './scenes/BuyerHome';
 import Messenger from './scenes/Messenger';
 
 import GlobalPreferences from './scenes/AccountSettings/GlobalPreferences';
@@ -23,7 +24,10 @@ import ScrollToTop from './components/ScrollToTop';
 
 const routes = [{
   path: '/',
-  component: Home
+  component: BuyerHome
+},{
+  path: '/find_work',
+  component: FindWork
 },{
   path: '/account_settings',
   component: AccountSettings
