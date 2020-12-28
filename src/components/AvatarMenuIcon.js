@@ -24,6 +24,10 @@ import { updateThemeMode } from '../controllers/app/actions';
 import InfoSwitch from '../components/InfoSwitch';
 
 const styles = (theme) => ({
+  userIcon: {
+    color: theme.palette.action.active,
+    fontSize: theme.spacing(5)
+  },
   menuList: {
     minWidth: theme.spacing(37.5)
   }
@@ -107,7 +111,7 @@ class AvatarMenuIcon extends PureComponent {
   render = () => (
     <Fragment>
       <IconButton color="inherit" onClick={this.handleDrawer}>
-        <FontAwesomeIcon icon={faUserCircle} size="1x" />
+        <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.userIcon} />
       </IconButton>
       <Drawer
         anchor="right"

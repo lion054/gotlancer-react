@@ -75,7 +75,7 @@ class AvatarMenuButton extends PureComponent {
           <Typography variant="body2" display="block" noWrap align="right">$100.00 USD</Typography>
         </Box>
         <Box display="inline-block">
-          <FontAwesomeIcon icon={faUserCircle} size="3x" />
+          <FontAwesomeIcon icon={faUserCircle} size="3x" color={this.props.theme.palette.action.active} />
         </Box>
       </Button>
       <Menu
