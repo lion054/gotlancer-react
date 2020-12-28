@@ -32,7 +32,7 @@ const styles = (theme) => ({
     width: theme.spacing(16)
   },
   logo: {
-    width: theme.spacing(16)
+    width: theme.spacing(4)
   },
   spacer: {
     [theme.breakpoints.up('md')]: {
@@ -177,9 +177,9 @@ class Footer extends PureComponent {
 
   renderInfoBar = () => (
     <Box alignItems="center" mt={1} className={this.props.classes.infoBar}>
-      <Box alignItems="center">
+      <Box alignItems="center" ml={2}>
         <MenuItem disableGutters className={this.props.classes.logoWrapper} onClick={() => this.props.history.push('/')}>
-          <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-long.svg')} />
+          <img alt="" className={this.props.classes.logo} src={require('../assets/images/gl-logo-black.svg')} />
         </MenuItem>
         <Box display="inline" ml={1}>
           <Typography variant="caption" color="textPrimary">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
