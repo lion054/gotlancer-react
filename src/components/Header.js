@@ -21,12 +21,10 @@ import { connect } from 'react-redux';
 
 import AvatarMenuButton from './AvatarMenuButton';
 import AvatarMenuIcon from './AvatarMenuIcon';
-import SearchBox from './SearchBox';
-import { getHeaderHoverBackgroundColor } from '../themes';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.type === 'dark' ? '#fafafa' : '#24292e'
+    backgroundColor: theme.palette.background.default
   },
   logo: {
     width: theme.spacing(5)
@@ -39,11 +37,6 @@ const styles = (theme) => ({
   search: {
     [theme.breakpoints.down('sm')]: {
       display: 'none'
-    }
-  },
-  icon: {
-    '&:hover': {
-      backgroundColor: getHeaderHoverBackgroundColor(theme)
     }
   },
   badge: {
@@ -65,10 +58,7 @@ const styles = (theme) => ({
 const MenuButton = withStyles((theme) => ({
   root: {
     fontSize: theme.spacing(1.75),
-    color: theme.palette.type === 'dark' ? theme.palette.grey[700] : theme.palette.grey[300],
-    '&:hover': {
-      backgroundColor: getHeaderHoverBackgroundColor(theme)
-    }
+    color: theme.palette.text.primary
   }
 }))(Button);
 
@@ -77,6 +67,8 @@ class Header extends PureComponent {
     projectsEl: null,
     hireEl: null,
     reportsEl: null,
+    contestEl: null,
+    marketsEl: null,
     drawerOpened: false
   }
 
@@ -92,8 +84,15 @@ class Header extends PureComponent {
 
   onCloseReports = () => this.setState({ reportsEl: null })
 
+  onOpenContest = (event) => this.setState({ contestEl: event.currentTarget })
+
+  onCloseContest = () => this.setState({ contestEl: null })
+
+  onOpenMarket = (event) => this.setState({ marketEl: event.currentTarget })
+
+  onCloseMarket = () => this.setState({ marketEl: null })
+
   render = () => {
-    const textColor = this.props.theme.palette.theme === 'dark' ? this.props.theme.palette.grey[700] : this.props.theme.palette.grey[300];
     console.log(this.props.width);
     return (
       <div style={{ flexGrow: 1, height: 64 }}>
@@ -103,7 +102,7 @@ class Header extends PureComponent {
             <Grid item lg={8} xs={12}>
               <Toolbar disableGutters style={{ height: 64 }}>
                 <MenuItem onClick={() => this.props.history.push('/')} style={{ minWidth: this.props.theme.spacing(9) }}>
-                  <img alt="" className={this.props.classes.logo} src={require('../assets/images/gl-logo-white.svg')} />
+                  <img alt="" className={this.props.classes.logo} src={require('../assets/images/gl-logo-black.svg')} />
                 </MenuItem>
                 <Box className={this.props.classes.optional} ml={3}>
                   <MenuButton onClick={this.onOpenProjects}>Projects</MenuButton>
@@ -159,24 +158,54 @@ class Header extends PureComponent {
                     <MenuItem className={this.props.classes.label}>Dispute List</MenuItem>
                   </Menu>
                 </Box>
-                <Box className={this.props.classes.search}>
-                  <SearchBox textColor={textColor} />
+                <Box className={this.props.classes.optional}>
+                  <MenuButton onClick={this.onOpenContest}>Contest</MenuButton>
+                  <Menu
+                    id="contest-menu"
+                    anchorEl={this.state.contestEl}
+                    keepMounted
+                    open={!!this.state.contestEl}
+                    onClose={this.onCloseContest}
+                    getContentAnchorEl={null} // menu should be display below anchor
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
+                  >
+                    <MenuItem className={this.props.classes.label}>Find Contest</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Saved Contest</MenuItem>
+                  </Menu>
+                </Box>
+                <Box className={this.props.classes.optional}>
+                  <MenuButton onClick={this.onOpenMarket}>Market</MenuButton>
+                  <Menu
+                    id="market-menu"
+                    anchorEl={this.state.marketEl}
+                    keepMounted
+                    open={!!this.state.marketEl}
+                    onClose={this.onCloseMarket}
+                    getContentAnchorEl={null} // menu should be display below anchor
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
+                  >
+                    <MenuItem className={this.props.classes.label}>Explore Market</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Saved Market</MenuItem>
+                  </Menu>
+                </Box>
+                <Box className={this.props.classes.optional}>
+                  <Button variant="contained" style={{ marginLeft: 8, borderRadius: 18 }}>Post a project</Button>
                 </Box>
                 <div style={{ flex: 1 }} />
                 <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
                   <IconButton className={this.props.classes.icon} onClick={() => this.props.history.push('/messenger')}>
-                    <FontAwesomeIcon icon={faEnvelope} color={textColor} size="1x" />
+                    <FontAwesomeIcon icon={faEnvelope} size="1x" />
                   </IconButton>
                 </Badge>
                 <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
                   <IconButton className={this.props.classes.icon}>
-                    <FontAwesomeIcon icon={faBell} color={textColor} size="1x" />
+                    <FontAwesomeIcon icon={faBell} size="1x" />
                   </IconButton>
                 </Badge>
                 {this.props.width === 'xs' ? (
-                  <AvatarMenuIcon textColor={textColor} />
+                  <AvatarMenuIcon />
                 ) : (
-                  <AvatarMenuButton textColor={textColor} />
+                  <AvatarMenuButton />
                 )}
               </Toolbar>
             </Grid>

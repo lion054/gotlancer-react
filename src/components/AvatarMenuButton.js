@@ -16,16 +16,12 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import { getHeaderHoverBackgroundColor } from '../themes';
 import { updateThemeMode } from '../controllers/app/actions';
 import InfoSwitch from '../components/InfoSwitch';
 
 const styles = (theme) => ({
   root: {
-    borderRadius: theme.spacing(3),
-    '&:hover': {
-      backgroundColor: getHeaderHoverBackgroundColor(theme)
-    }
+    borderRadius: theme.spacing(3)
   },
   optional: {
     display: 'inline-block',
@@ -75,11 +71,11 @@ class AvatarMenuButton extends PureComponent {
         onClick={this.onOpenMenu}
       >
         <Box mr={1.5} className={this.props.classes.optional}>
-          <Typography variant="body2" display="block" noWrap align="right" style={{ color: this.props.textColor }}>Hi, Apurba</Typography>
-          <Typography variant="body2" display="block" noWrap align="right" style={{ color: this.props.textColor }}>$100.00 USD</Typography>
+          <Typography variant="body2" display="block" noWrap align="right">Hi, Apurba</Typography>
+          <Typography variant="body2" display="block" noWrap align="right">$100.00 USD</Typography>
         </Box>
         <Box display="inline-block">
-          <FontAwesomeIcon icon={faUserCircle} color={this.props.textColor} size="3x" />
+          <FontAwesomeIcon icon={faUserCircle} size="3x" />
         </Box>
       </Button>
       <Menu

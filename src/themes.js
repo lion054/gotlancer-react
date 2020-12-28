@@ -1,4 +1,4 @@
-import { colors, createMuiTheme, fade } from '@material-ui/core';
+import { colors, createMuiTheme } from '@material-ui/core';
 
 export const lightTheme = createMuiTheme({
   palette: {
@@ -165,5 +165,3 @@ export const darkTheme = createMuiTheme({
     }
   }
 });
-
-export const getHeaderHoverBackgroundColor = (theme) => fade(theme.palette.grey[800], 1 - theme.palette.action.hoverOpacity);
