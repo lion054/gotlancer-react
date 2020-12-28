@@ -165,7 +165,7 @@ class PaymentsPayouts extends PureComponent {
                 })}
               </Grid>
               <Grid item md={2} />
-              <Grid item md={4} lg={12}>
+              <Grid item md={4} xs={12}>
                 <Card elevation={0} className={this.props.classes.card}>
                   <CardContent>
                     <img alt="" className={this.props.classes.cardIcon} src={require('../../../assets/images/settings/payments-and-payouts.svg')} />
