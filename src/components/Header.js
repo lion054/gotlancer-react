@@ -24,7 +24,7 @@ import AvatarMenuIcon from './AvatarMenuIcon';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.paper
   },
   logo: {
     width: theme.spacing(5)
