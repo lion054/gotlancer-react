@@ -27,7 +27,7 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.background.paper
   },
   logo: {
-    width: theme.spacing(5)
+    width: 43
   },
   optional: {
     [theme.breakpoints.down('sm')]: {
@@ -95,11 +95,11 @@ class Header extends PureComponent {
           <Grid container>
             <Grid item lg={2} />
             <Grid item lg={8} xs={12}>
-              <Toolbar disableGutters style={{ height: 64, paddingLeft: 8 }}>
-                <IconButton onClick={() => this.props.history.push('/')} style={{ minWidth: this.props.theme.spacing(9) }}>
+              <Toolbar disableGutters style={{ height: 64, paddingLeft: 16 }}>
+                <IconButton onClick={() => this.props.history.push('/')}>
                   <img alt="" className={this.props.classes.logo} src={require('../assets/images/gl-logo-black.svg')} />
                 </IconButton>
-                <Box className={this.props.classes.optional} ml={3}>
+                <Box className={this.props.classes.optional} ml={1}>
                   <MenuButton onClick={this.onOpenProjects}>Projects</MenuButton>
                   <Menu
                     id="projects-menu"

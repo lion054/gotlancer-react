@@ -7,7 +7,6 @@ import {
   Link,
   List,
   ListItem,
-  MenuItem,
   Typography,
   withStyles,
   withTheme,
@@ -29,7 +28,7 @@ const styles = (theme) => ({
   },
   logoWrapper: {
     display: 'inline',
-    width: theme.spacing(16)
+    width: theme.spacing(7)
   },
   logo: {
     width: theme.spacing(4)
@@ -178,9 +177,9 @@ class Footer extends PureComponent {
   renderInfoBar = () => (
     <Box alignItems="center" mt={1} className={this.props.classes.infoBar}>
       <Box alignItems="center" ml={2}>
-        <MenuItem disableGutters className={this.props.classes.logoWrapper} onClick={() => this.props.history.push('/')}>
+        <IconButton className={this.props.classes.logoWrapper} onClick={() => this.props.history.push('/')}>
           <img alt="" className={this.props.classes.logo} src={require('../assets/images/gl-logo-black.svg')} />
-        </MenuItem>
+        </IconButton>
         <Box display="inline" ml={1}>
           <Typography variant="caption" color="textPrimary">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
         </Box>
