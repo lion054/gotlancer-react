@@ -6,9 +6,7 @@ import {
   FormControlLabel,
   Grid,
   Link,
-  MenuItem,
   OutlinedInput,
-  TextField,
   Typography,
   withStyles
 } from '@material-ui/core';
@@ -37,7 +35,7 @@ const styles = (theme) => ({
   }
 })
 
-class AddBank extends PureComponent {
+class AddPayoneer extends PureComponent {
   state = {
     phoneNumber: ''
   }
@@ -53,77 +51,11 @@ class AddBank extends PureComponent {
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
                 <Link color="inherit" href="/settings">Settings</Link>
                 <Link color="inherit" href="/settings/payments_payouts">Payments &amp; Payouts</Link>
-                <Typography color="textSecondary">Add Bank</Typography>
+                <Typography color="textSecondary">Add Payoneer</Typography>
               </Breadcrumbs>
             </Box>
             <Box mb={2}>
-              <Typography variant="h5">Add Bank</Typography>
-            </Box>
-            <Box className={this.props.classes.field}>
-              <Typography variant="subtitle1">IFSC Code</Typography>
-              <Box mt={1} display="flex" flexDirection="row">
-                <OutlinedInput
-                  fullWidth
-                  type="text"
-                  placeholder="Enter IFSC Code"
-                />
-                <Button variant="contained" className={this.props.classes.find}>Find</Button>
-              </Box>
-            </Box>
-            <Box className={this.props.classes.field}>
-              <Typography variant="subtitle1">Bank</Typography>
-              <Typography variant="body2">ICICI BANK LTD, BIDHAN NAGAR (SALT LAKE - SEC) ICICI BANK LTD. INFINITY BENCHMARK PLOT NO.G1 BLOCK EP &amp; GP SECTOR 5 KOLKATA -700091 WEST BENGAL</Typography>
-            </Box>
-            <Box className={this.props.classes.field}>
-              <Typography variant="subtitle1">Not your bank or branch?</Typography>
-            </Box>
-            <Box className={this.props.classes.field}>
-              <Typography variant="subtitle1">Account Currency</Typography>
-              <Typography variant="body2">Indian Rupee (INR)</Typography>
-            </Box>
-            <Box className={this.props.classes.field}>
-              <Typography variant="subtitle1">Withdrawal Fee</Typography>
-              <Typography variant="body2">No withdrawal fee</Typography>
-            </Box>
-            <Box className={this.props.classes.field}>
-              <Typography variant="subtitle1">Account Holder Bank Information</Typography>
-            </Box>
-            <Box className={this.props.classes.field}>
-              <Typography variant="subtitle1">Account Number</Typography>
-              <Typography variant="body2">Your account number may include only capital letters and digits</Typography>
-              <Box mt={2}>
-                <OutlinedInput
-                  fullWidth
-                  type="text"
-                  placeholder="Enter Account Number"
-                />
-              </Box>
-            </Box>
-            <Box className={this.props.classes.field}>
-              <Typography variant="subtitle1">PAN Number</Typography>
-              <Typography variant="body2">PAN number (Permanent Account Number), 10 characters in length</Typography>
-              <Box mt={2}>
-                <OutlinedInput
-                  fullWidth
-                  type="text"
-                  placeholder="Enter PAN Number"
-                />
-              </Box>
-            </Box>
-            <Box className={this.props.classes.field}>
-              <Typography variant="subtitle1">Account Type</Typography>
-              <Typography variant="body2">Type of account</Typography>
-              <Box mt={2}>
-                <TextField
-                  variant="outlined"
-                  select
-                  fullWidth
-                  onChange={() => {}}
-                >
-                  <MenuItem value="A">Type A</MenuItem>
-                  <MenuItem value="B">Type B</MenuItem>
-                </TextField>
-              </Box>
+              <Typography variant="h5">Add Payoneer</Typography>
             </Box>
             <Box className={this.props.classes.field}>
               <Typography variant="subtitle1">First Name</Typography>
@@ -148,12 +80,13 @@ class AddBank extends PureComponent {
               </Box>
             </Box>
             <Box className={this.props.classes.field}>
-              <Typography variant="subtitle1">Name on Account</Typography>
+              <Typography variant="subtitle1">Payoneer registered email ID</Typography>
+              <Typography variant="body2">We need your Payoneer registred email id for send you money,</Typography>
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
                   type="text"
-                  placeholder="Enter Name on Account"
+                  placeholder="Enter Payoneer registered email ID"
                 />
               </Box>
             </Box>
@@ -165,6 +98,16 @@ class AddBank extends PureComponent {
                   fullWidth
                   type="text"
                   placeholder="Enter Address"
+                />
+              </Box>
+            </Box>
+            <Box className={this.props.classes.field}>
+              <Typography variant="subtitle1">City and State/Province</Typography>
+              <Box mt={2}>
+                <OutlinedInput
+                  fullWidth
+                  type="text"
+                  placeholder="Enter City and State/Province"
                 />
               </Box>
             </Box>
@@ -194,7 +137,7 @@ class AddBank extends PureComponent {
                 control={(
                   <GreenCheckbox />
                 )}
-                label={<Typography variant="body2">I attest that I am the owner and have full authorization to this bank account.</Typography>}
+                label={<Typography variant="body2">I attest that I am the owner and have full authorization to this Payoneer account.</Typography>}
               />
             </Box>
             <Box className={this.props.classes.field}>
@@ -212,4 +155,4 @@ class AddBank extends PureComponent {
   )
 }
 
-export default withStyles(styles)(AddBank);
+export default withStyles(styles)(AddPayoneer);

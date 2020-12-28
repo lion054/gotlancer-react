@@ -11,6 +11,11 @@ import BuyerHome from './scenes/BuyerHome';
 import Messenger from './scenes/Messenger';
 
 import AddBank from './scenes/Settings/PaymentsPayouts/AddBank';
+import AddBkash from './scenes/Settings/PaymentsPayouts/AddBkash';
+import AddNagad from './scenes/Settings/PaymentsPayouts/AddNagad';
+import AddPayPal from './scenes/Settings/PaymentsPayouts/AddPayPal';
+import AddPayoneer from './scenes/Settings/PaymentsPayouts/AddPayoneer';
+import AddSkrill from './scenes/Settings/PaymentsPayouts/AddSkrill';
 import GlobalPreferences from './scenes/Settings/GlobalPreferences';
 import InviteFriends from './scenes/Settings/InviteFriends';
 import LoginSecurity from './scenes/Settings/LoginSecurity';
@@ -44,6 +49,21 @@ const routes = [{
 },{
   path: '/settings/payments_payouts/add_bank',
   component: AddBank
+},{
+  path: '/settings/payments_payouts/add_bkash',
+  component: AddBkash
+},{
+  path: '/settings/payments_payouts/add_nagad',
+  component: AddNagad
+},{
+  path: '/settings/payments_payouts/add_paypal',
+  component: AddPayPal
+},{
+  path: '/settings/payments_payouts/add_payoneer',
+  component: AddPayoneer
+},{
+  path: '/settings/payments_payouts/add_skrill',
+  component: AddSkrill
 },{
   path: '/settings/verify_identity',
   component: VerifyIdentity

@@ -105,35 +105,35 @@ class PaymentsPayouts extends PureComponent {
                       <Box mt={2} mb={2}>
                         <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
                       </Box>
-                      <Button variant="contained" size="large">Add Payoneer</Button>
+                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_payoneer')}>Add Payoneer</Button>
                       <Box mt={3}>
                         <Typography variant="h6">Add PayPal</Typography>
                       </Box>
                       <Box mt={2} mb={2}>
                         <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
                       </Box>
-                      <Button variant="contained" size="large">Add PayPal</Button>
+                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_paypal')}>Add PayPal</Button>
                       <Box mt={3}>
                         <Typography variant="h6">Add Skrill</Typography>
                       </Box>
                       <Box mt={2} mb={2}>
                         <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
                       </Box>
-                      <Button variant="contained" size="large">Add Skrill</Button>
+                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_skrill')}>Add Skrill</Button>
                       <Box mt={3}>
                         <Typography variant="h6">Add Nagad</Typography>
                       </Box>
                       <Box mt={2} mb={2}>
                         <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
                       </Box>
-                      <Button variant="contained" size="large">Add Nagad</Button>
+                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_nagad')}>Add Nagad</Button>
                       <Box mt={3}>
-                        <Typography variant="h6">Add Bkash</Typography>
+                        <Typography variant="h6">Add bKash</Typography>
                       </Box>
                       <Box mt={2} mb={2}>
                         <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
                       </Box>
-                      <Button variant="contained" size="large">Add Bkash</Button>
+                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_bkash')}>Add bKash</Button>
                     </Box>
                   )
                 })}
