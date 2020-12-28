@@ -30,11 +30,6 @@ const styles = (theme) => ({
     width: theme.spacing(5)
   },
   optional: {
-    [theme.breakpoints.only('xs')]: {
-      display: 'none'
-    }
-  },
-  search: {
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
