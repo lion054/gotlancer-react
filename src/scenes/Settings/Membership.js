@@ -54,7 +54,7 @@ class Membership extends PureComponent {
               <Typography variant="h5">Membership</Typography>
             </Box>
             <Grid container spacing={2}>
-              <Grid item md={6} xs={12}>
+              <Grid item md={6} sm={7} xs={12}>
                 <Box>
                   <Divider />
                   <Box mt={2}>
@@ -81,8 +81,8 @@ class Membership extends PureComponent {
                   </Box>
                 </Box>
               </Grid>
-              <Grid item md={2} />
-              <Grid item md={4} xs={12}>
+              <Grid item md={3} sm={1} />
+              <Grid item md={3} sm={4} xs={12}>
                 <Card elevation={0} className={this.props.classes.card}>
                   <CardContent>
                     <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/membership.svg')} />

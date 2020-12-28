@@ -62,7 +62,7 @@ class PaymentsPayouts extends PureComponent {
               <Typography variant="h5">Payments &amp; Payouts</Typography>
             </Box>
             <Grid container spacing={2}>
-              <Grid item md={6} xs={12}>
+              <Grid item md={6} sm={7} xs={12}>
                 <Tabs value={this.state.activeTab} onChange={this.handleTabChange}>
                   <Tab label="Payments" />
                   <Tab label="Payouts" />
@@ -164,8 +164,8 @@ class PaymentsPayouts extends PureComponent {
                   )
                 })}
               </Grid>
-              <Grid item md={2} />
-              <Grid item md={4} xs={12}>
+              <Grid item md={3} sm={1} />
+              <Grid item md={3} sm={4} xs={12}>
                 <Card elevation={0} className={this.props.classes.card}>
                   <CardContent>
                     <img alt="" className={this.props.classes.cardIcon} src={require('../../../assets/images/settings/payments-and-payouts.svg')} />

@@ -98,7 +98,7 @@ class InviteFriends extends PureComponent {
               <Typography variant="h5">Invite friends to join the Gotlancer community</Typography>
             </Box>
             <Grid container spacing={2}>
-              <Grid item lg={6} xs={12}>
+              <Grid item md={6} sm={7} xs={12}>
                 <Box mb={2}>
                   <Typography variant="body2" color="textSecondary">Once a user register through your referal link and spend $100 with gotlancer you will get $30.</Typography>
                 </Box>
@@ -109,8 +109,8 @@ class InviteFriends extends PureComponent {
                   {this.renderSharePanel()}
                 </Box>
               </Grid>
-              <Grid item lg={2} />
-              <Grid item lg={4} xs={12}>
+              <Grid item md={3} sm={1} />
+              <Grid item md={3} sm={4} xs={12}>
                 <Card elevation={0} className={this.props.classes.card}>
                   <CardContent>
                     <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/invite-friends.svg')} />
