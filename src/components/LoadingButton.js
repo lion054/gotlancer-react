@@ -33,11 +33,12 @@ class LoadingButton extends PureComponent {
         {...otherProps}
         disabled={this.props.disabled || this.props.loading}
         className={classes.root + ' ' + className}
+        style={this.props.loading ? { color: 'transparent' } : {}}
       >
         {this.props.title}
         <BeatLoader
           css={override}
-          color={this.props.theme.palette.success.main}
+          color={this.props.theme.palette.text.primary}
           loading={this.props.loading}
         />
       </Button>
