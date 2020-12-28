@@ -128,17 +128,8 @@ const styles = (theme) => ({
     padding: theme.spacing(1, 2),
     borderBottom: `solid 1px ${theme.palette.divider}`
   },
-  longLogo: {
-    width: theme.spacing(12),
-    [theme.breakpoints.down('md')]: {
-      display: 'none'
-    }
-  },
-  shortLogo: {
-    width: theme.spacing(4),
-    [theme.breakpoints.up('lg')]: {
-      display: 'none'
-    }
+  logo: {
+    width: theme.spacing(12)
   },
   newJobs: {
     backgroundColor: theme.palette.primary.main,
@@ -421,8 +412,7 @@ class Home extends PureComponent {
       <CardContent>
         <Typography variant="body2">Current membership</Typography>
         <Box display="flex" alignItems="center" mt={1} mb={2}>
-          <img alt="" className={this.props.classes.longLogo} src={require('../assets/images/gotlancer-logo-long.svg')} />
-          <img alt="" className={this.props.classes.shortLogo} src={require('../assets/images/gotlancer-logo-short.svg')} />
+          <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-long.svg')} />
           <Box ml={1}>
             <Typography variant="body1">Basic</Typography>
           </Box>
