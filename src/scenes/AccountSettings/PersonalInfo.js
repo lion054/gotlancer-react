@@ -79,8 +79,8 @@ class PersonalInfo extends PureComponent {
       <Header />
       <Box mt={8} ml={2} mr={2} mb={8}>
         <Grid container>
-          <Grid item md={2} />
-          <Grid item md={8}>
+          <Grid item lg={2} />
+          <Grid item lg={8} xs={12}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
                 <Link color="inherit" href="/account_settings">Account</Link>
@@ -90,8 +90,8 @@ class PersonalInfo extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Personal Info</Typography>
             </Box>
-            <Grid container>
-              <Grid item lg={6}>
+            <Grid container spacing={2}>
+              <Grid item md={6} xs={12}>
                 {this.renderEntry({
                   id: 'LegalName',
                   title: 'Legal name',
@@ -258,8 +258,8 @@ class PersonalInfo extends PureComponent {
                   )
                 })}
               </Grid>
-              <Grid item lg={2} />
-              <Grid item lg={4}>
+              <Grid item md={2} />
+              <Grid item md={4} xs={12}>
                 <Card elevation={0} className={this.props.classes.card}>
                   <CardContent>
                     <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/personal-info.svg')} />
@@ -271,7 +271,7 @@ class PersonalInfo extends PureComponent {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item md={2} />
+          <Grid item lg={2} />
         </Grid>
       </Box>
       <Footer />

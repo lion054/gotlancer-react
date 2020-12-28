@@ -86,8 +86,8 @@ class InviteFriends extends PureComponent {
       <Header />
       <Box mt={8} ml={2} mr={2} mb={8}>
         <Grid container>
-          <Grid item md={2} />
-          <Grid item md={8}>
+          <Grid item lg={2} />
+          <Grid item lg={8} xs={12}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
                 <Link color="inherit" href="/account_settings">Account</Link>
@@ -97,8 +97,8 @@ class InviteFriends extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Invite friends to join the Gotlancer community</Typography>
             </Box>
-            <Grid container>
-              <Grid item lg={6}>
+            <Grid container spacing={2}>
+              <Grid item lg={6} xs={12}>
                 <Box mb={2}>
                   <Typography variant="body2" color="textSecondary">Once a user register through your referal link and spend $100 with gotlancer you will get $30.</Typography>
                 </Box>
@@ -110,7 +110,7 @@ class InviteFriends extends PureComponent {
                 </Box>
               </Grid>
               <Grid item lg={2} />
-              <Grid item lg={4}>
+              <Grid item lg={4} xs={12}>
                 <Card elevation={0} className={this.props.classes.card}>
                   <CardContent>
                     <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/invite-friends.svg')} />
@@ -122,17 +122,17 @@ class InviteFriends extends PureComponent {
             </Grid>
             <Box mt={2}>
               <Grid container spacing={4}>
-                <Grid item md={4}>
+                <Grid item sm={4} xs={12}>
                   <Language />
                   <Typography variant="subtitle1">Lorem Ipsum</Typography>
                   <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
                 </Grid>
-                <Grid item md={4}>
+                <Grid item sm={4} xs={12}>
                   <Language />
                   <Typography variant="subtitle1">Lorem Ipsum</Typography>
                   <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
                 </Grid>
-                <Grid item md={4}>
+                <Grid item sm={4} xs={12}>
                   <Language />
                   <Typography variant="subtitle1">Lorem Ipsum</Typography>
                   <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
@@ -141,7 +141,7 @@ class InviteFriends extends PureComponent {
             </Box>
             <Box mt={2}>
               <Grid container spacing={4}>
-                <Grid item md={8}>
+                <Grid item md={8} xs={12}>
                   {this.renderEntry({
                     id: 1,
                     title: 'How much will my friend get when I invite them?',
@@ -171,14 +171,14 @@ class InviteFriends extends PureComponent {
                     )
                   })}
                 </Grid>
-                <Grid item md={4}>
+                <Grid item md={4} xs={12}>
                   <Typography variant="subtitle2">Common questions</Typography>
                   <Typography variant="body2">Check out these answers to common questions and review other programme information in the Help Centre.</Typography>
                 </Grid>
               </Grid>
             </Box>
           </Grid>
-          <Grid item md={2} />
+          <Grid item lg={2} />
         </Grid>
       </Box>
       <Footer />
