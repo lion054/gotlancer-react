@@ -7,7 +7,6 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  Checkbox,
   Drawer,
   FormControlLabel,
   Divider,
@@ -35,6 +34,7 @@ import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { GreenCheckbox } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -186,16 +186,6 @@ const styles = (theme) => ({
     border: `solid 1px ${theme.palette.divider}`
   }
 })
-
-const GreenCheckbox = withStyles((theme) => ({
-  root: {
-    color: theme.palette.divider,
-    '&$checked': {
-      color: theme.palette.success.main
-    }
-  },
-  checked: {}
-}))(Checkbox);
 
 class Home extends PureComponent {
   state = {
@@ -737,9 +727,7 @@ class Home extends PureComponent {
           control={(
             <GreenCheckbox />
           )}
-          label={(
-            <Typography variant="body2">All</Typography>
-          )}
+          label={<Typography variant="body2">All</Typography>}
         />
       </Box>
       <Box>
@@ -747,9 +735,7 @@ class Home extends PureComponent {
           control={(
             <GreenCheckbox />
           )}
-          label={(
-            <Typography variant="body2">Website Development</Typography>
-          )}
+          label={<Typography variant="body2">Website Development</Typography>}
         />
       </Box>
       <Box>
@@ -757,9 +743,7 @@ class Home extends PureComponent {
           control={(
             <GreenCheckbox />
           )}
-          label={(
-            <Typography variant="body2">Graphic Design</Typography>
-          )}
+          label={<Typography variant="body2">Graphic Design</Typography>}
         />
       </Box>
       <Box>
@@ -767,9 +751,7 @@ class Home extends PureComponent {
           control={(
             <GreenCheckbox />
           )}
-          label={(
-            <Typography variant="body2">Digital Marketing</Typography>
-          )}
+          label={<Typography variant="body2">Digital Marketing</Typography>}
         />
       </Box>
     </Box>
@@ -783,9 +765,7 @@ class Home extends PureComponent {
           control={(
             <GreenCheckbox />
           )}
-          label={(
-            <Typography variant="body2">All</Typography>
-          )}
+          label={<Typography variant="body2">All</Typography>}
         />
       </Box>
       <Box>
@@ -793,9 +773,7 @@ class Home extends PureComponent {
           control={(
             <GreenCheckbox />
           )}
-          label={(
-            <Typography variant="body2">Website Development</Typography>
-          )}
+          label={<Typography variant="body2">Website Development</Typography>}
         />
       </Box>
       <Box>
@@ -803,9 +781,7 @@ class Home extends PureComponent {
           control={(
             <GreenCheckbox />
           )}
-          label={(
-            <Typography variant="body2">Graphic Design</Typography>
-          )}
+          label={<Typography variant="body2">Graphic Design</Typography>}
         />
       </Box>
       <Box>
@@ -813,9 +789,7 @@ class Home extends PureComponent {
           control={(
             <GreenCheckbox />
           )}
-          label={(
-            <Typography variant="body2">Digital Marketing</Typography>
-          )}
+          label={<Typography variant="body2">Digital Marketing</Typography>}
         />
       </Box>
     </Box>
@@ -829,9 +803,7 @@ class Home extends PureComponent {
           control={(
             <GreenCheckbox />
           )}
-          label={(
-            <Typography variant="body2">All</Typography>
-          )}
+          label={<Typography variant="body2">All</Typography>}
         />
       </Box>
       <Box>
@@ -839,9 +811,7 @@ class Home extends PureComponent {
           control={(
             <GreenCheckbox />
           )}
-          label={(
-            <Typography variant="body2">Fixed price</Typography>
-          )}
+          label={<Typography variant="body2">Fixed price</Typography>}
         />
       </Box>
       <Box>
@@ -849,9 +819,7 @@ class Home extends PureComponent {
           control={(
             <GreenCheckbox />
           )}
-          label={(
-            <Typography variant="body2">Hourly</Typography>
-          )}
+          label={<Typography variant="body2">Hourly</Typography>}
         />
       </Box>
     </Box>

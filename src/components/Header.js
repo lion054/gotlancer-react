@@ -103,7 +103,7 @@ class Header extends PureComponent {
             <Grid item lg={8} xs={12}>
               <Toolbar disableGutters style={{ height: 64 }}>
                 <MenuItem onClick={() => this.props.history.push('/')} style={{ minWidth: this.props.theme.spacing(9) }}>
-                  <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-short.svg')} />
+                  <img alt="" className={this.props.classes.logo} src={require('../assets/images/gl-logo-white.svg')} />
                 </MenuItem>
                 <Box className={this.props.classes.optional} ml={3}>
                   <MenuButton onClick={this.onOpenProjects}>Projects</MenuButton>

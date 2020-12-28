@@ -134,7 +134,7 @@ class AvatarMenuIcon extends PureComponent {
           },{
             label: 'Settings',
             onClick: () => {
-              this.props.history.push('/account_settings');
+              this.props.history.push('/settings');
             }
           },{
             label: 'My Profile'

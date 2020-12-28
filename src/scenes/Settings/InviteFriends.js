@@ -90,7 +90,7 @@ class InviteFriends extends PureComponent {
           <Grid item lg={8} xs={12}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
-                <Link color="inherit" href="/account_settings">Account</Link>
+                <Link color="inherit" href="/settings">Settings</Link>
                 <Typography color="textSecondary">Invite friends</Typography>
               </Breadcrumbs>
             </Box>
@@ -113,7 +113,7 @@ class InviteFriends extends PureComponent {
               <Grid item lg={4} xs={12}>
                 <Card elevation={0} className={this.props.classes.card}>
                   <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/invite-friends.svg')} />
+                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/invite-friends.svg')} />
                     <Typography variant="subtitle2">Track your referrals</Typography>
                     <Typography variant="body2">Changing your cur rency updates how you see prices. You can change how you get payments in your payments &amp; payouts preferences.</Typography>
                   </CardContent>

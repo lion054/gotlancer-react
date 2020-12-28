@@ -94,7 +94,7 @@ class AvatarMenuButton extends PureComponent {
         <MenuItem
           onClick={() => {
             this.onCloseMenu();
-            this.props.history.push('/account_settings');
+            this.props.history.push('/settings');
           }}
           className={this.props.classes.menuItem}
         >

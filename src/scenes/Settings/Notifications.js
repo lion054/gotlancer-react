@@ -44,7 +44,7 @@ class Notifications extends PureComponent {
           <Grid item lg={8} xs={12}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
-                <Link color="inherit" href="/account_settings">Account</Link>
+                <Link color="inherit" href="/settings">Settings</Link>
                 <Typography color="textSecondary">Notifications</Typography>
               </Breadcrumbs>
             </Box>
@@ -100,7 +100,7 @@ class Notifications extends PureComponent {
               <Grid item md={4} xs={12}>
                 <Card elevation={0} className={this.props.classes.card}>
                   <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/membership.svg')} />
+                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/membership.svg')} />
                     <Typography variant="subtitle2">Let's make your account more secure</Typography>
                     <Typography variant="body2">Your account security: Medium</Typography>
                     <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>

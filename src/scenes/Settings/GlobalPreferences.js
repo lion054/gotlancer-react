@@ -61,7 +61,7 @@ class GlobalPreferences extends PureComponent {
           <Grid item lg={8}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
-                <Link color="inherit" href="/account_settings">Account</Link>
+                <Link color="inherit" href="/settings">Settings</Link>
                 <Typography color="textSecondary">Global preferences</Typography>
               </Breadcrumbs>
             </Box>
@@ -107,7 +107,7 @@ class GlobalPreferences extends PureComponent {
               <Grid item md={4} xs={12}>
                 <Card elevation={0} className={this.props.classes.card}>
                   <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/account-settings/global-preferences.svg')} />
+                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/global-preferences.svg')} />
                     <Typography variant="subtitle2">Global preferences</Typography>
                     <Typography variant="body2">Changing your cur rency updates how you see prices. You can change how you get payments in your payments &amp; payouts preferences.</Typography>
                   </CardContent>

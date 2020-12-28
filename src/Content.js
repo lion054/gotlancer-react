@@ -5,19 +5,20 @@ import MomentUtils from '@date-io/moment';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { connect } from 'react-redux';
 
-import AccountSettings from './scenes/AccountSettings';
+import Settings from './scenes/Settings';
 import FindWork from './scenes/FindWork';
 import BuyerHome from './scenes/BuyerHome';
 import Messenger from './scenes/Messenger';
 
-import GlobalPreferences from './scenes/AccountSettings/GlobalPreferences';
-import InviteFriends from './scenes/AccountSettings/InviteFriends';
-import LoginSecurity from './scenes/AccountSettings/LoginSecurity';
-import Membership from './scenes/AccountSettings/Membership';
-import Notifications from './scenes/AccountSettings/Notifications';
-import PaymentsPayouts from './scenes/AccountSettings/PaymentsPayouts';
-import PersonalInfo from './scenes/AccountSettings/PersonalInfo';
-import VerifyIdentity from './scenes/AccountSettings/VerifyIdentity';
+import AddBank from './scenes/Settings/PaymentsPayouts/AddBank';
+import GlobalPreferences from './scenes/Settings/GlobalPreferences';
+import InviteFriends from './scenes/Settings/InviteFriends';
+import LoginSecurity from './scenes/Settings/LoginSecurity';
+import Membership from './scenes/Settings/Membership';
+import Notifications from './scenes/Settings/Notifications';
+import PaymentsPayouts from './scenes/Settings/PaymentsPayouts';
+import PersonalInfo from './scenes/Settings/PersonalInfo';
+import VerifyIdentity from './scenes/Settings/VerifyIdentity';
 
 import { darkTheme, lightTheme } from './themes';
 import ScrollToTop from './components/ScrollToTop';
@@ -29,31 +30,34 @@ const routes = [{
   path: '/find_work',
   component: FindWork
 },{
-  path: '/account_settings',
-  component: AccountSettings
+  path: '/settings',
+  component: Settings
 },{
-  path: '/account_settings/personal_info',
+  path: '/settings/personal_info',
   component: PersonalInfo
 },{
-  path: '/account_settings/login_security',
+  path: '/settings/login_security',
   component: LoginSecurity
 },{
-  path: '/account_settings/payments_payouts',
+  path: '/settings/payments_payouts',
   component: PaymentsPayouts
 },{
-  path: '/account_settings/verify_identity',
+  path: '/settings/payments_payouts/add_bank',
+  component: AddBank
+},{
+  path: '/settings/verify_identity',
   component: VerifyIdentity
 },{
-  path: '/account_settings/membership',
+  path: '/settings/membership',
   component: Membership
 },{
-  path: '/account_settings/notifications',
+  path: '/settings/notifications',
   component: Notifications
 },{
-  path: '/account_settings/global_preferences',
+  path: '/settings/global_preferences',
   component: GlobalPreferences
 },{
-  path: '/account_settings/invite_friends',
+  path: '/settings/invite_friends',
   component: InviteFriends
 },{
   path: '/messenger',

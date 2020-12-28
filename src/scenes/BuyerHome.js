@@ -188,7 +188,7 @@ class Home extends PureComponent {
       <Divider />
       <Box flex={1} display="flex" alignItems="center" justifyContent="center">
         <Box textAlign="center">
-          <img src={require('../assets/images/freelancers.svg')} style={{ width: this.props.theme.spacing(8) }} />
+          <img alt="" src={require('../assets/images/freelancers.svg')} style={{ width: this.props.theme.spacing(8) }} />
           <Typography variant="h6">No draft project Found</Typography>
           <Typography variant="body2">You did not save any project as draft</Typography>
         </Box>
