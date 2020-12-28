@@ -95,10 +95,10 @@ class Header extends PureComponent {
           <Grid container>
             <Grid item lg={2} />
             <Grid item lg={8} xs={12}>
-              <Toolbar disableGutters style={{ height: 64 }}>
-                <MenuItem onClick={() => this.props.history.push('/')} style={{ minWidth: this.props.theme.spacing(9) }}>
+              <Toolbar disableGutters style={{ height: 64, paddingLeft: 8 }}>
+                <IconButton onClick={() => this.props.history.push('/')} style={{ minWidth: this.props.theme.spacing(9) }}>
                   <img alt="" className={this.props.classes.logo} src={require('../assets/images/gl-logo-black.svg')} />
-                </MenuItem>
+                </IconButton>
                 <Box className={this.props.classes.optional} ml={3}>
                   <MenuButton onClick={this.onOpenProjects}>Projects</MenuButton>
                   <Menu
