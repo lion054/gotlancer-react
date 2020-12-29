@@ -725,33 +725,37 @@ class Home extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox />
+            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">All</Typography>}
+          onClick={() => {}}
         />
       </Box>
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox />
+            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Website Development</Typography>}
+          onClick={() => {}}
         />
       </Box>
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox />
+            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Graphic Design</Typography>}
+          onClick={() => {}}
         />
       </Box>
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox />
+            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Digital Marketing</Typography>}
+          onClick={() => {}}
         />
       </Box>
     </Box>
@@ -763,33 +767,37 @@ class Home extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox />
+            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">All</Typography>}
+          onClick={() => {}}
         />
       </Box>
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox />
+            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Website Development</Typography>}
+          onClick={() => {}}
         />
       </Box>
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox />
+            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Graphic Design</Typography>}
+          onClick={() => {}}
         />
       </Box>
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox />
+            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Digital Marketing</Typography>}
+          onClick={() => {}}
         />
       </Box>
     </Box>
@@ -801,25 +809,28 @@ class Home extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox />
+            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">All</Typography>}
+          onClick={() => {}}
         />
       </Box>
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox />
+            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Fixed price</Typography>}
+          onClick={() => {}}
         />
       </Box>
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox />
+            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Hourly</Typography>}
+          onClick={() => {}}
         />
       </Box>
     </Box>

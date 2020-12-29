@@ -86,9 +86,10 @@ class AddNagad extends PureComponent {
             <Box className={this.props.classes.field}>
               <FormControlLabel
                 control={(
-                  <GreenCheckbox />
+                  <GreenCheckbox onClick={(e) => e.stopPropagation()} />
                 )}
                 label={<Typography variant="body2">I attest that I am the owner and have full authorization to this Nagad account.</Typography>}
+                onClick={() => {}}
               />
             </Box>
             <Box className={this.props.classes.field}>
