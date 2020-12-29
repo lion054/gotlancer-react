@@ -16,7 +16,6 @@ import {
   InputAdornment,
   Link,
   OutlinedInput,
-  RadioGroup,
   Tab,
   Tabs,
   Typography,
@@ -267,7 +266,7 @@ class PaymentsPayouts extends PureComponent {
               )}
             />
             <Box display="flex" mt={2}>
-              <Box flex={1} mr={2}>
+              <Box flex={1} mr={1}>
                 <Typography variant="subtitle2" className={this.props.classes.label}>First Name</Typography>
                 <OutlinedInput
                   fullWidth
@@ -277,7 +276,7 @@ class PaymentsPayouts extends PureComponent {
                   }}
                 />
               </Box>
-              <Box flex={1}>
+              <Box flex={1} ml={1}>
                 <Typography variant="subtitle2" className={this.props.classes.label}>Last Name</Typography>
                 <OutlinedInput
                   fullWidth
