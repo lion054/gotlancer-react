@@ -1,4 +1,4 @@
-import { Checkbox, withStyles } from '@material-ui/core';
+import { Checkbox, Radio, withStyles } from '@material-ui/core';
 
 export const GreenCheckbox = withStyles((theme) => ({
   root: {
@@ -9,3 +9,13 @@ export const GreenCheckbox = withStyles((theme) => ({
   },
   checked: {}
 }))(Checkbox);
+
+export const GreenRadio = withStyles((theme) => ({
+  root: {
+    color: theme.palette.divider,
+    '&$checked': {
+      color: theme.palette.success.main
+    }
+  },
+  checked: {}
+}))(Radio);
