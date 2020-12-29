@@ -94,9 +94,9 @@ class AddSkrill extends PureComponent {
             </Box>
             <Box className={this.props.classes.field}>
               <Box mr={2} component="span">
-                <Button variant="outlined">Back</Button>
+                <Button variant="outlined" size="large">Back</Button>
               </Box>
-              <Button variant="contained">Add my account</Button>
+              <Button variant="contained" size="large">Add my account</Button>
             </Box>
           </Grid>
           <Grid item lg={2} />

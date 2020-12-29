@@ -9,6 +9,7 @@ import {
   Card,
   CardContent,
   Dialog,
+  DialogActions,
   DialogContent,
   DialogTitle,
   FormControlLabel,
@@ -29,6 +30,7 @@ import { compose } from 'redux';
 
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
+import SelectCountry from '../../../components/SelectCountry';
 import { GreenRadio } from '../../../global';
 
 const styles = (theme) => ({
@@ -63,7 +65,8 @@ class PaymentsPayouts extends PureComponent {
     currentEntry: '',
     loading: false,
     paymentMethodOpened: false,
-    paymentMethod: 'credit-card'
+    paymentMethod: 'credit-card',
+    vatOpened: false
   }
 
   handleTabChange = (event, newValue) => {
@@ -170,7 +173,7 @@ class PaymentsPayouts extends PureComponent {
                       <Box mt={2} mb={2}>
                         <Typography variant="body2">If you are registered for VAT or your stay is for business, you may not be charged VAT on Gotlancer service fees. To get started, enter your business’s VAT ID Number. Learn more about VAT.</Typography>
                       </Box>
-                      <Button variant="contained" size="large">Add VAT ID Number</Button>
+                      <Button variant="contained" size="large" onClick={this.onOpenVatDialog}>Add VAT ID Number</Button>
                       <Box mt={3}>
                         <Typography variant="h6">Add PAN</Typography>
                       </Box>
@@ -207,6 +210,7 @@ class PaymentsPayouts extends PureComponent {
       </Box>
       <Footer />
       {this.renderPaymentMethodDialog()}
+      {this.renderVatDialog()}
     </div>
   )
 
@@ -256,11 +260,8 @@ class PaymentsPayouts extends PureComponent {
             <OutlinedInput
               fullWidth
               type="text"
-              inputProps={{
-                className: this.props.classes.input
-              }}
               startAdornment={(
-                <InputAdornment>
+                <InputAdornment position="start">
                   <FontAwesomeIcon icon={faCreditCard} style={{ fontSize: '0.8em' }} />
                 </InputAdornment>
               )}
@@ -268,23 +269,11 @@ class PaymentsPayouts extends PureComponent {
             <Box display="flex" mt={2}>
               <Box flex={1} mr={1}>
                 <Typography variant="subtitle2" className={this.props.classes.label}>First Name</Typography>
-                <OutlinedInput
-                  fullWidth
-                  type="text"
-                  inputProps={{
-                    className: this.props.classes.input
-                  }}
-                />
+                <OutlinedInput fullWidth type="text" />
               </Box>
               <Box flex={1} ml={1}>
                 <Typography variant="subtitle2" className={this.props.classes.label}>Last Name</Typography>
-                <OutlinedInput
-                  fullWidth
-                  type="text"
-                  inputProps={{
-                    className: this.props.classes.input
-                  }}
-                />
+                <OutlinedInput fullWidth type="text" />
               </Box>
             </Box>
             <Box display="flex" mt={2}>
@@ -296,7 +285,6 @@ class PaymentsPayouts extends PureComponent {
                       fullWidth
                       type="text"
                       inputProps={{
-                        className: this.props.classes.input,
                         placeholder: 'MM',
                         maxLength: 2
                       }}
@@ -307,7 +295,6 @@ class PaymentsPayouts extends PureComponent {
                       fullWidth
                       type="text"
                       inputProps={{
-                        className: this.props.classes.input,
                         placeholder: 'YYYY',
                         maxLength: 4
                       }}
@@ -317,13 +304,7 @@ class PaymentsPayouts extends PureComponent {
               </Box>
               <Box flex={1} ml={1}>
                 <Typography variant="subtitle2" className={this.props.classes.label}>Security Code</Typography>
-                <OutlinedInput
-                  fullWidth
-                  type="text"
-                  inputProps={{
-                    className: this.props.classes.input
-                  }}
-                />
+                <OutlinedInput fullWidth type="text" />
               </Box>
             </Box>
             <Box textAlign="right" mt={2} mb={2}>
@@ -349,6 +330,61 @@ class PaymentsPayouts extends PureComponent {
           </AccordionDetails>
         </Accordion>
       </DialogContent>
+    </Dialog>
+  )
+
+  onOpenVatDialog = () => this.setState({ vatOpened: true })
+
+  onCloseVatDialog = () => this.setState({ vatOpened: false })
+
+  renderVatDialog = () => (
+    <Dialog
+      open={this.state.vatOpened}
+      onClose={this.onCloseVatDialog}
+      scroll="paper"
+    >
+      <DialogTitle>Add VAT ID Number</DialogTitle>
+      <DialogContent>
+        <Typography variant="body2">If you are registered with the European Commission, verification may take up to 48 hours. We’ll send you an email when its finished. More information on VAT IDs can be found here.</Typography>
+        <Box display="flex" mt={2}>
+          <Box flex={1} mr={1}>
+            <Typography variant="subtitle2" className={this.props.classes.label}>Country/region</Typography>
+            <SelectCountry
+              fullWidth
+              autoHighlight
+              onChange={(e, item) => this.setState({ country: item.iso2 })}
+            />
+          </Box>
+          <Box flex={1} ml={1}>
+            <Typography variant="subtitle2" className={this.props.classes.label}>VAT ID Number</Typography>
+            <OutlinedInput fullWidth type="text" />
+          </Box>
+        </Box>
+        <Box mt={2}>
+          <Typography variant="subtitle2" className={this.props.classes.label}>Name on registration</Typography>
+          <OutlinedInput fullWidth type="text" />
+        </Box>
+        <Box mt={2}>
+          <Typography variant="subtitle2" className={this.props.classes.label}>Address line 1</Typography>
+          <OutlinedInput fullWidth type="text" />
+        </Box>
+        <Box mt={2}>
+          <Typography variant="subtitle2" className={this.props.classes.label}>Address line 2 (optional)</Typography>
+          <OutlinedInput fullWidth type="text" />
+        </Box>
+        <Box mt={2}>
+          <Typography variant="subtitle2" className={this.props.classes.label}>City</Typography>
+          <OutlinedInput fullWidth type="text" />
+        </Box>
+        <Box mt={2}>
+          <Typography variant="subtitle2" className={this.props.classes.label}>Zip/postal code</Typography>
+          <OutlinedInput fullWidth type="text" />
+        </Box>
+      </DialogContent>
+      <DialogActions>
+        <Button variant="outlined" size="large" onClick={this.onCloseVatDialog}>Cancel</Button>
+        <Button variant="contained" size="large" onClick={this.onCloseVatDialog}>OK</Button>
+      </DialogActions>
     </Dialog>
   )
 }
