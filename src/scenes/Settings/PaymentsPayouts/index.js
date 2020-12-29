@@ -178,16 +178,16 @@ class PaymentsPayouts extends PureComponent {
                         <Typography variant="h6">Add PAN</Typography>
                       </Box>
                       <Box mt={2} mb={2}>
-                        <Typography variant="body2">If you are registered for VAT or your stay is for business, you may not be charged VAT on Gotlancer service fees. To get started, enter your business’s VAT ID Number. Learn more about VAT.</Typography>
+                        <Typography variant="body2">If you are registered for PAN or your stay is for business, you may not be charged PAN on Gotlancer service fees. To get started, enter your business’s PAN ID Number. Learn more about PAN.</Typography>
                       </Box>
-                      <Button variant="contained" size="large">Add PAN ID Number</Button>
+                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_pan')}>Add PAN ID Number</Button>
                       <Box mt={3}>
                         <Typography variant="h6">Add GST</Typography>
                       </Box>
                       <Box mt={2} mb={2}>
-                        <Typography variant="body2">If you are registered for VAT or your stay is for business, you may not be charged VAT on Gotlancer service fees. To get started, enter your business’s VAT ID Number. Learn more about VAT.</Typography>
+                        <Typography variant="body2">If you are registered for GST or your stay is for business, you may not be charged GST on Gotlancer service fees. To get started, enter your business’s GST ID Number. Learn more about GST.</Typography>
                       </Box>
-                      <Button variant="contained" size="large">Add GST ID Number</Button>
+                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_gst')}>Add GST ID Number</Button>
                     </Box>
                   )
                 })}

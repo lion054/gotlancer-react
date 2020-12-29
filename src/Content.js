@@ -12,7 +12,9 @@ import Messenger from './scenes/Messenger';
 
 import AddBank from './scenes/Settings/PaymentsPayouts/AddBank';
 import AddBkash from './scenes/Settings/PaymentsPayouts/AddBkash';
+import AddGst from './scenes/Settings/PaymentsPayouts/AddGst';
 import AddNagad from './scenes/Settings/PaymentsPayouts/AddNagad';
+import AddPan from './scenes/Settings/PaymentsPayouts/AddPan';
 import AddPayPal from './scenes/Settings/PaymentsPayouts/AddPayPal';
 import AddPayoneer from './scenes/Settings/PaymentsPayouts/AddPayoneer';
 import AddSkrill from './scenes/Settings/PaymentsPayouts/AddSkrill';
@@ -53,8 +55,14 @@ const routes = [{
   path: '/settings/payments_payouts/add_bkash',
   component: AddBkash
 },{
+  path: '/settings/payments_payouts/add_gst',
+  component: AddGst
+},{
   path: '/settings/payments_payouts/add_nagad',
   component: AddNagad
+},{
+  path: '/settings/payments_payouts/add_pan',
+  component: AddPan
 },{
   path: '/settings/payments_payouts/add_paypal',
   component: AddPayPal
