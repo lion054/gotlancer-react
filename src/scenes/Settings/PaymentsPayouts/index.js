@@ -258,10 +258,10 @@ class PaymentsPayouts extends PureComponent {
           <AccordionDetails style={{ flexDirection: 'column' }}>
             <Box display="flex" alignItems="baseline" className={this.props.classes.label}>
               <Typography component="span" variant="subtitle2" style={{ flex: 1 }}>Card Number</Typography>
-              <img alt="" src={require('../../../assets/images/credit-cards/visa.png')} className={this.props.classes.creditCard} />
-              <img alt="" src={require('../../../assets/images/credit-cards/master.png')} className={this.props.classes.creditCard} />
-              <img alt="" src={require('../../../assets/images/credit-cards/amex.png')} className={this.props.classes.creditCard} />
-              <img alt="" src={require('../../../assets/images/credit-cards/discover.png')} className={this.props.classes.creditCard} />
+              <img alt="" src={require('../../../assets/images/payment-method/credit-cards/visa.png')} className={this.props.classes.creditCard} />
+              <img alt="" src={require('../../../assets/images/payment-method/credit-cards/master.png')} className={this.props.classes.creditCard} />
+              <img alt="" src={require('../../../assets/images/payment-method/credit-cards/amex.png')} className={this.props.classes.creditCard} />
+              <img alt="" src={require('../../../assets/images/payment-method/credit-cards/discover.png')} className={this.props.classes.creditCard} />
             </Box>
             <OutlinedInput
               fullWidth
@@ -325,7 +325,7 @@ class PaymentsPayouts extends PureComponent {
               control={(
                 <GreenRadio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
               )}
-              label={<img alt="" src={require('../../../assets/images/paypal.png')} style={{ width: 100 }} />}
+              label={<img alt="" src={require('../../../assets/images/payment-method/paypal.png')} style={{ width: 100 }} />}
               onClick={() => this.setState({ paymentMethod: 'paypal' })}
             />
           </AccordionSummary>
