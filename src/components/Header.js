@@ -26,6 +26,17 @@ const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper
   },
+  toolbar: {
+    height: theme.spacing(8),
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: theme.spacing(2)
+    }
+  },
+  logoContainer: {
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1)
+    }
+  },
   logo: {
     width: 43
   },
@@ -95,8 +106,8 @@ class Header extends PureComponent {
           <Grid container>
             <Grid item lg={2} />
             <Grid item lg={8} xs={12}>
-              <Toolbar disableGutters style={{ height: 64, paddingLeft: 16 }}>
-                <IconButton onClick={() => this.props.history.push('/')}>
+              <Toolbar disableGutters className={this.props.classes.toolbar}>
+                <IconButton className={this.props.classes.logoContainer} onClick={() => this.props.history.push('/')}>
                   <img alt="" className={this.props.classes.logo} src={require('../assets/images/gl-logo-black.svg')} />
                 </IconButton>
                 <Box className={this.props.classes.optional} ml={1}>
@@ -188,12 +199,12 @@ class Header extends PureComponent {
                 </Box>
                 <div style={{ flex: 1 }} />
                 <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
-                  <IconButton className={this.props.classes.icon} onClick={() => this.props.history.push('/messenger')}>
+                  <IconButton onClick={() => this.props.history.push('/messenger')}>
                     <FontAwesomeIcon icon={faEnvelope} size="1x" />
                   </IconButton>
                 </Badge>
                 <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
-                  <IconButton className={this.props.classes.icon}>
+                  <IconButton>
                     <FontAwesomeIcon icon={faBell} size="1x" />
                   </IconButton>
                 </Badge>
