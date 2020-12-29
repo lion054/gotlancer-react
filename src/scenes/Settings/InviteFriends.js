@@ -14,7 +14,8 @@ import {
   Paper,
   Typography,
   withStyles,
-  withTheme
+  withTheme,
+  withWidth
 } from '@material-ui/core';
 import { ChevronRight, ExpandLess, ExpandMore, Language } from '@material-ui/icons';
 import { compose } from 'redux';
@@ -97,83 +98,99 @@ class InviteFriends extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Invite friends to join the Gotlancer community</Typography>
             </Box>
-            <Grid container spacing={2}>
-              <Grid item md={6} sm={7} xs={12}>
-                <Box mb={2}>
-                  <Typography variant="body2" color="textSecondary">Once a user register through your referal link and spend $100 with gotlancer you will get $30.</Typography>
-                </Box>
-                <Box mb={2}>
-                  {this.renderAddressBar()}
-                </Box>
-                <Box mb={2}>
-                  {this.renderSharePanel()}
-                </Box>
-              </Grid>
-              <Grid item md={3} sm={1} />
-              <Grid item md={3} sm={4} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/invite-friends.svg')} />
-                    <Typography variant="subtitle2">Track your referrals</Typography>
-                    <Typography variant="body2">Changing your cur rency updates how you see prices. You can change how you get payments in your payments &amp; payouts preferences.</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
-            <Box mt={2}>
-              <Grid container spacing={4}>
-                <Grid item sm={4} xs={12}>
-                  <Language />
-                  <Typography variant="subtitle1">Lorem Ipsum</Typography>
-                  <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
+            <Box p={-2}>
+              <Grid container>
+                <Grid item md={6} sm={8} xs={12}>
+                  <Box p={2}>
+                    <Box mb={2}>
+                      <Typography variant="body2" color="textSecondary">Once a user register through your referal link and spend $100 with gotlancer you will get $30.</Typography>
+                    </Box>
+                    <Box mb={2}>
+                      {this.renderAddressBar()}
+                    </Box>
+                    <Box mb={2}>
+                      {this.renderSharePanel()}
+                    </Box>
+                  </Box>
                 </Grid>
-                <Grid item sm={4} xs={12}>
-                  <Language />
-                  <Typography variant="subtitle1">Lorem Ipsum</Typography>
-                  <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
-                </Grid>
-                <Grid item sm={4} xs={12}>
-                  <Language />
-                  <Typography variant="subtitle1">Lorem Ipsum</Typography>
-                  <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
+                <Grid item md={3} />
+                <Grid item md={3} sm={4} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardContent>
+                        <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/invite-friends.svg')} />
+                        <Typography variant="subtitle2">Track your referrals</Typography>
+                        <Typography variant="body2">Changing your cur rency updates how you see prices. You can change how you get payments in your payments &amp; payouts preferences.</Typography>
+                      </CardContent>
+                    </Card>
+                  </Box>
                 </Grid>
               </Grid>
             </Box>
-            <Box mt={2}>
-              <Grid container spacing={4}>
+            <Box p={-2} mt={2}>
+              <Grid container>
+                <Grid item sm={4} xs={12}>
+                  <Box p={2}>
+                    <Language />
+                    <Typography variant="subtitle1">Lorem Ipsum</Typography>
+                    <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
+                  </Box>
+                </Grid>
+                <Grid item sm={4} xs={12}>
+                  <Box p={2}>
+                    <Language />
+                    <Typography variant="subtitle1">Lorem Ipsum</Typography>
+                    <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
+                  </Box>
+                </Grid>
+                <Grid item sm={4} xs={12}>
+                  <Box p={2}>
+                    <Language />
+                    <Typography variant="subtitle1">Lorem Ipsum</Typography>
+                    <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+            <Box p={-2} mt={2}>
+              <Grid container>
                 <Grid item md={8} xs={12}>
-                  {this.renderEntry({
-                    id: 1,
-                    title: 'How much will my friend get when I invite them?',
-                    details: (
-                      <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
-                    )
-                  })}
-                  {this.renderEntry({
-                    id: 2,
-                    title: 'My friend has invited me to Airbnb but I haven`t received a coupon.?',
-                    details: (
-                      <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
-                    )
-                  })}
-                  {this.renderEntry({
-                    id: 3,
-                    title: 'How much will my friend get when I invite them?',
-                    details: (
-                      <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
-                    )
-                  })}
-                  {this.renderEntry({
-                    id: 4,
-                    title: 'How much will my friend get when I invite them?',
-                    details: (
-                      <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
-                    )
-                  })}
+                  <Box p={2}>
+                    {this.renderEntry({
+                      id: 1,
+                      title: 'How much will my friend get when I invite them?',
+                      details: (
+                        <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
+                      )
+                    })}
+                    {this.renderEntry({
+                      id: 2,
+                      title: 'My friend has invited me to Airbnb but I haven`t received a coupon.?',
+                      details: (
+                        <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
+                      )
+                    })}
+                    {this.renderEntry({
+                      id: 3,
+                      title: 'How much will my friend get when I invite them?',
+                      details: (
+                        <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
+                      )
+                    })}
+                    {this.renderEntry({
+                      id: 4,
+                      title: 'How much will my friend get when I invite them?',
+                      details: (
+                        <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
+                      )
+                    })}
+                  </Box>
                 </Grid>
                 <Grid item md={4} xs={12}>
-                  <Typography variant="subtitle2">Common questions</Typography>
-                  <Typography variant="body2">Check out these answers to common questions and review other programme information in the Help Centre.</Typography>
+                  <Box p={2}>
+                    <Typography variant="subtitle2">Common questions</Typography>
+                    <Typography variant="body2">Check out these answers to common questions and review other programme information in the Help Centre.</Typography>
+                  </Box>
                 </Grid>
               </Grid>
             </Box>
@@ -185,7 +202,27 @@ class InviteFriends extends PureComponent {
     </div>
   )
 
-  renderAddressBar = () => (
+  renderAddressBar = () => this.props.width === 'xs' ? (
+    <Box width="100%">
+      <Paper variant="outlined" component="form" className={this.props.classes.addressBar}>
+        <Box flex="1" className={this.props.classes.addressText}>{this.state.url}</Box>
+      </Paper>
+      <Box mt={0.5} p={-2}>
+        <Grid container>
+          <Grid item xs={6}>
+            <Box mr={1} width="100%">
+              <Button variant="outlined" size="large" fullWidth className={this.props.classes.copyButton}>Copy Link</Button>
+            </Box>
+          </Grid>
+          <Grid item xs={6}>
+            <Box ml={1} width="100%">
+              <SuccessButton variant="contained" size="large" fullWidth className={this.props.classes.inviteButton}>Invite Friends</SuccessButton>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+    </Box>
+  ) : (
     <Paper variant="outlined" component="form" className={this.props.classes.addressBar}>
       <Box flex="1" className={this.props.classes.addressText}>{this.state.url}</Box>
       <Button size="large" className={this.props.classes.copyButton}>Copy Link</Button>
@@ -246,5 +283,6 @@ class InviteFriends extends PureComponent {
 
 export default compose(
   withStyles(styles),
-  withTheme
+  withTheme,
+  withWidth()
 )(InviteFriends);

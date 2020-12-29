@@ -53,46 +53,50 @@ class Membership extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Membership</Typography>
             </Box>
-            <Grid container spacing={2}>
-              <Grid item md={6} sm={7} xs={12}>
-                <Box>
-                  <Divider />
-                  <Box mt={2}>
-                    <Typography variant="subtitle1">Your current membership package</Typography>
-                  </Box>
-                  <Box mt={1} mb={2} display="flex">
-                    <Typography variant="subtitle2" color="textSecondary">Free Membership</Typography>
-                    <Box ml={1}>
-                      <Typography variant="subtitle2" className={this.props.classes.active}>(Active)</Typography>
+            <Box p={-2}>
+              <Grid container>
+                <Grid item md={6} sm={8} xs={12}>
+                  <Box p={2}>
+                    <Divider />
+                    <Box mt={2}>
+                      <Typography variant="subtitle1">Your current membership package</Typography>
+                    </Box>
+                    <Box mt={1} mb={2} display="flex">
+                      <Typography variant="subtitle2" color="textSecondary">Free Membership</Typography>
+                      <Box ml={1}>
+                        <Typography variant="subtitle2" className={this.props.classes.active}>(Active)</Typography>
+                      </Box>
+                    </Box>
+                    <Divider />
+                    <Box mt={2}>
+                      <Typography variant="subtitle1">Upgrade to Pro</Typography>
+                    </Box>
+                    <Box mt={1}>
+                      <Typography variant="body2" color="textSecondary">Add a payment method using our secure payment system, then start your project with Gotlancer</Typography>
+                    </Box>
+                    <Box mt={2}>
+                      <Button variant="contained">Upload File</Button>
+                    </Box>
+                    <Box mt={1}>
+                      <Typography variant="body2" color="textSecondary">We will charge $14.99/mo</Typography>
                     </Box>
                   </Box>
-                  <Divider />
-                  <Box mt={2}>
-                    <Typography variant="subtitle1">Upgrade to Pro</Typography>
+                </Grid>
+                <Grid item md={3} />
+                <Grid item md={3} sm={4} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardContent>
+                        <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/membership.svg')} />
+                        <Typography variant="subtitle2">Let's make your account more secure</Typography>
+                        <Typography variant="body2">Your account security: Medium</Typography>
+                        <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
+                      </CardContent>
+                    </Card>
                   </Box>
-                  <Box mt={1}>
-                    <Typography variant="body2" color="textSecondary">Add a payment method using our secure payment system, then start your project with Gotlancer</Typography>
-                  </Box>
-                  <Box mt={2}>
-                    <Button variant="contained">Upload File</Button>
-                  </Box>
-                  <Box mt={1}>
-                    <Typography variant="body2" color="textSecondary">We will charge $14.99/mo</Typography>
-                  </Box>
-                </Box>
+                </Grid>
               </Grid>
-              <Grid item md={3} sm={1} />
-              <Grid item md={3} sm={4} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/membership.svg')} />
-                    <Typography variant="subtitle2">Let's make your account more secure</Typography>
-                    <Typography variant="body2">Your account security: Medium</Typography>
-                    <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
+            </Box>
           </Grid>
           <Grid item lg={2} />
         </Grid>

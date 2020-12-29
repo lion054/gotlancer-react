@@ -70,64 +70,70 @@ class VerifyIdentity extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Verify identity</Typography>
             </Box>
-            <Grid container spacing={2}>
-              <Grid item md={6} sm={7} xs={12}>
-                {this.renderEntry({
-                  id: 'Document',
-                  title: 'Document Verification',
-                  formattedValue: 'Not verified',
-                  details: (
-                    <Box>
-                      <Box mb={2}>
-                        <Typography variant="body2" color="textSecondary">Verify your account and staty secured your account and get more facility from Gtoalancer</Typography>
-                      </Box>
-                      <Box mb={2}>
-                        <Button variant="outlined" startIcon={<CloudUpload />}>Upload File</Button>
-                      </Box>
-                      <Divider />
-                      <Box mt={2}>
-                        <Typography variant="body2" color="textSecondary">1 file uploaded</Typography>
-                      </Box>
-                      <Box mt={2} display="flex">
-                        <MenuItem className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
-                        <IconButton color="inherit">
-                          <Delete />
-                        </IconButton>
-                      </Box>
-                      <Box mb={2} display="flex">
-                        <MenuItem className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
-                        <IconButton color="inherit">
-                          <Delete />
-                        </IconButton>
-                      </Box>
-                    </Box>
-                  ),
-                  buttonTitle: 'Submit Now',
-                  buttonClicked: () => {}
-                })}
-                {this.renderEntry({
-                  id: 'Video',
-                  title: 'Video Verification',
-                  formattedValue: 'Verify your account and staty secured your account and get more facility from Gtoalancer',
-                  details: (
-                    <div></div>
-                  ),
-                  buttonTitle: 'Submit Now',
-                  buttonClicked: () => {}
-                })}
+            <Box p={-2}>
+              <Grid container>
+                <Grid item md={6} sm={8} xs={12}>
+                  <Box p={2}>
+                    {this.renderEntry({
+                      id: 'Document',
+                      title: 'Document Verification',
+                      formattedValue: 'Not verified',
+                      details: (
+                        <Box>
+                          <Box mb={2}>
+                            <Typography variant="body2" color="textSecondary">Verify your account and staty secured your account and get more facility from Gtoalancer</Typography>
+                          </Box>
+                          <Box mb={2}>
+                            <Button variant="outlined" startIcon={<CloudUpload />}>Upload File</Button>
+                          </Box>
+                          <Divider />
+                          <Box mt={2}>
+                            <Typography variant="body2" color="textSecondary">1 file uploaded</Typography>
+                          </Box>
+                          <Box mt={2} display="flex">
+                            <MenuItem className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
+                            <IconButton color="inherit">
+                              <Delete />
+                            </IconButton>
+                          </Box>
+                          <Box mb={2} display="flex">
+                            <MenuItem className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
+                            <IconButton color="inherit">
+                              <Delete />
+                            </IconButton>
+                          </Box>
+                        </Box>
+                      ),
+                      buttonTitle: 'Submit Now',
+                      buttonClicked: () => {}
+                    })}
+                    {this.renderEntry({
+                      id: 'Video',
+                      title: 'Video Verification',
+                      formattedValue: 'Verify your account and staty secured your account and get more facility from Gtoalancer',
+                      details: (
+                        <div></div>
+                      ),
+                      buttonTitle: 'Submit Now',
+                      buttonClicked: () => {}
+                    })}
+                  </Box>
+                </Grid>
+                <Grid item md={3} />
+                <Grid item md={3} sm={4} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardContent>
+                        <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/verify-identity.svg')} />
+                        <Typography variant="subtitle2">Let's make your account more secure</Typography>
+                        <Typography variant="body2">Your account security: Medium</Typography>
+                        <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
+                      </CardContent>
+                    </Card>
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid item md={3} sm={1} />
-              <Grid item md={3} sm={4} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/verify-identity.svg')} />
-                    <Typography variant="subtitle2">Let's make your account more secure</Typography>
-                    <Typography variant="body2">Your account security: Medium</Typography>
-                    <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
+            </Box>
           </Grid>
           <Grid item lg={2} />
         </Grid>

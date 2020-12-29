@@ -68,52 +68,58 @@ class GlobalPreferences extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Global preferences</Typography>
             </Box>
-            <Grid container spacing={2}>
-              <Grid item md={6} sm={7} xs={12}>
-                {this.renderEntry({
-                  id: 'Language',
-                  title: 'Preferred language',
-                  formattedValue: this.state.language,
-                  details: (
-                    <Box width="100%">
-                      <TextField
-                        select
-                        variant="outlined"
-                        value={this.state.language}
-                        onChange={e => this.setState({ language: e.target.value })}
-                        fullWidth
-                      >
-                        <MenuItem value="English">English</MenuItem>
-                        <MenuItem value="Chinese">Chinese</MenuItem>
-                      </TextField>
-                    </Box>
-                  )
-                })}
-                {this.renderEntry({
-                  id: 'TimeZone',
-                  title: 'Time zone',
-                  formattedValue: this.state.timeZone.label,
-                  details: (
-                    <Box width="100%">
-                      <TimezoneSelect
-                        value={this.state.timeZone}
-                        onChange={(timeZone) => this.setState({ timeZone })}
-                      />
-                    </Box>
-                  )
-                })}
+            <Box p={-2}>
+              <Grid container>
+                <Grid item md={6} sm={8} xs={12}>
+                  <Box p={2}>
+                    {this.renderEntry({
+                      id: 'Language',
+                      title: 'Preferred language',
+                      formattedValue: this.state.language,
+                      details: (
+                        <Box width="100%">
+                          <TextField
+                            select
+                            variant="outlined"
+                            value={this.state.language}
+                            onChange={e => this.setState({ language: e.target.value })}
+                            fullWidth
+                          >
+                            <MenuItem value="English">English</MenuItem>
+                            <MenuItem value="Chinese">Chinese</MenuItem>
+                          </TextField>
+                        </Box>
+                      )
+                    })}
+                    {this.renderEntry({
+                      id: 'TimeZone',
+                      title: 'Time zone',
+                      formattedValue: this.state.timeZone.label,
+                      details: (
+                        <Box width="100%">
+                          <TimezoneSelect
+                            value={this.state.timeZone}
+                            onChange={(timeZone) => this.setState({ timeZone })}
+                          />
+                        </Box>
+                      )
+                    })}
+                  </Box>
+                </Grid>
+                <Grid item md={3} />
+                <Grid item md={3} sm={4} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardContent>
+                        <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/global-preferences.svg')} />
+                        <Typography variant="subtitle2">Global preferences</Typography>
+                        <Typography variant="body2">Changing your cur rency updates how you see prices. You can change how you get payments in your payments &amp; payouts preferences.</Typography>
+                      </CardContent>
+                    </Card>
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid item md={3} sm={1} />
-              <Grid item md={3} sm={4} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/global-preferences.svg')} />
-                    <Typography variant="subtitle2">Global preferences</Typography>
-                    <Typography variant="body2">Changing your cur rency updates how you see prices. You can change how you get payments in your payments &amp; payouts preferences.</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
+            </Box>
           </Grid>
           <Grid item lg={2} />
         </Grid>

@@ -11,11 +11,6 @@ import {
   List,
   ListItem,
   Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
   Toolbar,
   Typography,
   withStyles,
@@ -97,32 +92,44 @@ class Home extends PureComponent {
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
-            <Box mt={4}>
-              <Grid container spacing={2}>
+            <Box p={-2} mt={4}>
+              <Grid container>
                 <Grid item xs={6} sm={3}>
-                  {this.renderCard('Work In Progress', '$9000.00')}
+                  <Box p={2}>
+                    {this.renderCard('Work In Progress', '$9000.00')}
+                  </Box>
                 </Grid>
                 <Grid item xs={6} sm={3}>
-                  {this.renderCard('Projects Completed', '326')}
+                  <Box p={2}>
+                    {this.renderCard('Projects Completed', '326')}
+                  </Box>
                 </Grid>
                 <Grid item xs={6} sm={3}>
-                  {this.renderCard('Total Spent', '$50,000.00')}
+                  <Box p={2}>
+                    {this.renderCard('Total Spent', '$50,000.00')}
+                  </Box>
                 </Grid>
                 <Grid item xs={6} sm={3}>
-                  {this.renderCard('Total Spent', '$50,000.00')}
+                  <Box p={2}>
+                    {this.renderCard('Total Spent', '$50,000.00')}
+                  </Box>
                 </Grid>
               </Grid>
             </Box>
-            <Box mt={8}>
-              <Grid container spacing={3}>
-                <Grid item md={8}>
-                  {this.renderRecentProjects()}
-                  <Box mt={3}>
-                    {this.renderDraftProjects()}
+            <Box p={-3} mt={8}>
+              <Grid container>
+                <Grid item md={8} xs={12}>
+                  <Box p={3}>
+                    {this.renderRecentProjects()}
+                    <Box mt={3}>
+                      {this.renderDraftProjects()}
+                    </Box>
                   </Box>
                 </Grid>
-                <Grid item md={4}>
-                  {this.renderSideBar()}
+                <Grid item md={4} xs={12}>
+                  <Box p={3}>
+                    {this.renderSideBar()}
+                  </Box>
                 </Grid>
               </Grid>
             </Box>
@@ -150,32 +157,37 @@ class Home extends PureComponent {
         <Typography variant="body2">3 projects found</Typography>
       </Toolbar>
       <Divider />
-      <TableContainer>
-        <Table>
-          <TableBody>
-            {this.state.recentPostedJobs.map((job, index) => (
-              <TableRow key={index}>
-                <TableCell>
-                  <Typography color="textPrimary">{job.title}</Typography>
-                  <Typography color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography color="textPrimary">30</Typography>
-                  <Typography color="textSecondary">Proposal</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography color="textPrimary">{job.hiredCount}</Typography>
-                  <Typography color="textSecondary">Hired</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography color="textPrimary">${job.budget} USD</Typography>
-                  <Typography color="textSecondary">{job.status}</Typography>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {this.state.recentPostedJobs.map((job, index) => (
+        <Fragment key={index}>
+          <Grid container>
+            <Grid item sm={6} xs={12}>
+              <Box m={1}>
+                <Typography color="textPrimary">{job.title}</Typography>
+                <Typography color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
+              </Box>
+            </Grid>
+            <Grid item sm={2} xs={4}>
+              <Box m={1}>
+                <Typography color="textPrimary">30</Typography>
+                <Typography color="textSecondary">Proposal</Typography>
+              </Box>
+            </Grid>
+            <Grid item sm={2} xs={3}>
+              <Box m={1}>
+                <Typography color="textPrimary">{job.hiredCount}</Typography>
+                <Typography color="textSecondary">Hired</Typography>
+              </Box>
+            </Grid>
+            <Grid item sm={2} xs={5}>
+              <Box m={1}>
+                <Typography color="textPrimary">${job.budget} USD</Typography>
+                <Typography color="textSecondary">{job.status}</Typography>
+              </Box>
+            </Grid>
+          </Grid>
+          <Divider />
+        </Fragment>
+      ))}
     </Paper>
   )
 
@@ -198,12 +210,16 @@ class Home extends PureComponent {
 
   renderSideBar = () => (
     <Box>
-      <Grid container spacing={2}>
+      <Grid container>
         <Grid item xs={6}>
-          <Button fullWidth variant="contained">Post a Project</Button>
+          <Box mr={2}>
+            <Button fullWidth variant="contained">Post a Project</Button>
+          </Box>
         </Grid>
         <Grid item xs={6}>
-          <Button fullWidth variant="outlined">Repeat Hire</Button>
+          <Box ml={2}>
+            <Button fullWidth variant="outlined">Repeat Hire</Button>
+          </Box>
         </Grid>
       </Grid>
       <Box mt={2}>

@@ -89,121 +89,127 @@ class PaymentsPayouts extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Payments &amp; Payouts</Typography>
             </Box>
-            <Grid container spacing={2}>
-              <Grid item md={6} sm={7} xs={12}>
-                <Tabs value={this.state.activeTab} onChange={this.handleTabChange}>
-                  <Tab label="Payments" />
-                  <Tab label="Payouts" />
-                  <Tab label="Taxes" />
-                </Tabs>
-                {this.renderPanel({
-                  index: 0,
-                  body: (
-                    <Box mt={4}>
-                      <Typography variant="h6">Payment methods</Typography>
-                      <Box mt={2} mb={2}>
-                        <Typography variant="body2">Add a payment method using our secure payment system, then start your project with Gotlancer</Typography>
-                      </Box>
-                      <Button variant="contained" size="large" onClick={this.onOpenPaymentMethodDialog}>Add Payment Method</Button>
-                    </Box>
-                  )
-                })}
-                {this.renderPanel({
-                  index: 1,
-                  body: (
-                    <Box mt={4}>
-                      <Typography variant="h6">Payout methods</Typography>
-                      <Box mt={2}>
-                        <Typography variant="body2">When you receive a payment for a reservation, we call that payment to you a "payout". Our secure payment system supports several payout methods, which can be set up below. Go to FAQ.</Typography>
-                      </Box>
-                      <Box mt={2}>
-                        <Typography variant="subtitle1">To get paid, you need to set up a payout method</Typography>
-                      </Box>
-                      <Typography variant="body2">Airbnb releases payouts about 24 hours after a guest’s scheduled check-in time. The time it takes for the funds to appear in your account depends on your payout method. Learn more</Typography>
-                      <Box mt={2}>
-                        <Typography variant="h6">Add Bank</Typography>
-                      </Box>
-                      <Box mt={2} mb={2}>
-                        <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
-                      </Box>
-                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_bank')}>Add Indian Bank</Button>
-                      <Box mt={3}>
-                        <Typography variant="h6">Add Payoneer</Typography>
-                      </Box>
-                      <Box mt={2} mb={2}>
-                        <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
-                      </Box>
-                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_payoneer')}>Add Payoneer</Button>
-                      <Box mt={3}>
-                        <Typography variant="h6">Add PayPal</Typography>
-                      </Box>
-                      <Box mt={2} mb={2}>
-                        <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
-                      </Box>
-                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_paypal')}>Add PayPal</Button>
-                      <Box mt={3}>
-                        <Typography variant="h6">Add Skrill</Typography>
-                      </Box>
-                      <Box mt={2} mb={2}>
-                        <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
-                      </Box>
-                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_skrill')}>Add Skrill</Button>
-                      <Box mt={3}>
-                        <Typography variant="h6">Add Nagad</Typography>
-                      </Box>
-                      <Box mt={2} mb={2}>
-                        <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
-                      </Box>
-                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_nagad')}>Add Nagad</Button>
-                      <Box mt={3}>
-                        <Typography variant="h6">Add bKash</Typography>
-                      </Box>
-                      <Box mt={2} mb={2}>
-                        <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
-                      </Box>
-                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_bkash')}>Add bKash</Button>
-                    </Box>
-                  )
-                })}
-                {this.renderPanel({
-                  index: 2,
-                  body: (
-                    <Box mt={4}>
-                      <Typography variant="h6">Add VAT</Typography>
-                      <Box mt={2} mb={2}>
-                        <Typography variant="body2">If you are registered for VAT or your stay is for business, you may not be charged VAT on Gotlancer service fees. To get started, enter your business’s VAT ID Number. Learn more about VAT.</Typography>
-                      </Box>
-                      <Button variant="contained" size="large" onClick={this.onOpenVatDialog}>Add VAT ID Number</Button>
-                      <Box mt={3}>
-                        <Typography variant="h6">Add PAN</Typography>
-                      </Box>
-                      <Box mt={2} mb={2}>
-                        <Typography variant="body2">If you are registered for PAN or your stay is for business, you may not be charged PAN on Gotlancer service fees. To get started, enter your business’s PAN ID Number. Learn more about PAN.</Typography>
-                      </Box>
-                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_pan')}>Add PAN ID Number</Button>
-                      <Box mt={3}>
-                        <Typography variant="h6">Add GST</Typography>
-                      </Box>
-                      <Box mt={2} mb={2}>
-                        <Typography variant="body2">If you are registered for GST or your stay is for business, you may not be charged GST on Gotlancer service fees. To get started, enter your business’s GST ID Number. Learn more about GST.</Typography>
-                      </Box>
-                      <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_gst')}>Add GST ID Number</Button>
-                    </Box>
-                  )
-                })}
+            <Box p={-2}>
+              <Grid container>
+                <Grid item md={6} sm={8} xs={12}>
+                  <Box p={2}>
+                    <Tabs value={this.state.activeTab} onChange={this.handleTabChange}>
+                      <Tab label="Payments" />
+                      <Tab label="Payouts" />
+                      <Tab label="Taxes" />
+                    </Tabs>
+                    {this.renderPanel({
+                      index: 0,
+                      body: (
+                        <Box mt={4}>
+                          <Typography variant="h6">Payment methods</Typography>
+                          <Box mt={2} mb={2}>
+                            <Typography variant="body2">Add a payment method using our secure payment system, then start your project with Gotlancer</Typography>
+                          </Box>
+                          <Button variant="contained" size="large" onClick={this.onOpenPaymentMethodDialog}>Add Payment Method</Button>
+                        </Box>
+                      )
+                    })}
+                    {this.renderPanel({
+                      index: 1,
+                      body: (
+                        <Box mt={4}>
+                          <Typography variant="h6">Payout methods</Typography>
+                          <Box mt={2}>
+                            <Typography variant="body2">When you receive a payment for a reservation, we call that payment to you a "payout". Our secure payment system supports several payout methods, which can be set up below. Go to FAQ.</Typography>
+                          </Box>
+                          <Box mt={2}>
+                            <Typography variant="subtitle1">To get paid, you need to set up a payout method</Typography>
+                          </Box>
+                          <Typography variant="body2">Airbnb releases payouts about 24 hours after a guest’s scheduled check-in time. The time it takes for the funds to appear in your account depends on your payout method. Learn more</Typography>
+                          <Box mt={2}>
+                            <Typography variant="h6">Add Bank</Typography>
+                          </Box>
+                          <Box mt={2} mb={2}>
+                            <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
+                          </Box>
+                          <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_bank')}>Add Indian Bank</Button>
+                          <Box mt={3}>
+                            <Typography variant="h6">Add Payoneer</Typography>
+                          </Box>
+                          <Box mt={2} mb={2}>
+                            <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
+                          </Box>
+                          <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_payoneer')}>Add Payoneer</Button>
+                          <Box mt={3}>
+                            <Typography variant="h6">Add PayPal</Typography>
+                          </Box>
+                          <Box mt={2} mb={2}>
+                            <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
+                          </Box>
+                          <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_paypal')}>Add PayPal</Button>
+                          <Box mt={3}>
+                            <Typography variant="h6">Add Skrill</Typography>
+                          </Box>
+                          <Box mt={2} mb={2}>
+                            <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
+                          </Box>
+                          <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_skrill')}>Add Skrill</Button>
+                          <Box mt={3}>
+                            <Typography variant="h6">Add Nagad</Typography>
+                          </Box>
+                          <Box mt={2} mb={2}>
+                            <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
+                          </Box>
+                          <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_nagad')}>Add Nagad</Button>
+                          <Box mt={3}>
+                            <Typography variant="h6">Add bKash</Typography>
+                          </Box>
+                          <Box mt={2} mb={2}>
+                            <Typography variant="body2">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</Typography>
+                          </Box>
+                          <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_bkash')}>Add bKash</Button>
+                        </Box>
+                      )
+                    })}
+                    {this.renderPanel({
+                      index: 2,
+                      body: (
+                        <Box mt={4}>
+                          <Typography variant="h6">Add VAT</Typography>
+                          <Box mt={2} mb={2}>
+                            <Typography variant="body2">If you are registered for VAT or your stay is for business, you may not be charged VAT on Gotlancer service fees. To get started, enter your business’s VAT ID Number. Learn more about VAT.</Typography>
+                          </Box>
+                          <Button variant="contained" size="large" onClick={this.onOpenVatDialog}>Add VAT ID Number</Button>
+                          <Box mt={3}>
+                            <Typography variant="h6">Add PAN</Typography>
+                          </Box>
+                          <Box mt={2} mb={2}>
+                            <Typography variant="body2">If you are registered for PAN or your stay is for business, you may not be charged PAN on Gotlancer service fees. To get started, enter your business’s PAN ID Number. Learn more about PAN.</Typography>
+                          </Box>
+                          <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_pan')}>Add PAN ID Number</Button>
+                          <Box mt={3}>
+                            <Typography variant="h6">Add GST</Typography>
+                          </Box>
+                          <Box mt={2} mb={2}>
+                            <Typography variant="body2">If you are registered for GST or your stay is for business, you may not be charged GST on Gotlancer service fees. To get started, enter your business’s GST ID Number. Learn more about GST.</Typography>
+                          </Box>
+                          <Button variant="contained" size="large" onClick={() => this.props.history.push('/settings/payments_payouts/add_gst')}>Add GST ID Number</Button>
+                        </Box>
+                      )
+                    })}
+                  </Box>
+                </Grid>
+                <Grid item md={3} />
+                <Grid item md={3} sm={4} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardContent>
+                        <img alt="" className={this.props.classes.cardIcon} src={require('../../../assets/images/settings/payments-and-payouts.svg')} />
+                        <Typography variant="subtitle2">Let's make your account more secure</Typography>
+                        <Typography variant="body2">Your account security: Medium</Typography>
+                        <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
+                      </CardContent>
+                    </Card>
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid item md={3} sm={1} />
-              <Grid item md={3} sm={4} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../../assets/images/settings/payments-and-payouts.svg')} />
-                    <Typography variant="subtitle2">Let's make your account more secure</Typography>
-                    <Typography variant="body2">Your account security: Medium</Typography>
-                    <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
+            </Box>
           </Grid>
           <Grid item lg={2} />
         </Grid>
@@ -346,19 +352,25 @@ class PaymentsPayouts extends PureComponent {
       <DialogTitle>Add VAT ID Number</DialogTitle>
       <DialogContent>
         <Typography variant="body2">If you are registered with the European Commission, verification may take up to 48 hours. We’ll send you an email when its finished. More information on VAT IDs can be found here.</Typography>
-        <Box display="flex" mt={2}>
-          <Box flex={1} mr={1}>
-            <Typography variant="subtitle2" className={this.props.classes.label}>Country/region</Typography>
-            <SelectCountry
-              fullWidth
-              autoHighlight
-              onChange={(e, item) => this.setState({ country: item.iso2 })}
-            />
-          </Box>
-          <Box flex={1} ml={1}>
-            <Typography variant="subtitle2" className={this.props.classes.label}>VAT ID Number</Typography>
-            <OutlinedInput fullWidth type="text" />
-          </Box>
+        <Box p={-2} mt={2}>
+          <Grid container>
+            <Grid item sm={6} xs={12}>
+              <Box p={2}>
+                <Typography variant="subtitle2" className={this.props.classes.label}>Country/region</Typography>
+                <SelectCountry
+                  fullWidth
+                  autoHighlight
+                  onChange={(e, item) => this.setState({ country: item.iso2 })}
+                />
+              </Box>
+            </Grid>
+            <Grid item sm={6} xs={12}>
+              <Box p={2}>
+                <Typography variant="subtitle2" className={this.props.classes.label}>VAT ID Number</Typography>
+                <OutlinedInput fullWidth type="text" />
+              </Box>
+            </Grid>
+          </Grid>
         </Box>
         <Box mt={2}>
           <Typography variant="subtitle2" className={this.props.classes.label}>Name on registration</Typography>

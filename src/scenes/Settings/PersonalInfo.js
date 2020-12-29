@@ -78,164 +78,188 @@ class PersonalInfo extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Personal Info</Typography>
             </Box>
-            <Grid container spacing={2}>
-              <Grid item md={6} sm={7} xs={12}>
-                {this.renderEntry({
-                  id: 'LegalName',
-                  title: 'Legal name',
-                  formattedValue: this.state.firstName + ' ' + this.state.lastName,
-                  details: (
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <Box mb={2}>
-                          <Typography>Write your name as per your identity, we will use this name for your identity verification.</Typography>
+            <Box p={-2}>
+              <Grid container>
+                <Grid item md={6} sm={8} xs={12}>
+                  <Box p={2}>
+                    {this.renderEntry({
+                      id: 'LegalName',
+                      title: 'Legal name',
+                      formattedValue: this.state.firstName + ' ' + this.state.lastName,
+                      details: (
+                        <Box p={-2}>
+                          <Grid container>
+                            <Grid item xs={12}>
+                              <Box p={2} mb={2}>
+                                <Typography>Write your name as per your identity, we will use this name for your identity verification.</Typography>
+                              </Box>
+                            </Grid>
+                            <Grid item sm={6}>
+                              <Box p={2}>
+                                <TextField
+                                  variant="outlined"
+                                  label="First name"
+                                  value={this.state.firstName}
+                                  onChange={e => this.setState({ firstName: e.target.value })}
+                                  fullWidth
+                                />
+                              </Box>
+                            </Grid>
+                            <Grid item sm={6}>
+                              <Box p={2}>
+                                <TextField
+                                  variant="outlined"
+                                  label="Last name"
+                                  value={this.state.lastName}
+                                  onChange={e => this.setState({ lastName: e.target.value })}
+                                  fullWidth
+                                />
+                              </Box>
+                            </Grid>
+                          </Grid>
                         </Box>
-                      </Grid>
-                      <Grid item sm={6}>
-                        <TextField
-                          variant="outlined"
-                          label="First name"
-                          value={this.state.firstName}
-                          onChange={e => this.setState({ firstName: e.target.value })}
-                          fullWidth
-                        />
-                      </Grid>
-                      <Grid item sm={6}>
-                        <TextField
-                          variant="outlined"
-                          label="Last name"
-                          value={this.state.lastName}
-                          onChange={e => this.setState({ lastName: e.target.value })}
-                          fullWidth
-                        />
-                      </Grid>
-                    </Grid>
-                  )
-                })}
-                {this.renderEntry({
-                  id: 'Gender',
-                  title: 'Gender',
-                  formattedValue: this.state.gender,
-                  details: (
-                    <Box width="100%">
-                      <TextField
-                        select
-                        variant="outlined"
-                        label="Gender"
-                        value={this.state.gender}
-                        onChange={e => this.setState({ gender: e.target.value })}
-                        fullWidth
-                      >
-                        <MenuItem value="Male">Male</MenuItem>
-                        <MenuItem value="Female">Female</MenuItem>
-                      </TextField>
-                    </Box>
-                  )
-                })}
-                {this.renderEntry({
-                  id: 'DateOfBirth',
-                  title: 'Date of birth',
-                  formattedValue: this.state.dateOfBirth && moment(this.state.dateOfBirth).format('MMMM D, YYYY'),
-                  details: (
-                    <Box width="100%">
-                      <KeyboardDatePicker
-                        format="MM/DD/YYYY"
-                        clearable
-                        disableFuture
-                        value={this.state.dateOfBirth}
-                        onChange={(m) => {
-                          if (m) {
-                            console.log(m.toDate());
-                            this.setState({ dateOfBirth: m.toDate() });
-                          } else {
-                            this.setState({ dateOfBirth: null });
-                          }
-                        }}
-                        fullWidth
-                      />
-                    </Box>
-                  )
-                })}
-                {this.renderEntry({
-                  id: 'Address',
-                  title: 'Address',
-                  formattedValue: this.state.firstName + ' ' + this.state.lastName,
-                  details: (
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <Box mb={2}>
-                          <Typography>Use a permanent address where you can receive mail.</Typography>
+                      )
+                    })}
+                    {this.renderEntry({
+                      id: 'Gender',
+                      title: 'Gender',
+                      formattedValue: this.state.gender,
+                      details: (
+                        <Box width="100%">
+                          <TextField
+                            select
+                            variant="outlined"
+                            label="Gender"
+                            value={this.state.gender}
+                            onChange={e => this.setState({ gender: e.target.value })}
+                            fullWidth
+                          >
+                            <MenuItem value="Male">Male</MenuItem>
+                            <MenuItem value="Female">Female</MenuItem>
+                          </TextField>
                         </Box>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <SelectCountry
-                          fullWidth
-                          autoHighlight
-                          label="Choose a country"
-                          onChange={(e, item) => this.setState({ country: item.iso2 })}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          variant="outlined"
-                          label="Street address"
-                          value={this.state.street}
-                          onChange={e => this.setState({ street: e.target.value })}
-                          fullWidth
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          variant="outlined"
-                          label="Flat, suite. (optional)"
-                          value={this.state.aptSuite}
-                          onChange={e => this.setState({ aptSuite: e.target.value })}
-                          fullWidth
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          variant="outlined"
-                          label="City/Town"
-                          value={this.state.city}
-                          onChange={e => this.setState({ city: e.target.value })}
-                          fullWidth
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          variant="outlined"
-                          label="County"
-                          value={this.state.county}
-                          onChange={e => this.setState({ county: e.target.value })}
-                          fullWidth
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          variant="outlined"
-                          label="Postcode"
-                          value={this.state.postCode}
-                          onChange={e => this.setState({ postCode: e.target.value })}
-                          fullWidth
-                        />
-                      </Grid>
-                    </Grid>
-                  )
-                })}
+                      )
+                    })}
+                    {this.renderEntry({
+                      id: 'DateOfBirth',
+                      title: 'Date of birth',
+                      formattedValue: this.state.dateOfBirth && moment(this.state.dateOfBirth).format('MMMM D, YYYY'),
+                      details: (
+                        <Box width="100%">
+                          <KeyboardDatePicker
+                            format="MM/DD/YYYY"
+                            clearable
+                            disableFuture
+                            value={this.state.dateOfBirth}
+                            onChange={(m) => {
+                              if (m) {
+                                console.log(m.toDate());
+                                this.setState({ dateOfBirth: m.toDate() });
+                              } else {
+                                this.setState({ dateOfBirth: null });
+                              }
+                            }}
+                            fullWidth
+                          />
+                        </Box>
+                      )
+                    })}
+                    {this.renderEntry({
+                      id: 'Address',
+                      title: 'Address',
+                      formattedValue: this.state.firstName + ' ' + this.state.lastName,
+                      details: (
+                        <Box p={-2}>
+                          <Grid container>
+                            <Grid item xs={12}>
+                              <Box p={2} mb={2}>
+                                <Typography>Use a permanent address where you can receive mail.</Typography>
+                              </Box>
+                            </Grid>
+                            <Grid item xs={12}>
+                              <Box p={2}>
+                                <SelectCountry
+                                  fullWidth
+                                  autoHighlight
+                                  label="Choose a country"
+                                  onChange={(e, item) => this.setState({ country: item.iso2 })}
+                                />
+                              </Box>
+                            </Grid>
+                            <Grid item xs={12}>
+                              <Box p={2}>
+                                <TextField
+                                  variant="outlined"
+                                  label="Street address"
+                                  value={this.state.street}
+                                  onChange={e => this.setState({ street: e.target.value })}
+                                  fullWidth
+                                />
+                              </Box>
+                            </Grid>
+                            <Grid item xs={12}>
+                              <Box p={2}>
+                                <TextField
+                                  variant="outlined"
+                                  label="Flat, suite. (optional)"
+                                  value={this.state.aptSuite}
+                                  onChange={e => this.setState({ aptSuite: e.target.value })}
+                                  fullWidth
+                                />
+                              </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                              <Box p={2}>
+                                <TextField
+                                  variant="outlined"
+                                  label="City/Town"
+                                  value={this.state.city}
+                                  onChange={e => this.setState({ city: e.target.value })}
+                                  fullWidth
+                                />
+                              </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                              <Box p={2}>
+                                <TextField
+                                  variant="outlined"
+                                  label="County"
+                                  value={this.state.county}
+                                  onChange={e => this.setState({ county: e.target.value })}
+                                  fullWidth
+                                />
+                              </Box>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                              <Box p={2}>
+                                <TextField
+                                  variant="outlined"
+                                  label="Postcode"
+                                  value={this.state.postCode}
+                                  onChange={e => this.setState({ postCode: e.target.value })}
+                                  fullWidth
+                                />
+                              </Box>
+                            </Grid>
+                          </Grid>
+                        </Box>
+                      )
+                    })}
+                  </Box>
+                </Grid>
+                <Grid item md={3} />
+                <Grid item md={3} sm={4} xs={12}>
+                  <Card elevation={0} className={this.props.classes.card}>
+                    <CardContent>
+                      <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/personal-info.svg')} />
+                      <Typography variant="subtitle2">Let's make your account more secure</Typography>
+                      <Typography variant="body2">Your account security: Medium</Typography>
+                      <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
               </Grid>
-              <Grid item md={3} sm={1} />
-              <Grid item md={3} sm={4} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/personal-info.svg')} />
-                    <Typography variant="subtitle2">Let's make your account more secure</Typography>
-                    <Typography variant="body2">Your account security: Medium</Typography>
-                    <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
+            </Box>
           </Grid>
           <Grid item lg={2} />
         </Grid>

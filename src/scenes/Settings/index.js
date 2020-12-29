@@ -50,134 +50,154 @@ class Settings extends PureComponent {
             <Box mb={2}>
               <Typography variant="body1">Apurba Das, designsfit@gmail.com · <Link href="#" style={{ color: this.props.theme.palette.success.main }}>Go to profile</Link></Typography>
             </Box>
-            <Grid container spacing={2}>
-              <Grid item md={4} sm={6} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/personal_info')}>
-                    <CardContent>
-                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/personal-info.svg')} />
-                      <Box display="flex" alignItems="center">
-                        <Typography variant="subtitle2">Personal info</Typography>
-                        <ChevronRight />
-                      </Box>
-                      <Typography variant="body2">Provide personal details and how we can reach you</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
+            <Box p={-2}>
+              <Grid container>
+                <Grid item md={4} sm={6} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/personal_info')}>
+                        <CardContent>
+                          <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/personal-info.svg')} />
+                          <Box display="flex" alignItems="center">
+                            <Typography variant="subtitle2">Personal info</Typography>
+                            <ChevronRight />
+                          </Box>
+                          <Typography variant="body2">Provide personal details and how we can reach you</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/login_security')}>
+                        <CardContent>
+                          <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/login-info.svg')} />
+                          <Box display="flex" alignItems="center">
+                            <Typography variant="subtitle2">Login &amp; Security</Typography>
+                            <ChevronRight />
+                          </Box>
+                          <Typography variant="body2">Update your email, password, mobile and secure your account</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/payments_payouts')}>
+                        <CardContent>
+                          <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/payments-and-payouts.svg')} />
+                          <Box display="flex" alignItems="center">
+                            <Typography variant="subtitle2">Payments &amp; Payouts</Typography>
+                            <ChevronRight />
+                          </Box>
+                          <Typography variant="body2">Review payments, payouts and taxes</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/verify_identity')}>
+                        <CardContent>
+                          <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/verify-identity.svg')} />
+                          <Box display="flex" alignItems="center">
+                            <Typography variant="subtitle2">Verify identity</Typography>
+                            <ChevronRight />
+                          </Box>
+                          <Typography variant="body2">Verify your identity for get paid from gotlancer and secured your account with Gotlancer.</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/membership')}>
+                        <CardContent>
+                          <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/membership.svg')} />
+                          <Box display="flex" alignItems="center">
+                            <Typography variant="subtitle2">Membership</Typography>
+                            <ChevronRight />
+                          </Box>
+                          <Typography variant="body2">Set your default language and timezone</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardActionArea className={this.props.classes.cardAction}>
+                        <CardContent>
+                          <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/business-account.svg')} />
+                          <Box display="flex" alignItems="center">
+                            <Typography variant="subtitle2">Business Account</Typography>
+                            <ChevronRight />
+                          </Box>
+                          <Typography variant="body2">Manage your team, group chat, task share, large project management</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/notifications')}>
+                        <CardContent>
+                          <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/notifications.svg')} />
+                          <Box display="flex" alignItems="center">
+                            <Typography variant="subtitle2">Notifications</Typography>
+                            <ChevronRight />
+                          </Box>
+                          <Typography variant="body2">Choose notification preferences and how you want to be contacted</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/global_preferences')}>
+                        <CardContent>
+                          <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/global-preferences.svg')} />
+                          <Box display="flex" alignItems="center">
+                            <Typography variant="subtitle2">Global preferences</Typography>
+                            <ChevronRight />
+                          </Box>
+                          <Typography variant="body2">Set your default language and timezone</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Grid>
+                <Grid item md={4} sm={6} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/invite_friends')}>
+                        <CardContent>
+                          <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/invite-friends.svg')} />
+                          <Box display="flex" alignItems="center">
+                            <Typography variant="subtitle2">Invite friends</Typography>
+                            <ChevronRight />
+                          </Box>
+                          <Typography variant="body2">When they join and spend at least $100, you will get $30 instantly</Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid item md={4} sm={6} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/login_security')}>
-                    <CardContent>
-                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/login-info.svg')} />
-                      <Box display="flex" alignItems="center">
-                        <Typography variant="subtitle2">Login &amp; Security</Typography>
-                        <ChevronRight />
-                      </Box>
-                      <Typography variant="body2">Update your email, password, mobile and secure your account</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-              <Grid item md={4} sm={6} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/payments_payouts')}>
-                    <CardContent>
-                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/payments-and-payouts.svg')} />
-                      <Box display="flex" alignItems="center">
-                        <Typography variant="subtitle2">Payments &amp; Payouts</Typography>
-                        <ChevronRight />
-                      </Box>
-                      <Typography variant="body2">Review payments, payouts and taxes</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-              <Grid item md={4} sm={6} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/verify_identity')}>
-                    <CardContent>
-                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/verify-identity.svg')} />
-                      <Box display="flex" alignItems="center">
-                        <Typography variant="subtitle2">Verify identity</Typography>
-                        <ChevronRight />
-                      </Box>
-                      <Typography variant="body2">Verify your identity for get paid from gotlancer and secured your account with Gotlancer.</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-              <Grid item md={4} sm={6} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/membership')}>
-                    <CardContent>
-                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/membership.svg')} />
-                      <Box display="flex" alignItems="center">
-                        <Typography variant="subtitle2">Membership</Typography>
-                        <ChevronRight />
-                      </Box>
-                      <Typography variant="body2">Set your default language and timezone</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-              <Grid item md={4} sm={6} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardActionArea className={this.props.classes.cardAction}>
-                    <CardContent>
-                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/business-account.svg')} />
-                      <Box display="flex" alignItems="center">
-                        <Typography variant="subtitle2">Business Account</Typography>
-                        <ChevronRight />
-                      </Box>
-                      <Typography variant="body2">Manage your team, group chat, task share, large project management</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-              <Grid item md={4} sm={6} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/notifications')}>
-                    <CardContent>
-                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/notifications.svg')} />
-                      <Box display="flex" alignItems="center">
-                        <Typography variant="subtitle2">Notifications</Typography>
-                        <ChevronRight />
-                      </Box>
-                      <Typography variant="body2">Choose notification preferences and how you want to be contacted</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-              <Grid item md={4} sm={6} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/global_preferences')}>
-                    <CardContent>
-                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/global-preferences.svg')} />
-                      <Box display="flex" alignItems="center">
-                        <Typography variant="subtitle2">Global preferences</Typography>
-                        <ChevronRight />
-                      </Box>
-                      <Typography variant="body2">Set your default language and timezone</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-              <Grid item md={4} sm={6} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/invite_friends')}>
-                    <CardContent>
-                      <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/invite-friends.svg')} />
-                      <Box display="flex" alignItems="center">
-                        <Typography variant="subtitle2">Invite friends</Typography>
-                        <ChevronRight />
-                      </Box>
-                      <Typography variant="body2">When they join and spend at least $100, you will get $30 instantly</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-            </Grid>
+            </Box>
           </Grid>
           <Grid item lg={2} />
         </Grid>

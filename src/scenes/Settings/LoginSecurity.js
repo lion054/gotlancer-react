@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import {
   Accordion,
   AccordionDetails,
@@ -109,157 +109,163 @@ class LoginSecurity extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Login &amp; Security</Typography>
             </Box>
-            <Grid container spacing={2}>
-              <Grid item md={6} sm={7} xs={12}>
-                {this.renderEntry({
-                  id: 'Password',
-                  title: 'Password',
-                  formattedValue: `Last updated ${moment([2018, 2, 25]).fromNow()}`,
-                  details: (
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <TextField
-                          variant="outlined"
-                          label="Current password"
-                          type={this.state.currentPasswordType}
-                          value={this.state.currentPassword}
-                          onChange={e => this.setState({ currentPassword: e.target.value })}
-                          fullWidth
-                          InputProps={{
-                            endAdornment: (
-                              <IconButton onClick={() => {
-                                if (this.state.currentPasswordType === 'password') {
-                                  this.setState({ currentPasswordType: 'text' });
-                                } else {
-                                  this.setState({ currentPasswordType: 'password' });
-                                }
-                              }}>
-                                <FontAwesomeIcon
-                                  icon={this.state.currentPasswordType === 'password' ? faEye : faEyeSlash}
-                                  color={this.props.theme.palette.text.secondary}
-                                  size="1x"
-                                />
-                              </IconButton>
-                            )
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          variant="outlined"
-                          label="New password"
-                          type={this.state.newPasswordType}
-                          value={this.state.newPassword}
-                          onChange={e => this.setState({ newPassword: e.target.value })}
-                          fullWidth
-                          InputProps={{
-                            endAdornment: (
-                              <IconButton onClick={() => {
-                                if (this.state.newPasswordType === 'password') {
-                                  this.setState({ newPasswordType: 'text' });
-                                } else {
-                                  this.setState({ newPasswordType: 'password' });
-                                }
-                              }}>
-                                <FontAwesomeIcon
-                                  icon={this.state.newPasswordType === 'password' ? faEye : faEyeSlash}
-                                  color={this.props.theme.palette.text.secondary}
-                                  size="1x"
-                                />
-                              </IconButton>
-                            )
-                          }}
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          variant="outlined"
-                          label="Confirm new password"
-                          type={this.state.passwordConfirmationType}
-                          value={this.state.passwordConfirmation}
-                          onChange={e => this.setState({ passwordConfirmation: e.target.value })}
-                          fullWidth
-                          InputProps={{
-                            endAdornment: (
-                              <IconButton onClick={() => {
-                                if (this.state.passwordConfirmationType === 'password') {
-                                  this.setState({ passwordConfirmationType: 'text' });
-                                } else {
-                                  this.setState({ passwordConfirmationType: 'password' });
-                                }
-                              }}>
-                                <FontAwesomeIcon
-                                  icon={this.state.passwordConfirmationType === 'password' ? faEye : faEyeSlash}
-                                  color={this.props.theme.palette.text.secondary}
-                                  size="1x"
-                                />
-                              </IconButton>
-                            )
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                  )
-                })}
-                {this.renderEntry({
-                  id: 'Email',
-                  title: 'Email',
-                  formattedValue: this.state.emailAddress,
-                  details: (
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <TextField
-                          variant="outlined"
-                          label="Enter your new email"
-                          value={this.state.emailAddress}
-                          onChange={e => this.setState({ emailAddress: e.target.value })}
-                          fullWidth
-                        />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          variant="outlined"
-                          label="Enter email password"
-                          type={this.state.emailPasswordType}
-                          value={this.state.emailPassword}
-                          onChange={e => this.setState({ emailPassword: e.target.value })}
-                          fullWidth
-                          InputProps={{
-                            endAdornment: (
-                              <IconButton onClick={() => {
-                                if (this.state.emailPasswordType === 'password') {
-                                  this.setState({ emailPasswordType: 'text' });
-                                } else {
-                                  this.setState({ emailPasswordType: 'password' });
-                                }
-                              }}>
-                                <FontAwesomeIcon
-                                  icon={this.state.emailPasswordType === 'password' ? faEye : faEyeSlash}
-                                  color={this.props.theme.palette.text.secondary}
-                                  size="1x"
-                                />
-                              </IconButton>
-                            )
-                          }}
-                        />
-                      </Grid>
-                    </Grid>
-                  )
-                })}
-                {this.renderMobileEntry()}
+            <Box p={-2}>
+              <Grid container>
+                <Grid item md={6} sm={8} xs={12}>
+                  <Box p={2}>
+                    {this.renderEntry({
+                      id: 'Password',
+                      title: 'Password',
+                      formattedValue: `Last updated ${moment([2018, 2, 25]).fromNow()}`,
+                      details: (
+                        <Fragment>
+                          <Box mt={2} mb={2}>
+                            <TextField
+                              variant="outlined"
+                              label="Current password"
+                              type={this.state.currentPasswordType}
+                              value={this.state.currentPassword}
+                              onChange={e => this.setState({ currentPassword: e.target.value })}
+                              fullWidth
+                              InputProps={{
+                                endAdornment: (
+                                  <IconButton onClick={() => {
+                                    if (this.state.currentPasswordType === 'password') {
+                                      this.setState({ currentPasswordType: 'text' });
+                                    } else {
+                                      this.setState({ currentPasswordType: 'password' });
+                                    }
+                                  }}>
+                                    <FontAwesomeIcon
+                                      icon={this.state.currentPasswordType === 'password' ? faEye : faEyeSlash}
+                                      color={this.props.theme.palette.text.secondary}
+                                      size="1x"
+                                    />
+                                  </IconButton>
+                                )
+                              }}
+                            />
+                          </Box>
+                          <Box mt={2} mb={2}>
+                            <TextField
+                              variant="outlined"
+                              label="New password"
+                              type={this.state.newPasswordType}
+                              value={this.state.newPassword}
+                              onChange={e => this.setState({ newPassword: e.target.value })}
+                              fullWidth
+                              InputProps={{
+                                endAdornment: (
+                                  <IconButton onClick={() => {
+                                    if (this.state.newPasswordType === 'password') {
+                                      this.setState({ newPasswordType: 'text' });
+                                    } else {
+                                      this.setState({ newPasswordType: 'password' });
+                                    }
+                                  }}>
+                                    <FontAwesomeIcon
+                                      icon={this.state.newPasswordType === 'password' ? faEye : faEyeSlash}
+                                      color={this.props.theme.palette.text.secondary}
+                                      size="1x"
+                                    />
+                                  </IconButton>
+                                )
+                              }}
+                            />
+                          </Box>
+                          <Box mt={2} mb={2}>
+                            <TextField
+                              variant="outlined"
+                              label="Confirm new password"
+                              type={this.state.passwordConfirmationType}
+                              value={this.state.passwordConfirmation}
+                              onChange={e => this.setState({ passwordConfirmation: e.target.value })}
+                              fullWidth
+                              InputProps={{
+                                endAdornment: (
+                                  <IconButton onClick={() => {
+                                    if (this.state.passwordConfirmationType === 'password') {
+                                      this.setState({ passwordConfirmationType: 'text' });
+                                    } else {
+                                      this.setState({ passwordConfirmationType: 'password' });
+                                    }
+                                  }}>
+                                    <FontAwesomeIcon
+                                      icon={this.state.passwordConfirmationType === 'password' ? faEye : faEyeSlash}
+                                      color={this.props.theme.palette.text.secondary}
+                                      size="1x"
+                                    />
+                                  </IconButton>
+                                )
+                              }}
+                            />
+                          </Box>
+                        </Fragment>
+                      )
+                    })}
+                    {this.renderEntry({
+                      id: 'Email',
+                      title: 'Email',
+                      formattedValue: this.state.emailAddress,
+                      details: (
+                        <Fragment>
+                          <Box mt={2} mb={2}>
+                            <TextField
+                              variant="outlined"
+                              label="Enter your new email"
+                              value={this.state.emailAddress}
+                              onChange={e => this.setState({ emailAddress: e.target.value })}
+                              fullWidth
+                            />
+                          </Box>
+                          <Box mt={2} mb={2}>
+                            <TextField
+                              variant="outlined"
+                              label="Enter email password"
+                              type={this.state.emailPasswordType}
+                              value={this.state.emailPassword}
+                              onChange={e => this.setState({ emailPassword: e.target.value })}
+                              fullWidth
+                              InputProps={{
+                                endAdornment: (
+                                  <IconButton onClick={() => {
+                                    if (this.state.emailPasswordType === 'password') {
+                                      this.setState({ emailPasswordType: 'text' });
+                                    } else {
+                                      this.setState({ emailPasswordType: 'password' });
+                                    }
+                                  }}>
+                                    <FontAwesomeIcon
+                                      icon={this.state.emailPasswordType === 'password' ? faEye : faEyeSlash}
+                                      color={this.props.theme.palette.text.secondary}
+                                      size="1x"
+                                    />
+                                  </IconButton>
+                                )
+                              }}
+                            />
+                          </Box>
+                        </Fragment>
+                      )
+                    })}
+                    {this.renderMobileEntry()}
+                  </Box>
+                </Grid>
+                <Grid item md={3} />
+                <Grid item md={3} sm={4} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardContent>
+                        <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/login-info.svg')} />
+                        <Typography variant="subtitle2">Let's make your account more secure</Typography>
+                        <Typography variant="body2">Your account security: Medium</Typography>
+                        <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
+                      </CardContent>
+                    </Card>
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid item md={3} sm={1} />
-              <Grid item md={3} sm={4} xs={12}>
-                <Card elevation={0} className={this.props.classes.card}>
-                  <CardContent>
-                    <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/login-info.svg')} />
-                    <Typography variant="subtitle2">Let's make your account more secure</Typography>
-                    <Typography variant="body2">Your account security: Medium</Typography>
-                    <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            </Grid>
+            </Box>
           </Grid>
           <Grid item lg={2} />
         </Grid>
