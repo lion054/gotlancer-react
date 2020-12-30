@@ -37,7 +37,7 @@ const styles = (theme) => ({
     width: theme.spacing(8),
     height: theme.spacing(7)
   },
-  cardHeader: {
+  background: {
     backgroundColor: theme.palette.background.default
   },
   creditCard: {
@@ -74,7 +74,7 @@ class DepositFund extends PureComponent {
                   <Box p={2}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardHeader
-                        className={this.props.classes.cardHeader}
+                        className={this.props.classes.background}
                         title="Add fund to your account"
                         titleTypographyProps={{
                           variant: 'subtitle1'
@@ -95,7 +95,7 @@ class DepositFund extends PureComponent {
                     <Box mt={2}>
                       <Card elevation={0} className={this.props.classes.card}>
                         <CardHeader
-                          className={this.props.classes.cardHeader}
+                          className={this.props.classes.background}
                           title="Add fund to your account"
                           titleTypographyProps={{
                             variant: 'subtitle1'
@@ -161,7 +161,7 @@ class DepositFund extends PureComponent {
                         }}
                       />
                       <Divider />
-                      <CardContent className={this.props.classes.cardHeader}>
+                      <CardContent className={this.props.classes.background}>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
                             <Typography variant="body2">Deposit amount</Typography>
@@ -216,7 +216,7 @@ class DepositFund extends PureComponent {
                           variant: 'subtitle1'
                         }}
                       />
-                      <CardContent className={this.props.classes.cardHeader}>
+                      <CardContent className={this.props.classes.background}>
                         <Box m={-2}>
                           <Grid container>
                             <Grid item md={6} xs={12}>

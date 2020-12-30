@@ -36,7 +36,7 @@ const styles = (theme) => ({
     width: theme.spacing(8),
     height: theme.spacing(7)
   },
-  cardHeader: {
+  background: {
     backgroundColor: theme.palette.background.default
   },
   info: {
@@ -70,7 +70,8 @@ class BuyProposalCredit extends PureComponent {
       checked: true
     },{
       quantity: 20,
-      amount: 2
+      amount: 2,
+      popular: true
     },{
       quantity: 50,
       amount: 4,
@@ -78,7 +79,8 @@ class BuyProposalCredit extends PureComponent {
     },{
       quantity: 100,
       amount: 8,
-      cutoff: 2
+      cutoff: 2,
+      popular: true
     },{
       quantity: 300,
       amount: 25,
@@ -110,39 +112,61 @@ class BuyProposalCredit extends PureComponent {
                   <Box p={2}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardHeader
-                        className={this.props.classes.cardHeader}
                         title="Buy proposal credit"
                         titleTypographyProps={{
                           variant: 'subtitle1'
                         }}
                       />
                       <Divider />
-                      <CardContent>
+                      <CardContent className={this.props.classes.background}>
                         <Typography variant="body2">Select a proposal credit bundle</Typography>
                         <Typography variant="body2">Buy proposal credit to apply more project</Typography>
                         <List>
                           {this.state.products.map((product, index) => (
                             <ListItem key={index} button onClick={this.handleClick(index)}>
-                              <Box width="100%" display="flex">
-                                <GreenCheckbox checked={!!product.checked} onClick={(e) => e.stopPropagation()} />
-                                <Grid container alignItems="center">
-                                  <Grid item md={1} xs={2}>
-                                    <Typography variant="subtitle1">{product.quantity}</Typography>
+                              <Box width="100%" display="flex" alignItems="center">
+                                <GreenCheckbox checked={!!product.checked} onClick={this.handleClick(index)} />
+                                <Box
+                                  flex={1}
+                                  ml={1}
+                                  p={2}
+                                  borderRadius={4}
+                                  border={`solid 1px ${product.checked ? this.props.theme.palette.success.main : this.props.theme.palette.divider}`}
+                                  bgcolor={this.props.theme.palette.background.paper}
+                                  position="relative"
+                                >
+                                  <Grid container alignItems="center">
+                                    <Grid item md={1} xs={2}>
+                                      <Typography variant="subtitle1">{product.quantity}</Typography>
+                                    </Grid>
+                                    <Grid item md={5} xs={10}>
+                                      <Typography variant="body2" className={this.props.classes.description}>Buy {product.quantity} proposal credit for</Typography>
+                                    </Grid>
+                                    <Grid item md={4} xs={8}>
+                                      {!!product.cutoff && (
+                                        <Box>
+                                          <Typography variant="body2" component="span" className={this.props.classes.warning}>Your save ${product.cutoff} USD</Typography>
+                                        </Box>
+                                      )}
+                                    </Grid>
+                                    <Grid item md={2} xs={4}>
+                                      <Typography variant="body1" align="right" className={this.props.classes.success}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.amount)} USD</Typography>
+                                    </Grid>
                                   </Grid>
-                                  <Grid item md={5} xs={10}>
-                                    <Typography variant="body2" className={this.props.classes.description}>Buy {product.quantity} proposal credit for</Typography>
-                                  </Grid>
-                                  <Grid item md={4} xs={8}>
-                                    {!!product.cutoff && (
-                                      <Box>
-                                        <Typography variant="body2" component="span" className={this.props.classes.warning}>Your save ${product.cutoff} USD</Typography>
-                                      </Box>
-                                    )}
-                                  </Grid>
-                                  <Grid item md={2} xs={4}>
-                                    <Typography variant="body1" align="right" className={this.props.classes.success}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.amount)} USD</Typography>
-                                  </Grid>
-                                </Grid>
+                                  {product.popular && (
+                                    <Box
+                                      position="absolute"
+                                      left={0}
+                                      top={0}
+                                      borderRadius={4}
+                                      p="0 4px"
+                                      bgcolor={this.props.theme.palette.info.dark}
+                                      color={this.props.theme.palette.common.white}
+                                    >
+                                      <Typography style={{ fontSize: 12 }}>Popular</Typography>
+                                    </Box>
+                                  )}
+                                </Box>
                               </Box>
                             </ListItem>
                           ))}
@@ -162,7 +186,7 @@ class BuyProposalCredit extends PureComponent {
                         }}
                       />
                       <Divider />
-                      <CardContent className={this.props.classes.cardHeader}>
+                      <CardContent className={this.props.classes.background}>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
                             <Typography variant="body2">10 proposal credit for</Typography>
@@ -222,7 +246,7 @@ class BuyProposalCredit extends PureComponent {
                           variant: 'subtitle1'
                         }}
                       />
-                      <CardContent className={this.props.classes.cardHeader}>
+                      <CardContent className={this.props.classes.background}>
                         <Box m={-2}>
                           <Grid container>
                             <Grid item md={6} xs={12}>
