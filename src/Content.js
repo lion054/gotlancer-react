@@ -18,7 +18,8 @@ import AddPan from './scenes/Settings/PaymentsPayouts/AddPan';
 import AddPayPal from './scenes/Settings/PaymentsPayouts/AddPayPal';
 import AddPayoneer from './scenes/Settings/PaymentsPayouts/AddPayoneer';
 import AddSkrill from './scenes/Settings/PaymentsPayouts/AddSkrill';
-import BuyProposalCredit from './scenes/Finance/BuyProposalCredit';
+import BuyBidCredit from './scenes/Finance/BuyBidCredit';
+import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
 import DepositFund from './scenes/Finance/DepositFund';
 import GlobalPreferences from './scenes/Settings/GlobalPreferences';
 import InviteFriends from './scenes/Settings/InviteFriends';
@@ -42,8 +43,11 @@ const routes = [{
   path: '/deposit_fund',
   component: DepositFund
 },{
-  path: '/buy_proposal_credit',
-  component: BuyProposalCredit
+  path: '/buy_bid_credit',
+  component: BuyBidCredit
+},{
+  path: '/buy_bid_credit/checkout',
+  component: Checkout
 },{
   path: '/settings',
   component: Settings

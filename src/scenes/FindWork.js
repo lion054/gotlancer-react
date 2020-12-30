@@ -426,7 +426,7 @@ class Home extends PureComponent {
         <Box mt={1} mb={1}>
           <Typography variant="body1">76</Typography>
         </Box>
-        <Button variant="outlined" fullWidth>Buy Proposal Credit</Button>
+        <Button variant="outlined" fullWidth>Buy Bid Credit</Button>
       </CardContent>
     </Card>
   )

@@ -169,7 +169,7 @@ class Home extends PureComponent {
             <Grid item sm={2} xs={4}>
               <Box m={1}>
                 <Typography color="textPrimary">30</Typography>
-                <Typography color="textSecondary">Proposal</Typography>
+                <Typography color="textSecondary">Bid</Typography>
               </Box>
             </Grid>
             <Grid item sm={2} xs={3}>

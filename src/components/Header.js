@@ -123,7 +123,7 @@ class Header extends PureComponent {
                   >
                     <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/find_work')}>Find Work</MenuItem>
                     <MenuItem className={this.props.classes.label}>Saved Jobs</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Proposals</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Bids</MenuItem>
                     <MenuItem className={this.props.classes.label}>My Stats</MenuItem>
                     <MenuItem className={this.props.classes.label}>My Project</MenuItem>
                   </Menu>
@@ -158,7 +158,7 @@ class Header extends PureComponent {
                     <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/deposit_fund')}>Deposit Fund</MenuItem>
                     <MenuItem className={this.props.classes.label}>Balance Sheet</MenuItem>
                     <MenuItem className={this.props.classes.label}>Overview</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Proposal History</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Bid History</MenuItem>
                     <MenuItem className={this.props.classes.label}>Transaction History</MenuItem>
                     <MenuItem className={this.props.classes.label}>Payment History</MenuItem>
                     <MenuItem className={this.props.classes.label}>Withdrawal History</MenuItem>

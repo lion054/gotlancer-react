@@ -8,21 +8,22 @@ import {
   Divider,
   FormControlLabel,
   Grid,
-  InputAdornment,
   Link,
-  OutlinedInput,
+  List,
+  ListItem,
+  ListItemText,
   RadioGroup,
   Typography,
   colors,
   withStyles,
   withTheme
 } from '@material-ui/core';
-import { withRouter } from 'react-router-dom';
+import { ChevronRight } from '@material-ui/icons';
 import { compose } from 'redux';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import { GreenRadio } from '../../global';
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
+import { GreenRadio } from '../../../global';
 
 const styles = (theme) => ({
   root: {
@@ -53,7 +54,7 @@ const styles = (theme) => ({
   }
 })
 
-class DepositFund extends PureComponent {
+class Checkout extends PureComponent {
   state = {
     paymentMethod: 'stripe-checkout'
   }
@@ -66,91 +67,10 @@ class DepositFund extends PureComponent {
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
             <Box mb={2}>
-              <Typography variant="h5">Deposit fund</Typography>
+              <Typography variant="h5">Checkout</Typography>
             </Box>
             <Box m={-2}>
               <Grid container>
-                <Grid item md={7} sm={8} xs={12}>
-                  <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
-                      <CardHeader
-                        className={this.props.classes.background}
-                        title="Add fund to your account"
-                        titleTypographyProps={{
-                          variant: 'subtitle1'
-                        }}
-                      />
-                      <Divider />
-                      <CardContent>
-                        <Typography variant="subtitle2">How much balance do you need?</Typography>
-                        <Typography variant="body2">Type an amount more then $10.  Cent (.) not allowed.</Typography>
-                        <Box mt={2}>
-                          <OutlinedInput
-                            margin="dense"
-                            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                          />
-                        </Box>
-                      </CardContent>
-                    </Card>
-                    <Box mt={2}>
-                      <Card elevation={0} className={this.props.classes.card}>
-                        <CardHeader
-                          className={this.props.classes.background}
-                          title="Add fund to your account"
-                          titleTypographyProps={{
-                            variant: 'subtitle1'
-                          }}
-                        />
-                        <Divider />
-                        <CardContent>
-                          <Typography variant="subtitle2">Payment method</Typography>
-                          <RadioGroup value={this.state.paymentMethod} onChange={(e) => this.setState({ paymentMethod: e.target.value })}>
-                            <Box display="flex" alignItems="center">
-                              <Box flex={1}>
-                                <FormControlLabel
-                                  value="stripe-checkout"
-                                  control={(
-                                    <GreenRadio checked={this.state.paymentMethod === 'stripe-checkout'} onClick={(e) => e.stopPropagation()} />
-                                  )}
-                                  label={<Typography variant="body1" component="span">Stripe Checkout</Typography>}
-                                  onClick={() => this.setState({ paymentMethod: 'stripe-checkout' })}
-                                />
-                              </Box>
-                              <img alt="" className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/stripe-checkout.png')} />
-                            </Box>
-                            <Box display="flex" alignItems="center">
-                              <Box flex={1}>
-                                <FormControlLabel
-                                  value="paypal"
-                                  control={(
-                                    <GreenRadio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
-                                  )}
-                                  label={<Typography variant="body1" component="span">PayPal</Typography>}
-                                  onClick={() => this.setState({ paymentMethod: 'paypal' })}
-                                />
-                              </Box>
-                              <img alt="" className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/paypal.png')} />
-                            </Box>
-                            <Box display="flex" alignItems="center">
-                              <Box flex={1}>
-                                <FormControlLabel
-                                  value="payu"
-                                  control={(
-                                    <GreenRadio checked={this.state.paymentMethod === 'payu'} onClick={(e) => e.stopPropagation()} />
-                                  )}
-                                  label={<Typography variant="body1" component="span">PayU</Typography>}
-                                  onClick={() => this.setState({ paymentMethod: 'payu' })}
-                                />
-                              </Box>
-                              <img alt="" className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/payu.png')} />
-                            </Box>
-                          </RadioGroup>
-                        </CardContent>
-                      </Card>
-                    </Box>
-                  </Box>
-                </Grid>
-                <Grid item md={1} />
                 <Grid item sm={4} xs={12}>
                   <Box p={2}>
                     <Card elevation={0} className={this.props.classes.card}>
@@ -164,9 +84,9 @@ class DepositFund extends PureComponent {
                       <CardContent className={this.props.classes.background}>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
-                            <Typography variant="body2">Deposit amount</Typography>
+                            <Typography variant="body2">I need a logo design</Typography>
                           </Box>
-                          <Typography variant="body2">$26.00</Typography>
+                          <Typography variant="body2">$3,600</Typography>
                         </Box>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
@@ -199,10 +119,69 @@ class DepositFund extends PureComponent {
                         <Box mt={1} mb={1} textAlign="center">
                           <Typography variant="body2">By continuing, you are agreeing to our <Link href="#">terms and conditions</Link>. Its an ontime payment.</Typography>
                         </Box>
-                        <Button fullWidth variant="contained">Play Now</Button>
+                        <Button fullWidth variant="contained">Checkout  <ChevronRight /></Button>
                         <Box mt={1} textAlign="center">
                           <Typography variant="body2">This page will redirect to checkout page. You could pay with your selected payment method.</Typography>
                         </Box>
+                      </CardContent>
+                    </Card>
+                  </Box>
+                </Grid>
+                <Grid item md={1} />
+                <Grid item md={7} sm={8} xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardHeader
+                        className={this.props.classes.background}
+                        title="Add fund to your account"
+                        titleTypographyProps={{
+                          variant: 'subtitle1'
+                        }}
+                      />
+                      <Divider />
+                      <CardContent>
+                        <Typography variant="subtitle2">Payment method</Typography>
+                        <RadioGroup value={this.state.paymentMethod} onChange={(e) => this.setState({ paymentMethod: e.target.value })}>
+                          <Box display="flex" alignItems="center">
+                            <Box flex={1}>
+                              <FormControlLabel
+                                value="stripe-checkout"
+                                control={(
+                                  <GreenRadio checked={this.state.paymentMethod === 'stripe-checkout'} onClick={(e) => e.stopPropagation()} />
+                                )}
+                                label={<Typography variant="body1" component="span">Stripe Checkout</Typography>}
+                                onClick={() => this.setState({ paymentMethod: 'stripe-checkout' })}
+                              />
+                            </Box>
+                            <img alt="" className={this.props.classes.creditCard} src={require('../../../assets/images/deposit-fund/stripe-checkout.png')} />
+                          </Box>
+                          <Box display="flex" alignItems="center">
+                            <Box flex={1}>
+                              <FormControlLabel
+                                value="paypal"
+                                control={(
+                                  <GreenRadio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
+                                )}
+                                label={<Typography variant="body1" component="span">PayPal</Typography>}
+                                onClick={() => this.setState({ paymentMethod: 'paypal' })}
+                              />
+                            </Box>
+                            <img alt="" className={this.props.classes.creditCard} src={require('../../../assets/images/deposit-fund/paypal.png')} />
+                          </Box>
+                          <Box display="flex" alignItems="center">
+                            <Box flex={1}>
+                              <FormControlLabel
+                                value="payu"
+                                control={(
+                                  <GreenRadio checked={this.state.paymentMethod === 'payu'} onClick={(e) => e.stopPropagation()} />
+                                )}
+                                label={<Typography variant="body1" component="span">PayU</Typography>}
+                                onClick={() => this.setState({ paymentMethod: 'payu' })}
+                              />
+                            </Box>
+                            <img alt="" className={this.props.classes.creditCard} src={require('../../../assets/images/deposit-fund/payu.png')} />
+                          </Box>
+                        </RadioGroup>
                       </CardContent>
                     </Card>
                   </Box>
@@ -301,7 +280,6 @@ class DepositFund extends PureComponent {
 }
 
 export default compose(
-  withRouter,
   withStyles(styles),
   withTheme
-)(DepositFund);
+)(Checkout);

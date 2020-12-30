@@ -145,7 +145,7 @@ class AvatarMenuIcon extends PureComponent {
           },{
             label: 'Membership'
           },{
-            label: 'Buy Proposal Credit'
+            label: 'Buy Bid Credit'
           },{
             label: 'Projects',
             items: [{
@@ -153,7 +153,7 @@ class AvatarMenuIcon extends PureComponent {
             },{
               label: 'Saved Jobs'
             },{
-              label: 'Proposals'
+              label: 'Bids'
             },{
               label: 'My Stats'
             },{
@@ -175,7 +175,7 @@ class AvatarMenuIcon extends PureComponent {
             },{
               label: 'My Reports'
             },{
-              label: 'Proposal History'
+              label: 'Bid History'
             },{
               label: 'Transaction History'
             },{

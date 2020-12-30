@@ -129,7 +129,7 @@ class AvatarMenuButton extends PureComponent {
         <MenuItem
           onClick={() => {
             this.onCloseMenu();
-            this.props.history.push('/buy_proposal_credit');
+            this.props.history.push('/buy_bid_credit');
           }}
           className={this.props.classes.menuItem}
         >
@@ -138,7 +138,7 @@ class AvatarMenuButton extends PureComponent {
               <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faShoppingCart} />
             </Box>
           </ListItemIcon>
-          <ListItemText primary="Buy Proposal Credit" primaryTypographyProps={{
+          <ListItemText primary="Buy Bid Credit" primaryTypographyProps={{
             variant: 'body1',
             color: 'textPrimary'
           }} />

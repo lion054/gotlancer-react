@@ -17,11 +17,12 @@ import {
 } from '@material-ui/core';
 import { ChevronRight } from '@material-ui/icons';
 import { cloneDeep } from 'lodash';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import { GreenCheckbox } from '../../global';
+import Header from '../../../components/Header';
+import Footer from '../../../components/Footer';
+import { GreenCheckbox } from '../../../global';
 
 const styles = (theme) => ({
   root: {
@@ -61,7 +62,7 @@ const styles = (theme) => ({
   }
 })
 
-class BuyProposalCredit extends PureComponent {
+class BuyBidCredit extends PureComponent {
   state = {
     paymentMethod: 'stripe-checkout',
     products: [{
@@ -112,15 +113,15 @@ class BuyProposalCredit extends PureComponent {
                   <Box p={2}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardHeader
-                        title="Buy proposal credit"
+                        title="Buy bid credit"
                         titleTypographyProps={{
                           variant: 'subtitle1'
                         }}
                       />
                       <Divider />
                       <CardContent className={this.props.classes.background}>
-                        <Typography variant="body2">Select a proposal credit bundle</Typography>
-                        <Typography variant="body2">Buy proposal credit to apply more project</Typography>
+                        <Typography variant="body2">Select a bid credit bundle</Typography>
+                        <Typography variant="body2">Buy bid credit to apply more project</Typography>
                         <List>
                           {this.state.products.map((product, index) => (
                             <ListItem key={index} button onClick={this.handleClick(index)}>
@@ -140,7 +141,7 @@ class BuyProposalCredit extends PureComponent {
                                       <Typography variant="subtitle1">{product.quantity}</Typography>
                                     </Grid>
                                     <Grid item md={5} xs={10}>
-                                      <Typography variant="body2" className={this.props.classes.description}>Buy {product.quantity} proposal credit for</Typography>
+                                      <Typography variant="body2" className={this.props.classes.description}>Buy {product.quantity} bid credit for</Typography>
                                     </Grid>
                                     <Grid item md={4} xs={8}>
                                       {!!product.cutoff && (
@@ -189,13 +190,13 @@ class BuyProposalCredit extends PureComponent {
                       <CardContent className={this.props.classes.background}>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
-                            <Typography variant="body2">10 proposal credit for</Typography>
+                            <Typography variant="body2">10 bid credit for</Typography>
                           </Box>
                           <Typography variant="body2">$1.00 USD</Typography>
                         </Box>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
-                            <Typography variant="body2">300 proposal credit for</Typography>
+                            <Typography variant="body2">300 bid credit for</Typography>
                           </Box>
                           <Typography variant="body2">$25.00 USD</Typography>
                         </Box>
@@ -218,7 +219,7 @@ class BuyProposalCredit extends PureComponent {
                           <Typography variant="body1">$26.00 USD</Typography>
                         </Box>
                         <Box className={this.props.classes.info}>
-                          <Typography variant="body2">Proposal Credit will add after payment</Typography>
+                          <Typography variant="body2">Bid Credit will add after payment</Typography>
                           <Box display="flex" mt={1}>
                             <Box flex={1}>
                               <Typography variant="subtitle2">Credit will add</Typography>
@@ -229,7 +230,7 @@ class BuyProposalCredit extends PureComponent {
                         <Box mt={1} mb={1} textAlign="center">
                           <Typography variant="body2">By continuing, you are agreeing to our <Link href="#">terms and conditions</Link>. Its an ontime payment.</Typography>
                         </Box>
-                        <Button fullWidth variant="contained">Checkout  <ChevronRight /></Button>
+                        <Button fullWidth variant="contained" onClick={() => this.props.history.push('/buy_bid_credit/checkout')}>Checkout  <ChevronRight /></Button>
                         <Box mt={1} textAlign="center">
                           <Typography variant="body2">This page will redirect to checkout page. You could pay with your selected payment method.</Typography>
                         </Box>
@@ -252,7 +253,7 @@ class BuyProposalCredit extends PureComponent {
                             <Grid item md={6} xs={12}>
                               <Box p={2}>
                                 <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                                 </Box>
                                 <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
                               </Box>
@@ -260,7 +261,7 @@ class BuyProposalCredit extends PureComponent {
                             <Grid item md={6} xs={12}>
                               <Box p={2}>
                                 <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                                 </Box>
                                 <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
                               </Box>
@@ -268,7 +269,7 @@ class BuyProposalCredit extends PureComponent {
                             <Grid item md={6} xs={12}>
                               <Box p={2}>
                                 <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                                 </Box>
                                 <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
                               </Box>
@@ -276,7 +277,7 @@ class BuyProposalCredit extends PureComponent {
                             <Grid item md={6} xs={12}>
                               <Box p={2}>
                                 <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                                 </Box>
                                 <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
                               </Box>
@@ -284,7 +285,7 @@ class BuyProposalCredit extends PureComponent {
                             <Grid item md={6} xs={12}>
                               <Box p={2}>
                                 <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                                 </Box>
                                 <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
                               </Box>
@@ -292,7 +293,7 @@ class BuyProposalCredit extends PureComponent {
                             <Grid item md={6} xs={12}>
                               <Box p={2}>
                                 <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                                 </Box>
                                 <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
                               </Box>
@@ -300,7 +301,7 @@ class BuyProposalCredit extends PureComponent {
                             <Grid item md={6} xs={12}>
                               <Box p={2}>
                                 <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                                 </Box>
                                 <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
                               </Box>
@@ -308,7 +309,7 @@ class BuyProposalCredit extends PureComponent {
                             <Grid item md={6} xs={12}>
                               <Box p={2}>
                                 <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                                 </Box>
                                 <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
                               </Box>
@@ -331,6 +332,7 @@ class BuyProposalCredit extends PureComponent {
 }
 
 export default compose(
+  withRouter,
   withStyles(styles),
   withTheme
-)(BuyProposalCredit);
+)(BuyBidCredit);
