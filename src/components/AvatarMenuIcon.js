@@ -145,7 +145,7 @@ class AvatarMenuIcon extends PureComponent {
           },{
             label: 'Membership'
           },{
-            label: 'Buy Bid Credit'
+            label: 'Buy Proposal Credit'
           },{
             label: 'Projects',
             items: [{
