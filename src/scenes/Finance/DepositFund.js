@@ -75,7 +75,7 @@ class DepositFund extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Deposit fund</Typography>
             </Box>
-            <Box p={-2}>
+            <Box m={-2}>
               <Grid container>
                 <Grid item md={6} sm={8} xs={12}>
                   <Box p={2}>
@@ -128,7 +128,7 @@ class DepositFund extends PureComponent {
                                   onClick={() => this.setState({ paymentMethod: 'stripe-checkout' })}
                                 />
                               </Box>
-                              <img className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/stripe-checkout.png')} />
+                              <img alt="" className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/stripe-checkout.png')} />
                             </Box>
                             <Box mt={2} display="flex" alignItems="center">
                               <Box flex={1}>
@@ -141,7 +141,7 @@ class DepositFund extends PureComponent {
                                   onClick={() => this.setState({ paymentMethod: 'paypal' })}
                                 />
                               </Box>
-                              <img className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/paypal.png')} />
+                              <img alt="" className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/paypal.png')} />
                             </Box>
                             <Box mt={2} display="flex" alignItems="center">
                               <Box flex={1}>
@@ -154,7 +154,7 @@ class DepositFund extends PureComponent {
                                   onClick={() => this.setState({ paymentMethod: 'payu' })}
                                 />
                               </Box>
-                              <img className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/payu.png')} />
+                              <img alt="" className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/payu.png')} />
                             </Box>
                           </RadioGroup>
                         </CardContent>
@@ -229,7 +229,7 @@ class DepositFund extends PureComponent {
                         }}
                       />
                       <CardContent className={this.props.classes.cardHeader}>
-                        <Box p={-2}>
+                        <Box m={-2}>
                           <Grid container>
                             <Grid item md={6} xs={12}>
                               <Box p={2}>

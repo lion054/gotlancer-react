@@ -70,7 +70,7 @@ class VerifyIdentity extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Verify identity</Typography>
             </Box>
-            <Box p={-2}>
+            <Box m={-2}>
               <Grid container>
                 <Grid item md={6} sm={8} xs={12}>
                   <Box p={2}>

@@ -92,7 +92,7 @@ class Home extends PureComponent {
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
-            <Box p={-2} mt={4}>
+            <Box mt={4}>
               <Grid container>
                 <Grid item xs={6} sm={3}>
                   <Box p={2}>
@@ -116,7 +116,7 @@ class Home extends PureComponent {
                 </Grid>
               </Grid>
             </Box>
-            <Box p={-3} mt={8}>
+            <Box mt={8}>
               <Grid container>
                 <Grid item md={8} xs={12}>
                   <Box p={3}>

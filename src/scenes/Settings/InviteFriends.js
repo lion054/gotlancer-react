@@ -98,7 +98,7 @@ class InviteFriends extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Invite friends to join the Gotlancer community</Typography>
             </Box>
-            <Box p={-2}>
+            <Box m={-2}>
               <Grid container>
                 <Grid item md={6} sm={8} xs={12}>
                   <Box p={2}>
@@ -127,7 +127,7 @@ class InviteFriends extends PureComponent {
                 </Grid>
               </Grid>
             </Box>
-            <Box p={-2} mt={2}>
+            <Box m={-2} mt={2}>
               <Grid container>
                 <Grid item sm={4} xs={12}>
                   <Box p={2}>
@@ -152,7 +152,7 @@ class InviteFriends extends PureComponent {
                 </Grid>
               </Grid>
             </Box>
-            <Box p={-2} mt={2}>
+            <Box m={-2} mt={2}>
               <Grid container>
                 <Grid item md={8} xs={12}>
                   <Box p={2}>
@@ -207,15 +207,15 @@ class InviteFriends extends PureComponent {
       <Paper variant="outlined" component="form" className={this.props.classes.addressBar}>
         <Box flex="1" className={this.props.classes.addressText}>{this.state.url}</Box>
       </Paper>
-      <Box mt={0.5} p={-2}>
+      <Box mt={0.5} m={-1}>
         <Grid container>
           <Grid item xs={6}>
-            <Box mr={1} width="100%">
+            <Box p={1}>
               <Button variant="outlined" size="large" fullWidth className={this.props.classes.copyButton}>Copy Link</Button>
             </Box>
           </Grid>
           <Grid item xs={6}>
-            <Box ml={1} width="100%">
+            <Box p={1}>
               <SuccessButton variant="contained" size="large" fullWidth className={this.props.classes.inviteButton}>Invite Friends</SuccessButton>
             </Box>
           </Grid>

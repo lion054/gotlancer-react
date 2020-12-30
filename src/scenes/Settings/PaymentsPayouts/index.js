@@ -90,7 +90,7 @@ class PaymentsPayouts extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Payments &amp; Payouts</Typography>
             </Box>
-            <Box p={-2}>
+            <Box m={-2}>
               <Grid container>
                 <Grid item md={6} sm={8} xs={12}>
                   <Box p={2}>
@@ -355,7 +355,7 @@ class PaymentsPayouts extends PureComponent {
       <DialogTitle>Add VAT ID Number</DialogTitle>
       <DialogContent>
         <Typography variant="body2">If you are registered with the European Commission, verification may take up to 48 hours. We’ll send you an email when its finished. More information on VAT IDs can be found here.</Typography>
-        <Box p={-2} mt={2}>
+        <Box m={-2} mt={2}>
           <Grid container>
             <Grid item sm={6} xs={12}>
               <Box p={2}>

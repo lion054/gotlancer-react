@@ -50,7 +50,7 @@ class Settings extends PureComponent {
             <Box mb={2}>
               <Typography variant="body1">Apurba Das, designsfit@gmail.com · <Link href="#" style={{ color: this.props.theme.palette.success.main }}>Go to profile</Link></Typography>
             </Box>
-            <Box p={-2}>
+            <Box m={-2}>
               <Grid container>
                 <Grid item md={4} sm={6} xs={12}>
                   <Box p={2}>
