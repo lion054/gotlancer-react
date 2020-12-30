@@ -127,6 +127,7 @@ class LoginSecurity extends PureComponent {
                               value={this.state.currentPassword}
                               onChange={e => this.setState({ currentPassword: e.target.value })}
                               fullWidth
+                              margin="dense"
                               InputProps={{
                                 endAdornment: (
                                   <IconButton onClick={() => {
@@ -154,6 +155,7 @@ class LoginSecurity extends PureComponent {
                               value={this.state.newPassword}
                               onChange={e => this.setState({ newPassword: e.target.value })}
                               fullWidth
+                              margin="dense"
                               InputProps={{
                                 endAdornment: (
                                   <IconButton onClick={() => {
@@ -181,6 +183,7 @@ class LoginSecurity extends PureComponent {
                               value={this.state.passwordConfirmation}
                               onChange={e => this.setState({ passwordConfirmation: e.target.value })}
                               fullWidth
+                              margin="dense"
                               InputProps={{
                                 endAdornment: (
                                   <IconButton onClick={() => {
@@ -216,6 +219,7 @@ class LoginSecurity extends PureComponent {
                               value={this.state.emailAddress}
                               onChange={e => this.setState({ emailAddress: e.target.value })}
                               fullWidth
+                              margin="dense"
                             />
                           </Box>
                           <Box mt={2} mb={2}>
@@ -226,6 +230,7 @@ class LoginSecurity extends PureComponent {
                               value={this.state.emailPassword}
                               onChange={e => this.setState({ emailPassword: e.target.value })}
                               fullWidth
+                              margin="dense"
                               InputProps={{
                                 endAdornment: (
                                   <IconButton onClick={() => {

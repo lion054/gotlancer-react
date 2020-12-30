@@ -267,7 +267,7 @@ class PaymentsPayouts extends PureComponent {
               </Box>
               <OutlinedInput
                 fullWidth
-                type="text"
+                margin="dense"
                 startAdornment={(
                   <InputAdornment position="start">
                     <FontAwesomeIcon icon={faCreditCard} style={{ fontSize: '0.8em' }} />
@@ -277,11 +277,11 @@ class PaymentsPayouts extends PureComponent {
               <Box display="flex" mt={2}>
                 <Box flex={1} mr={1}>
                   <Typography variant="subtitle2" className={this.props.classes.label}>First Name</Typography>
-                  <OutlinedInput fullWidth type="text" />
+                  <OutlinedInput fullWidth margin="dense" />
                 </Box>
                 <Box flex={1} ml={1}>
                   <Typography variant="subtitle2" className={this.props.classes.label}>Last Name</Typography>
-                  <OutlinedInput fullWidth type="text" />
+                  <OutlinedInput fullWidth margin="dense" />
                 </Box>
               </Box>
               <Box display="flex" mt={2}>
@@ -291,7 +291,7 @@ class PaymentsPayouts extends PureComponent {
                     <Box mr={1}>
                       <OutlinedInput
                         fullWidth
-                        type="text"
+                        margin="dense"
                         inputProps={{
                           placeholder: 'MM',
                           maxLength: 2
@@ -301,7 +301,7 @@ class PaymentsPayouts extends PureComponent {
                     <Box ml={1}>
                       <OutlinedInput
                         fullWidth
-                        type="text"
+                        margin="dense"
                         inputProps={{
                           placeholder: 'YYYY',
                           maxLength: 4
@@ -312,7 +312,7 @@ class PaymentsPayouts extends PureComponent {
                 </Box>
                 <Box flex={1} ml={1}>
                   <Typography variant="subtitle2" className={this.props.classes.label}>Security Code</Typography>
-                  <OutlinedInput fullWidth type="text" />
+                  <OutlinedInput fullWidth margin="dense" />
                 </Box>
               </Box>
               <Box textAlign="right" mt={2} mb={2}>
@@ -362,6 +362,7 @@ class PaymentsPayouts extends PureComponent {
                 <Typography variant="subtitle2" className={this.props.classes.label}>Country/region</Typography>
                 <SelectCountry
                   fullWidth
+                  margin="dense"
                   autoHighlight
                   onChange={(e, item) => this.setState({ country: item.iso2 })}
                 />
@@ -370,30 +371,30 @@ class PaymentsPayouts extends PureComponent {
             <Grid item sm={6} xs={12}>
               <Box p={2}>
                 <Typography variant="subtitle2" className={this.props.classes.label}>VAT ID Number</Typography>
-                <OutlinedInput fullWidth type="text" />
+                <OutlinedInput fullWidth margin="dense" />
               </Box>
             </Grid>
           </Grid>
         </Box>
         <Box mt={2}>
           <Typography variant="subtitle2" className={this.props.classes.label}>Name on registration</Typography>
-          <OutlinedInput fullWidth type="text" />
+          <OutlinedInput fullWidth margin="dense" />
         </Box>
         <Box mt={2}>
           <Typography variant="subtitle2" className={this.props.classes.label}>Address line 1</Typography>
-          <OutlinedInput fullWidth type="text" />
+          <OutlinedInput fullWidth margin="dense" />
         </Box>
         <Box mt={2}>
           <Typography variant="subtitle2" className={this.props.classes.label}>Address line 2 (optional)</Typography>
-          <OutlinedInput fullWidth type="text" />
+          <OutlinedInput fullWidth margin="dense" />
         </Box>
         <Box mt={2}>
           <Typography variant="subtitle2" className={this.props.classes.label}>City</Typography>
-          <OutlinedInput fullWidth type="text" />
+          <OutlinedInput fullWidth margin="dense" />
         </Box>
         <Box mt={2}>
           <Typography variant="subtitle2" className={this.props.classes.label}>Zip/postal code</Typography>
-          <OutlinedInput fullWidth type="text" />
+          <OutlinedInput fullWidth margin="dense" />
         </Box>
       </DialogContent>
       <DialogActions>

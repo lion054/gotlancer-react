@@ -41,9 +41,14 @@ class SelectCountry extends PureComponent {
           {...params}
           label={this.props.label}
           variant="outlined"
+          margin={this.props.margin}
           inputProps={{
             ...params.inputProps,
             autoComplete: 'new-password', // disable autocomplete and autofill
+          }}
+          style={{
+            marginTop: 0,
+            marginBottom: 0
           }}
         />
       )}
@@ -54,6 +59,7 @@ class SelectCountry extends PureComponent {
 
 SelectCountry.propTypes = {
   fullWidth: PropTypes.bool,
+  margin: PropTypes.oneOf(['dense', 'none', 'normal']),
   autoHighlight: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func

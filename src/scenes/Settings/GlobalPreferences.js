@@ -79,11 +79,12 @@ class GlobalPreferences extends PureComponent {
                       details: (
                         <Box width="100%">
                           <TextField
+                            fullWidth
+                            margin="dense"
                             select
                             variant="outlined"
                             value={this.state.language}
                             onChange={e => this.setState({ language: e.target.value })}
-                            fullWidth
                           >
                             <MenuItem value="English">English</MenuItem>
                             <MenuItem value="Chinese">Chinese</MenuItem>

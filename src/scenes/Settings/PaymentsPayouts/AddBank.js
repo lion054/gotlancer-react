@@ -64,7 +64,7 @@ class AddBank extends PureComponent {
               <Box mt={1} display="flex" flexDirection="row">
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter IFSC Code"
                 />
                 <Button variant="contained" className={this.props.classes.find}>Find</Button>
@@ -94,7 +94,7 @@ class AddBank extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter Account Number"
                 />
               </Box>
@@ -105,7 +105,7 @@ class AddBank extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter PAN Number"
                 />
               </Box>
@@ -118,6 +118,7 @@ class AddBank extends PureComponent {
                   variant="outlined"
                   select
                   fullWidth
+                  margin="dense"
                   onChange={() => {}}
                 >
                   <MenuItem value="A">Type A</MenuItem>
@@ -131,7 +132,7 @@ class AddBank extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter First Name"
                 />
               </Box>
@@ -142,7 +143,7 @@ class AddBank extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter Last Name"
                 />
               </Box>
@@ -152,7 +153,7 @@ class AddBank extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter Name on Account"
                 />
               </Box>
@@ -163,7 +164,7 @@ class AddBank extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter Address"
                 />
               </Box>
@@ -173,6 +174,7 @@ class AddBank extends PureComponent {
               <Box mt={2}>
                 <SelectCountry
                   fullWidth
+                  margin="dense"
                   autoHighlight
                   onChange={(e, item) => console.log(item)}
                 />
@@ -183,6 +185,7 @@ class AddBank extends PureComponent {
               <Box mt={2}>
                 <MuiPhoneNumber
                   fullWidth
+                  margin="dense"
                   variant="outlined"
                   defaultCountry="us"
                   onChange={(phoneNumber) => this.setState({ phoneNumber })}

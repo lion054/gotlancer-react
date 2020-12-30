@@ -102,6 +102,7 @@ class PersonalInfo extends PureComponent {
                                   value={this.state.firstName}
                                   onChange={e => this.setState({ firstName: e.target.value })}
                                   fullWidth
+                                  margin="dense"
                                 />
                               </Box>
                             </Grid>
@@ -113,6 +114,7 @@ class PersonalInfo extends PureComponent {
                                   value={this.state.lastName}
                                   onChange={e => this.setState({ lastName: e.target.value })}
                                   fullWidth
+                                  margin="dense"
                                 />
                               </Box>
                             </Grid>
@@ -133,6 +135,7 @@ class PersonalInfo extends PureComponent {
                             value={this.state.gender}
                             onChange={e => this.setState({ gender: e.target.value })}
                             fullWidth
+                            margin="dense"
                           >
                             <MenuItem value="Male">Male</MenuItem>
                             <MenuItem value="Female">Female</MenuItem>
@@ -194,6 +197,7 @@ class PersonalInfo extends PureComponent {
                                   value={this.state.street}
                                   onChange={e => this.setState({ street: e.target.value })}
                                   fullWidth
+                                  margin="dense"
                                 />
                               </Box>
                             </Grid>
@@ -205,6 +209,7 @@ class PersonalInfo extends PureComponent {
                                   value={this.state.aptSuite}
                                   onChange={e => this.setState({ aptSuite: e.target.value })}
                                   fullWidth
+                                  margin="dense"
                                 />
                               </Box>
                             </Grid>
@@ -216,6 +221,7 @@ class PersonalInfo extends PureComponent {
                                   value={this.state.city}
                                   onChange={e => this.setState({ city: e.target.value })}
                                   fullWidth
+                                  margin="dense"
                                 />
                               </Box>
                             </Grid>
@@ -227,6 +233,7 @@ class PersonalInfo extends PureComponent {
                                   value={this.state.county}
                                   onChange={e => this.setState({ county: e.target.value })}
                                   fullWidth
+                                  margin="dense"
                                 />
                               </Box>
                             </Grid>
@@ -238,6 +245,7 @@ class PersonalInfo extends PureComponent {
                                   value={this.state.postCode}
                                   onChange={e => this.setState({ postCode: e.target.value })}
                                   fullWidth
+                                  margin="dense"
                                 />
                               </Box>
                             </Grid>

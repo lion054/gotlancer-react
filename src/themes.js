@@ -24,6 +24,18 @@ export const lightTheme = createMuiTheme({
         textTransform: 'unset'
       }
     },
+    MuiCardHeader: {
+      root: {
+        padding: '8px 16px'
+      }
+    },
+    MuiInputLabel: {
+      outlined: {
+        '&$shrink': {
+          color: colors.green[500]
+        }
+      }
+    },
     MuiOutlinedInput: {
       root: {
         '&:hover $notchedOutline': {
@@ -31,13 +43,6 @@ export const lightTheme = createMuiTheme({
         },
         '&$focused $notchedOutline': {
           borderColor: colors.green[500]
-        }
-      }
-    },
-    MuiInputLabel: {
-      outlined: {
-        '&$shrink': {
-          color: colors.green[500]
         }
       }
     },
@@ -107,6 +112,18 @@ export const darkTheme = createMuiTheme({
         textTransform: 'unset'
       }
     },
+    MuiCardHeader: {
+      root: {
+        padding: '8px 16px'
+      }
+    },
+    MuiInputLabel: {
+      outlined: {
+        '&$shrink': {
+          color: colors.green[500]
+        }
+      }
+    },
     MuiOutlinedInput: {
       root: {
         '&:hover $notchedOutline': {
@@ -114,13 +131,6 @@ export const darkTheme = createMuiTheme({
         },
         '&$focused $notchedOutline': {
           borderColor: colors.green[500]
-        }
-      }
-    },
-    MuiInputLabel: {
-      outlined: {
-        '&$shrink': {
-          color: colors.green[500]
         }
       }
     },

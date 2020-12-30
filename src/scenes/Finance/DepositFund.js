@@ -40,13 +40,6 @@ const styles = (theme) => ({
   cardHeader: {
     backgroundColor: theme.palette.background.default
   },
-  inputContainer: {
-    backgroundColor: theme.palette.action.disabledBackground
-  },
-  input: {
-    backgroundColor: theme.palette.background.paper,
-    paddingLeft: theme.spacing(1.5)
-  },
   creditCard: {
     height: theme.spacing(3),
     [theme.breakpoints.only('xs')]: {
@@ -84,22 +77,17 @@ class DepositFund extends PureComponent {
                         className={this.props.classes.cardHeader}
                         title="Add fund to your account"
                         titleTypographyProps={{
-                          variant: 'h6'
+                          variant: 'subtitle1'
                         }}
                       />
                       <Divider />
                       <CardContent>
-                        <Typography variant="subtitle1">How much balance do you need?</Typography>
+                        <Typography variant="subtitle2">How much balance do you need?</Typography>
                         <Typography variant="body2">Type an amount more then $10.  Cent (.) not allowed.</Typography>
                         <Box mt={2}>
                           <OutlinedInput
-                            className={this.props.classes.inputContainer}
-                            startAdornment={(
-                              <InputAdornment position="start">$</InputAdornment>
-                            )}
-                            inputProps={{
-                              className: this.props.classes.input
-                            }}
+                            margin="dense"
+                            startAdornment={<InputAdornment position="start">$</InputAdornment>}
                           />
                         </Box>
                       </CardContent>
@@ -110,47 +98,47 @@ class DepositFund extends PureComponent {
                           className={this.props.classes.cardHeader}
                           title="Add fund to your account"
                           titleTypographyProps={{
-                            variant: 'h6'
+                            variant: 'subtitle1'
                           }}
                         />
                         <Divider />
                         <CardContent>
-                          <Typography variant="subtitle1">Payment method</Typography>
+                          <Typography variant="subtitle2">Payment method</Typography>
                           <RadioGroup value={this.state.paymentMethod} onChange={(e) => this.setState({ paymentMethod: e.target.value })}>
-                            <Box mt={2} display="flex" alignItems="center">
+                            <Box display="flex" alignItems="center">
                               <Box flex={1}>
                                 <FormControlLabel
                                   value="stripe-checkout"
                                   control={(
                                     <GreenRadio checked={this.state.paymentMethod === 'stripe-checkout'} onClick={(e) => e.stopPropagation()} />
                                   )}
-                                  label={<Typography variant="subtitle1" component="span">Strip Checkout</Typography>}
+                                  label={<Typography variant="body1" component="span">Strip Checkout</Typography>}
                                   onClick={() => this.setState({ paymentMethod: 'stripe-checkout' })}
                                 />
                               </Box>
                               <img alt="" className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/stripe-checkout.png')} />
                             </Box>
-                            <Box mt={2} display="flex" alignItems="center">
+                            <Box display="flex" alignItems="center">
                               <Box flex={1}>
                                 <FormControlLabel
                                   value="paypal"
                                   control={(
                                     <GreenRadio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
                                   )}
-                                  label={<Typography variant="subtitle1" component="span">PayPal</Typography>}
+                                  label={<Typography variant="body1" component="span">PayPal</Typography>}
                                   onClick={() => this.setState({ paymentMethod: 'paypal' })}
                                 />
                               </Box>
                               <img alt="" className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/paypal.png')} />
                             </Box>
-                            <Box mt={2} display="flex" alignItems="center">
+                            <Box display="flex" alignItems="center">
                               <Box flex={1}>
                                 <FormControlLabel
                                   value="payu"
                                   control={(
                                     <GreenRadio checked={this.state.paymentMethod === 'payu'} onClick={(e) => e.stopPropagation()} />
                                   )}
-                                  label={<Typography variant="subtitle1" component="span">PayU</Typography>}
+                                  label={<Typography variant="body1" component="span">PayU</Typography>}
                                   onClick={() => this.setState({ paymentMethod: 'payu' })}
                                 />
                               </Box>
@@ -162,8 +150,8 @@ class DepositFund extends PureComponent {
                     </Box>
                   </Box>
                 </Grid>
-                <Grid item md={3} />
-                <Grid item md={3} sm={4} xs={12}>
+                <Grid item md={2} />
+                <Grid item sm={4} xs={12}>
                   <Box p={2}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardHeader

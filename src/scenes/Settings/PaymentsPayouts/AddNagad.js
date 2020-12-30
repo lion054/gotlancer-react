@@ -57,7 +57,7 @@ class AddNagad extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter First Name"
                 />
               </Box>
@@ -68,7 +68,7 @@ class AddNagad extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter Last Name"
                 />
               </Box>
@@ -78,7 +78,7 @@ class AddNagad extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="We need your Nagad registered mobile number for send you money,"
                 />
               </Box>

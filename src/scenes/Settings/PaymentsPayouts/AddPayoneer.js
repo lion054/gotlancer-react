@@ -63,7 +63,7 @@ class AddPayoneer extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter First Name"
                 />
               </Box>
@@ -74,7 +74,7 @@ class AddPayoneer extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter Last Name"
                 />
               </Box>
@@ -85,7 +85,7 @@ class AddPayoneer extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter Payoneer registered email ID"
                 />
               </Box>
@@ -96,7 +96,7 @@ class AddPayoneer extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter Address"
                 />
               </Box>
@@ -106,7 +106,7 @@ class AddPayoneer extends PureComponent {
               <Box mt={2}>
                 <OutlinedInput
                   fullWidth
-                  type="text"
+                  margin="dense"
                   placeholder="Enter City and State/Province"
                 />
               </Box>
@@ -116,6 +116,7 @@ class AddPayoneer extends PureComponent {
               <Box mt={2}>
                 <SelectCountry
                   fullWidth
+                  margin="dense"
                   autoHighlight
                   onChange={(e, item) => console.log(item)}
                 />
@@ -126,6 +127,7 @@ class AddPayoneer extends PureComponent {
               <Box mt={2}>
                 <MuiPhoneNumber
                   fullWidth
+                  margin="dense"
                   variant="outlined"
                   defaultCountry="us"
                   onChange={(phoneNumber) => this.setState({ phoneNumber })}

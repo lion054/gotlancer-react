@@ -443,7 +443,6 @@ class Home extends PureComponent {
           <Box flex={1}>
             <OutlinedInput
               fullWidth
-              type="text"
               placeholder="Search for project"
               inputProps={{
                 className: this.props.classes.search
