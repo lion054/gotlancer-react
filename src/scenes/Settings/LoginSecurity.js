@@ -111,7 +111,7 @@ class LoginSecurity extends PureComponent {
             </Box>
             <Box m={-2}>
               <Grid container>
-                <Grid item md={6} sm={8} xs={12}>
+                <Grid item md={7} sm={8} xs={12}>
                   <Box p={2}>
                     {this.renderEntry({
                       id: 'Password',
@@ -256,8 +256,8 @@ class LoginSecurity extends PureComponent {
                     {this.renderMobileEntry()}
                   </Box>
                 </Grid>
-                <Grid item md={3} />
-                <Grid item md={3} sm={4} xs={12}>
+                <Grid item md={1} />
+                <Grid item sm={4} xs={12}>
                   <Box p={2}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardContent>
