@@ -6,17 +6,23 @@ import {
   CardContent,
   CardHeader,
   Divider,
+  FormControlLabel,
   Grid,
   InputAdornment,
+  Link,
   OutlinedInput,
+  RadioGroup,
   Typography,
+  colors,
   withStyles,
   withTheme
 } from '@material-ui/core';
+import { ChevronRight } from '@material-ui/icons';
 import { compose } from 'redux';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { GreenRadio } from '../../global';
 
 const styles = (theme) => ({
   root: {
@@ -38,11 +44,27 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.action.disabledBackground
   },
   input: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
+    paddingLeft: theme.spacing(1.5)
+  },
+  creditCard: {
+    height: theme.spacing(3),
+    [theme.breakpoints.only('xs')]: {
+      height: theme.spacing(2.5)
+    }
+  },
+  info: {
+    borderRadius: theme.spacing(1),
+    backgroundColor: colors.blue[50],
+    padding: theme.spacing(1, 1, 0)
   }
 })
 
 class DepositFund extends PureComponent {
+  state = {
+    paymentMethod: 'stripe-checkout'
+  }
+
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
@@ -82,17 +104,199 @@ class DepositFund extends PureComponent {
                         </Box>
                       </CardContent>
                     </Card>
+                    <Box mt={2}>
+                      <Card elevation={0} className={this.props.classes.card}>
+                        <CardHeader
+                          className={this.props.classes.cardHeader}
+                          title="Add fund to your account"
+                          titleTypographyProps={{
+                            variant: 'h6'
+                          }}
+                        />
+                        <Divider />
+                        <CardContent>
+                          <Typography variant="subtitle1">Payment method</Typography>
+                          <RadioGroup value={this.state.paymentMethod} onChange={(e) => this.setState({ paymentMethod: e.target.value })}>
+                            <Box mt={2} display="flex" alignItems="center">
+                              <Box flex={1}>
+                                <FormControlLabel
+                                  value="stripe-checkout"
+                                  control={(
+                                    <GreenRadio checked={this.state.paymentMethod === 'stripe-checkout'} onClick={(e) => e.stopPropagation()} />
+                                  )}
+                                  label={<Typography variant="subtitle1" component="span">Strip Checkout</Typography>}
+                                  onClick={() => this.setState({ paymentMethod: 'stripe-checkout' })}
+                                />
+                              </Box>
+                              <img className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/stripe-checkout.png')} />
+                            </Box>
+                            <Box mt={2} display="flex" alignItems="center">
+                              <Box flex={1}>
+                                <FormControlLabel
+                                  value="paypal"
+                                  control={(
+                                    <GreenRadio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
+                                  )}
+                                  label={<Typography variant="subtitle1" component="span">PayPal</Typography>}
+                                  onClick={() => this.setState({ paymentMethod: 'paypal' })}
+                                />
+                              </Box>
+                              <img className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/paypal.png')} />
+                            </Box>
+                            <Box mt={2} display="flex" alignItems="center">
+                              <Box flex={1}>
+                                <FormControlLabel
+                                  value="payu"
+                                  control={(
+                                    <GreenRadio checked={this.state.paymentMethod === 'payu'} onClick={(e) => e.stopPropagation()} />
+                                  )}
+                                  label={<Typography variant="subtitle1" component="span">PayU</Typography>}
+                                  onClick={() => this.setState({ paymentMethod: 'payu' })}
+                                />
+                              </Box>
+                              <img className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/payu.png')} />
+                            </Box>
+                          </RadioGroup>
+                        </CardContent>
+                      </Card>
+                    </Box>
                   </Box>
                 </Grid>
                 <Grid item md={3} />
                 <Grid item md={3} sm={4} xs={12}>
                   <Box p={2}>
                     <Card elevation={0} className={this.props.classes.card}>
-                      <CardContent>
-                        <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/membership.svg')} />
-                        <Typography variant="subtitle2">Let's make your account more secure</Typography>
-                        <Typography variant="body2">Your account security: Medium</Typography>
-                        <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
+                      <CardHeader
+                        title="Order Summary"
+                        titleTypographyProps={{
+                          variant: 'subtitle1'
+                        }}
+                      />
+                      <Divider />
+                      <CardContent className={this.props.classes.cardHeader}>
+                        <Box display="flex" mb={1} alignItems="center">
+                          <Box flex={1}>
+                            <Typography variant="body2">Deposit amount</Typography>
+                          </Box>
+                          <Typography variant="body2">$26.00</Typography>
+                        </Box>
+                        <Box display="flex" mb={1} alignItems="center">
+                          <Box flex={1}>
+                            <Typography variant="body2">VAT/Tax (2.5%)</Typography>
+                          </Box>
+                          <Typography variant="body2">$0.30 USD</Typography>
+                        </Box>
+                        <Box display="flex" mb={1} alignItems="center">
+                          <Box flex={1}>
+                            <Typography variant="body2">Processing fee (0%)</Typography>
+                          </Box>
+                          <Typography variant="body2">$0.00 USD</Typography>
+                        </Box>
+                        <Box display="flex" mb={3} alignItems="center">
+                          <Box flex={1}>
+                            <Typography variant="subtitle2">Total</Typography>
+                            <Typography variant="body2">(Incl. VAT)</Typography>
+                          </Box>
+                          <Typography variant="body2">$26.30 USD</Typography>
+                        </Box>
+                        <Box className={this.props.classes.info}>
+                          <Typography variant="body2">Account after top up</Typography>
+                          <Box display="flex" mt={1}>
+                            <Box flex={1}>
+                              <Typography variant="subtitle2">Balance will add</Typography>
+                            </Box>
+                            <Typography variant="subtitle1">+ $26.00</Typography>
+                          </Box>
+                        </Box>
+                        <Box mt={1} mb={1} textAlign="center">
+                          <Typography variant="body2">By continuing, you are agreeing to our <Link href="#">terms and conditions</Link>. Its an ontime payment.</Typography>
+                        </Box>
+                        <Button fullWidth variant="contained">Checkout  <ChevronRight /></Button>
+                        <Box mt={1} textAlign="center">
+                          <Typography variant="body2">This page will redirect to checkout page. You could pay with your selected payment method.</Typography>
+                        </Box>
+                      </CardContent>
+                    </Card>
+                  </Box>
+                </Grid>
+                <Grid item xs={12}>
+                  <Box p={2}>
+                    <Card elevation={0} className={this.props.classes.card}>
+                      <CardHeader
+                        title="Frequently asked questions"
+                        titleTypographyProps={{
+                          variant: 'subtitle1'
+                        }}
+                      />
+                      <CardContent className={this.props.classes.cardHeader}>
+                        <Box p={-2}>
+                          <Grid container>
+                            <Grid item md={6} xs={12}>
+                              <Box p={2}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                </Box>
+                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+                              </Box>
+                            </Grid>
+                            <Grid item md={6} xs={12}>
+                              <Box p={2}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                </Box>
+                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+                              </Box>
+                            </Grid>
+                            <Grid item md={6} xs={12}>
+                              <Box p={2}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                </Box>
+                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+                              </Box>
+                            </Grid>
+                            <Grid item md={6} xs={12}>
+                              <Box p={2}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                </Box>
+                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+                              </Box>
+                            </Grid>
+                            <Grid item md={6} xs={12}>
+                              <Box p={2}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                </Box>
+                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+                              </Box>
+                            </Grid>
+                            <Grid item md={6} xs={12}>
+                              <Box p={2}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                </Box>
+                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+                              </Box>
+                            </Grid>
+                            <Grid item md={6} xs={12}>
+                              <Box p={2}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                </Box>
+                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+                              </Box>
+                            </Grid>
+                            <Grid item md={6} xs={12}>
+                              <Box p={2}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">What is Gotlancer proposal credit?</Typography>
+                                </Box>
+                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+                              </Box>
+                            </Grid>
+                          </Grid>
+                        </Box>
                       </CardContent>
                     </Card>
                   </Box>
