@@ -72,7 +72,7 @@ class Header extends PureComponent {
   state = {
     projectsEl: null,
     hireEl: null,
-    reportsEl: null,
+    financeEl: null,
     contestEl: null,
     marketsEl: null,
     drawerOpened: false
@@ -86,9 +86,9 @@ class Header extends PureComponent {
 
   onCloseHire = () => this.setState({ hireEl: null })
 
-  onOpenReports = (event) => this.setState({ reportsEl: event.currentTarget })
+  onOpenFinance = (event) => this.setState({ financeEl: event.currentTarget })
 
-  onCloseReports = () => this.setState({ reportsEl: null })
+  onCloseFinance = () => this.setState({ financeEl: null })
 
   onOpenContest = (event) => this.setState({ contestEl: event.currentTarget })
 
@@ -145,18 +145,19 @@ class Header extends PureComponent {
                   </Menu>
                 </Box>
                 <Box className={this.props.classes.optional}>
-                  <MenuButton onClick={this.onOpenReports}>Reports</MenuButton>
+                  <MenuButton onClick={this.onOpenFinance}>Finance</MenuButton>
                   <Menu
-                    id="reports-menu"
-                    anchorEl={this.state.reportsEl}
+                    id="finance-menu"
+                    anchorEl={this.state.financeEl}
                     keepMounted
-                    open={!!this.state.reportsEl}
-                    onClose={this.onCloseReports}
+                    open={!!this.state.financeEl}
+                    onClose={this.onCloseFinance}
                     getContentAnchorEl={null} // menu should be display below anchor
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
                   >
+                    <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/deposit_fund')}>Deposit Fund</MenuItem>
+                    <MenuItem className={this.props.classes.label}>Balance Sheet</MenuItem>
                     <MenuItem className={this.props.classes.label}>Overview</MenuItem>
-                    <MenuItem className={this.props.classes.label}>My Reports</MenuItem>
                     <MenuItem className={this.props.classes.label}>Proposal History</MenuItem>
                     <MenuItem className={this.props.classes.label}>Transaction History</MenuItem>
                     <MenuItem className={this.props.classes.label}>Payment History</MenuItem>

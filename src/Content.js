@@ -18,6 +18,7 @@ import AddPan from './scenes/Settings/PaymentsPayouts/AddPan';
 import AddPayPal from './scenes/Settings/PaymentsPayouts/AddPayPal';
 import AddPayoneer from './scenes/Settings/PaymentsPayouts/AddPayoneer';
 import AddSkrill from './scenes/Settings/PaymentsPayouts/AddSkrill';
+import DepositFund from './scenes/Finance/DepositFund';
 import GlobalPreferences from './scenes/Settings/GlobalPreferences';
 import InviteFriends from './scenes/Settings/InviteFriends';
 import LoginSecurity from './scenes/Settings/LoginSecurity';
@@ -36,6 +37,9 @@ const routes = [{
 },{
   path: '/find_work',
   component: FindWork
+},{
+  path: '/deposit_fund',
+  component: DepositFund
 },{
   path: '/settings',
   component: Settings
