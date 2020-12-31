@@ -278,6 +278,8 @@ const styles = (theme) => ({
     }
   },
   menuItem: {
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(3),
     '&:hover > .MuiListItemIcon-root > .MuiBox-root > svg': {
       color: theme.palette.info.main
     },
@@ -671,12 +673,12 @@ class Messenger extends PureComponent {
       getContentAnchorEl={null} // menu should be display below anchor
       anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
     >
-      <MenuItem onClick={() => {
+      <MenuItem disableGutters className={this.props.classes.menuItem} onClick={() => {
         this.onCloseMoreMenu();
         this.onOpenDialog();
-      }} className={this.props.classes.menuItem}>
+      }}>
         <ListItemIcon>
-          <Box mr={1.5} width="100%" textAlign="center">
+          <Box width="100%" textAlign="center">
             <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faTrash} />
           </Box>
         </ListItemIcon>
@@ -685,9 +687,9 @@ class Messenger extends PureComponent {
           color: 'textPrimary'
         }} />
       </MenuItem>
-      <MenuItem onClick={this.onCloseMoreMenu} className={this.props.classes.menuItem}>
+      <MenuItem disableGutters className={this.props.classes.menuItem} onClick={this.onCloseMoreMenu}>
         <ListItemIcon>
-          <Box mr={1.5} width="100%" textAlign="center">
+          <Box width="100%" textAlign="center">
             <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faEdit} />
           </Box>
         </ListItemIcon>
@@ -696,9 +698,9 @@ class Messenger extends PureComponent {
           color: 'textPrimary'
         }} />
       </MenuItem>
-      <MenuItem onClick={this.onCloseMoreMenu} className={this.props.classes.menuItem}>
+      <MenuItem disableGutters className={this.props.classes.menuItem} onClick={this.onCloseMoreMenu}>
         <ListItemIcon>
-          <Box mr={1.5} width="100%" textAlign="center">
+          <Box width="100%" textAlign="center">
             <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faQuoteLeft} />
           </Box>
         </ListItemIcon>
@@ -761,7 +763,7 @@ class Messenger extends PureComponent {
         <Box mb={1}>
           <Typography variant="body2">Pressing Enter Key will:</Typography>
         </Box>
-        <MenuItem className={this.props.classes.menuItem} onClick={() => {
+        <MenuItem disableGutters className={this.props.classes.menuItem} onClick={() => {
           this.setState({ enterMode: 'send' });
           this.onCloseSettingPopover();
         }}>
@@ -775,7 +777,7 @@ class Messenger extends PureComponent {
             }
           }} />
         </MenuItem>
-        <MenuItem className={this.props.classes.menuItem} onClick={() => {
+        <MenuItem disableGutters className={this.props.classes.menuItem} onClick={() => {
           this.setState({ enterMode: 'line-break' });
           this.onCloseSettingPopover();
         }}>

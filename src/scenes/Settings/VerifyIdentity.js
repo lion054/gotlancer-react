@@ -91,13 +91,13 @@ class VerifyIdentity extends PureComponent {
                             <Typography variant="body2" color="textSecondary">1 file uploaded</Typography>
                           </Box>
                           <Box mt={2} display="flex">
-                            <MenuItem className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
+                            <MenuItem disableGutters className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
                             <IconButton color="inherit">
                               <Delete />
                             </IconButton>
                           </Box>
                           <Box mb={2} display="flex">
-                            <MenuItem className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
+                            <MenuItem disableGutters className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
                             <IconButton color="inherit">
                               <Delete />
                             </IconButton>

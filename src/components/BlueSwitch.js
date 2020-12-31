@@ -2,12 +2,12 @@ import { Switch, withStyles } from '@material-ui/core';
 
 const styles = (theme) => ({
   switchBase: {
-    color: theme.palette.info.main,
+    color: theme.palette.primary.main,
     '&$checked': {
-      color: theme.palette.info.main
+      color: theme.palette.primary.main
     },
     '&$checked + $track': {
-      backgroundColor: theme.palette.info.main
+      backgroundColor: theme.palette.primary.main
     }
   },
   checked: {},

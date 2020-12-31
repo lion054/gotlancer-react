@@ -17,7 +17,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import { updateThemeMode } from '../controllers/app/actions';
-import InfoSwitch from '../components/InfoSwitch';
+import BlueSwitch from '../components/BlueSwitch';
 
 const styles = (theme) => ({
   root: {
@@ -30,11 +30,12 @@ const styles = (theme) => ({
     }
   },
   menuItem: {
+    paddingRight: theme.spacing(3),
     '&:hover > .MuiListItemIcon-root > .MuiBox-root > svg': {
-      color: theme.palette.info.main
+      color: theme.palette.primary.main
     },
     '&:hover > .MuiListItemText-root > .MuiTypography-root': {
-      color: theme.palette.info.main
+      color: theme.palette.primary.main
     }
   },
   menuIcon: {
@@ -70,7 +71,7 @@ class AvatarMenuButton extends PureComponent {
         aria-describedby={!!this.state.avatarEl ? 'avatar-popover' : undefined}
         onClick={this.onOpenMenu}
       >
-        <Box mr={1.5} className={this.props.classes.optional}>
+        <Box className={this.props.classes.optional}>
           <Typography variant="body2" display="block" noWrap align="right">Hi, Apurba</Typography>
           <Typography variant="body2" display="block" noWrap align="right">$100.00 USD</Typography>
         </Box>
@@ -93,9 +94,10 @@ class AvatarMenuButton extends PureComponent {
             this.props.history.push('/settings');
           }}
           className={this.props.classes.menuItem}
+          disableGutters
         >
           <ListItemIcon>
-            <Box mr={1.5} width="100%" textAlign="center">
+            <Box width="100%" textAlign="center">
               <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faCog} />
             </Box>
           </ListItemIcon>
@@ -104,9 +106,13 @@ class AvatarMenuButton extends PureComponent {
             color: 'textPrimary'
           }} />
         </MenuItem>
-        <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
+        <MenuItem
+          onClick={this.onCloseMenu}
+          className={this.props.classes.menuItem}
+          disableGutters
+        >
           <ListItemIcon>
-            <Box mr={1.5} width="100%" textAlign="center">
+            <Box width="100%" textAlign="center">
               <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faUser} />
             </Box>
           </ListItemIcon>
@@ -115,9 +121,13 @@ class AvatarMenuButton extends PureComponent {
             color: 'textPrimary'
           }} />
         </MenuItem>
-        <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
+        <MenuItem
+          onClick={this.onCloseMenu}
+          className={this.props.classes.menuItem}
+          disableGutters
+        >
           <ListItemIcon>
-            <Box mr={1.5} width="100%" textAlign="center">
+            <Box width="100%" textAlign="center">
               <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faCrown} />
             </Box>
           </ListItemIcon>
@@ -132,9 +142,10 @@ class AvatarMenuButton extends PureComponent {
             this.props.history.push('/buy_bid_credit');
           }}
           className={this.props.classes.menuItem}
+          disableGutters
         >
           <ListItemIcon>
-            <Box mr={1.5} width="100%" textAlign="center">
+            <Box width="100%" textAlign="center">
               <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faShoppingCart} />
             </Box>
           </ListItemIcon>
@@ -143,9 +154,13 @@ class AvatarMenuButton extends PureComponent {
             color: 'textPrimary'
           }} />
         </MenuItem>
-        <MenuItem onClick={this.onCloseMenu} className={this.props.classes.menuItem}>
+        <MenuItem
+          onClick={this.onCloseMenu}
+          className={this.props.classes.menuItem}
+          disableGutters
+        >
           <ListItemIcon>
-            <Box mr={1.5} width="100%" textAlign="center">
+            <Box width="100%" textAlign="center">
               <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faSignOutAlt} />
             </Box>
           </ListItemIcon>
@@ -154,18 +169,29 @@ class AvatarMenuButton extends PureComponent {
             color: 'textPrimary'
           }} />
         </MenuItem>
-        {/* <MenuItem onClick={this.onToggleThemeMode} className={this.props.classes.menuItem}>
+        {/* <MenuItem
+          onClick={this.onToggleThemeMode}
+          className={this.props.classes.menuItem}
+          disableGutters
+        >
           <ListItemIcon>
-            <InfoSwitch checked={this.props.themeMode === 'dark'} />
+            <BlueSwitch checked={this.props.themeMode === 'dark'} />
           </ListItemIcon>
           <ListItemText primary="Dark Theme" primaryTypographyProps={{
             variant: 'body1',
             color: 'textPrimary'
           }} />
         </MenuItem> */}
-        <MenuItem onClick={this.onToggleOnline} className={this.props.classes.menuItem}>
-          <ListItemIcon>
-            <InfoSwitch size="small" checked={this.state.online} />
+        <MenuItem
+          onClick={this.onToggleOnline}
+          className={this.props.classes.menuItem}
+          disableGutters
+        >
+          <ListItemIcon style={{
+            display: 'block',
+            textAlign: 'center'
+          }}>
+            <BlueSwitch size="small" checked={this.state.online} />
           </ListItemIcon>
           <ListItemText primary="Online" primaryTypographyProps={{
             variant: 'body1',

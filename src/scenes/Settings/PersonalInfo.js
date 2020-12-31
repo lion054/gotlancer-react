@@ -183,6 +183,7 @@ class PersonalInfo extends PureComponent {
                               <Box p={2}>
                                 <SelectCountry
                                   fullWidth
+                                  margin="dense"
                                   autoHighlight
                                   label="Choose a country"
                                   onChange={(e, item) => this.setState({ country: item.iso2 })}

@@ -119,7 +119,7 @@ class Home extends PureComponent {
             <Box mt={8}>
               <Grid container>
                 <Grid item md={8} xs={12}>
-                  <Box p={3}>
+                  <Box p={2}>
                     {this.renderRecentProjects()}
                     <Box mt={3}>
                       {this.renderDraftProjects()}
@@ -127,7 +127,7 @@ class Home extends PureComponent {
                   </Box>
                 </Grid>
                 <Grid item md={4} xs={12}>
-                  <Box p={3}>
+                  <Box p={2}>
                     {this.renderSideBar()}
                   </Box>
                 </Grid>
@@ -161,25 +161,25 @@ class Home extends PureComponent {
         <Fragment key={index}>
           <Grid container>
             <Grid item sm={6} xs={12}>
-              <Box m={1}>
+              <Box mt={1} mr={2} mb={1} ml={2}>
                 <Typography color="textPrimary">{job.title}</Typography>
                 <Typography color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
               </Box>
             </Grid>
             <Grid item sm={2} xs={4}>
-              <Box m={1}>
+              <Box mt={1} mr={2} mb={1} ml={2}>
                 <Typography color="textPrimary">30</Typography>
                 <Typography color="textSecondary">Bid</Typography>
               </Box>
             </Grid>
             <Grid item sm={2} xs={3}>
-              <Box m={1}>
+              <Box mt={1} mr={2} mb={1} ml={2}>
                 <Typography color="textPrimary">{job.hiredCount}</Typography>
                 <Typography color="textSecondary">Hired</Typography>
               </Box>
             </Grid>
             <Grid item sm={2} xs={5}>
-              <Box m={1}>
+              <Box mt={1} mr={2} mb={1} ml={2}>
                 <Typography color="textPrimary">${job.budget} USD</Typography>
                 <Typography color="textSecondary">{job.status}</Typography>
               </Box>
@@ -194,8 +194,8 @@ class Home extends PureComponent {
   renderDraftProjects = () => (
     <Paper elevation={0} className={this.props.classes.panel} style={{ display: 'flex', flexDirection: 'column' }}>
       <Toolbar>
-        <Typography variant="subtitle1" style={{ flex: 1 }}>Recent Projects</Typography>
-        <Typography variant="body2">3 projects found</Typography>
+        <Typography variant="subtitle1" style={{ flex: 1 }}>Draft Projects</Typography>
+        <Typography variant="body2">0 projects found</Typography>
       </Toolbar>
       <Divider />
       <Box flex={1} display="flex" alignItems="center" justifyContent="center">
@@ -255,18 +255,13 @@ class Home extends PureComponent {
                 }
                 terms.push(job.status);
                 return (
-                  <Fragment key={index}>
-                    <ListItem button>
-                      <Box>
-                        <Typography variant="body2">{job.title}</Typography>
-                        <Typography variant="body2">{terms.join(' - ')}</Typography>
-                        <Typography variant="body2" style={{ color: this.props.theme.palette.success.main }}>${job.budget} USD</Typography>
-                      </Box>
-                    </ListItem>
-                    {index !== this.state.recentCompletedJobs.length - 1 && (
-                      <Divider />
-                    )}
-                  </Fragment>
+                  <ListItem key={index} disableGutters button divider={index !== this.state.recentCompletedJobs.length - 1}>
+                    <Box>
+                      <Typography variant="body2">{job.title}</Typography>
+                      <Typography variant="body2">{terms.join(' - ')}</Typography>
+                      <Typography variant="body2" style={{ color: this.props.theme.palette.success.main }}>${job.budget} USD</Typography>
+                    </Box>
+                  </ListItem>
                 );
               })}
             </List>

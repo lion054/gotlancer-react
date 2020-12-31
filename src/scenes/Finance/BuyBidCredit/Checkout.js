@@ -11,14 +11,13 @@ import {
   Link,
   List,
   ListItem,
-  ListItemText,
   RadioGroup,
   Typography,
   colors,
   withStyles,
   withTheme
 } from '@material-ui/core';
-import { ChevronRight } from '@material-ui/icons';
+import { ChevronRight, VerifiedUser } from '@material-ui/icons';
 import { compose } from 'redux';
 
 import Header from '../../../components/Header';
@@ -34,10 +33,6 @@ const styles = (theme) => ({
     borderColor: theme.palette.divider,
     borderStyle: 'solid'
   },
-  cardIcon: {
-    width: theme.spacing(8),
-    height: theme.spacing(7)
-  },
   background: {
     backgroundColor: theme.palette.background.default
   },
@@ -46,11 +41,6 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       height: theme.spacing(2.5)
     }
-  },
-  info: {
-    borderRadius: theme.spacing(1),
-    backgroundColor: colors.blue[50],
-    padding: theme.spacing(1, 1, 0)
   }
 })
 
@@ -75,53 +65,71 @@ class Checkout extends PureComponent {
                   <Box p={2}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardHeader
+                        className={this.props.classes.background}
                         title="Order Summary"
                         titleTypographyProps={{
                           variant: 'subtitle1'
                         }}
                       />
                       <Divider />
-                      <CardContent className={this.props.classes.background}>
-                        <Box display="flex" mb={1} alignItems="center">
-                          <Box flex={1}>
-                            <Typography variant="body2">I need a logo design</Typography>
-                          </Box>
-                          <Typography variant="body2">$3,600</Typography>
-                        </Box>
-                        <Box display="flex" mb={1} alignItems="center">
-                          <Box flex={1}>
-                            <Typography variant="body2">VAT/Tax (2.5%)</Typography>
-                          </Box>
-                          <Typography variant="body2">$0.30 USD</Typography>
-                        </Box>
-                        <Box display="flex" mb={1} alignItems="center">
-                          <Box flex={1}>
-                            <Typography variant="body2">Processing fee (0%)</Typography>
-                          </Box>
-                          <Typography variant="body2">$0.00 USD</Typography>
-                        </Box>
-                        <Box display="flex" mb={3} alignItems="center">
-                          <Box flex={1}>
-                            <Typography variant="subtitle2">Total</Typography>
-                            <Typography variant="body2">(Incl. VAT)</Typography>
-                          </Box>
-                          <Typography variant="body2">$26.30 USD</Typography>
-                        </Box>
-                        <Box className={this.props.classes.info}>
-                          <Typography variant="body2">Account after top up</Typography>
+                      <CardContent>
+                        <List>
+                          <ListItem divider disableGutters>
+                            <Box flex={1}>
+                              <Typography variant="body1">I need a logo design</Typography>
+                              <Typography variant="body2" color="textSecondary">I need a logo design for my comp...</Typography>
+                            </Box>
+                            <Typography variant="body1">$3,000</Typography>
+                          </ListItem>
+                          <ListItem divider disableGutters>
+                            <Box flex={1}>
+                              <Typography variant="body1">Upgrade listing</Typography>
+                              <Typography variant="body2" color="textSecondary">You have selected Private listing</Typography>
+                            </Box>
+                            <Typography variant="body2">$5.00</Typography>
+                          </ListItem>
+                          <ListItem divider disableGutters>
+                            <Box flex={1}>
+                              <Typography variant="body1">Subtotal</Typography>
+                            </Box>
+                            <Typography variant="body2">$3,005.00</Typography>
+                          </ListItem>
+                          <ListItem divider disableGutters>
+                            <Box flex={1}>
+                              <Typography variant="body1">Vat/Tax (2.5%)</Typography>
+                            </Box>
+                            <Typography variant="body2">$75.12</Typography>
+                          </ListItem>
+                          <ListItem divider disableGutters>
+                            <Box flex={1}>
+                              <Typography variant="body1">Total</Typography>
+                              <Typography variant="body2" color="textSecondary">(Incl. VAT/TAX)</Typography>
+                            </Box>
+                            <Typography variant="body1">$3,080.12</Typography>
+                          </ListItem>
+                        </List>
+                        <Box
+                          border={`solid 1px ${colors.yellow[700]}`}
+                          borderRadius={this.props.theme.spacing(1)}
+                          bgcolor={colors.yellow[50]}
+                          pr={1}
+                          pl={1}
+                        >
                           <Box display="flex" mt={1}>
                             <Box flex={1}>
-                              <Typography variant="subtitle2">Balance will add</Typography>
+                              <Typography variant="body2">We will charge you</Typography>
                             </Box>
-                            <Typography variant="subtitle1">+ $26.00</Typography>
+                            <Box color={this.props.theme.palette.success.main}>
+                              <Typography variant="subtitle1">₹225337.11</Typography>
+                            </Box>
                           </Box>
-                        </Box>
-                        <Box mt={1} mb={1} textAlign="center">
-                          <Typography variant="body2">By continuing, you are agreeing to our <Link href="#">terms and conditions</Link>. Its an ontime payment.</Typography>
-                        </Box>
-                        <Button fullWidth variant="contained">Checkout  <ChevronRight /></Button>
-                        <Box mt={1} textAlign="center">
-                          <Typography variant="body2">This page will redirect to checkout page. You could pay with your selected payment method.</Typography>
+                          <Divider style={{ backgroundColor: colors.yellow[700] }} />
+                          <Box display="flex" mt={1}>
+                            <Box flex={1}>
+                              <Typography variant="body2">Current exchange rate</Typography>
+                            </Box>
+                            <Typography variant="body1">$1 USD = ₹73.16</Typography>
+                          </Box>
                         </Box>
                       </CardContent>
                     </Card>
@@ -155,6 +163,7 @@ class Checkout extends PureComponent {
                             </Box>
                             <img alt="" className={this.props.classes.creditCard} src={require('../../../assets/images/deposit-fund/stripe-checkout.png')} />
                           </Box>
+                          <Divider />
                           <Box display="flex" alignItems="center">
                             <Box flex={1}>
                               <FormControlLabel
@@ -168,6 +177,7 @@ class Checkout extends PureComponent {
                             </Box>
                             <img alt="" className={this.props.classes.creditCard} src={require('../../../assets/images/deposit-fund/paypal.png')} />
                           </Box>
+                          <Divider />
                           <Box display="flex" alignItems="center">
                             <Box flex={1}>
                               <FormControlLabel
@@ -181,6 +191,57 @@ class Checkout extends PureComponent {
                             </Box>
                             <img alt="" className={this.props.classes.creditCard} src={require('../../../assets/images/deposit-fund/payu.png')} />
                           </Box>
+                          <Divider />
+                          <Box display="flex" alignItems="center">
+                            <Box flex={1}>
+                              <FormControlLabel
+                                value="wallet"
+                                control={(
+                                  <GreenRadio checked={this.state.paymentMethod === 'wallet'} onClick={(e) => e.stopPropagation()} />
+                                )}
+                                label={(
+                                  <Box pt={1} pb={1}>
+                                    <Typography variant="body1" component="span">Pay from wallet</Typography>
+                                    <Typography variant="body2">
+                                      <span style={{ color: this.props.theme.palette.secondary.main }}>Sorry not insufficiant fund in wallet.</span>
+                                      <span style={{ color: this.props.theme.palette.primary.main }}>Add Fund</span> in wallet.
+                                    </Typography>
+                                  </Box>
+                                )}
+                                onClick={() => this.setState({ paymentMethod: 'payu' })}
+                              />
+                            </Box>
+                            <Typography variant="body1" component="span">$1,080.00</Typography>
+                          </Box>
+                          <Divider />
+                          <Box m={-1} mt={2}>
+                            <Grid container>
+                              <Grid item md={8} xs={12}>
+                                <Box p={1} display="flex">
+                                  <VerifiedUser color="primary" style={{ fontSize: 64 }} />
+                                  <Box ml={1}>
+                                    <Box mb={1}>
+                                      <Typography variant="body1">Buyer Protection</Typography>
+                                    </Box>
+                                    <Box mb={1}>
+                                      <Typography variant="body1">Full Refund If you don't receive your order</Typography>
+                                    </Box>
+                                    <Typography variant="body1">Full or Partial Refund, If the product is not as described in details</Typography>
+                                    <Button color="primary">Learn more <ChevronRight /></Button>
+                                  </Box>
+                                </Box>
+                              </Grid>
+                              <Grid item md={4} xs={12}>
+                                <Box p={1}>
+                                  <Typography variant="subtitle1">All Total: $3,080.12</Typography>
+                                  <Button variant="contained" fullWidth>Comfirm &amp; Pal</Button>
+                                  <Box mt={1}>
+                                    <Typography variant="body2">By clicking Confirm &amp; Pay button you agree to the <Link href="">Terms &amp; Conditions</Link></Typography>
+                                  </Box>
+                                </Box>
+                              </Grid>
+                            </Grid>
+                          </Box>
                         </RadioGroup>
                       </CardContent>
                     </Card>
@@ -188,84 +249,7 @@ class Checkout extends PureComponent {
                 </Grid>
                 <Grid item xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
-                      <CardHeader
-                        title="Frequently asked questions"
-                        titleTypographyProps={{
-                          variant: 'subtitle1'
-                        }}
-                      />
-                      <CardContent className={this.props.classes.background}>
-                        <Box m={-2}>
-                          <Grid container>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                          </Grid>
-                        </Box>
-                      </CardContent>
-                    </Card>
+                    {this.renderFaqList()}
                   </Box>
                 </Grid>
               </Grid>
@@ -276,6 +260,87 @@ class Checkout extends PureComponent {
       </Box>
       <Footer />
     </div>
+  )
+
+  renderFaqList = () => (
+    <Card elevation={0} className={this.props.classes.card}>
+      <CardHeader
+        title="Frequently asked questions"
+        titleTypographyProps={{
+          variant: 'subtitle1'
+        }}
+      />
+      <CardContent className={this.props.classes.background}>
+        <Box m={-2}>
+          <Grid container>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </CardContent>
+    </Card>
   )
 }
 

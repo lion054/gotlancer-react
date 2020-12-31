@@ -33,27 +33,13 @@ const styles = (theme) => ({
     borderColor: theme.palette.divider,
     borderStyle: 'solid'
   },
-  cardIcon: {
-    width: theme.spacing(8),
-    height: theme.spacing(7)
-  },
   background: {
     backgroundColor: theme.palette.background.default
   },
-  info: {
-    borderRadius: theme.spacing(1),
-    backgroundColor: colors.blue[50],
-    padding: theme.spacing(1, 1, 0)
-  },
-  warning: {
-    borderColor: theme.palette.warning.main,
-    borderStyle: 'solid',
-    borderWidth: 1,
+  cutoff: {
+    border: `solid 1px ${theme.palette.warning.main}`,
     padding: theme.spacing(0.5),
     color: theme.palette.warning.main
-  },
-  success: {
-    color: theme.palette.success.main
   },
   description: {
     [theme.breakpoints.down('sm')]: {
@@ -124,7 +110,7 @@ class BuyBidCredit extends PureComponent {
                         <Typography variant="body2">Buy bid credit to apply more project</Typography>
                         <List>
                           {this.state.products.map((product, index) => (
-                            <ListItem key={index} button onClick={this.handleClick(index)}>
+                            <ListItem key={index} disableGutters button onClick={this.handleClick(index)}>
                               <Box width="100%" display="flex" alignItems="center">
                                 <GreenCheckbox checked={!!product.checked} onClick={this.handleClick(index)} />
                                 <Box
@@ -145,13 +131,13 @@ class BuyBidCredit extends PureComponent {
                                     </Grid>
                                     <Grid item md={4} xs={8}>
                                       {!!product.cutoff && (
-                                        <Box>
-                                          <Typography variant="body2" component="span" className={this.props.classes.warning}>Your save ${product.cutoff} USD</Typography>
-                                        </Box>
+                                        <Typography variant="body2" component="span" className={this.props.classes.cutoff}>Your save ${product.cutoff} USD</Typography>
                                       )}
                                     </Grid>
                                     <Grid item md={2} xs={4}>
-                                      <Typography variant="body1" align="right" className={this.props.classes.success}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.amount)} USD</Typography>
+                                      <Box color={this.props.theme.palette.success.main}>
+                                        <Typography variant="body1" align="right">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.amount)} USD</Typography>
+                                      </Box>
                                     </Grid>
                                   </Grid>
                                   {product.popular && (
@@ -161,7 +147,7 @@ class BuyBidCredit extends PureComponent {
                                       top={0}
                                       borderRadius={4}
                                       p="0 4px"
-                                      bgcolor={this.props.theme.palette.info.dark}
+                                      bgcolor={this.props.theme.palette.primary.dark}
                                       color={this.props.theme.palette.common.white}
                                     >
                                       <Typography style={{ fontSize: 12 }}>Popular</Typography>
@@ -192,13 +178,17 @@ class BuyBidCredit extends PureComponent {
                           <Box flex={1}>
                             <Typography variant="body2">10 bid credit for</Typography>
                           </Box>
-                          <Typography variant="body2">$1.00 USD</Typography>
+                          <Box color={this.props.theme.palette.success.main}>
+                            <Typography variant="body2">$1.00 USD</Typography>
+                          </Box>
                         </Box>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
                             <Typography variant="body2">300 bid credit for</Typography>
                           </Box>
-                          <Typography variant="body2">$25.00 USD</Typography>
+                          <Box color={this.props.theme.palette.success.main}>
+                            <Typography variant="body2">$25.00 USD</Typography>
+                          </Box>
                         </Box>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
@@ -218,7 +208,13 @@ class BuyBidCredit extends PureComponent {
                           </Box>
                           <Typography variant="body1">$26.00 USD</Typography>
                         </Box>
-                        <Box className={this.props.classes.info}>
+                        <Box
+                          borderRadius={this.props.theme.spacing(1)}
+                          bgcolor={colors.blue[50]}
+                          pt={1}
+                          pr={1}
+                          pl={1}
+                        >
                           <Typography variant="body2">Bid Credit will add after payment</Typography>
                           <Box display="flex" mt={1}>
                             <Box flex={1}>
@@ -240,84 +236,7 @@ class BuyBidCredit extends PureComponent {
                 </Grid>
                 <Grid item xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
-                      <CardHeader
-                        title="Frequently asked questions"
-                        titleTypographyProps={{
-                          variant: 'subtitle1'
-                        }}
-                      />
-                      <CardContent className={this.props.classes.background}>
-                        <Box m={-2}>
-                          <Grid container>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                            <Grid item md={6} xs={12}>
-                              <Box p={2}>
-                                <Box mb={1}>
-                                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
-                                </Box>
-                                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
-                              </Box>
-                            </Grid>
-                          </Grid>
-                        </Box>
-                      </CardContent>
-                    </Card>
+                    {this.renderFaqList()}
                   </Box>
                 </Grid>
               </Grid>
@@ -328,6 +247,87 @@ class BuyBidCredit extends PureComponent {
       </Box>
       <Footer />
     </div>
+  )
+
+  renderFaqList = () => (
+    <Card elevation={0} className={this.props.classes.card}>
+      <CardHeader
+        title="Frequently asked questions"
+        titleTypographyProps={{
+          variant: 'subtitle1'
+        }}
+      />
+      <CardContent className={this.props.classes.background}>
+        <Box m={-2}>
+          <Grid container>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box p={2}>
+                <Box mb={1}>
+                  <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
+                </Box>
+                <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </CardContent>
+    </Card>
   )
 }
 

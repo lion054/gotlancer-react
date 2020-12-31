@@ -70,7 +70,7 @@ const styles = (theme) => ({
   },
   remainingTime: {
     marginLeft: theme.spacing(1),
-    color: theme.palette.error.main
+    color: theme.palette.secondary.main
   }
 })
 
@@ -365,6 +365,7 @@ class LoginSecurity extends PureComponent {
         <Box width="100%">
           <Box>
             <MuiPhoneNumber
+              margin="dense"
               variant="outlined"
               defaultCountry="us"
               onChange={(phoneNumber) => this.setState({ phoneNumber })}
@@ -403,7 +404,7 @@ class LoginSecurity extends PureComponent {
                   <Box ml={1} display="flex" alignItems="center">
                     <Button variant="outlined" disabled={disabled} onClick={onClick} className={this.props.classes.resendOtp}>Resend OTP</Button>
                     <Box ml={1}>
-                      <FontAwesomeIcon icon={faCircle} color={this.props.theme.palette.error.main} size="1x" />
+                      <FontAwesomeIcon icon={faCircle} color={this.props.theme.palette.secondary.main} size="1x" />
                       <Typography variant="body2" display="inline" className={this.props.classes.remainingTime}>{remainingTime} sec</Typography>
                     </Box>
                   </Box>

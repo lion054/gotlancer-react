@@ -2,7 +2,6 @@ import React, { Fragment, PureComponent } from 'react';
 import {
   Box,
   Collapse,
-  Divider,
   Drawer,
   IconButton,
   ListItemIcon,
@@ -21,7 +20,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import { updateThemeMode } from '../controllers/app/actions';
-import InfoSwitch from '../components/InfoSwitch';
+import BlueSwitch from '../components/BlueSwitch';
 
 const styles = (theme) => ({
   userIcon: {
@@ -54,7 +53,7 @@ class AvatarMenuIcon extends PureComponent {
 
   renderListItems = (dir, items) => items.map((item, index) => (
     <div key={index}>
-      <MenuItem onClick={() => {
+      <MenuItem divider onClick={() => {
         if (item.items) {
           this.handleSubList(this.getDir(dir, index));
         } else {
@@ -74,7 +73,6 @@ class AvatarMenuIcon extends PureComponent {
         )}
         {item.items && this.renderCollapseButton(this.getDir(dir, index))}
       </MenuItem>
-      <Divider />
       {item.items && this.renderSubList(this.getDir(dir, index), item.items)}
     </div>
   ))
@@ -195,7 +193,7 @@ class AvatarMenuIcon extends PureComponent {
           //         color: 'textPrimary'
           //       }} />
           //       <ListItemIcon>
-          //         <InfoSwitch checked={this.props.themeMode === 'dark'} />
+          //         <BlueSwitch checked={this.props.themeMode === 'dark'} />
           //       </ListItemIcon>
           //     </Fragment>
           //   ),
@@ -215,7 +213,7 @@ class AvatarMenuIcon extends PureComponent {
                   color: 'textPrimary'
                 }} />
                 <ListItemIcon>
-                  <InfoSwitch checked={this.state.online} />
+                  <BlueSwitch checked={this.state.online} />
                 </ListItemIcon>
               </Fragment>
             ),

@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-import InfoSwitch from './InfoSwitch';
+import BlueSwitch from './BlueSwitch';
 
 const styles = (theme) => ({
   root: {
@@ -35,7 +35,7 @@ class SwitchListItem extends PureComponent {
         )}
       </ListItemText>
       <ListItemSecondaryAction classes={{ root: this.props.classes.action }}>
-        <InfoSwitch color="primary" onChange={this.handleChange} />
+        <BlueSwitch color="primary" onChange={this.handleChange} />
       </ListItemSecondaryAction>
     </ListItem>
   )
