@@ -36,6 +36,18 @@ const styles = (theme) => ({
   background: {
     backgroundColor: theme.palette.background.default
   },
+  outerMargin: {
+    margin: theme.spacing(-2),
+    [theme.breakpoints.only('xs')]: {
+      margin: theme.spacing(-1)
+    }
+  },
+  innerPadding: {
+    padding: theme.spacing(2),
+    [theme.breakpoints.only('xs')]: {
+      padding: theme.spacing(1)
+    }
+  },
   creditCard: {
     height: theme.spacing(3),
     [theme.breakpoints.only('xs')]: {
@@ -59,10 +71,10 @@ class Checkout extends PureComponent {
             <Box mb={2}>
               <Typography variant="h5">Checkout</Typography>
             </Box>
-            <Box m={-2}>
+            <Box className={this.props.classes.outerMargin}>
               <Grid container>
                 <Grid item sm={4} xs={12}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardHeader
                         className={this.props.classes.background}
@@ -137,7 +149,7 @@ class Checkout extends PureComponent {
                 </Grid>
                 <Grid item md={1} />
                 <Grid item md={7} sm={8} xs={12}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardHeader
                         className={this.props.classes.background}
@@ -248,7 +260,7 @@ class Checkout extends PureComponent {
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     {this.renderFaqList()}
                   </Box>
                 </Grid>
@@ -271,10 +283,10 @@ class Checkout extends PureComponent {
         }}
       />
       <CardContent className={this.props.classes.background}>
-        <Box m={-2}>
+        <Box className={this.props.classes.outerMargin}>
           <Grid container>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -282,7 +294,7 @@ class Checkout extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -290,7 +302,7 @@ class Checkout extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -298,7 +310,7 @@ class Checkout extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -306,7 +318,7 @@ class Checkout extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -314,7 +326,7 @@ class Checkout extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -322,7 +334,7 @@ class Checkout extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -330,7 +342,7 @@ class Checkout extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>

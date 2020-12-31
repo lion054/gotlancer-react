@@ -36,6 +36,24 @@ const styles = (theme) => ({
   background: {
     backgroundColor: theme.palette.background.default
   },
+  outerMargin: {
+    margin: theme.spacing(-2),
+    [theme.breakpoints.only('xs')]: {
+      margin: theme.spacing(-1)
+    }
+  },
+  innerPadding: {
+    padding: theme.spacing(2),
+    [theme.breakpoints.only('xs')]: {
+      padding: theme.spacing(1)
+    }
+  },
+  innerPaddingWithTag: {
+    padding: theme.spacing(2),
+    [theme.breakpoints.only('xs')]: {
+      padding: theme.spacing(2, 1, 2)
+    }
+  },
   cutoff: {
     border: `solid 1px ${theme.palette.warning.main}`,
     padding: theme.spacing(0.5),
@@ -89,14 +107,15 @@ class BuyBidCredit extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2} mb={8}>
+      <Box mt={6} mb={6}>
+      <Box className={this.props.classes.innerPadding}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
-            <Box m={-2}>
+            <Box className={this.props.outerMargin}>
               <Grid container>
                 <Grid item md={7} sm={8} xs={12}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardHeader
                         title="Buy bid credit"
@@ -108,15 +127,14 @@ class BuyBidCredit extends PureComponent {
                       <CardContent className={this.props.classes.background}>
                         <Typography variant="body2">Select a bid credit bundle</Typography>
                         <Typography variant="body2">Buy bid credit to apply more project</Typography>
-                        <List>
+                        <List disablePadding>
                           {this.state.products.map((product, index) => (
                             <ListItem key={index} disableGutters button onClick={this.handleClick(index)}>
                               <Box width="100%" display="flex" alignItems="center">
                                 <GreenCheckbox checked={!!product.checked} onClick={this.handleClick(index)} />
                                 <Box
                                   flex={1}
-                                  ml={1}
-                                  p={2}
+                                  className={this.props.classes.innerPaddingWithTag}
                                   borderRadius={4}
                                   border={`solid 1px ${product.checked ? this.props.theme.palette.success.main : this.props.theme.palette.divider}`}
                                   bgcolor={this.props.theme.palette.background.paper}
@@ -164,7 +182,7 @@ class BuyBidCredit extends PureComponent {
                 </Grid>
                 <Grid item md={1} />
                 <Grid item sm={4} xs={12}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardHeader
                         title="Billing"
@@ -235,7 +253,7 @@ class BuyBidCredit extends PureComponent {
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     {this.renderFaqList()}
                   </Box>
                 </Grid>
@@ -244,6 +262,7 @@ class BuyBidCredit extends PureComponent {
           </Grid>
           <Grid item lg={2} />
         </Grid>
+      </Box>
       </Box>
       <Footer />
     </div>
@@ -258,10 +277,10 @@ class BuyBidCredit extends PureComponent {
         }}
       />
       <CardContent className={this.props.classes.background}>
-        <Box m={-2}>
+        <Box className={this.props.classes.outerMargin}>
           <Grid container>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -269,7 +288,7 @@ class BuyBidCredit extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -277,7 +296,7 @@ class BuyBidCredit extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -285,7 +304,7 @@ class BuyBidCredit extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -293,7 +312,7 @@ class BuyBidCredit extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -301,7 +320,7 @@ class BuyBidCredit extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -309,7 +328,7 @@ class BuyBidCredit extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
@@ -317,7 +336,7 @@ class BuyBidCredit extends PureComponent {
               </Box>
             </Grid>
             <Grid item md={6} xs={12}>
-              <Box p={2}>
+              <Box className={this.props.classes.innerPadding}>
                 <Box mb={1}>
                   <Typography variant="subtitle2">What is Gotlancer bid credit?</Typography>
                 </Box>
