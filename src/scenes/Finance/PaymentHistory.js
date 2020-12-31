@@ -3,6 +3,7 @@ import {
   Box,
   Divider,
   Grid,
+  IconButton,
   List,
   ListItem,
   ListItemIcon,
@@ -11,7 +12,18 @@ import {
   withTheme,
   withWidth
 } from '@material-ui/core';
-import { Cached, Check, PanTool, Warning } from '@material-ui/icons';
+import {
+  Cached,
+  Check,
+  CheckBox,
+  CheckBoxOutlineBlank,
+  CloudDownload,
+  IndeterminateCheckBox,
+  PanTool,
+  Print,
+  Warning
+} from '@material-ui/icons';
+import { cloneDeep } from 'lodash';
 import moment from 'moment';
 import faker from 'faker';
 import { compose } from 'redux';
@@ -72,6 +84,46 @@ class PaymentHistory extends PureComponent {
     this.setState({  records });
   }
 
+  isAllChecked() {
+    for (let i = 0; i < this.state.records.length; i++) {
+      if (!this.state.records[i].checked) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  isAllUnchecked() {
+    for (let i = 0; i < this.state.records.length; i++) {
+      if (!!this.state.records[i].checked) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  handleHeadCheck = (e) => {
+    const allChecked = this.isAllChecked();
+    const records = cloneDeep(this.state.records);
+    for (let i = 0; i < records.length; i++) {
+      records[i].checked = !allChecked;
+    }
+    this.setState({ records });
+  }
+
+  handleRowCheck = (index) => (e) => {
+    const records = cloneDeep(this.state.records);
+    records[index].checked = !records[index].checked;
+    this.setState({ records });
+  }
+
+  handleChangePage = (e, page) => this.setState({ page })
+
+  handleChangeRowsPerPage = (e) => this.setState({
+    rowsPerPage: e.target.value,
+    page: 0
+  })
+
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
@@ -79,14 +131,30 @@ class PaymentHistory extends PureComponent {
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
-            <Box mb={2}>
-              <Typography variant="h5">Payment history</Typography>
+            <Box mb={2} display="flex">
+              <Box flex={1}>
+                <Typography variant="h5">Payment history</Typography>
+              </Box>
+              <IconButton>
+                <CloudDownload />
+              </IconButton>
+              <IconButton>
+                <Print />
+              </IconButton>
             </Box>
             <Divider />
             <List disablePadding>
               <ListItem disableGutters divider className={this.props.classes.background}>
-                <ListItemIcon className={this.props.classes.icon}>
-                  <GreenCheckbox />
+                <ListItemIcon className={this.props.classes.icon} onClick={this.handleHeadCheck}>
+                  <Box p={1.125}>
+                    {this.isAllChecked() ? (
+                      <CheckBox style={{ color: this.props.theme.palette.success.main }} />
+                    ) : this.isAllUnchecked() ? (
+                      <CheckBoxOutlineBlank color="disabled" />
+                    ) : (
+                      <IndeterminateCheckBox color="primary" />
+                    )}
+                  </Box>
                 </ListItemIcon>
                 <Box className={this.props.classes.outerMargin} flex={1}>
                   <Grid container alignItems="center">
@@ -121,7 +189,7 @@ class PaymentHistory extends PureComponent {
               {this.state.records.map((record, index) => (
                 <ListItem key={index} disableGutters divider>
                   <ListItemIcon className={this.props.classes.icon}>
-                    <GreenCheckbox />
+                    <GreenCheckbox checked={!!record.checked} onClick={this.handleRowCheck(index)} />
                   </ListItemIcon>
                   <Box className={this.props.classes.outerMargin} flex={1}>
                     <Grid container alignItems="center">
@@ -169,13 +237,6 @@ class PaymentHistory extends PureComponent {
       <Footer />
     </div>
   )
-
-  handleChangePage = (e, page) => this.setState({ page })
-
-  handleChangeRowsPerPage = (e) => this.setState({
-    rowsPerPage: e.target.value,
-    page: 0
-  })
 
   renderStatus = (status) => {
     let color = this.props.theme.palette.text.primary;
