@@ -10,6 +10,11 @@ import FindWork from './scenes/FindWork';
 import BuyerHome from './scenes/BuyerHome';
 import Messenger from './scenes/Messenger';
 
+import BuyBidCredit from './scenes/Finance/BuyBidCredit';
+import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
+import DepositFund from './scenes/Finance/DepositFund';
+import PaymentHistory from './scenes/Finance/PaymentHistory';
+
 import AddBank from './scenes/Settings/PaymentsPayouts/AddBank';
 import AddBkash from './scenes/Settings/PaymentsPayouts/AddBkash';
 import AddGst from './scenes/Settings/PaymentsPayouts/AddGst';
@@ -18,9 +23,6 @@ import AddPan from './scenes/Settings/PaymentsPayouts/AddPan';
 import AddPayPal from './scenes/Settings/PaymentsPayouts/AddPayPal';
 import AddPayoneer from './scenes/Settings/PaymentsPayouts/AddPayoneer';
 import AddSkrill from './scenes/Settings/PaymentsPayouts/AddSkrill';
-import BuyBidCredit from './scenes/Finance/BuyBidCredit';
-import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
-import DepositFund from './scenes/Finance/DepositFund';
 import GlobalPreferences from './scenes/Settings/GlobalPreferences';
 import InviteFriends from './scenes/Settings/InviteFriends';
 import LoginSecurity from './scenes/Settings/LoginSecurity';
@@ -48,6 +50,9 @@ const routes = [{
 },{
   path: '/buy_bid_credit/checkout',
   component: Checkout
+},{
+  path: '/payment_history',
+  component: PaymentHistory
 },{
   path: '/settings',
   component: Settings
