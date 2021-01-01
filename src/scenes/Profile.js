@@ -180,10 +180,16 @@ const styles = (theme) => ({
     color: theme.palette.success.main
   },
   score: {
+    [theme.breakpoints.only('xs')]: {
+      position: 'relative',
+      top: -3
+    },
+    marginRight: theme.spacing(1),
     borderRadius: theme.spacing(0.5),
     padding: theme.spacing(0, 0.5),
     backgroundColor: theme.palette.warning.main,
-    color: theme.palette.common.white
+    color: theme.palette.common.white,
+    fontSize: 12
   },
   skill: {
     marginRight: theme.spacing(1),
@@ -288,7 +294,14 @@ class Profile extends PureComponent {
             </Box>
             <Box>
               <Typography variant="body2" component="span" className={this.props.classes.hour}>40 hrs</Typography>
-              <Typography variant="body2" component="span">Available per week</Typography>
+              <Box mr={1} component="span">
+                <Typography variant="body2" component="span">Available weekly</Typography>
+              </Box>
+              <Tooltip title="Edit Availability">
+                <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
+                  <Create />
+                </IconButton>
+              </Tooltip>
             </Box>
             <Box>
               <Typography variant="body2" component="span" className={this.props.classes.hour}>1 hour</Typography>
@@ -462,34 +475,49 @@ class Profile extends PureComponent {
                 <Grid item xs={4}>
                   <Box className={this.props.classes.innerPadding}>
                     {this.renderAvatar()}
+                    <Box mt={2}>
+                      {this.renderHourlyRate()}
+                    </Box>
                   </Box>
                 </Grid>
               )}
               <Grid item md={12} xs={8}>
                 <Box className={this.props.classes.innerPadding}>
+                  <Box mb={0.5} display={this.props.width === 'xs' ? 'block' : 'flex'}>
+                    <Box display="flex" alignItems="center" component="span">
+                      <Box mr={2} color={this.props.theme.palette.success.main}>
+                        <Typography variant="body1">Greg Prickril</Typography>
+                      </Box>
+                      <Box ml={1} mr={1}>
+                        <CheckCircle htmlColor={this.props.theme.palette.success.main} />
+                      </Box>
+                    </Box>
+                    <Box display="flex" alignItems="center" component="span">
+                      <Box ml={1} mr={1}>
+                        <Star htmlColor={this.props.theme.palette.warning.main} />
+                      </Box>
+                      <Box ml={1} mr={1} color={this.props.theme.palette.warning.main}>
+                        <Typography variant="body2">HIGHTEST RATED</Typography>
+                      </Box>
+                    </Box>
+                    {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && (
+                      <Fragment>
+                        <span style={{ flex: 1 }} />
+                        {this.renderHourlyRate()}
+                      </Fragment>
+                    )}
+                  </Box>
                   <Box display="flex" alignItems="center" mb={0.5}>
-                    <Box mr={2} color={this.props.theme.palette.success.main}>
-                      <Typography variant="body1">Greg Prickril</Typography>
+                    <Box mr={1}>
+                      <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
                     </Box>
-                    <Box ml={1} mr={1}>
-                      <CheckCircle htmlColor={this.props.theme.palette.success.main} />
-                    </Box>
-                    <Box ml={1} mr={1}>
-                      <Star htmlColor={this.props.theme.palette.warning.main} />
-                    </Box>
-                    <Box ml={1} mr={1} color={this.props.theme.palette.warning.main}>
-                      <Typography variant="body2">HIGHTEST RATED</Typography>
-                    </Box>
-                    <Tooltip title="Edit Name">
+                    <Tooltip title="Edit Title">
                       <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
                         <Create />
                       </IconButton>
                     </Tooltip>
-                    <div style={{ flex: 1 }} />
-                    {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && this.renderHourlyRate()}
                   </Box>
-                  <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
-                  <Box display="flex" alignItems="center" mt={0.5} mb={0.5}>
+                  <Box display={this.props.width === 'xs' ? 'block' : 'flex'} alignItems="center" mt={0.5} mb={0.5}>
                     {this.renderScore(4.9)}
                     <Box ml={1} flex={1}>
                       <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
@@ -602,7 +630,7 @@ class Profile extends PureComponent {
                 <Box className={this.props.classes.innerPadding} textAlign="center" mt={1}>
                   <Typography variant="body2">Average Rating</Typography>
                   <Typography variant="h3">4.9</Typography>
-                  <Rating name="read-only" value={5} readOnly size="medium" />
+                  <Rating name="read-only" value={5} readOnly size="small" />
                   <Typography variant="body2">{pluralize('review', 10, true)}</Typography>
                 </Box>
               </Grid>
@@ -614,31 +642,31 @@ class Profile extends PureComponent {
                       <Box flex={1}>
                         <Typography variant="body2">Awesome freelancer</Typography>
                       </Box>
-                      <Rating name="read-only" value={5} readOnly size="medium" />
+                      <Rating name="read-only" value={5} readOnly size="small" />
                     </Box>
                     <Box display="flex" alignItems="center" m={1}>
                       <Box flex={1}>
                         <Typography variant="body2">Pretty good</Typography>
                       </Box>
-                      <Rating name="read-only" value={4} readOnly size="medium" />
+                      <Rating name="read-only" value={4} readOnly size="small" />
                     </Box>
                     <Box display="flex" alignItems="center" m={1}>
                       <Box flex={1}>
                         <Typography variant="body2">Could've been better</Typography>
                       </Box>
-                      <Rating name="read-only" value={3} readOnly size="medium" />
+                      <Rating name="read-only" value={3} readOnly size="small" />
                     </Box>
                     <Box display="flex" alignItems="center" m={1}>
                       <Box flex={1}>
                         <Typography variant="body2">Needs improvement</Typography>
                       </Box>
-                      <Rating name="read-only" value={2} readOnly size="medium" />
+                      <Rating name="read-only" value={2} readOnly size="small" />
                     </Box>
                     <Box display="flex" alignItems="center" m={1}>
                       <Box flex={1}>
                         <Typography variant="body2">Unsatisfactory</Typography>
                       </Box>
-                      <Rating name="read-only" value={1} readOnly size="medium" />
+                      <Rating name="read-only" value={1} readOnly size="small" />
                     </Box>
                   </Box>
                 </Box>
@@ -668,14 +696,14 @@ class Profile extends PureComponent {
                       </Grid>
                       <Grid item xs={4}>
                         <Box display="flex" alignItems="center">
-                          <Box mr={1}>
+                          <Box mr={0.5}>
                             <Room />
                           </Box>
                           <Typography variant="body2">{review.location}</Typography>
                         </Box>
                       </Grid>
                       <Grid item xs={4}>
-                        <Typography variant="body2">{moment(review.createdAt).fromNow()}</Typography>
+                        <Typography variant="body2" style={{ textTransform: 'capitalize' }}>{moment(review.createdAt).fromNow()}</Typography>
                       </Grid>
                     </Grid>
                   </Box>
@@ -774,27 +802,32 @@ class Profile extends PureComponent {
 
   renderScore = (value) => (
     <Fragment>
-      <Box className={this.props.classes.score} mr={1}>
-        <Typography variant="body2">{value}</Typography>
-      </Box>
-      <Rating name="read-only" value={value} readOnly size="medium" />
+      <span className={this.props.classes.score}>{value}</span>
+      <Rating name="read-only" value={value} readOnly size="small" />
     </Fragment>
   )
 
   renderHourlyRate = () => (
-    <Fragment>
-      <Box ml={1} mr={1} bgcolor={this.props.theme.palette.success.main}>
-        <AttachMoney htmlColor={this.props.theme.palette.common.white} />
-      </Box>
-      <Box ml={1} mr={1}>
-        <Typography variant="subtitle1">$75 USD / hr</Typography>
+    <Box display={this.props.width === 'xs' ? 'block' : 'flex'} alignItems="center">
+      {this.props.width !== 'xs' && (
+        <Box bgcolor={this.props.theme.palette.success.main} display="inline-flex">
+          <AttachMoney htmlColor={this.props.theme.palette.common.white} />
+        </Box>
+      )}
+      <Box
+        ml={this.props.width === 'xs' ? 0 : 1}
+        mr={this.props.width === 'xs' ? 0 : 1}
+        component="span"
+        display="inline-block"
+      >
+        <Typography variant="body1">$75 USD/hr</Typography>
       </Box>
       <Tooltip title="Edit Hourly Rate">
         <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
           <Create />
         </IconButton>
       </Tooltip>
-    </Fragment>
+    </Box>
   )
 
   renderActionButtons = () => (
