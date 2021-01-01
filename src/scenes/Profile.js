@@ -17,7 +17,8 @@ import {
   Typography,
   fade,
   withStyles,
-  withTheme
+  withTheme,
+  withWidth,
 } from '@material-ui/core';
 import {
   Add,
@@ -27,10 +28,10 @@ import {
   Create,
   Email,
   Favorite,
-  LocalOffer,
   Phone,
   Room,
   Star,
+  TurnedIn,
   WatchLater
 } from '@material-ui/icons';
 import { Rating } from '@material-ui/lab';
@@ -76,13 +77,53 @@ const styles = (theme) => ({
     padding: 'unset'
   },
   avatar: {
-    width: theme.spacing(20),
-    height: theme.spacing(20)
+    [theme.breakpoints.only('xl')]: {
+      width: theme.spacing(20),
+      height: theme.spacing(16)
+    },
+    [theme.breakpoints.only('lg')]: {
+      width: theme.spacing(18),
+      height: theme.spacing(18)
+    },
+    [theme.breakpoints.only('md')]: {
+      width: theme.spacing(16),
+      height: theme.spacing(16)
+    },
+    [theme.breakpoints.only('sm')]: {
+      width: theme.spacing(14),
+      height: theme.spacing(14)
+    },
+    [theme.breakpoints.only('xs')]: {
+      width: theme.spacing(12),
+      height: theme.spacing(12)
+    }
   },
   pencil: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    [theme.breakpoints.only('xl')]: {
+      width: 36,
+      height: 36,
+      borderRadius: 18
+    },
+    [theme.breakpoints.only('lg')]: {
+      width: 34,
+      height: 34,
+      borderRadius: 17
+    },
+    [theme.breakpoints.only('md')]: {
+      width: 32,
+      height: 32,
+      borderRadius: 16
+    },
+    [theme.breakpoints.only('sm')]: {
+      width: 30,
+      height: 30,
+      borderRadius: 15
+    },
+    [theme.breakpoints.only('xs')]: {
+      width: 28,
+      height: 28,
+      borderRadius: 14
+    },
     position: 'absolute',
     top: 0,
     left: 0,
@@ -93,9 +134,31 @@ const styles = (theme) => ({
   },
   status: {
     boxSizing: 'border-box',
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    [theme.breakpoints.only('xl')]: {
+      width: 36,
+      height: 36,
+      borderRadius: 18
+    },
+    [theme.breakpoints.only('lg')]: {
+      width: 34,
+      height: 34,
+      borderRadius: 17
+    },
+    [theme.breakpoints.only('md')]: {
+      width: 32,
+      height: 32,
+      borderRadius: 16
+    },
+    [theme.breakpoints.only('sm')]: {
+      width: 30,
+      height: 30,
+      borderRadius: 15
+    },
+    [theme.breakpoints.only('xs')]: {
+      width: 28,
+      height: 28,
+      borderRadius: 14
+    },
     border: `solid 5px ${theme.palette.background.default}`,
     position: 'absolute',
     bottom: 0,
@@ -123,12 +186,12 @@ const styles = (theme) => ({
     color: theme.palette.common.white
   },
   skill: {
-    display: 'inline-block',
     marginRight: theme.spacing(1),
     borderRadius: theme.spacing(0.5),
     padding: theme.spacing(0.5, 1),
     backgroundColor: theme.palette.action.disabledBackground,
-    color: theme.palette.text.disabled
+    color: theme.palette.text.disabled,
+    fontSize: 12
   },
   emptyContent: {
     minHeight: 200,
@@ -183,10 +246,11 @@ class Profile extends PureComponent {
           <Grid item lg={8} xs={12}>
             <Grid container>
               <Grid item md={3} xs={12}>
+                {(this.props.width === 'xs' || this.props.width === 'sm') && this.renderAbout()}
                 {this.renderSideBar()}
               </Grid>
               <Grid item md={9} xs={12}>
-                {this.renderAbout()}
+                {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && this.renderAbout()}
                 {this.renderSummary()}
                 {this.renderPortfolio()}
                 {this.renderReviews()}
@@ -206,18 +270,12 @@ class Profile extends PureComponent {
     <Box className={this.props.classes.innerPadding}>
       <Card elevation={0} className={this.props.classes.card}>
         <CardContent>
-          <Box textAlign="center">
-            <Box display="inline-block" position="relative">
-              <Avatar src={this.state.avatar} className={this.props.classes.avatar} />
-              <Tooltip title="Edit Photo">
-                <IconButton className={this.props.classes.pencil}>
-                  <Create />
-                </IconButton>
-              </Tooltip>
-              <div className={this.props.classes.status} style={{ backgroundColor: this.props.theme.palette.success.main }} />
+          {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && (
+            <Box textAlign="center" md={4}>
+              {this.renderAvatar()}
             </Box>
-          </Box>
-          <Box mt={4}>
+          )}
+          <Box>
             <Typography variant="body2">Success Rate</Typography>
             <Box display="flex" alignItems="center">
               <Box flex={1}>
@@ -369,7 +427,7 @@ class Profile extends PureComponent {
               </Box>
             </Box>
             <Box display="flex" alignItems="center" mt={1}>
-              <LocalOffer style={{
+              <TurnedIn style={{
                 width: 40,
                 height: 40,
                 color: this.props.theme.palette.warning.main
@@ -398,64 +456,70 @@ class Profile extends PureComponent {
     <Box className={this.props.classes.innerPadding}>
       <Card elevation={0} className={this.props.classes.card}>
         <CardContent>
-          <Box display="flex" alignItems="center">
-            <Box mr={2} color={this.props.theme.palette.success.main}>
-              <Typography variant="body1">Greg Prickril</Typography>
-            </Box>
-            <Box ml={1} mr={1}>
-              <CheckCircle htmlColor={this.props.theme.palette.success.main} />
-            </Box>
-            <Box ml={1} mr={1}>
-              <Star htmlColor={this.props.theme.palette.warning.main} />
-            </Box>
-            <Box ml={1} mr={1} color={this.props.theme.palette.warning.main}>
-              <Typography variant="body2">HIGHTEST RATED</Typography>
-            </Box>
-            <Tooltip title="Edit Name">
-              <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
-                <Create />
-              </IconButton>
-            </Tooltip>
-            <div style={{ flex: 1 }} />
-            <Box ml={1} mr={1} bgcolor={this.props.theme.palette.success.main}>
-              <AttachMoney htmlColor={this.props.theme.palette.common.white} />
-            </Box>
-            <Box ml={1} mr={1}>
-              <Typography variant="subtitle1">$75 USD / hr</Typography>
-            </Box>
-            <Tooltip title="Edit Hourly Rate">
-              <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
-                <Create />
-              </IconButton>
-            </Tooltip>
+          <Box className={this.props.classes.outerMargin}>
+            <Grid container>
+              {(this.props.width === 'xs' || this.props.width === 'sm') && (
+                <Grid item xs={4}>
+                  <Box className={this.props.classes.innerPadding}>
+                    {this.renderAvatar()}
+                  </Box>
+                </Grid>
+              )}
+              <Grid item md={12} xs={8}>
+                <Box className={this.props.classes.innerPadding}>
+                  <Box display="flex" alignItems="center" mb={0.5}>
+                    <Box mr={2} color={this.props.theme.palette.success.main}>
+                      <Typography variant="body1">Greg Prickril</Typography>
+                    </Box>
+                    <Box ml={1} mr={1}>
+                      <CheckCircle htmlColor={this.props.theme.palette.success.main} />
+                    </Box>
+                    <Box ml={1} mr={1}>
+                      <Star htmlColor={this.props.theme.palette.warning.main} />
+                    </Box>
+                    <Box ml={1} mr={1} color={this.props.theme.palette.warning.main}>
+                      <Typography variant="body2">HIGHTEST RATED</Typography>
+                    </Box>
+                    <Tooltip title="Edit Name">
+                      <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
+                        <Create />
+                      </IconButton>
+                    </Tooltip>
+                    <div style={{ flex: 1 }} />
+                    {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && this.renderHourlyRate()}
+                  </Box>
+                  <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
+                  <Box display="flex" alignItems="center" mt={0.5} mb={0.5}>
+                    {this.renderScore(4.9)}
+                    <Box ml={1} flex={1}>
+                      <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
+                    </Box>
+                    {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && this.renderActionButtons()}
+                  </Box>
+                  <Box>
+                    <span className={this.props.classes.skill}>Augmented Reality (AR)</span>
+                    <span className={this.props.classes.skill}>Virtual Reality (VR)</span>
+                    <span className={this.props.classes.skill}>Unity3D</span>
+                    <Tooltip title="Add Skill">
+                      <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
+                        <Add htmlColor={this.props.theme.palette.success.main} />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                </Box>
+              </Grid>
+            </Grid>
           </Box>
-          <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
-          <Box display="flex" alignItems="center">
-            {this.renderScore(4.9)}
-            <Box ml={1} flex={1}>
-              <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
-            </Box>
-            <Box mr={1}>
-              <GreenButton variant="contained">Hire me</GreenButton>
-            </Box>
-            <GreenButton variant="outlined">Contact</GreenButton>
-          </Box>
-          <Box>
-            <Box className={this.props.classes.skill}>
-              <Typography variant="body2" component="span">Augmented Reality (AR)</Typography>
-            </Box>
-            <Box className={this.props.classes.skill}>
-              <Typography variant="body2" component="span">Virtual Reality (VR)</Typography>
-            </Box>
-            <Box className={this.props.classes.skill}>
-              <Typography variant="body2" component="span">Unity3D</Typography>
-            </Box>
-            <Tooltip title="Add Skill">
-              <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
-                <Add htmlColor={this.props.theme.palette.success.main} />
-              </IconButton>
-            </Tooltip>
-          </Box>
+          {(this.props.width === 'xs' || this.props.width === 'sm') && (
+            <Fragment>
+              <Box mt={2} mb={2}>
+                <Divider />
+              </Box>
+              <Box textAlign="center">
+                {this.renderActionButtons()}
+              </Box>
+            </Fragment>
+          )}
         </CardContent>
       </Card>
     </Box>
@@ -599,10 +663,10 @@ class Profile extends PureComponent {
                   <Typography variant="body1">&ldquo;{review.comment}&rdquo;</Typography>
                   <Box mt={1}>
                     <Grid container alignItems="center">
-                      <Grid item md={4} xs={12}>
+                      <Grid item xs={4}>
                         <Typography variant="body2" color="primary">{review.name}</Typography>
                       </Grid>
-                      <Grid item md={4} xs={12}>
+                      <Grid item xs={4}>
                         <Box display="flex" alignItems="center">
                           <Box mr={1}>
                             <Room />
@@ -610,7 +674,7 @@ class Profile extends PureComponent {
                           <Typography variant="body2">{review.location}</Typography>
                         </Box>
                       </Grid>
-                      <Grid item md={4} xs={12}>
+                      <Grid item xs={4}>
                         <Typography variant="body2">{moment(review.createdAt).fromNow()}</Typography>
                       </Grid>
                     </Grid>
@@ -696,6 +760,18 @@ class Profile extends PureComponent {
     </Box>
   )
 
+  renderAvatar = () => (
+    <Box display="inline-block" position="relative">
+      <Avatar src={this.state.avatar} className={this.props.classes.avatar} />
+      <Tooltip title="Edit Photo">
+        <IconButton className={this.props.classes.pencil}>
+          <Create />
+        </IconButton>
+      </Tooltip>
+      <div className={this.props.classes.status} style={{ backgroundColor: this.props.theme.palette.success.main }} />
+    </Box>
+  )
+
   renderScore = (value) => (
     <Fragment>
       <Box className={this.props.classes.score} mr={1}>
@@ -704,9 +780,35 @@ class Profile extends PureComponent {
       <Rating name="read-only" value={value} readOnly size="medium" />
     </Fragment>
   )
+
+  renderHourlyRate = () => (
+    <Fragment>
+      <Box ml={1} mr={1} bgcolor={this.props.theme.palette.success.main}>
+        <AttachMoney htmlColor={this.props.theme.palette.common.white} />
+      </Box>
+      <Box ml={1} mr={1}>
+        <Typography variant="subtitle1">$75 USD / hr</Typography>
+      </Box>
+      <Tooltip title="Edit Hourly Rate">
+        <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
+          <Create />
+        </IconButton>
+      </Tooltip>
+    </Fragment>
+  )
+
+  renderActionButtons = () => (
+    <Box>
+      <Box mr={1} component="span">
+        <GreenButton variant="contained">Hire me</GreenButton>
+      </Box>
+      <GreenButton variant="outlined">Contact</GreenButton>
+    </Box>
+  )
 }
 
 export default compose(
   withStyles(styles),
-  withTheme
+  withTheme,
+  withWidth()
 )(Profile);
