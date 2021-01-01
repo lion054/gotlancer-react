@@ -107,7 +107,10 @@ class AvatarMenuButton extends PureComponent {
           }} />
         </MenuItem>
         <MenuItem
-          onClick={this.onCloseMenu}
+          onClick={() => {
+            this.onCloseMenu();
+            this.props.history.push('/profile');
+          }}
           className={this.props.classes.menuItem}
           disableGutters
         >
@@ -122,7 +125,10 @@ class AvatarMenuButton extends PureComponent {
           }} />
         </MenuItem>
         <MenuItem
-          onClick={this.onCloseMenu}
+          onClick={() => {
+            this.onCloseMenu();
+            this.props.history.push('/settings/membership');
+          }}
           className={this.props.classes.menuItem}
           disableGutters
         >

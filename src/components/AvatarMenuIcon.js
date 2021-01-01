@@ -143,7 +143,10 @@ class AvatarMenuIcon extends PureComponent {
           },{
             label: 'Membership'
           },{
-            label: 'Buy Bid Credit'
+            label: 'Buy Bid Credit',
+            onClick: () => {
+              this.props.history.push('/buy_bid_credit');
+            }
           },{
             label: 'Projects',
             items: [{

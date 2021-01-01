@@ -9,6 +9,7 @@ import Settings from './scenes/Settings';
 import FindWork from './scenes/FindWork';
 import BuyerHome from './scenes/BuyerHome';
 import Messenger from './scenes/Messenger';
+import Profile from './scenes/Profile';
 
 import BuyBidCredit from './scenes/Finance/BuyBidCredit';
 import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
@@ -53,6 +54,9 @@ const routes = [{
 },{
   path: '/payment_history',
   component: PaymentHistory
+},{
+  path: '/profile',
+  component: Profile
 },{
   path: '/settings',
   component: Settings

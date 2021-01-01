@@ -50,7 +50,7 @@ const styles = (theme) => ({
   }
 })
 
-class Home extends PureComponent {
+class BuyerHome extends PureComponent {
   state = {
     recentPostedJobs: [],
     recentCompletedJobs: []
@@ -279,4 +279,4 @@ class Home extends PureComponent {
 export default compose(
   withStyles(styles),
   withTheme
-)(Home);
+)(BuyerHome);

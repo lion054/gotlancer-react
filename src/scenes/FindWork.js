@@ -76,50 +76,11 @@ const styles = (theme) => ({
   progress: {
     height: theme.spacing(1)
   },
-  progressSecondaryText: {
-    color: theme.palette.secondary.main
-  },
-  progressSecondaryTrack: {
-    backgroundColor: theme.palette.secondary.light
-  },
-  progressSecondaryThumb: {
-    backgroundColor: theme.palette.secondary.dark
-  },
-  progressErrorText: {
-    color: theme.palette.error.main
-  },
-  progressErrorTrack: {
-    backgroundColor: theme.palette.error.light
-  },
-  progressErrorThumb: {
-    backgroundColor: theme.palette.error.dark
-  },
-  progressWarningText: {
-    color: theme.palette.warning.main
-  },
-  progressWarningTrack: {
-    backgroundColor: theme.palette.warning.light
-  },
-  progressWarningThumb: {
-    backgroundColor: theme.palette.warning.dark
-  },
-  progressInfoText: {
-    color: theme.palette.info.main
-  },
-  progressInfoTrack: {
-    backgroundColor: theme.palette.info.light
-  },
-  progressInfoThumb: {
-    backgroundColor: theme.palette.info.dark
-  },
-  progressSuccessText: {
+  progressText: {
     color: theme.palette.success.main
   },
-  progressSuccessTrack: {
-    backgroundColor: theme.palette.success.light
-  },
-  progressSuccessThumb: {
-    backgroundColor: theme.palette.success.dark
+  progressThumb: {
+    backgroundColor: theme.palette.success.main
   },
   cardActions: {
     borderTop: `solid 1px ${theme.palette.divider}`
@@ -187,7 +148,7 @@ const styles = (theme) => ({
   }
 })
 
-class Home extends PureComponent {
+class FindWork extends PureComponent {
   state = {
     activeTab: 0,
     user: {
@@ -216,6 +177,9 @@ class Home extends PureComponent {
           max: faker.random.number({ min: 30, max: 40 })
         },
         categories: faker.random.arrayElements([{
+          title: 'TOP PROJECT',
+          backgroundColor: this.props.theme.palette.primary.main
+        },{
           title: 'NDA',
           backgroundColor: this.props.theme.palette.secondary.main
         },{
@@ -224,9 +188,6 @@ class Home extends PureComponent {
         },{
           title: 'FEATURED',
           backgroundColor: this.props.theme.palette.warning.main
-        },{
-          title: 'TOP PROJECT',
-          backgroundColor: this.props.theme.palette.info.main
         },{
           title: 'LONG TERM',
           backgroundColor: this.props.theme.palette.success.main
@@ -246,52 +207,6 @@ class Home extends PureComponent {
 
   handleTabChange = (event, newValue) => {
     this.setState({ activeTab: newValue });
-  }
-
-  getCompletedStyles() {
-    if (this.state.progress <= 20) {
-      return this.props.classes.progressSecondaryText;
-    } else if (this.state.progress <= 40) {
-      return this.props.classes.progressErrorText;
-    } else if (this.state.progress <= 60) {
-      return this.props.classes.progressWarningText;
-    } else if (this.state.progress <= 80) {
-      return this.props.classes.progressInfoText;
-    } else {
-      return this.props.classes.progressSuccessText;
-    }
-  }
-
-  getProgressStyles() {
-    let result = {};
-    if (this.state.progress <= 20) {
-      result = {
-        colorPrimary: this.props.classes.progressSecondaryTrack,
-        barColorPrimary: this.props.classes.progressSecondaryThumb
-      };
-    } else if (this.state.progress <= 40) {
-      result = {
-        colorPrimary: this.props.classes.progressErrorTrack,
-        barColorPrimary: this.props.classes.progressErrorThumb
-      };
-    } else if (this.state.progress <= 60) {
-      result = {
-        colorPrimary: this.props.classes.progressWarningTrack,
-        barColorPrimary: this.props.classes.progressWarningThumb
-      };
-    } else if (this.state.progress <= 80) {
-      result = {
-        colorPrimary: this.props.classes.progressInfoTrack,
-        barColorPrimary: this.props.classes.progressInfoThumb
-      };
-    } else {
-      result = {
-        colorPrimary: this.props.classes.progressSuccessTrack,
-        barColorPrimary: this.props.classes.progressSuccessThumb
-      };
-    }
-    result.root = this.props.classes.progress;
-    return result;
   }
 
   handleDrawer = () => this.setState({ drawerOpened: !this.state.drawerOpened })
@@ -376,8 +291,11 @@ class Home extends PureComponent {
                 </Box>
               </Box>
               <Box mt={1}>
-                <Typography variant="body2" className={this.getCompletedStyles()}>{this.state.progress}% completed</Typography>
-                <LinearProgress variant="determinate" value={this.state.progress} classes={this.getProgressStyles()} />
+                <Typography variant="body2" className={this.props.classes.progressText}>{this.state.progress}% completed</Typography>
+                <LinearProgress variant="determinate" value={this.state.progress} classes={{
+                  root: this.props.classes.progress,
+                  barColorPrimary: this.props.classes.progressThumb
+                }} />
                 <Typography variant="body2">Pass the US English - level 1 (+ 10%)</Typography>
               </Box>
             </Box>
@@ -840,4 +758,4 @@ export default compose(
   withStyles(styles),
   withTheme,
   withWidth()
-)(Home);
+)(FindWork);
