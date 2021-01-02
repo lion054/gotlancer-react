@@ -34,7 +34,7 @@ import {
   TurnedIn,
   WatchLater
 } from '@material-ui/icons';
-import { Rating } from '@material-ui/lab';
+import { Pagination, Rating } from '@material-ui/lab';
 import pluralize from 'pluralize';
 import moment from 'moment';
 import faker from 'faker';
@@ -207,6 +207,15 @@ const styles = (theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  pagination: {
+    paddingTop: theme.spacing(2),
+    display: 'flex',
+    justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      borderTopColor: theme.palette.divider,
+      borderTopStyle: 'solid'
+    }
   }
 })
 
@@ -593,6 +602,18 @@ class Profile extends PureComponent {
     </Box>
   )
 
+  getControlSize() {
+    switch (this.props.width) {
+      case 'sm':
+      case 'xs':
+        return 'small';
+      case 'md':
+        return 'medium';
+      default:
+        return 'large';
+    }
+  }
+
   renderPortfolio = () => (
     <Box className={this.props.classes.innerPadding}>
       <Card elevation={0} className={this.props.classes.card}>
@@ -624,6 +645,9 @@ class Profile extends PureComponent {
                 </Grid>
               ))}
             </Grid>
+          </Box>
+          <Box className={this.props.classes.pagination}>
+            <Pagination count={10} size={this.getControlSize()} />
           </Box>
         </CardContent>
       </Card>
