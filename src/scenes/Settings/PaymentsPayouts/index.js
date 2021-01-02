@@ -238,11 +238,7 @@ class PaymentsPayouts extends PureComponent {
   }
 
   renderPaymentMethodDialog = () => (
-    <Dialog
-      open={this.state.paymentMethodOpened}
-      onClose={this.onClosePaymentMethodDialog}
-      scroll="paper"
-    >
+    <Dialog open={this.state.paymentMethodOpened} onClose={this.onClosePaymentMethodDialog}>
       <DialogTitle>Add payment method</DialogTitle>
       <DialogContent style={{ paddingBottom: this.props.theme.spacing(3) }}>
         <RadioGroup value={this.state.paymentMethod} onChange={(e) => this.setState({ paymentMethod: e.target.value })}>
@@ -347,11 +343,7 @@ class PaymentsPayouts extends PureComponent {
   onCloseVatDialog = () => this.setState({ vatOpened: false })
 
   renderVatDialog = () => (
-    <Dialog
-      open={this.state.vatOpened}
-      onClose={this.onCloseVatDialog}
-      scroll="paper"
-    >
+    <Dialog open={this.state.vatOpened} onClose={this.onCloseVatDialog}>
       <DialogTitle>Add VAT ID Number</DialogTitle>
       <DialogContent>
         <Typography variant="body2">If you are registered with the European Commission, verification may take up to 48 hours. We’ll send you an email when its finished. More information on VAT IDs can be found here.</Typography>

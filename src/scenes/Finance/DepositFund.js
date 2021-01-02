@@ -17,6 +17,7 @@ import {
   withStyles,
   withTheme
 } from '@material-ui/core';
+import { AttachMoney } from '@material-ui/icons';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
@@ -96,7 +97,11 @@ class DepositFund extends PureComponent {
                           <Box mt={2}>
                             <OutlinedInput
                               margin="dense"
-                              startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                              startAdornment={(
+                                <InputAdornment position="start">
+                                  <AttachMoney />
+                                </InputAdornment>
+                              )}
                             />
                           </Box>
                         </CardContent>

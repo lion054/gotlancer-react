@@ -44,7 +44,7 @@ import 'material-ui-phone-number/src/styles.less';
 import 'material-ui-phone-number/src/flags.png';
 
 import Header from '../../components/Header';
-import AddAvatar from './AddAvatar';
+import ChangeAvatar from './ChangeAvatar';
 import { GreenButton } from '../../global';
 
 const styles = (theme) => ({
@@ -271,7 +271,7 @@ class Profile extends PureComponent {
           <Grid item lg={2} />
         </Grid>
       </Box>
-      <AddAvatar
+      <ChangeAvatar
         open={this.state.avatarOpened}
         onClose={() => this.setState({ avatarOpened: false })}
       />
