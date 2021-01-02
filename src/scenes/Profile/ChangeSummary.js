@@ -7,38 +7,15 @@ import {
   DialogContent,
   DialogTitle,
   Divider,
-  Grid,
-  InputAdornment,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   OutlinedInput,
-  Typography,
-  withStyles
+  Typography
 } from '@material-ui/core';
-import { FiberManualRecord } from '@material-ui/icons';
 import pluralize from 'pluralize';
 import PropTypes from 'prop-types';
 
-const styles = (theme) => ({
-  outerMargin: {
-    margin: theme.spacing(2, -2),
-    [theme.breakpoints.only('xs')]: {
-      margin: theme.spacing(1, -1)
-    }
-  },
-  innerPadding: {
-    padding: theme.spacing(2),
-    [theme.breakpoints.only('xs')]: {
-      padding: theme.spacing(1)
-    }
-  }
-});
-
 const maxCharacters = 5000;
 
-class ChangeSummary extends PureComponent {
+export default class ChangeSummary extends PureComponent {
   state = {
     text: ''
   }
@@ -60,6 +37,7 @@ class ChangeSummary extends PureComponent {
   render = () => (
     <Dialog open={this.props.open} onClose={this.handleCancel}>
       <DialogTitle>Change summary</DialogTitle>
+      <Divider />
       <DialogContent>
         <Typography variant="body2">Use this space to show buyeres you have the skills and experience they`re looking for.</Typography>
         <Box style={{ fontSize: '0.875rem' }}>
@@ -69,11 +47,6 @@ class ChangeSummary extends PureComponent {
             <li>Keep it short and make sure it`s error free</li>
           </ul>
         </Box>
-        {/* <List disablePadding>
-          {this.renderListItem('Describe your strengths and skills')}
-          {this.renderListItem('Highlight projects, accomplishments and education')}
-          {this.renderListItem('Keep it short and make sure it`s error free')}
-        </List> */}
         <Box>
           <Button color="primary">Learn more</Button>
         </Box>
@@ -93,23 +66,9 @@ class ChangeSummary extends PureComponent {
       </DialogActions>
     </Dialog>
   )
-
-  renderListItem = (text) => (
-    <ListItem disableGutters>
-      <ListItemIcon style={{ minWidth: 36 }}>
-        <FiberManualRecord />
-      </ListItemIcon>
-      <ListItemText
-        primary={text}
-        primaryTypographyProps={{ variant: 'body2' }}
-      />
-    </ListItem>
-  )
 }
 
 ChangeSummary.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired
 }
-
-export default withStyles(styles)(ChangeSummary);

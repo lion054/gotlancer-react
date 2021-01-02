@@ -6,6 +6,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Divider,
   Grid,
   Typography,
   withStyles,
@@ -70,6 +71,7 @@ class ChangeAvatar extends PureComponent {
   render = () => (
     <Dialog open={this.props.open} onClose={this.handleCancel}>
       <DialogTitle>Change profile photo</DialogTitle>
+      <Divider />
       <DialogContent>
         <Box className={this.props.classes.outerMargin}>
           <Grid container>

@@ -46,6 +46,7 @@ class ChangeHourlyRate extends PureComponent {
   render = () => (
     <Dialog open={this.props.open} onClose={this.handleCancel}>
       <DialogTitle>Change hourly rate</DialogTitle>
+      <Divider />
       <DialogContent>
         <Typography variant="body2">Please note that your new <b>Expert on Logo Design</b> hourly rate will only apply to new contracts. The Gotlancer Service Fee is 20% when you begin a contract with a new buyer. Once you bill over $500 with your buyer, the fee will be 10%.</Typography>
         <Box mt={2} mb={2}>

@@ -47,6 +47,7 @@ import Header from '../../components/Header';
 import ChangeAvatar from './ChangeAvatar';
 import ChangeHourlyRate from './ChangeHourlyRate';
 import ChangeSummary from './ChangeSummary';
+import ChangeAvailability from './ChangeAvailability';
 import { GreenButton } from '../../global';
 
 const styles = (theme) => ({
@@ -234,7 +235,8 @@ class Profile extends PureComponent {
     reviews: [],
     avatarOpened: false,
     hourlyRateOpened: false,
-    summaryOpened: false
+    summaryOpened: false,
+    availabilityOpened: false
   }
 
   componentDidMount() {
@@ -296,6 +298,10 @@ class Profile extends PureComponent {
         open={this.state.summaryOpened}
         onClose={() => this.setState({ summaryOpened: false })}
       />
+      <ChangeAvailability
+        open={this.state.availabilityOpened}
+        onClose={() => this.setState({ availabilityOpened: false })}
+      />
     </div>
   )
 
@@ -325,7 +331,13 @@ class Profile extends PureComponent {
                 <Typography variant="body2" component="span">Available weekly</Typography>
               </Box>
               <Tooltip title="Edit Availability">
-                <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
+                <IconButton
+                  style={{
+                    border: `solid 1px ${this.props.theme.palette.divider}`,
+                    padding: 7
+                  }}
+                  onClick={() => this.setState({ availabilityOpened: true })}
+                >
                   <Create />
                 </IconButton>
               </Tooltip>
