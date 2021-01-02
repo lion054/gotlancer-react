@@ -92,7 +92,6 @@ class ChangeHourlyRate extends PureComponent {
             </Grid>
           </Grid>
         </Box>
-        <Divider />
       </DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={this.handleCancel}>Cancel</Button>

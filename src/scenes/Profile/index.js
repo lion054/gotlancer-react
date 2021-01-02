@@ -46,6 +46,7 @@ import 'material-ui-phone-number/src/flags.png';
 import Header from '../../components/Header';
 import ChangeAvatar from './ChangeAvatar';
 import ChangeHourlyRate from './ChangeHourlyRate';
+import ChangeSummary from './ChangeSummary';
 import { GreenButton } from '../../global';
 
 const styles = (theme) => ({
@@ -223,7 +224,8 @@ class Profile extends PureComponent {
     portfolios: [],
     reviews: [],
     avatarOpened: false,
-    hourlyRateOpened: false
+    hourlyRateOpened: false,
+    summaryOpened: false
   }
 
   componentDidMount() {
@@ -280,6 +282,10 @@ class Profile extends PureComponent {
       <ChangeHourlyRate
         open={this.state.hourlyRateOpened}
         onClose={() => this.setState({ hourlyRateOpened: false })}
+      />
+      <ChangeSummary
+        open={this.state.summaryOpened}
+        onClose={() => this.setState({ summaryOpened: false })}
       />
     </div>
   )
@@ -573,7 +579,7 @@ class Profile extends PureComponent {
           title={(
             <Box display="flex" alignItems="center">
               <Typography variant="subtitle1">Summary</Typography>
-              <IconButton>
+              <IconButton onClick={() => this.setState({ summaryOpened: true })}>
                 <Create />
               </IconButton>
             </Box>
