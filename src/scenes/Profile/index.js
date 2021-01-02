@@ -636,7 +636,7 @@ class Profile extends PureComponent {
         />
         <Divider />
         <CardContent>
-          <Box className={this.props.classes.outerMargin}>
+          <Box className={this.props.classes.outerMargin} pb={2}>
             <Grid container>
               <Grid item md={4} xs={12}>
                 <Box className={this.props.classes.innerPadding} textAlign="center" mt={1}>

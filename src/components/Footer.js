@@ -50,7 +50,7 @@ class Footer extends PureComponent {
             <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
-                  <Typography variant="subtitle2" color="textPrimary">NETWORK</Typography>
+                  <Typography variant="subtitle2">NETWORK</Typography>
                 </ListItem>
                 <ListItem>
                   <Link variant="body2" color="textPrimary" href="#">Browse Categories</Link>
@@ -81,7 +81,7 @@ class Footer extends PureComponent {
             <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
-                  <Typography variant="subtitle2" color="textPrimary">NETWORK</Typography>
+                  <Typography variant="subtitle2">NETWORK</Typography>
                 </ListItem>
                 <ListItem>
                   <Link variant="body2" color="textPrimary" href="#">Browse Categories</Link>
@@ -112,7 +112,7 @@ class Footer extends PureComponent {
             <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
-                  <Typography variant="subtitle2" color="textPrimary">COMPANY</Typography>
+                  <Typography variant="subtitle2">COMPANY</Typography>
                 </ListItem>
                 <ListItem>
                   <Link variant="body2" color="textPrimary" href="#">About Us</Link>
@@ -146,7 +146,7 @@ class Footer extends PureComponent {
             <Grid item md={3} xs={6}>
               <List>
                 <ListItem>
-                  <Typography variant="subtitle2" color="textPrimary">FREELANCERS</Typography>
+                  <Typography variant="subtitle2">FREELANCERS</Typography>
                 </ListItem>
                 <ListItem>
                   <Link variant="body2" color="textPrimary" href="#">Freelancers by Skill</Link>
@@ -181,7 +181,7 @@ class Footer extends PureComponent {
           <img alt="" className={this.props.classes.logo} src={require('../assets/images/gl-logo-black.svg')} />
         </IconButton>
         <Box display="inline" ml={1}>
-          <Typography variant="caption" color="textPrimary">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
+          <Typography variant="caption">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
         </Box>
         <Box display="inline" ml={1.5}>
           <Link variant="body2" color="textPrimary" href="#">Privacy</Link>

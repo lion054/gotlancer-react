@@ -276,7 +276,7 @@ class FindWork extends PureComponent {
         {this.renderTabPanel({
           index: 0,
           body: (
-            <Box mt={1} mr={2} mb={2} ml={2}>
+            <Box m={2}>
               <Box display="flex" alignItems="center">
                 <Box display="inline" mr={1}>
                   <Avatar src={this.state.user.avatar} />
@@ -638,7 +638,7 @@ class FindWork extends PureComponent {
 
   renderCategoryPicker = () => (
     <Box>
-      <Typography>Select category</Typography>
+      <Typography variant="subtitle2">Select category</Typography>
       <Box>
         <FormControlLabel
           control={(
@@ -680,7 +680,7 @@ class FindWork extends PureComponent {
 
   renderSubcategoryPicker = () => (
     <Box>
-      <Typography>Select sub-category</Typography>
+      <Typography variant="subtitle2">Select sub-category</Typography>
       <Box>
         <FormControlLabel
           control={(
@@ -722,7 +722,7 @@ class FindWork extends PureComponent {
 
   renderTypePicker = () => (
     <Box>
-      <Typography>Project type</Typography>
+      <Typography variant="subtitle2">Project type</Typography>
       <Box>
         <FormControlLabel
           control={(

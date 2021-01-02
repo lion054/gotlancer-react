@@ -32,6 +32,11 @@ const styles = (theme) => ({
 });
 
 class ChangeHourlyRate extends PureComponent {
+  state = {
+    grossRate: 0,
+    netRate: 0
+  }
+
   handleCancel = () => {
     this.props.onClose();
   }
@@ -56,24 +61,7 @@ class ChangeHourlyRate extends PureComponent {
               </Box>
             </Grid>
             <Grid item sm={6} xs={12}>
-              <Box className={this.props.classes.innerPadding} display="flex" alignItems="center">
-                <OutlinedInput
-                  margin="dense"
-                  inputProps={{
-                    style: {
-                      textAlign: 'right'
-                    }
-                  }}
-                  startAdornment={(
-                    <InputAdornment position="start">
-                      <AttachMoney />
-                    </InputAdornment>
-                  )}
-                />
-                <Box ml={1}>
-                  <Typography variant="body1">/hr</Typography>
-                </Box>
-              </Box>
+              {this.renderInput({ onChange: this.handleGrossChange })}
             </Grid>
           </Grid>
         </Box>
@@ -86,24 +74,7 @@ class ChangeHourlyRate extends PureComponent {
               </Box>
             </Grid>
             <Grid item sm={6} xs={12}>
-              <Box className={this.props.classes.innerPadding} display="flex" alignItems="center">
-                <OutlinedInput
-                  margin="dense"
-                  inputProps={{
-                    style: {
-                      textAlign: 'right'
-                    }
-                  }}
-                  startAdornment={(
-                    <InputAdornment position="start">
-                      <AttachMoney />
-                    </InputAdornment>
-                  )}
-                />
-                <Box ml={1}>
-                  <Typography variant="body1">/hr</Typography>
-                </Box>
-              </Box>
+              {this.renderInput({ readOnly: true })}
             </Grid>
           </Grid>
         </Box>
@@ -117,24 +88,7 @@ class ChangeHourlyRate extends PureComponent {
               </Box>
             </Grid>
             <Grid item sm={6} xs={12}>
-              <Box className={this.props.classes.innerPadding} display="flex" alignItems="center">
-                <OutlinedInput
-                  margin="dense"
-                  inputProps={{
-                    style: {
-                      textAlign: 'right'
-                    }
-                  }}
-                  startAdornment={(
-                    <InputAdornment position="start">
-                      <AttachMoney />
-                    </InputAdornment>
-                  )}
-                />
-                <Box ml={1}>
-                  <Typography variant="body1">/hr</Typography>
-                </Box>
-              </Box>
+              {this.renderInput({ onChange: this.handleNetChange })}
             </Grid>
           </Grid>
         </Box>
@@ -146,6 +100,41 @@ class ChangeHourlyRate extends PureComponent {
       </DialogActions>
     </Dialog>
   )
+
+  renderInput = ({ readOnly, onChange }) => (
+    <Box className={this.props.classes.innerPadding} display="flex" alignItems="center">
+      <OutlinedInput
+        margin="dense"
+        inputProps={{
+          style: {
+            textAlign: 'right'
+          }
+        }}
+        startAdornment={(
+          <InputAdornment position="start">
+            <AttachMoney />
+          </InputAdornment>
+        )}
+        readOnly={readOnly}
+        onChange={onChange}
+      />
+      <Box ml={1}>
+        <Typography variant="body1">/hr</Typography>
+      </Box>
+    </Box>
+  )
+
+  handleGrossChange = (event) => {
+    this.setState({
+      grossRate: parseFloat(event.target.value)
+    });
+  }
+
+  handleNetChange = (event) => {
+    this.setState({
+      netRate: parseFloat(event.target.value)
+    });
+  }
 }
 
 ChangeHourlyRate.propTypes = {

@@ -79,7 +79,33 @@ class InviteFriends extends PureComponent {
     url: 'https://www.gotlancer.com/apurbad19/ref-2021154',
     currentEntry: null,
     language: 'English',
-    timeZone: {}
+    timeZone: {},
+    hints: [],
+    faqList: []
+  }
+
+  componentDidMount() {
+    const hints = [];
+    for (let i = 0; i < 3; i++) {
+      hints.push({
+        title: 'Lorem Ipsum',
+        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry`s standard dummy text ever since the 1500s.'
+      });
+    }
+    const faqList = [{
+      question: 'How much will my friend get when I invite them',
+      answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry`s standard dummy text ever since the 1500s.'
+    },{
+      question: 'My friend has invited me to Airbnb but I haven`t received a coupon.',
+      answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry`s standard dummy text ever since the 1500s.'
+    },{
+      question: 'How much will my friend get when I invite them',
+      answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry`s standard dummy text ever since the 1500s.'
+    },{
+      question: 'How much will my friend get when I invite them',
+      answer: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry`s standard dummy text ever since the 1500s.'
+    }];
+    this.setState({ hints, faqList });
   }
 
   render = () => (
@@ -129,61 +155,28 @@ class InviteFriends extends PureComponent {
             </Box>
             <Box m={-2} mt={2}>
               <Grid container>
-                <Grid item sm={4} xs={12}>
-                  <Box p={2}>
-                    <Language />
-                    <Typography variant="subtitle1">Lorem Ipsum</Typography>
-                    <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
-                  </Box>
-                </Grid>
-                <Grid item sm={4} xs={12}>
-                  <Box p={2}>
-                    <Language />
-                    <Typography variant="subtitle1">Lorem Ipsum</Typography>
-                    <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
-                  </Box>
-                </Grid>
-                <Grid item sm={4} xs={12}>
-                  <Box p={2}>
-                    <Language />
-                    <Typography variant="subtitle1">Lorem Ipsum</Typography>
-                    <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
-                  </Box>
-                </Grid>
+                {this.state.hints.map((hint, index) => (
+                  <Grid key={index} item sm={4} xs={12}>
+                    <Box p={2}>
+                      <Language />
+                      <Typography variant="subtitle1">{hint.title}</Typography>
+                      <Typography variant="body2">{hint.description}</Typography>
+                    </Box>
+                  </Grid>
+                ))}
               </Grid>
             </Box>
             <Box m={-2} mt={2}>
               <Grid container>
                 <Grid item md={8} xs={12}>
                   <Box p={2}>
-                    {this.renderEntry({
-                      id: 1,
-                      title: 'How much will my friend get when I invite them?',
+                    {this.state.faqList.map((faq, index) => this.renderEntry({
+                      id: index + 1,
+                      title: faq.question,
                       details: (
-                        <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
+                        <Typography variant="body2">{faq.answer}</Typography>
                       )
-                    })}
-                    {this.renderEntry({
-                      id: 2,
-                      title: 'My friend has invited me to Airbnb but I haven`t received a coupon.?',
-                      details: (
-                        <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
-                      )
-                    })}
-                    {this.renderEntry({
-                      id: 3,
-                      title: 'How much will my friend get when I invite them?',
-                      details: (
-                        <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
-                      )
-                    })}
-                    {this.renderEntry({
-                      id: 4,
-                      title: 'How much will my friend get when I invite them?',
-                      details: (
-                        <Typography variant="body2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</Typography>
-                      )
-                    })}
+                    }))}
                   </Box>
                 </Grid>
                 <Grid item md={4} xs={12}>
@@ -253,7 +246,7 @@ class InviteFriends extends PureComponent {
   }
 
   renderEntry = ({ id, title, details }) => (
-    <Accordion expanded={this.state.currentEntry === id}>
+    <Accordion key={id} expanded={this.state.currentEntry === id}>
       <AccordionSummary
         expandIcon={this.getExpandIcon(id)}
         classes={{

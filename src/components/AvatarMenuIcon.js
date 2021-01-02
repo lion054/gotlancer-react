@@ -125,7 +125,7 @@ class AvatarMenuIcon extends PureComponent {
                 </Box>
                 <Box display="inline-block">
                   <Typography variant="body2" display="block" noWrap>Hi, Apurba</Typography>
-                  <Typography variant="body2" display="block" color="textSecondary" noWrap>$100.00 USD</Typography>
+                  <Typography variant="body2" display="block" noWrap>$100.00 USD</Typography>
                 </Box>
                 <div style={{ flex: 1 }} />
                 <IconButton color="inherit" onClick={this.handleDrawer}>

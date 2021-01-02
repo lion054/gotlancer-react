@@ -96,22 +96,22 @@ class BuyerHome extends PureComponent {
               <Grid container>
                 <Grid item xs={6} sm={3}>
                   <Box p={2}>
-                    {this.renderCard('Work In Progress', '$9000.00')}
+                    {this.renderSummaryCard('Work In Progress', '$9000.00')}
                   </Box>
                 </Grid>
                 <Grid item xs={6} sm={3}>
                   <Box p={2}>
-                    {this.renderCard('Projects Completed', '326')}
+                    {this.renderSummaryCard('Projects Completed', '326')}
                   </Box>
                 </Grid>
                 <Grid item xs={6} sm={3}>
                   <Box p={2}>
-                    {this.renderCard('Total Spent', '$50,000.00')}
+                    {this.renderSummaryCard('Total Spent', '$50,000.00')}
                   </Box>
                 </Grid>
                 <Grid item xs={6} sm={3}>
                   <Box p={2}>
-                    {this.renderCard('Total Spent', '$50,000.00')}
+                    {this.renderSummaryCard('Total Spent', '$50,000.00')}
                   </Box>
                 </Grid>
               </Grid>
@@ -141,10 +141,10 @@ class BuyerHome extends PureComponent {
     </div>
   )
 
-  renderCard = (title, subtitle) => (
+  renderSummaryCard = (title, subtitle) => (
     <Card elevation={0} className={this.props.classes.card}>
       <CardContent className={this.props.classes.subtotal}>
-        <Typography variant="body2">{title}</Typography>
+        <Typography variant="body2" noWrap>{title}</Typography>
         <Typography variant="subtitle1" color="primary">{subtitle}</Typography>
       </CardContent>
     </Card>
@@ -160,25 +160,25 @@ class BuyerHome extends PureComponent {
       {this.state.recentPostedJobs.map((job, index) => (
         <Fragment key={index}>
           <Grid container>
-            <Grid item sm={6} xs={12}>
+            <Grid item xl={6} xs={12}>
               <Box mt={1} mr={2} mb={1} ml={2}>
                 <Typography color="textPrimary">{job.title}</Typography>
                 <Typography color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
               </Box>
             </Grid>
-            <Grid item sm={2} xs={4}>
+            <Grid item xl={2} xs={4}>
               <Box mt={1} mr={2} mb={1} ml={2}>
                 <Typography color="textPrimary">30</Typography>
                 <Typography color="textSecondary">Bid</Typography>
               </Box>
             </Grid>
-            <Grid item sm={2} xs={3}>
+            <Grid item xl={2} xs={3}>
               <Box mt={1} mr={2} mb={1} ml={2}>
                 <Typography color="textPrimary">{job.hiredCount}</Typography>
                 <Typography color="textSecondary">Hired</Typography>
               </Box>
             </Grid>
-            <Grid item sm={2} xs={5}>
+            <Grid item xl={2} xs={5}>
               <Box mt={1} mr={2} mb={1} ml={2}>
                 <Typography color="textPrimary">${job.budget} USD</Typography>
                 <Typography color="textSecondary">{job.status}</Typography>
@@ -259,7 +259,7 @@ class BuyerHome extends PureComponent {
                     <Box>
                       <Typography variant="body2">{job.title}</Typography>
                       <Typography variant="body2">{terms.join(' - ')}</Typography>
-                      <Typography variant="body2" style={{ color: this.props.theme.palette.success.main }}>${job.budget} USD</Typography>
+                      <Typography variant="body2" style={{ color: this.props.theme.palette.success.main }}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(job.budget)} USD</Typography>
                     </Box>
                   </ListItem>
                 );
