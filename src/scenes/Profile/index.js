@@ -45,6 +45,7 @@ import 'material-ui-phone-number/src/flags.png';
 
 import Header from '../../components/Header';
 import ChangeAvatar from './ChangeAvatar';
+import ChangeHourlyRate from './ChangeHourlyRate';
 import { GreenButton } from '../../global';
 
 const styles = (theme) => ({
@@ -221,7 +222,8 @@ class Profile extends PureComponent {
     summary: faker.lorem.paragraphs(10),
     portfolios: [],
     reviews: [],
-    avatarOpened: false
+    avatarOpened: false,
+    hourlyRateOpened: false
   }
 
   componentDidMount() {
@@ -274,6 +276,10 @@ class Profile extends PureComponent {
       <ChangeAvatar
         open={this.state.avatarOpened}
         onClose={() => this.setState({ avatarOpened: false })}
+      />
+      <ChangeHourlyRate
+        open={this.state.hourlyRateOpened}
+        onClose={() => this.setState({ hourlyRateOpened: false })}
       />
     </div>
   )
@@ -829,7 +835,13 @@ class Profile extends PureComponent {
         <Typography variant="body1">$75 USD/hr</Typography>
       </Box>
       <Tooltip title="Edit Hourly Rate">
-        <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
+        <IconButton
+          style={{
+            border: `solid 1px ${this.props.theme.palette.divider}`,
+            padding: 7
+          }}
+          onClick={() => this.setState({ hourlyRateOpened: true })}
+        >
           <Create />
         </IconButton>
       </Tooltip>

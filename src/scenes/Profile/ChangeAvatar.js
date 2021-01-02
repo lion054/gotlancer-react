@@ -23,31 +23,6 @@ const styles = (theme) => ({
     padding: theme.spacing(1)
   },
   preview: {
-    // [theme.breakpoints.only('xs')]: {
-    //   width: 80,
-    //   height: 80,
-    //   borderRadius: 40
-    // },
-    // [theme.breakpoints.only('sm')]: {
-    //   width: 100,
-    //   height: 100,
-    //   borderRadius: 50
-    // },
-    // [theme.breakpoints.only('md')]: {
-    //   width: 120,
-    //   height: 120,
-    //   borderRadius: 60
-    // },
-    // [theme.breakpoints.only('lg')]: {
-    //   width: 140,
-    //   height: 140,
-    //   borderRadius: 70
-    // },
-    // [theme.breakpoints.only('xl')]: {
-    //   width: 160,
-    //   height: 160,
-    //   borderRadius: 80
-    // },
     width: 140,
     height: 140,
     borderRadius: 70,
@@ -76,12 +51,6 @@ class ChangeAvatar extends PureComponent {
         return 220;
       case 'sm':
         return 240;
-      // case 'md':
-      //   return 260;
-      // case 'lg':
-      //   return 280;
-      // case 'xl':
-      //   return 300;
       default:
         return 300;
     }
@@ -98,7 +67,6 @@ class ChangeAvatar extends PureComponent {
                 <Box display="flex" justifyContent="center">
                   <AvatarEdit
                     width={this.getAvatarWidth()}
-                    // height={240}
                     onCrop={(preview) => this.setState({ preview })}
                     onClose={() => this.setState({ preview: null })}
                     onBeforeFileLoad={(el) => {
