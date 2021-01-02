@@ -45,7 +45,7 @@ class ChangeAvatar extends PureComponent {
 
   handleSave = () => {}
 
-  getAvatarWidth() {
+  getEditorWidth() {
     switch (this.props.width) {
       case 'xs':
         return 220;
@@ -53,6 +53,17 @@ class ChangeAvatar extends PureComponent {
         return 240;
       default:
         return 300;
+    }
+  }
+
+  getEditorHeight() {
+    switch (this.props.width) {
+      case 'xs':
+        return 165;
+      case 'sm':
+        return 180;
+      default:
+        return 225;
     }
   }
 
@@ -64,9 +75,10 @@ class ChangeAvatar extends PureComponent {
           <Grid container>
             <Grid item md={8} xs={12}>
               <Box className={this.props.classes.innerPadding}>
-                <Box display="flex" justifyContent="center">
+                <Box textAlign="center">
                   <AvatarEdit
-                    width={this.getAvatarWidth()}
+                    width={this.getEditorWidth()}
+                    height={this.getEditorHeight()}
                     onCrop={(preview) => this.setState({ preview })}
                     onClose={() => this.setState({ preview: null })}
                     onBeforeFileLoad={(el) => {
