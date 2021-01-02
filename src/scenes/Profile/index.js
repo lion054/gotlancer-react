@@ -43,8 +43,9 @@ import { compose } from 'redux';
 import 'material-ui-phone-number/src/styles.less';
 import 'material-ui-phone-number/src/flags.png';
 
-import Header from '../components/Header';
-import { GreenButton } from '../global';
+import Header from '../../components/Header';
+import AddAvatar from './AddAvatar';
+import { GreenButton } from '../../global';
 
 const styles = (theme) => ({
   root: {
@@ -79,7 +80,7 @@ const styles = (theme) => ({
   avatar: {
     [theme.breakpoints.only('xl')]: {
       width: theme.spacing(20),
-      height: theme.spacing(16)
+      height: theme.spacing(20)
     },
     [theme.breakpoints.only('lg')]: {
       width: theme.spacing(18),
@@ -219,7 +220,8 @@ class Profile extends PureComponent {
     },
     summary: faker.lorem.paragraphs(10),
     portfolios: [],
-    reviews: []
+    reviews: [],
+    avatarOpened: false
   }
 
   componentDidMount() {
@@ -269,6 +271,10 @@ class Profile extends PureComponent {
           <Grid item lg={2} />
         </Grid>
       </Box>
+      <AddAvatar
+        open={this.state.avatarOpened}
+        onClose={() => this.setState({ avatarOpened: false })}
+      />
     </div>
   )
 
@@ -792,7 +798,7 @@ class Profile extends PureComponent {
     <Box display="inline-block" position="relative">
       <Avatar src={this.state.avatar} className={this.props.classes.avatar} />
       <Tooltip title="Edit Photo">
-        <IconButton className={this.props.classes.pencil}>
+        <IconButton className={this.props.classes.pencil} onClick={() => this.setState({ avatarOpened: true })}>
           <Create />
         </IconButton>
       </Tooltip>
