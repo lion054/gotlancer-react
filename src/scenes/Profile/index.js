@@ -765,6 +765,9 @@ class Profile extends PureComponent {
               </ListItem>
             ))}
           </List>
+          <Box className={this.props.classes.pagination}>
+            <Pagination count={10} size={this.getControlSize()} />
+          </Box>
         </CardContent>
       </Card>
     </Box>

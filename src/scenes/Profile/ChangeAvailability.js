@@ -30,9 +30,6 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
-  },
-  linkIcon: {
-    transform: 'translateY(6px)'
   }
 });
 
