@@ -51,6 +51,7 @@ import ChangeAvailability from './ChangeAvailability';
 import AddEducation from './AddEducation';
 import AddEmployment from './AddEmployment';
 import AddCertification from './AddCertification';
+import ChangeTitle from './ChangeTitle';
 import { GreenButton } from '../../global';
 
 const styles = (theme) => ({
@@ -242,7 +243,8 @@ class Profile extends PureComponent {
     availabilityOpened: false,
     educationOpened: false,
     employmentOpened: false,
-    certificationOpened: false
+    certificationOpened: false,
+    titleOpened: false
   }
 
   componentDidMount() {
@@ -319,6 +321,10 @@ class Profile extends PureComponent {
       <AddCertification
         open={this.state.certificationOpened}
         onClose={() => this.setState({ certificationOpened: false })}
+      />
+      <ChangeTitle
+        open={this.state.titleOpened}
+        onClose={() => this.setState({ titleOpened: false })}
       />
     </div>
   )
@@ -569,7 +575,13 @@ class Profile extends PureComponent {
                       <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
                     </Box>
                     <Tooltip title="Edit Title">
-                      <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
+                      <IconButton
+                        style={{
+                          border: `solid 1px ${this.props.theme.palette.divider}`,
+                          padding: 7
+                        }}
+                        onClick={() => this.setState({ titleOpened: true })}
+                      >
                         <Create />
                       </IconButton>
                     </Tooltip>
