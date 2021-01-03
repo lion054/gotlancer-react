@@ -49,6 +49,7 @@ import ChangeHourlyRate from './ChangeHourlyRate';
 import ChangeSummary from './ChangeSummary';
 import ChangeAvailability from './ChangeAvailability';
 import AddEducation from './AddEducation';
+import AddEmployment from './AddEmployment';
 import { GreenButton } from '../../global';
 
 const styles = (theme) => ({
@@ -238,7 +239,8 @@ class Profile extends PureComponent {
     hourlyRateOpened: false,
     summaryOpened: false,
     availabilityOpened: false,
-    educationOpened: false
+    educationOpened: false,
+    employmentOpened: false
   }
 
   componentDidMount() {
@@ -307,6 +309,10 @@ class Profile extends PureComponent {
       <AddEducation
         open={this.state.educationOpened}
         onClose={() => this.setState({ educationOpened: false })}
+      />
+      <AddEmployment
+        open={this.state.employmentOpened}
+        onClose={() => this.setState({ employmentOpened: false })}
       />
     </div>
   )
@@ -789,7 +795,7 @@ class Profile extends PureComponent {
               <Box flex={1}>
                 <Typography variant="subtitle1">Experiences</Typography>
               </Box>
-              <Button variant="contained">Add New</Button>
+              <Button variant="contained" onClick={() => this.setState({ employmentOpened: true })}>Add New</Button>
             </Box>
           )}
         />

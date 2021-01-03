@@ -61,7 +61,7 @@ class AddEducation extends PureComponent {
   }
 
   handleCancel = () => {
-    this.setState({ from: '', to: '' });
+    this.setState({ from: '', to: '', degree: '' });
     this.props.onClose();
   }
 
