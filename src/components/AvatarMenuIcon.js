@@ -21,6 +21,7 @@ import { connect } from 'react-redux';
 
 import { updateThemeMode } from '../controllers/app/actions';
 import BlueSwitch from '../components/BlueSwitch';
+import { formatCurrency } from '../global';
 
 const styles = (theme) => ({
   userIcon: {
@@ -121,7 +122,7 @@ class AvatarMenuIcon extends PureComponent {
                 </Box>
                 <Box display="inline-block">
                   <Typography variant="body2" display="block" noWrap>Hi, Apurba</Typography>
-                  <Typography variant="body2" display="block" noWrap>$100.00 USD</Typography>
+                  <Typography variant="body2" display="block" noWrap>{formatCurrency(100)}</Typography>
                 </Box>
                 <div style={{ flex: 1 }} />
                 <IconButton onClick={this.handleDrawer}>

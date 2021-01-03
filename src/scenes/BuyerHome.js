@@ -97,7 +97,7 @@ class BuyerHome extends PureComponent {
               <Grid container>
                 <Grid item xs={6} sm={3}>
                   <Box p={2}>
-                    {this.renderSummaryCard('Work In Progress', '$9000.00')}
+                    {this.renderSummaryCard('Work In Progress', formatCurrency(9000))}
                   </Box>
                 </Grid>
                 <Grid item xs={6} sm={3}>
@@ -107,12 +107,12 @@ class BuyerHome extends PureComponent {
                 </Grid>
                 <Grid item xs={6} sm={3}>
                   <Box p={2}>
-                    {this.renderSummaryCard('Total Spent', '$50,000.00')}
+                    {this.renderSummaryCard('Total Spent', formatCurrency(50000))}
                   </Box>
                 </Grid>
                 <Grid item xs={6} sm={3}>
                   <Box p={2}>
-                    {this.renderSummaryCard('Total Spent', '$50,000.00')}
+                    {this.renderSummaryCard('Total Spent', formatCurrency(50000))}
                   </Box>
                 </Grid>
               </Grid>
@@ -181,7 +181,7 @@ class BuyerHome extends PureComponent {
             </Grid>
             <Grid item xl={2} xs={5}>
               <Box mt={1} mr={2} mb={1} ml={2}>
-                <Typography variant="body1">${job.budget} USD</Typography>
+                <Typography variant="body1">{formatCurrency(job.budget)}</Typography>
                 <Typography variant="body2" color="textSecondary">{job.status}</Typography>
               </Box>
             </Grid>

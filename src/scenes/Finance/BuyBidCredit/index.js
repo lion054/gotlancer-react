@@ -162,7 +162,7 @@ class BuyBidCredit extends PureComponent {
                                     </Grid>
                                     <Grid item md={4} xs={8}>
                                       {!!product.cutoff && (
-                                        <Typography variant="body2" component="span" className={this.props.classes.cutoff}>Your save ${product.cutoff} USD</Typography>
+                                        <Typography variant="body2" component="span" className={this.props.classes.cutoff}>Your save {formatCurrency(product.cutoff)}</Typography>
                                       )}
                                     </Grid>
                                     <Grid item md={2} xs={4}>
@@ -210,7 +210,7 @@ class BuyBidCredit extends PureComponent {
                             <Typography variant="body2">10 bid credit for</Typography>
                           </Box>
                           <Box color={this.props.theme.palette.success.main}>
-                            <Typography variant="body2">$1.00 USD</Typography>
+                            <Typography variant="body2">{formatCurrency(1)}</Typography>
                           </Box>
                         </Box>
                         <Box display="flex" mb={1} alignItems="center">
@@ -218,26 +218,26 @@ class BuyBidCredit extends PureComponent {
                             <Typography variant="body2">300 bid credit for</Typography>
                           </Box>
                           <Box color={this.props.theme.palette.success.main}>
-                            <Typography variant="body2">$25.00 USD</Typography>
+                            <Typography variant="body2">{formatCurrency(25)}</Typography>
                           </Box>
                         </Box>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
                             <Typography variant="body2">Tax</Typography>
                           </Box>
-                          <Typography variant="body2">$0.00 USD</Typography>
+                          <Typography variant="body2">{formatCurrency(0)}</Typography>
                         </Box>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
                             <Typography variant="body2">Processing fee</Typography>
                           </Box>
-                          <Typography variant="body2">$0.00 USD</Typography>
+                          <Typography variant="body2">{formatCurrency(0)}</Typography>
                         </Box>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
                             <Typography variant="body1">Due today</Typography>
                           </Box>
-                          <Typography variant="body1">$26.00 USD</Typography>
+                          <Typography variant="body1">{formatCurrency(26)}</Typography>
                         </Box>
                         <Box
                           borderRadius={this.props.theme.spacing(1)}

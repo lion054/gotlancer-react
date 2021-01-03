@@ -18,6 +18,7 @@ import { connect } from 'react-redux';
 
 import { updateThemeMode } from '../controllers/app/actions';
 import BlueSwitch from '../components/BlueSwitch';
+import { formatCurrency } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -73,7 +74,7 @@ class AvatarMenuButton extends PureComponent {
       >
         <Box className={this.props.classes.optional}>
           <Typography variant="body2" display="block" noWrap align="right">Hi, Apurba</Typography>
-          <Typography variant="body2" display="block" noWrap align="right">$100.00 USD</Typography>
+          <Typography variant="body2" display="block" noWrap align="right">{formatCurrency(100)}</Typography>
         </Box>
         <Box display="inline-block">
           <FontAwesomeIcon icon={faUserCircle} size="3x" color={this.props.theme.palette.action.active} />

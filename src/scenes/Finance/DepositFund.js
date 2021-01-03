@@ -24,6 +24,7 @@ import { compose } from 'redux';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   root: {
@@ -192,34 +193,34 @@ class DepositFund extends PureComponent {
                             <Box flex={1}>
                               <Typography variant="body2">Deposit amount</Typography>
                             </Box>
-                            <Typography variant="body2">$26.00</Typography>
+                            <Typography variant="body2">{formatCurrency(26)}</Typography>
                           </Box>
                           <Box display="flex" mb={1} alignItems="center">
                             <Box flex={1}>
                               <Typography variant="body2">VAT/Tax (2.5%)</Typography>
                             </Box>
-                            <Typography variant="body2">$0.30 USD</Typography>
+                            <Typography variant="body2">{formatCurrency(0.3)}</Typography>
                           </Box>
                           <Box display="flex" mb={1} alignItems="center">
                             <Box flex={1}>
                               <Typography variant="body2">Processing fee (0%)</Typography>
                             </Box>
-                            <Typography variant="body2">$0.00 USD</Typography>
+                            <Typography variant="body2">{formatCurrency(0)}</Typography>
                           </Box>
                           <Box display="flex" mb={3} alignItems="center">
                             <Box flex={1}>
                               <Typography variant="subtitle2">Total</Typography>
                               <Typography variant="body2">(Incl. VAT)</Typography>
                             </Box>
-                            <Typography variant="body2">$26.30 USD</Typography>
+                            <Typography variant="body2">{formatCurrency(26.3)}</Typography>
                           </Box>
                           <Box className={this.props.classes.info}>
                             <Typography variant="body2">Account after top up</Typography>
-                            <Box display="flex" mt={1}>
+                            <Box display="flex" alignItems="center" mt={1}>
                               <Box flex={1}>
                                 <Typography variant="subtitle2">Balance will add</Typography>
                               </Box>
-                              <Typography variant="subtitle1">+ $26.00</Typography>
+                              <Typography variant="subtitle1">+ {formatCurrency(26.3)}</Typography>
                             </Box>
                           </Box>
                           <Box mt={1} mb={1} textAlign="center">
