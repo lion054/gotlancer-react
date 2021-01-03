@@ -52,7 +52,7 @@ import AddEducation from './AddEducation';
 import AddEmployment from './AddEmployment';
 import AddCertification from './AddCertification';
 import ChangeTitle from './ChangeTitle';
-import { GreenButton } from '../../global';
+import { formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   root: {
@@ -769,7 +769,7 @@ class Profile extends PureComponent {
                   <Box display="flex" alignItems="center">
                     {this.renderScore(4.9)}
                     <Box ml={1}>
-                      <Typography variant="body2">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(review.budget)} USD</Typography>
+                      <Typography variant="body2">{formatCurrency(review.budget)}</Typography>
                     </Box>
                   </Box>
                   <Typography variant="body1">&ldquo;{review.comment}&rdquo;</Typography>
@@ -926,9 +926,9 @@ class Profile extends PureComponent {
   renderActionButtons = () => (
     <Box>
       <Box mr={1} component="span">
-        <GreenButton variant="contained">Hire me</GreenButton>
+        <Button variant="contained">Hire me</Button>
       </Box>
-      <GreenButton variant="outlined">Contact</GreenButton>
+      <Button variant="outlined">Contact</Button>
     </Box>
   )
 }

@@ -7,8 +7,7 @@ import {
   Grid,
   Link,
   Typography,
-  withStyles,
-  withTheme
+  withStyles
 } from '@material-ui/core';
 import { ChevronRight } from '@material-ui/icons';
 import { withRouter } from 'react-router-dom';
@@ -48,7 +47,7 @@ class Settings extends PureComponent {
               <Typography variant="h5">Settings</Typography>
             </Box>
             <Box mb={2}>
-              <Typography variant="body1">Apurba Das, designsfit@gmail.com · <Link href="#" style={{ color: this.props.theme.palette.success.main }}>Go to profile</Link></Typography>
+              <Typography variant="body1">Apurba Das, designsfit@gmail.com · <Link href="#">Go to profile</Link></Typography>
             </Box>
             <Box m={-2}>
               <Grid container>
@@ -204,7 +203,7 @@ class Settings extends PureComponent {
       </Box>
       <Box mt={8} mb={8} textAlign="center">
         <Typography variant="body2" color="textSecondary">Is there any problem? We can help</Typography>
-        <Link href="#" style={{ color: this.props.theme.palette.success.main }}>Contact Support</Link>
+        <Link href="#">Contact Support</Link>
       </Box>
       <Footer />
     </div>
@@ -213,6 +212,5 @@ class Settings extends PureComponent {
 
 export default compose(
   withStyles(styles),
-  withTheme,
   withRouter
 )(Settings);

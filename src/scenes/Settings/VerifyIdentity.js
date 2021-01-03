@@ -63,7 +63,7 @@ class VerifyIdentity extends PureComponent {
           <Grid item lg={8}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
-                <Link color="inherit" href="/settings">Settings</Link>
+                <Link href="/settings">Settings</Link>
                 <Typography color="textSecondary">Verify identity</Typography>
               </Breadcrumbs>
             </Box>
@@ -81,24 +81,24 @@ class VerifyIdentity extends PureComponent {
                       details: (
                         <Box>
                           <Box mb={2}>
-                            <Typography variant="body2" color="textSecondary">Verify your account and staty secured your account and get more facility from Gtoalancer</Typography>
+                            <Typography variant="body2">Verify your account and staty secured your account and get more facility from Gtoalancer</Typography>
                           </Box>
                           <Box mb={2}>
                             <Button variant="outlined" startIcon={<CloudUpload />}>Upload File</Button>
                           </Box>
                           <Divider />
                           <Box mt={2}>
-                            <Typography variant="body2" color="textSecondary">1 file uploaded</Typography>
+                            <Typography variant="body2">1 file uploaded</Typography>
                           </Box>
                           <Box mt={2} display="flex">
                             <MenuItem disableGutters className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
-                            <IconButton color="inherit">
+                            <IconButton>
                               <Delete />
                             </IconButton>
                           </Box>
                           <Box mb={2} display="flex">
                             <MenuItem disableGutters className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
-                            <IconButton color="inherit">
+                            <IconButton>
                               <Delete />
                             </IconButton>
                           </Box>

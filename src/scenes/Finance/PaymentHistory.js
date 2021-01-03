@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import {
   Box,
+  Checkbox,
   Divider,
   Grid,
   IconButton,
@@ -31,7 +32,7 @@ import { compose } from 'redux';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import CustomTablePagination from '../../components/pagination/CustomTablePagination';
-import { GreenCheckbox } from '../../global';
+import { formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   root: {
@@ -148,11 +149,11 @@ class PaymentHistory extends PureComponent {
                 <ListItemIcon className={this.props.classes.icon} onClick={this.handleHeadCheck}>
                   <Box p={1.125}>
                     {this.isAllChecked() ? (
-                      <CheckBox style={{ color: this.props.theme.palette.success.main }} />
+                      <CheckBox color="secondary" />
                     ) : this.isAllUnchecked() ? (
                       <CheckBoxOutlineBlank color="disabled" />
                     ) : (
-                      <IndeterminateCheckBox color="primary" />
+                      <IndeterminateCheckBox color="secondary" />
                     )}
                   </Box>
                 </ListItemIcon>
@@ -189,7 +190,7 @@ class PaymentHistory extends PureComponent {
               {this.state.records.map((record, index) => (
                 <ListItem key={index} disableGutters divider>
                   <ListItemIcon className={this.props.classes.icon}>
-                    <GreenCheckbox checked={!!record.checked} onClick={this.handleRowCheck(index)} />
+                    <Checkbox checked={!!record.checked} onClick={this.handleRowCheck(index)} />
                   </ListItemIcon>
                   <Box className={this.props.classes.outerMargin} flex={1}>
                     <Grid container alignItems="center">
@@ -215,7 +216,7 @@ class PaymentHistory extends PureComponent {
                       </Grid>
                       <Grid item md={2} xs={4}>
                         <Box className={this.props.classes.innerPadding}>
-                          <Typography variant="body2">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(record.amount)} USD</Typography>
+                          <Typography variant="body2">{formatCurrency(record.amount)}</Typography>
                         </Box>
                       </Grid>
                     </Grid>

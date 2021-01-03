@@ -7,6 +7,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Checkbox,
   Drawer,
   FormControlLabel,
   Divider,
@@ -34,7 +35,6 @@ import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { GreenCheckbox } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -642,7 +642,7 @@ class FindWork extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+            <Checkbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">All</Typography>}
           onClick={() => {}}
@@ -651,7 +651,7 @@ class FindWork extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+            <Checkbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Website Development</Typography>}
           onClick={() => {}}
@@ -660,7 +660,7 @@ class FindWork extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+            <Checkbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Graphic Design</Typography>}
           onClick={() => {}}
@@ -669,7 +669,7 @@ class FindWork extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+            <Checkbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Digital Marketing</Typography>}
           onClick={() => {}}
@@ -684,7 +684,7 @@ class FindWork extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+            <Checkbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">All</Typography>}
           onClick={() => {}}
@@ -693,7 +693,7 @@ class FindWork extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+            <Checkbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Website Development</Typography>}
           onClick={() => {}}
@@ -702,7 +702,7 @@ class FindWork extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+            <Checkbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Graphic Design</Typography>}
           onClick={() => {}}
@@ -711,7 +711,7 @@ class FindWork extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+            <Checkbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Digital Marketing</Typography>}
           onClick={() => {}}
@@ -726,7 +726,7 @@ class FindWork extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+            <Checkbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">All</Typography>}
           onClick={() => {}}
@@ -735,7 +735,7 @@ class FindWork extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+            <Checkbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Fixed price</Typography>}
           onClick={() => {}}
@@ -744,7 +744,7 @@ class FindWork extends PureComponent {
       <Box>
         <FormControlLabel
           control={(
-            <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+            <Checkbox onClick={(e) => e.stopPropagation()} />
           )}
           label={<Typography variant="body2">Hourly</Typography>}
           onClick={() => {}}

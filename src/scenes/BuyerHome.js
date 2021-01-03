@@ -22,6 +22,7 @@ import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { formatCurrency } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -162,26 +163,26 @@ class BuyerHome extends PureComponent {
           <Grid container>
             <Grid item xl={6} xs={12}>
               <Box mt={1} mr={2} mb={1} ml={2}>
-                <Typography color="textPrimary">{job.title}</Typography>
-                <Typography color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
+                <Typography variant="body1">{job.title}</Typography>
+                <Typography variant="body2" color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
               </Box>
             </Grid>
             <Grid item xl={2} xs={4}>
               <Box mt={1} mr={2} mb={1} ml={2}>
-                <Typography color="textPrimary">30</Typography>
-                <Typography color="textSecondary">Bid</Typography>
+                <Typography variant="body1">30</Typography>
+                <Typography variant="body2" color="textSecondary">Bid</Typography>
               </Box>
             </Grid>
             <Grid item xl={2} xs={3}>
               <Box mt={1} mr={2} mb={1} ml={2}>
-                <Typography color="textPrimary">{job.hiredCount}</Typography>
-                <Typography color="textSecondary">Hired</Typography>
+                <Typography variant="body1">{job.hiredCount}</Typography>
+                <Typography variant="body2" color="textSecondary">Hired</Typography>
               </Box>
             </Grid>
             <Grid item xl={2} xs={5}>
               <Box mt={1} mr={2} mb={1} ml={2}>
-                <Typography color="textPrimary">${job.budget} USD</Typography>
-                <Typography color="textSecondary">{job.status}</Typography>
+                <Typography variant="body1">${job.budget} USD</Typography>
+                <Typography variant="body2" color="textSecondary">{job.status}</Typography>
               </Box>
             </Grid>
           </Grid>
@@ -259,7 +260,7 @@ class BuyerHome extends PureComponent {
                     <Box>
                       <Typography variant="body2">{job.title}</Typography>
                       <Typography variant="body2">{terms.join(' - ')}</Typography>
-                      <Typography variant="body2" style={{ color: this.props.theme.palette.success.main }}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(job.budget)} USD</Typography>
+                      <Typography variant="body2" style={{ color: this.props.theme.palette.success.main }}>{formatCurrency(job.budget)}</Typography>
                     </Box>
                   </ListItem>
                 );

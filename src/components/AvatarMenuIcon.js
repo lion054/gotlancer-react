@@ -79,11 +79,7 @@ class AvatarMenuIcon extends PureComponent {
 
   renderCollapseButton = (dir) => (
     <ListItemSecondaryAction>
-      <IconButton
-        color="inherit"
-        aria-label={this.state.currentDir === dir ? 'Close Submenu' : 'Open Submenu'}
-        onClick={() => this.handleSubList(dir)}
-      >
+      <IconButton onClick={() => this.handleSubList(dir)}>
         <FontAwesomeIcon
           icon={this.state.currentDir === dir ? faChevronUp : faChevronDown}
           color={this.props.theme.palette.text.secondary}
@@ -108,7 +104,7 @@ class AvatarMenuIcon extends PureComponent {
 
   render = () => (
     <Fragment>
-      <IconButton color="inherit" onClick={this.handleDrawer}>
+      <IconButton onClick={this.handleDrawer}>
         <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.userIcon} />
       </IconButton>
       <Drawer
@@ -128,7 +124,7 @@ class AvatarMenuIcon extends PureComponent {
                   <Typography variant="body2" display="block" noWrap>$100.00 USD</Typography>
                 </Box>
                 <div style={{ flex: 1 }} />
-                <IconButton color="inherit" onClick={this.handleDrawer}>
+                <IconButton onClick={this.handleDrawer}>
                   <FontAwesomeIcon icon={faTimes} color={this.props.theme.palette.text.secondary} size="1x" />
                 </IconButton>
               </Fragment>

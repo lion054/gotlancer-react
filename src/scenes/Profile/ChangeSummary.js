@@ -47,9 +47,7 @@ export default class ChangeSummary extends PureComponent {
             <li>Keep it short and make sure it`s error free</li>
           </ul>
         </Box>
-        <Box>
-          <Button color="primary">Learn more</Button>
-        </Box>
+        <Button color="primary">Learn more</Button>
         <OutlinedInput
           fullWidth
           margin="dense"

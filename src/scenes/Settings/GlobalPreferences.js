@@ -61,7 +61,7 @@ class GlobalPreferences extends PureComponent {
           <Grid item lg={8}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
-                <Link color="inherit" href="/settings">Settings</Link>
+                <Link href="/settings">Settings</Link>
                 <Typography color="textSecondary">Global preferences</Typography>
               </Breadcrumbs>
             </Box>

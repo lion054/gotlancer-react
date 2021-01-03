@@ -3,6 +3,7 @@ import {
   Box,
   Breadcrumbs,
   Button,
+  Checkbox,
   FormControlLabel,
   Grid,
   Link,
@@ -14,7 +15,6 @@ import { ChevronRight } from '@material-ui/icons';
 
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
-import { GreenCheckbox } from '../../../global';
 
 const styles = (theme) => ({
   root: {
@@ -43,8 +43,8 @@ class AddBkash extends PureComponent {
           <Grid item lg={8} xs={12} style={{ maxWidth: 600 }}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
-                <Link color="inherit" href="/settings">Settings</Link>
-                <Link color="inherit" href="/settings/payments_payouts">Payments &amp; Payouts</Link>
+                <Link href="/settings">Settings</Link>
+                <Link href="/settings/payments_payouts">Payments &amp; Payouts</Link>
                 <Typography color="textSecondary">Add bKash</Typography>
               </Breadcrumbs>
             </Box>
@@ -86,7 +86,7 @@ class AddBkash extends PureComponent {
             <Box className={this.props.classes.field}>
               <FormControlLabel
                 control={(
-                  <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+                  <Checkbox onClick={(e) => e.stopPropagation()} />
                 )}
                 label={<Typography variant="body2">I attest that I am the owner and have full authorization to this bKash account.</Typography>}
                 onClick={() => {}}

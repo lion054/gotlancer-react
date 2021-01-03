@@ -44,7 +44,7 @@ class Notifications extends PureComponent {
           <Grid item lg={8} xs={12}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
-                <Link color="inherit" href="/settings">Settings</Link>
+                <Link href="/settings">Settings</Link>
                 <Typography color="textSecondary">Notifications</Typography>
               </Breadcrumbs>
             </Box>
@@ -126,7 +126,7 @@ class Notifications extends PureComponent {
         <Typography variant="subtitle1">{title}</Typography>
       </Box>
       <Box mt={1} mb={1}>
-        <Typography variant="subtitle2" color="textSecondary">{subtitle}</Typography>
+        <Typography variant="body2">{subtitle}</Typography>
       </Box>
     </Fragment>
   )

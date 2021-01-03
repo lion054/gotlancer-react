@@ -22,6 +22,7 @@ import { compose } from 'redux';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { GreenButton } from '../../global';
 
 const styles = (theme) => ({
   root: {
@@ -63,16 +64,6 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.background.default
   }
 })
-
-const SuccessButton = withStyles((theme) => ({
-  root: {
-    color: theme.palette.grey[100],
-    backgroundColor: theme.palette.success.main,
-    '&:hover': {
-      backgroundColor: theme.palette.success.dark
-    }
-  }
-}))(Button);
 
 class InviteFriends extends PureComponent {
   state = {
@@ -117,7 +108,7 @@ class InviteFriends extends PureComponent {
           <Grid item lg={8} xs={12}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
-                <Link color="inherit" href="/settings">Settings</Link>
+                <Link href="/settings">Settings</Link>
                 <Typography color="textSecondary">Invite friends</Typography>
               </Breadcrumbs>
             </Box>
@@ -129,7 +120,7 @@ class InviteFriends extends PureComponent {
                 <Grid item md={6} sm={8} xs={12}>
                   <Box p={2}>
                     <Box mb={2}>
-                      <Typography variant="body2" color="textSecondary">Once a user register through your referal link and spend $100 with gotlancer you will get $30.</Typography>
+                      <Typography variant="body2">Once a user register through your referal link and spend $100 with gotlancer you will get $30.</Typography>
                     </Box>
                     <Box mb={2}>
                       {this.renderAddressBar()}
@@ -209,7 +200,7 @@ class InviteFriends extends PureComponent {
           </Grid>
           <Grid item xs={6}>
             <Box p={1}>
-              <SuccessButton variant="contained" size="large" fullWidth className={this.props.classes.inviteButton}>Invite Friends</SuccessButton>
+              <GreenButton variant="contained" size="large" fullWidth className={this.props.classes.inviteButton}>Invite Friends</GreenButton>
             </Box>
           </Grid>
         </Grid>
@@ -219,7 +210,7 @@ class InviteFriends extends PureComponent {
     <Paper variant="outlined" component="form" className={this.props.classes.addressBar}>
       <Box flex="1" className={this.props.classes.addressText}>{this.state.url}</Box>
       <Button size="large" className={this.props.classes.copyButton}>Copy Link</Button>
-      <SuccessButton variant="contained" size="large" className={this.props.classes.inviteButton}>Invite Friends</SuccessButton>
+      <GreenButton variant="contained" size="large" className={this.props.classes.inviteButton}>Invite Friends</GreenButton>
     </Paper>
   )
 
@@ -232,7 +223,7 @@ class InviteFriends extends PureComponent {
       <Box mt={1}>
         <Paper variant="outlined" className={this.props.classes.addressBar}>
           <InputBase placeholder="Enter email address" style={{ flex: 1 }} />
-          <Button variant="contained" color="default" size="large">Send</Button>
+          <Button variant="contained" size="large">Send</Button>
         </Paper>
       </Box>
       <Box mt={1}>

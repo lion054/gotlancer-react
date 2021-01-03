@@ -11,6 +11,7 @@ import {
   Link,
   List,
   ListItem,
+  Radio,
   RadioGroup,
   Typography,
   colors,
@@ -22,7 +23,6 @@ import { compose } from 'redux';
 
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
-import { GreenRadio } from '../../../global';
 
 const styles = (theme) => ({
   root: {
@@ -179,7 +179,7 @@ class Checkout extends PureComponent {
                               <FormControlLabel
                                 value="stripe-checkout"
                                 control={(
-                                  <GreenRadio checked={this.state.paymentMethod === 'stripe-checkout'} onClick={(e) => e.stopPropagation()} />
+                                  <Radio checked={this.state.paymentMethod === 'stripe-checkout'} onClick={(e) => e.stopPropagation()} />
                                 )}
                                 label={<Typography variant="body1" component="span">Stripe Checkout</Typography>}
                                 onClick={() => this.setState({ paymentMethod: 'stripe-checkout' })}
@@ -193,7 +193,7 @@ class Checkout extends PureComponent {
                               <FormControlLabel
                                 value="paypal"
                                 control={(
-                                  <GreenRadio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
+                                  <Radio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
                                 )}
                                 label={<Typography variant="body1" component="span">PayPal</Typography>}
                                 onClick={() => this.setState({ paymentMethod: 'paypal' })}
@@ -207,7 +207,7 @@ class Checkout extends PureComponent {
                               <FormControlLabel
                                 value="payu"
                                 control={(
-                                  <GreenRadio checked={this.state.paymentMethod === 'payu'} onClick={(e) => e.stopPropagation()} />
+                                  <Radio checked={this.state.paymentMethod === 'payu'} onClick={(e) => e.stopPropagation()} />
                                 )}
                                 label={<Typography variant="body1" component="span">PayU</Typography>}
                                 onClick={() => this.setState({ paymentMethod: 'payu' })}
@@ -221,7 +221,7 @@ class Checkout extends PureComponent {
                               <FormControlLabel
                                 value="wallet"
                                 control={(
-                                  <GreenRadio checked={this.state.paymentMethod === 'wallet'} onClick={(e) => e.stopPropagation()} />
+                                  <Radio checked={this.state.paymentMethod === 'wallet'} onClick={(e) => e.stopPropagation()} />
                                 )}
                                 label={(
                                   <Box pt={1} pb={1}>

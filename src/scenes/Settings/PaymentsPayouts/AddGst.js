@@ -3,6 +3,7 @@ import {
   Box,
   Breadcrumbs,
   Button,
+  Checkbox,
   FormControlLabel,
   Grid,
   Link,
@@ -16,7 +17,6 @@ import MuiPhoneNumber from 'material-ui-phone-number';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import SelectCountry from '../../../components/SelectCountry';
-import { GreenCheckbox } from '../../../global';
 
 const styles = (theme) => ({
   root: {
@@ -49,8 +49,8 @@ class AddGst extends PureComponent {
           <Grid item lg={8} xs={12} style={{ maxWidth: 600 }}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
-                <Link color="inherit" href="/settings">Settings</Link>
-                <Link color="inherit" href="/settings/payments_payouts">Payments &amp; Payouts</Link>
+                <Link href="/settings">Settings</Link>
+                <Link href="/settings/payments_payouts">Payments &amp; Payouts</Link>
                 <Typography color="textSecondary">Add GST ID Number</Typography>
               </Breadcrumbs>
             </Box>
@@ -137,7 +137,7 @@ class AddGst extends PureComponent {
             <Box className={this.props.classes.field}>
               <FormControlLabel
                 control={(
-                  <GreenCheckbox onClick={(e) => e.stopPropagation()} />
+                  <Checkbox onClick={(e) => e.stopPropagation()} />
                 )}
                 label={<Typography variant="body2">I attest that I am the owner and have full authorization to this GST account.</Typography>}
                 onClick={() => {}}

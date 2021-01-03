@@ -55,3 +55,10 @@ export const GreenRadio = withStyles((theme) => ({
   },
   checked: {}
 }))(Radio);
+
+export const formatCurrency = (value) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(value) + ' USD';
+}

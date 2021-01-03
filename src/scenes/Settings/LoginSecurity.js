@@ -102,7 +102,7 @@ class LoginSecurity extends PureComponent {
           <Grid item lg={8} xs={12}>
             <Box mb={2}>
               <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
-                <Link color="inherit" href="/settings">Settings</Link>
+                <Link href="/settings">Settings</Link>
                 <Typography color="textSecondary">Login &amp; Security</Typography>
               </Breadcrumbs>
             </Box>
@@ -384,7 +384,7 @@ class LoginSecurity extends PureComponent {
             />
           </Box>
           <Box mt={2}>
-            <Typography variant="body2" color="textSecondary">After click on Sent OTP this screen will come (this another logic)</Typography>
+            <Typography variant="body2">After click on Sent OTP this screen will come (this another logic)</Typography>
           </Box>
           <Box mt={2}>
             <Typography variant="body2">We texted your code to +91 98 000 00 000. It may take a minute to arrive.</Typography>
@@ -398,7 +398,7 @@ class LoginSecurity extends PureComponent {
               onChange={(otpText) => this.setState({ otpText })}
             />
             <Box mt={2} display="flex" alignItems="center">
-              <Typography variant="body2" color="textSecondary">Did not yet receive OTP?</Typography>
+              <Typography variant="body2">Did not yet receive OTP?</Typography>
               <ResendTimer
                 renderButton={({ disabled, onClick, remainingTime }) => (
                   <Box ml={1} display="flex" alignItems="center">
@@ -430,7 +430,7 @@ class LoginSecurity extends PureComponent {
             />
           </Box>
           <Box mt={2}>
-            <Typography variant="body2" color="textSecondary">Success screen (another screen)</Typography>
+            <Typography variant="body2">Success screen (another screen)</Typography>
           </Box>
           <Box mt={2} display="flex" alignItems="center">
             <FontAwesomeIcon icon={faCheckCircle} color={this.props.theme.palette.success.main} size="1x" />
@@ -439,7 +439,7 @@ class LoginSecurity extends PureComponent {
             </Box>
           </Box>
           <Box mt={2}>
-            <Typography variant="body2" color="textSecondary">this screen will come finally</Typography>
+            <Typography variant="body2">this screen will come finally</Typography>
           </Box>
         </Box>
       </AccordionDetails>

@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   CardHeader,
+  Checkbox,
   Divider,
   Grid,
   Link,
@@ -22,7 +23,7 @@ import { compose } from 'redux';
 
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
-import { GreenCheckbox } from '../../../global';
+import { formatCurrency } from '../../../global';
 
 const styles = (theme) => ({
   root: {
@@ -143,7 +144,7 @@ class BuyBidCredit extends PureComponent {
                           {this.state.products.map((product, index) => (
                             <ListItem key={index} disableGutters button onClick={this.handleClick(index)}>
                               <Box width="100%" display="flex" alignItems="center">
-                                <GreenCheckbox checked={!!product.checked} onClick={this.handleClick(index)} />
+                                <Checkbox checked={!!product.checked} onClick={this.handleClick(index)} />
                                 <Box
                                   flex={1}
                                   className={this.props.classes.innerPaddingWithTag}
@@ -166,7 +167,7 @@ class BuyBidCredit extends PureComponent {
                                     </Grid>
                                     <Grid item md={2} xs={4}>
                                       <Box color={this.props.theme.palette.success.main}>
-                                        <Typography variant="body1" align="right">{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.amount)} USD</Typography>
+                                        <Typography variant="body1" align="right">{formatCurrency(product.amount)}</Typography>
                                       </Box>
                                     </Grid>
                                   </Grid>
