@@ -235,7 +235,7 @@ class Profile extends PureComponent {
       city: 'Kolkata'
     },
     summary: faker.lorem.paragraphs(10),
-    portfolios: [],
+    exhibitions: [],
     reviews: [],
     avatarOpened: false,
     hourlyRateOpened: false,
@@ -244,13 +244,16 @@ class Profile extends PureComponent {
     educationOpened: false,
     employmentOpened: false,
     certificationOpened: false,
-    titleOpened: false
+    titleOpened: false,
+    workOpened: false
   }
 
   componentDidMount() {
-    const portfolios = [];
+    const exhibitions = [];
     for (let i = 0; i < 8; i++) {
-      portfolios.push(faker.image.image());
+      exhibitions.push({
+        avatar: faker.image.image()
+      });
     }
     const reviews = [];
     for (let i = 0; i < 3; i++) {
@@ -265,7 +268,7 @@ class Profile extends PureComponent {
         createdAt: faker.date.past()
       });
     }
-    this.setState({ portfolios, reviews });
+    this.setState({ exhibitions, reviews });
   }
 
   render = () => (
@@ -674,10 +677,10 @@ class Profile extends PureComponent {
         <CardContent>
           <Box className={this.props.classes.outerMargin}>
             <Grid container>
-              {this.state.portfolios.map((url, index) => (
+              {this.state.exhibitions.map((exhibition, index) => (
                 <Grid key={index} item md={3} sm={6} xs={12}>
                   <Box className={this.props.classes.innerPadding}>
-                    <img alt="" src={url} style={{ borderRadius: 4, width: '100%' }} />
+                    <img alt="" src={exhibition.avatar} style={{ borderRadius: 4, width: '100%' }} />
                     <Box display="flex">
                       <Button style={{ color: this.props.theme.palette.success.main }}>Edit</Button>
                       <Divider orientation="vertical" flexItem />
