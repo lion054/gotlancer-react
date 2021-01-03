@@ -6,21 +6,12 @@ import {
   DialogContent,
   DialogTitle,
   Divider,
-  TextField,
-  withStyles
+  TextField
 } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import PropTypes from 'prop-types';
 
-const styles = (theme) => ({
-  content: {
-    [theme.breakpoints.up('md')]: {
-      width: 500
-    }
-  }
-});
-
-class AddCertification extends PureComponent {
+export default class AddCertification extends PureComponent {
   state = {
     certifications: [
       'Adobe Certified Expert',
@@ -39,10 +30,10 @@ class AddCertification extends PureComponent {
   handleSave = () => {}
 
   render = () => (
-    <Dialog open={this.props.open} onClose={this.handleCancel}>
+    <Dialog fullWidth open={this.props.open} onClose={this.handleCancel}>
       <DialogTitle>Add education</DialogTitle>
       <Divider />
-      <DialogContent className={this.props.classes.content}>
+      <DialogContent>
         <Autocomplete
           fullWidth
           options={this.state.certifications}
@@ -70,5 +61,3 @@ AddCertification.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired
 }
-
-export default withStyles(styles)(AddCertification);

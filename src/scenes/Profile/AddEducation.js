@@ -18,11 +18,6 @@ import PropTypes from 'prop-types';
 import PlaceholderSelect from '../../components/PlaceholderSelect';
 
 const styles = (theme) => ({
-  content: {
-    [theme.breakpoints.up('md')]: {
-      width: 500
-    }
-  },
   label: {
     margin: theme.spacing(2, 0, 1, 0),
     [theme.breakpoints.only('xs')]: {
@@ -68,10 +63,10 @@ class AddEducation extends PureComponent {
   handleSave = () => {}
 
   render = () => (
-    <Dialog open={this.props.open} onClose={this.handleCancel}>
+    <Dialog fullWidth open={this.props.open} onClose={this.handleCancel}>
       <DialogTitle>Add education</DialogTitle>
       <Divider />
-      <DialogContent className={this.props.classes.content}>
+      <DialogContent>
         <Box>
           <Typography variant="subtitle2" className={this.props.classes.label}>School</Typography>
           <OutlinedInput

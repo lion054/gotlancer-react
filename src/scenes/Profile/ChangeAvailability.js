@@ -52,7 +52,7 @@ class ChangeAvailability extends PureComponent {
   handleSave = () => {}
 
   render = () => (
-    <Dialog open={this.props.open} onClose={this.handleCancel}>
+    <Dialog fullWidth open={this.props.open} onClose={this.handleCancel}>
       <DialogTitle>Change availability</DialogTitle>
       <Divider />
       <DialogContent>

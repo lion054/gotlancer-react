@@ -1,23 +1,12 @@
 import React, { PureComponent } from 'react';
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Box,
   Breadcrumbs,
   Button,
   Card,
   CardContent,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  FormControlLabel,
   Grid,
-  InputAdornment,
   Link,
-  OutlinedInput,
-  RadioGroup,
   Tab,
   Tabs,
   Typography,
@@ -25,14 +14,12 @@ import {
   withTheme
 } from '@material-ui/core';
 import { ChevronRight } from '@material-ui/icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { compose } from 'redux';
 
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
-import SelectCountry from '../../../components/SelectCountry';
-import { GreenRadio } from '../../../global';
+import AddPaymentMethod from './AddPaymentMethod';
+import AddVat from './AddVat';
 
 const styles = (theme) => ({
   root: {
@@ -66,7 +53,6 @@ class PaymentsPayouts extends PureComponent {
     currentEntry: '',
     loading: false,
     paymentMethodOpened: false,
-    paymentMethod: 'credit-card',
     vatOpened: false
   }
 
@@ -107,7 +93,7 @@ class PaymentsPayouts extends PureComponent {
                           <Box mt={2} mb={2}>
                             <Typography variant="body2">Add a payment method using our secure payment system, then start your project with Gotlancer</Typography>
                           </Box>
-                          <Button variant="contained" size="large" onClick={this.onOpenPaymentMethodDialog}>Add Payment Method</Button>
+                          <Button variant="contained" size="large" onClick={() => this.setState({ paymentMethodOpened: true })}>Add Payment Method</Button>
                         </Box>
                       )
                     })}
@@ -170,7 +156,7 @@ class PaymentsPayouts extends PureComponent {
                             title: 'Add VAT',
                             description: 'If you are registered for VAT or your stay is for business, you may not be charged VAT on Gotlancer service fees. To get started, enter your business’s VAT ID Number. Learn more about VAT.',
                             buttonTitle: 'Add VAT ID Number',
-                            buttonClicked: this.onOpenVatDialog
+                            buttonClicked: () => this.setState({ vatOpened: true })
                           })}
                           {this.renderEntry({
                             title: 'Add PAN',
@@ -209,8 +195,14 @@ class PaymentsPayouts extends PureComponent {
         </Grid>
       </Box>
       <Footer />
-      {this.renderPaymentMethodDialog()}
-      {this.renderVatDialog()}
+      <AddPaymentMethod
+        open={this.state.paymentMethodOpened}
+        onClose={() => this.setState({ paymentMethodOpened: false })}
+      />
+      <AddVat
+        open={this.state.vatOpened}
+        onClose={() => this.setState({ vatOpened: false })}
+      />
     </div>
   )
 
@@ -228,175 +220,6 @@ class PaymentsPayouts extends PureComponent {
       </Box>
       <Button variant="contained" size="large" onClick={buttonClicked}>{buttonTitle}</Button>
     </Box>
-  )
-
-  onOpenPaymentMethodDialog = () => this.setState({ paymentMethodOpened: true })
-
-  onClosePaymentMethodDialog = () => this.setState({ paymentMethodOpened: false })
-
-  onChangePaymentAccordion = (panel) => (event, isExpanded) => {
-    if (isExpanded) {
-      this.setState({ paymentMethod: panel });
-    }
-  }
-
-  renderPaymentMethodDialog = () => (
-    <Dialog open={this.state.paymentMethodOpened} onClose={this.onClosePaymentMethodDialog}>
-      <DialogTitle>Add payment method</DialogTitle>
-      <DialogContent style={{ paddingBottom: this.props.theme.spacing(3) }}>
-        <RadioGroup value={this.state.paymentMethod} onChange={(e) => this.setState({ paymentMethod: e.target.value })}>
-          <Accordion expanded={this.state.paymentMethod === 'credit-card'} onChange={this.onChangePaymentAccordion('credit-card')}>
-            <AccordionSummary>
-              <FormControlLabel
-                value="credit-card"
-                control={(
-                  <GreenRadio checked={this.state.paymentMethod === 'credit-card'} onClick={(e) => e.stopPropagation()} />
-                )}
-                label={<Typography variant="subtitle1">Credit Card</Typography>}
-                onClick={() => this.setState({ paymentMethod: 'credit-card' })}
-              />
-            </AccordionSummary>
-            <AccordionDetails style={{ flexDirection: 'column' }}>
-              <Box display="flex" alignItems="baseline" className={this.props.classes.label}>
-                <Typography component="span" variant="subtitle2" style={{ flex: 1 }}>Card Number</Typography>
-                <img alt="" src={require('../../../assets/images/payment-method/credit-cards/visa.png')} className={this.props.classes.creditCard} />
-                <img alt="" src={require('../../../assets/images/payment-method/credit-cards/master.png')} className={this.props.classes.creditCard} />
-                <img alt="" src={require('../../../assets/images/payment-method/credit-cards/amex.png')} className={this.props.classes.creditCard} />
-                <img alt="" src={require('../../../assets/images/payment-method/credit-cards/discover.png')} className={this.props.classes.creditCard} />
-              </Box>
-              <OutlinedInput
-                fullWidth
-                margin="dense"
-                startAdornment={(
-                  <InputAdornment position="start">
-                    <FontAwesomeIcon icon={faCreditCard} style={{ fontSize: '0.8em' }} />
-                  </InputAdornment>
-                )}
-              />
-              <Box display="flex" mt={2}>
-                <Box flex={1} mr={1}>
-                  <Typography variant="subtitle2" className={this.props.classes.label}>First Name</Typography>
-                  <OutlinedInput fullWidth margin="dense" />
-                </Box>
-                <Box flex={1} ml={1}>
-                  <Typography variant="subtitle2" className={this.props.classes.label}>Last Name</Typography>
-                  <OutlinedInput fullWidth margin="dense" />
-                </Box>
-              </Box>
-              <Box display="flex" mt={2}>
-                <Box flex={1} mr={1}>
-                  <Typography variant="subtitle2" className={this.props.classes.label}>Expires On</Typography>
-                  <Box display="flex">
-                    <Box mr={1}>
-                      <OutlinedInput
-                        fullWidth
-                        margin="dense"
-                        inputProps={{
-                          placeholder: 'MM',
-                          maxLength: 2
-                        }}
-                      />
-                    </Box>
-                    <Box ml={1}>
-                      <OutlinedInput
-                        fullWidth
-                        margin="dense"
-                        inputProps={{
-                          placeholder: 'YYYY',
-                          maxLength: 4
-                        }}
-                      />
-                    </Box>
-                  </Box>
-                </Box>
-                <Box flex={1} ml={1}>
-                  <Typography variant="subtitle2" className={this.props.classes.label}>Security Code</Typography>
-                  <OutlinedInput fullWidth margin="dense" />
-                </Box>
-              </Box>
-              <Box textAlign="right" mt={2} mb={2}>
-                <Button variant="contained">Continue</Button>
-              </Box>
-            </AccordionDetails>
-          </Accordion>
-          <Accordion expanded={this.state.paymentMethod === 'paypal'} onChange={this.onChangePaymentAccordion('paypal')}>
-            <AccordionSummary>
-              <FormControlLabel
-                value="paypal"
-                control={(
-                  <GreenRadio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
-                )}
-                label={<img alt="" src={require('../../../assets/images/payment-method/paypal.png')} style={{ width: 100 }} />}
-                onClick={() => this.setState({ paymentMethod: 'paypal' })}
-              />
-            </AccordionSummary>
-            <AccordionDetails style={{ flexDirection: 'column' }}>
-              <Box>
-                <Button variant="contained">Pay with PayPal</Button>
-              </Box>
-            </AccordionDetails>
-          </Accordion>
-        </RadioGroup>
-      </DialogContent>
-    </Dialog>
-  )
-
-  onOpenVatDialog = () => this.setState({ vatOpened: true })
-
-  onCloseVatDialog = () => this.setState({ vatOpened: false })
-
-  renderVatDialog = () => (
-    <Dialog open={this.state.vatOpened} onClose={this.onCloseVatDialog}>
-      <DialogTitle>Add VAT ID Number</DialogTitle>
-      <DialogContent>
-        <Typography variant="body2">If you are registered with the European Commission, verification may take up to 48 hours. We’ll send you an email when its finished. More information on VAT IDs can be found here.</Typography>
-        <Box m={-2} mt={2}>
-          <Grid container>
-            <Grid item sm={6} xs={12}>
-              <Box p={2}>
-                <Typography variant="subtitle2" className={this.props.classes.label}>Country/region</Typography>
-                <SelectCountry
-                  fullWidth
-                  margin="dense"
-                  autoHighlight
-                  onChange={(e, item) => this.setState({ country: item.iso2 })}
-                />
-              </Box>
-            </Grid>
-            <Grid item sm={6} xs={12}>
-              <Box p={2}>
-                <Typography variant="subtitle2" className={this.props.classes.label}>VAT ID Number</Typography>
-                <OutlinedInput fullWidth margin="dense" />
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-        <Box mt={2}>
-          <Typography variant="subtitle2" className={this.props.classes.label}>Name on registration</Typography>
-          <OutlinedInput fullWidth margin="dense" />
-        </Box>
-        <Box mt={2}>
-          <Typography variant="subtitle2" className={this.props.classes.label}>Address line 1</Typography>
-          <OutlinedInput fullWidth margin="dense" />
-        </Box>
-        <Box mt={2}>
-          <Typography variant="subtitle2" className={this.props.classes.label}>Address line 2 (optional)</Typography>
-          <OutlinedInput fullWidth margin="dense" />
-        </Box>
-        <Box mt={2}>
-          <Typography variant="subtitle2" className={this.props.classes.label}>City</Typography>
-          <OutlinedInput fullWidth margin="dense" />
-        </Box>
-        <Box mt={2}>
-          <Typography variant="subtitle2" className={this.props.classes.label}>Zip/postal code</Typography>
-          <OutlinedInput fullWidth margin="dense" />
-        </Box>
-      </DialogContent>
-      <DialogActions>
-        <Button variant="outlined" size="large" onClick={this.onCloseVatDialog}>Cancel</Button>
-        <Button variant="contained" size="large" onClick={this.onCloseVatDialog}>OK</Button>
-      </DialogActions>
-    </Dialog>
   )
 }
 

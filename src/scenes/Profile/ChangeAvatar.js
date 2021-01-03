@@ -69,7 +69,7 @@ class ChangeAvatar extends PureComponent {
   }
 
   render = () => (
-    <Dialog open={this.props.open} onClose={this.handleCancel}>
+    <Dialog fullWidth open={this.props.open} onClose={this.handleCancel}>
       <DialogTitle>Change profile photo</DialogTitle>
       <Divider />
       <DialogContent>

@@ -44,7 +44,7 @@ class ChangeHourlyRate extends PureComponent {
   handleSave = () => {}
 
   render = () => (
-    <Dialog open={this.props.open} onClose={this.handleCancel}>
+    <Dialog fullWidth open={this.props.open} onClose={this.handleCancel}>
       <DialogTitle>Change hourly rate</DialogTitle>
       <Divider />
       <DialogContent>
