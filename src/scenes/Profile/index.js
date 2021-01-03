@@ -50,6 +50,7 @@ import ChangeSummary from './ChangeSummary';
 import ChangeAvailability from './ChangeAvailability';
 import AddEducation from './AddEducation';
 import AddEmployment from './AddEmployment';
+import AddCertification from './AddCertification';
 import { GreenButton } from '../../global';
 
 const styles = (theme) => ({
@@ -240,7 +241,8 @@ class Profile extends PureComponent {
     summaryOpened: false,
     availabilityOpened: false,
     educationOpened: false,
-    employmentOpened: false
+    employmentOpened: false,
+    certificationOpened: false
   }
 
   componentDidMount() {
@@ -313,6 +315,10 @@ class Profile extends PureComponent {
       <AddEmployment
         open={this.state.employmentOpened}
         onClose={() => this.setState({ employmentOpened: false })}
+      />
+      <AddCertification
+        open={this.state.certificationOpened}
+        onClose={() => this.setState({ certificationOpened: false })}
       />
     </div>
   )
@@ -843,7 +849,7 @@ class Profile extends PureComponent {
               <Box flex={1}>
                 <Typography variant="subtitle1">Certifications</Typography>
               </Box>
-              <Button variant="contained">Add New</Button>
+              <Button variant="contained" onClick={() => this.setState({ certificationOpened: true })}>Add New</Button>
             </Box>
           )}
         />
