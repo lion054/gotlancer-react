@@ -54,11 +54,11 @@ export const lightTheme = createMuiTheme({
         }
       }
     },
-    MuiTabs: {
-      indicator: {
-        backgroundColor: colors.green[500]
-      }
-    },
+    // MuiTabs: {
+    //   indicator: {
+    //     backgroundColor: colors.green[500]
+    //   }
+    // },
     MuiTypography: {
       h1: {
         fontWeight: 'bold'
@@ -142,11 +142,11 @@ export const darkTheme = createMuiTheme({
         }
       }
     },
-    MuiTabs: {
-      indicator: {
-        backgroundColor: colors.green[500]
-      }
-    },
+    // MuiTabs: {
+    //   indicator: {
+    //     backgroundColor: colors.green[500]
+    //   }
+    // },
     MuiTypography: {
       h1: {
         fontWeight: 'bold'

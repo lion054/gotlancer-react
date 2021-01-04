@@ -269,7 +269,12 @@ class FindWork extends PureComponent {
   renderTabsCard = () => (
     <Card elevation={0} className={this.props.classes.profileCard}>
       <CardContent style={{ padding: 0 }}>
-        <Tabs value={this.state.activeTab} onChange={this.handleTabChange}>
+        <Tabs
+          value={this.state.activeTab}
+          onChange={this.handleTabChange}
+          indicatorColor="primary"
+          textColor="primary"
+        >
           <Tab className={this.props.classes.tab} label="Profile" />
           <Tab className={this.props.classes.tab} label="Funds" />
         </Tabs>

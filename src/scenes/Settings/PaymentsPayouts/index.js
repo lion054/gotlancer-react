@@ -80,7 +80,12 @@ class PaymentsPayouts extends PureComponent {
               <Grid container>
                 <Grid item md={6} sm={8} xs={12}>
                   <Box p={2}>
-                    <Tabs value={this.state.activeTab} onChange={this.handleTabChange}>
+                    <Tabs
+                      value={this.state.activeTab}
+                      onChange={this.handleTabChange}
+                      indicatorColor="primary"
+                      textColor="primary"
+                    >
                       <Tab label="Payments" />
                       <Tab label="Payouts" />
                       <Tab label="Taxes" />

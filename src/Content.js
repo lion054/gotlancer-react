@@ -15,6 +15,7 @@ import BuyBidCredit from './scenes/Finance/BuyBidCredit';
 import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
 import DepositFund from './scenes/Finance/DepositFund';
 import PaymentHistory from './scenes/Finance/PaymentHistory';
+import Disputation from './scenes/Finance/Disputation';
 
 import AddBank from './scenes/Settings/PaymentsPayouts/AddBank';
 import AddBkash from './scenes/Settings/PaymentsPayouts/AddBkash';
@@ -57,6 +58,9 @@ const routes = [{
 },{
   path: '/profile',
   component: Profile
+},{
+  path: '/disputation',
+  component: Disputation
 },{
   path: '/settings',
   component: Settings
