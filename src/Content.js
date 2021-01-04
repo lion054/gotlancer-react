@@ -10,6 +10,7 @@ import FindWork from './scenes/FindWork';
 import BuyerHome from './scenes/BuyerHome';
 import Messenger from './scenes/Messenger';
 import Profile from './scenes/Profile';
+import PostProject from './scenes/PostProject';
 
 import BuyBidCredit from './scenes/Finance/BuyBidCredit';
 import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
@@ -61,6 +62,9 @@ const routes = [{
 },{
   path: '/disputation',
   component: Disputation
+},{
+  path: '/post_project',
+  component: PostProject
 },{
   path: '/settings',
   component: Settings

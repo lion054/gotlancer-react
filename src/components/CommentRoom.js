@@ -34,7 +34,11 @@ class CommentRoom extends PureComponent {
       {this.props.records.map(({ author, text, time }, index) => (
         <Box key={index} display="flex" mt={2}>
           <Box position="relative" mr={2}>
-            <img alt="" src={author.avatar} className={this.props.classes.avatar} />
+            <img
+              alt=""
+              src={author.isAdmin ? require('../assets/images/gl-logo-black.svg') : author.avatar}
+              className={this.props.classes.avatar}
+            />
             <Box
               width={20}
               height={20}
@@ -72,7 +76,13 @@ class CommentRoom extends PureComponent {
         <IconButton>
           <AttachFile />
         </IconButton>
-        <OutlinedInput fullWidth style={{ backgroundColor: this.props.theme.palette.common.white }} />
+        <OutlinedInput
+          fullWidth
+          margin="dense"
+          style={{
+            backgroundColor: this.props.theme.palette.common.white
+          }}
+        />
         <IconButton>
           <Send />
         </IconButton>

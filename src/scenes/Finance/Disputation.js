@@ -383,6 +383,7 @@ class Disputation extends PureComponent {
       </Box>
       <OutlinedInput
         fullWidth
+        margin="dense"
         multiline
         rows={5}
         placeholder="Tell us more about why you want dispute"

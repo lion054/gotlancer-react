@@ -196,7 +196,7 @@ class Header extends PureComponent {
                   </Menu>
                 </Box>
                 <Box className={this.props.classes.optional}>
-                  <Button variant="contained" style={{ marginLeft: 8, borderRadius: 18 }}>Post a project</Button>
+                  <Button variant="contained" style={{ marginLeft: 8, borderRadius: 18 }} onClick={() => this.props.history.push('/post_project')}>Post a project</Button>
                 </Box>
                 <div style={{ flex: 1 }} />
                 <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
