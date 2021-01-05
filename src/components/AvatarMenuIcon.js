@@ -141,9 +141,9 @@ class AvatarMenuIcon extends PureComponent {
               this.props.history.push('/profile');
             }
           },{
-            label: 'Subscription',
+            label: 'Membership',
             onClick: () => {
-              this.props.history.push('/subscription');
+              this.props.history.push('/membership');
             }
           },{
             label: 'Buy Bid Credit',

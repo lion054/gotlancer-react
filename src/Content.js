@@ -11,7 +11,7 @@ import BuyerHome from './scenes/BuyerHome';
 import Messenger from './scenes/Messenger';
 import Profile from './scenes/Profile';
 import PostProject from './scenes/PostProject';
-import Subscription from './scenes/Subscription';
+import Membership from './scenes/Membership';
 
 import BuyBidCredit from './scenes/Finance/BuyBidCredit';
 import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
@@ -30,7 +30,7 @@ import AddSkrill from './scenes/Settings/PaymentsPayouts/AddSkrill';
 import GlobalPreferences from './scenes/Settings/GlobalPreferences';
 import InviteFriends from './scenes/Settings/InviteFriends';
 import LoginSecurity from './scenes/Settings/LoginSecurity';
-import Membership from './scenes/Settings/Membership';
+import SettingMembership from './scenes/Settings/Membership';
 import Notifications from './scenes/Settings/Notifications';
 import PaymentsPayouts from './scenes/Settings/PaymentsPayouts';
 import PersonalInfo from './scenes/Settings/PersonalInfo';
@@ -67,8 +67,8 @@ const routes = [{
   path: '/post_project',
   component: PostProject
 },{
-  path: '/subscription',
-  component: Subscription
+  path: '/membership',
+  component: Membership
 },{
   path: '/settings',
   component: Settings
@@ -110,7 +110,7 @@ const routes = [{
   component: VerifyIdentity
 },{
   path: '/settings/membership',
-  component: Membership
+  component: SettingMembership
 },{
   path: '/settings/notifications',
   component: Notifications

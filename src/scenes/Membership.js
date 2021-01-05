@@ -1,18 +1,13 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import {
   Box,
   Button,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   Divider,
   Grid,
-  List,
-  ListItem,
-  Paper,
   Switch,
-  Toolbar,
   Typography,
   colors,
   fade,
@@ -24,13 +19,9 @@ import { Check } from '@material-ui/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane, faRocket } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
-import moment from 'moment';
-import faker from 'faker';
 import { compose } from 'redux';
 
 import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { formatCurrency } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -124,7 +115,7 @@ export const DeepOrangeButton = withStyles((theme) => ({
   disabled: {}
 }))(Button);
 
-class Subscription extends PureComponent {
+class Membership extends PureComponent {
   state = {
     grade: 'monthly',
     unit: '/mo',
@@ -429,4 +420,4 @@ export default compose(
   withStyles(styles),
   withTheme,
   withWidth()
-)(Subscription);
+)(Membership);
