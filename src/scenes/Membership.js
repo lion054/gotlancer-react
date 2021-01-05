@@ -12,8 +12,7 @@ import {
   colors,
   fade,
   withStyles,
-  withTheme,
-  withWidth
+  withTheme
 } from '@material-ui/core';
 import { Check } from '@material-ui/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -29,11 +28,6 @@ const styles = (theme) => ({
   },
   background: {
     backgroundColor: theme.palette.background.default
-  },
-  container: {
-    [theme.breakpoints.up('md')]: {
-      margin: theme.spacing(0, 2)
-    }
   },
   outerMargin: {
     margin: theme.spacing(-2),
@@ -66,16 +60,6 @@ const styles = (theme) => ({
   },
   check: {
     marginRight: theme.spacing(1)
-  },
-  subtotal: {
-    padding: theme.spacing(3)
-  },
-  panel: {
-    height: theme.spacing(50),
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
-    padding: 'unset'
   }
 })
 
@@ -418,6 +402,5 @@ class Membership extends PureComponent {
 
 export default compose(
   withStyles(styles),
-  withTheme,
-  withWidth()
+  withTheme
 )(Membership);

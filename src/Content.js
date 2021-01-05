@@ -12,6 +12,7 @@ import Messenger from './scenes/Messenger';
 import Profile from './scenes/Profile';
 import PostProject from './scenes/PostProject';
 import Membership from './scenes/Membership';
+import Notifications from './scenes/Notifications';
 
 import BuyBidCredit from './scenes/Finance/BuyBidCredit';
 import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
@@ -31,7 +32,7 @@ import GlobalPreferences from './scenes/Settings/GlobalPreferences';
 import InviteFriends from './scenes/Settings/InviteFriends';
 import LoginSecurity from './scenes/Settings/LoginSecurity';
 import SettingMembership from './scenes/Settings/Membership';
-import Notifications from './scenes/Settings/Notifications';
+import SettingNotifications from './scenes/Settings/Notifications';
 import PaymentsPayouts from './scenes/Settings/PaymentsPayouts';
 import PersonalInfo from './scenes/Settings/PersonalInfo';
 import VerifyIdentity from './scenes/Settings/VerifyIdentity';
@@ -69,6 +70,9 @@ const routes = [{
 },{
   path: '/membership',
   component: Membership
+},{
+  path: '/notifications',
+  component: Notifications
 },{
   path: '/settings',
   component: Settings
@@ -113,7 +117,7 @@ const routes = [{
   component: SettingMembership
 },{
   path: '/settings/notifications',
-  component: Notifications
+  component: SettingNotifications
 },{
   path: '/settings/global_preferences',
   component: GlobalPreferences

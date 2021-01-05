@@ -205,7 +205,7 @@ class Header extends PureComponent {
                   </IconButton>
                 </Badge>
                 <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
-                  <IconButton>
+                  <IconButton onClick={() => this.props.history.push('/notifications')}>
                     <FontAwesomeIcon icon={faBell} size="1x" />
                   </IconButton>
                 </Badge>
