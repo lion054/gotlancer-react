@@ -101,6 +101,7 @@ class FileUpload extends PureComponent {
         onDropAccepted={this.onDropAccepted}
         onDropRejected={this.onDropRejected}
         multiple
+        noClick
       >
         {({ getRootProps, getInputProps, isDragActive }) => (
           <div
@@ -115,13 +116,6 @@ class FileUpload extends PureComponent {
             <input
               id={this.state.inputId}
               {...getInputProps(this.props.inputProps)}
-              // multiple
-              // type="file"
-              // style={{ display: 'none' }}
-              onChange={(e) => {
-                this.handleFiles(e.target.files);
-                e.target.value = ''; // Avoid that onChange is not working for same file
-              }}
             />
             <label htmlFor={this.state.inputId}>
               <Button variant="outlined" component="span">Select file to upload</Button>
