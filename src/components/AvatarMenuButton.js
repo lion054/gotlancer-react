@@ -128,7 +128,7 @@ class AvatarMenuButton extends PureComponent {
         <MenuItem
           onClick={() => {
             this.onCloseMenu();
-            this.props.history.push('/settings/membership');
+            this.props.history.push('/subscription');
           }}
           className={this.props.classes.menuItem}
           disableGutters
@@ -138,7 +138,7 @@ class AvatarMenuButton extends PureComponent {
               <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faCrown} />
             </Box>
           </ListItemIcon>
-          <ListItemText primary="Membership" primaryTypographyProps={{
+          <ListItemText primary="Subscription" primaryTypographyProps={{
             variant: 'body1',
             color: 'textPrimary'
           }} />

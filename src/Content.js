@@ -11,6 +11,7 @@ import BuyerHome from './scenes/BuyerHome';
 import Messenger from './scenes/Messenger';
 import Profile from './scenes/Profile';
 import PostProject from './scenes/PostProject';
+import Subscription from './scenes/Subscription';
 
 import BuyBidCredit from './scenes/Finance/BuyBidCredit';
 import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
@@ -65,6 +66,9 @@ const routes = [{
 },{
   path: '/post_project',
   component: PostProject
+},{
+  path: '/subscription',
+  component: Subscription
 },{
   path: '/settings',
   component: Settings

@@ -294,6 +294,10 @@ class PostProject extends PureComponent {
                     <Box mt={1} mb={3}>
                       <Divider />
                     </Box>
+                    <Typography variant="body1" align="right">Total: {formatCurrency(0)}</Typography>
+                    <Box mt={3} mb={3}>
+                      <Divider />
+                    </Box>
                     <FormControlLabel
                       control={(
                         <Checkbox onClick={(e) => e.stopPropagation()} />
