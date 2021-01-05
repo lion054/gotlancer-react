@@ -13,6 +13,7 @@ import { compose } from 'redux';
 
 import Header from '../../components/Header';
 import ChipContainer from '../../components/ChipContainer';
+import Details from './Details';
 
 const styles = (theme) => ({
   root: {
@@ -22,12 +23,12 @@ const styles = (theme) => ({
 
 class Project extends PureComponent {
   state = {
-    categories: [],
+    badges: [],
     activeTab: 0
   }
 
   componentDidMount() {
-    const categories = faker.random.arrayElements([{
+    const badges = faker.random.arrayElements([{
       title: 'TOP PROJECT',
       backgroundColor: this.props.theme.palette.primary.main,
       color: this.props.theme.palette.common.white
@@ -48,7 +49,7 @@ class Project extends PureComponent {
       backgroundColor: this.props.theme.palette.success.main,
       color: this.props.theme.palette.common.white
     }]);
-    this.setState({ categories });
+    this.setState({ badges });
   }
 
   handleTabChange = (event, newValue) => {
@@ -65,7 +66,7 @@ class Project extends PureComponent {
             <Box display="flex">
               <Box flex={1}>
                 <Typography variant="h5">I need a WordPress Site (5 pages) and a Logo Design</Typography>
-                <ChipContainer chips={this.state.categories} />
+                <ChipContainer chips={this.state.badges} />
               </Box>
               <Box>
                 <Box color={this.props.theme.palette.success.main}>
@@ -87,10 +88,11 @@ class Project extends PureComponent {
               <Tab label="Hired (2)" />
               <Tab label="Payment (33)" />
               <Tab label="Work Diary" />
-              <Tab label="Upgrade" />
               <Tab label="Files" />
-              <Tab label="Feedback" />
             </Tabs>
+            <div role="tabpanel" hidden={this.state.activeTab !== 0}>
+              <Details />
+            </div>
           </Grid>
           <Grid item lg={2} />
         </Grid>

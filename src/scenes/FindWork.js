@@ -170,7 +170,7 @@ class FindWork extends PureComponent {
           min: faker.random.number({ min: 10, max: 20 }),
           max: faker.random.number({ min: 30, max: 40 })
         },
-        categories: faker.random.arrayElements([{
+        badges: faker.random.arrayElements([{
           title: 'TOP PROJECT',
           backgroundColor: this.props.theme.palette.primary.main,
           color: this.props.theme.palette.common.white
@@ -430,7 +430,7 @@ class FindWork extends PureComponent {
         </Box>
         <Box mt={1} display="flex">
           <Box flex={1}>
-            <ChipContainer chips={job.categories} />
+            <ChipContainer chips={job.badges} />
           </Box>
           <Box ml={5}>
             <Typography variant="body2" color="textSecondary">{job.type}</Typography>
@@ -485,7 +485,7 @@ class FindWork extends PureComponent {
       <CardContent>
         <Typography variant="subtitle1">{job.title}</Typography>
         <Box mt={1}>
-          <ChipContainer chips={job.categories} />
+          <ChipContainer chips={job.badges} />
         </Box>
         <Box mt={1.5}>
           <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>

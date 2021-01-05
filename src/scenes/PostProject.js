@@ -50,7 +50,7 @@ const styles = (theme) => ({
       padding: theme.spacing(1)
     }
   },
-  type: {
+  badge: {
     display: 'inline-block',
     padding: theme.spacing(0, 1),
     borderRadius: 12,
@@ -69,7 +69,7 @@ class PostProject extends PureComponent {
     activeTab: 0,
     faqList: [],
     categories: [],
-    types: []
+    badges: []
   }
 
   componentDidMount() {
@@ -84,7 +84,7 @@ class PostProject extends PureComponent {
     for (let i = 0; i < 5; i++) {
       categories.push(faker.lorem.words(2));
     }
-    const types = [{
+    const badges = [{
       color: this.props.theme.palette.success.main,
       title: 'Standard',
       description: 'Free to post, your project will go live instantly and start receiving bids within seconds.',
@@ -115,17 +115,17 @@ class PostProject extends PureComponent {
       description: 'Make your project stand out and let freelancers know that your job is time sensitive.',
       price: 5
     }];
-    this.setState({ faqList, categories, types });
+    this.setState({ faqList, categories, badges });
   }
 
   handleTabChange = (event, newValue) => {
     this.setState({ activeTab: newValue });
   }
 
-  handleType = (index) => (e) => {
-    const types = cloneDeep(this.state.types);
-    types[index].checked = !types[index].checked;
-    this.setState({ types });
+  handleBadge = (index) => (e) => {
+    const badges = cloneDeep(this.state.badges);
+    badges[index].checked = !badges[index].checked;
+    this.setState({ badges });
   }
 
   render = () => (
@@ -285,12 +285,12 @@ class PostProject extends PureComponent {
                       </Grid>
                     </Box>
                     <Box mt={3}>
-                      <Typography variant="subtitle2">Select your listing type</Typography>
+                      <Typography variant="subtitle2">Select your listing</Typography>
                     </Box>
                     <Box mt={1} mb={1}>
                       <Typography variant="body2">Upgrade your listing from below and get dozens of skilled freelancers for your project instantly.</Typography>
                     </Box>
-                    {this.renderTypeList()}
+                    {this.renderBadgeList()}
                     <Box mt={1} mb={3}>
                       <Divider />
                     </Box>
@@ -327,30 +327,30 @@ class PostProject extends PureComponent {
     </div>
   )
 
-  renderTypeList = () => (
+  renderBadgeList = () => (
     <List disablePadding>
-      {this.state.types.map((type, index) => (
-        <ListItem key={index} disableGutters button onClick={this.handleType(index)}>
+      {this.state.badges.map((badge, index) => (
+        <ListItem key={index} disableGutters button onClick={this.handleBadge(index)}>
           <Box width="100%" display="flex" alignItems="center">
-            <Checkbox checked={!!type.checked} onClick={this.handleType(index)} />
+            <Checkbox checked={!!badge.checked} onClick={this.handleBadge(index)} />
             <Box
               flex={1}
               className={this.props.classes.innerPadding}
               borderRadius={4}
-              border={`solid 1px ${type.checked ? this.props.theme.palette.secondary.main : this.props.theme.palette.divider}`}
+              border={`solid 1px ${badge.checked ? this.props.theme.palette.secondary.main : this.props.theme.palette.divider}`}
               bgcolor={this.props.theme.palette.background.paper}
             >
               <Grid container alignItems="center">
                 <Grid item sm={2} xs={3}>
-                  <Box className={this.props.classes.type} bgcolor={type.color}>
-                    <Typography variant="body1">{type.title}</Typography>
+                  <Box className={this.props.classes.badge} bgcolor={badge.color}>
+                    <Typography variant="body1">{badge.title}</Typography>
                   </Box>
                 </Grid>
                 <Grid item sm={8} xs={7}>
-                  <Typography variant="body2">{type.description}</Typography>
+                  <Typography variant="body2">{badge.description}</Typography>
                 </Grid>
                 <Grid item sm={2} xs={2}>
-                  <Typography variant="body2" align="right">{formatCurrency(type.price)}</Typography>
+                  <Typography variant="body2" align="right">{formatCurrency(badge.price)}</Typography>
                 </Grid>
               </Grid>
             </Box>
