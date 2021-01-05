@@ -35,6 +35,7 @@ import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ChipContainer from '../components/ChipContainer';
 
 const styles = (theme) => ({
   root: {
@@ -121,17 +122,6 @@ const styles = (theme) => ({
       borderTopStyle: 'solid'
     }
   },
-  tagContainer: {
-    wordBreak: 'break-word'
-  },
-  tag: {
-    marginBottom: theme.spacing(0.5),
-    padding: theme.spacing(0.5),
-    marginRight: theme.spacing(1),
-    borderRadius: theme.spacing(0.5),
-    display: 'inline-block',
-    whiteSpace: 'nowrap'
-  },
   description: {
     height: theme.spacing(7.5), // 3 lines
     overflow: 'hidden'
@@ -166,7 +156,11 @@ class FindWork extends PureComponent {
     for (let i = 0; i < 5; i++) {
       const skills = [];
       for (let j = 0; j < 3; j++) {
-        skills.push(faker.lorem.words(2));
+        skills.push({
+          title: faker.lorem.words(2),
+          backgroundColor: this.props.theme.palette.action.disabledBackground,
+          color: this.props.theme.palette.text.secondary
+        });
       }
       jobs.push({
         title: faker.lorem.sentence(3),
@@ -178,19 +172,24 @@ class FindWork extends PureComponent {
         },
         categories: faker.random.arrayElements([{
           title: 'TOP PROJECT',
-          backgroundColor: this.props.theme.palette.primary.main
+          backgroundColor: this.props.theme.palette.primary.main,
+          color: this.props.theme.palette.common.white
         },{
           title: 'NDA',
-          backgroundColor: this.props.theme.palette.secondary.main
+          backgroundColor: this.props.theme.palette.secondary.main,
+          color: this.props.theme.palette.common.white
         },{
           title: 'URGENT',
-          backgroundColor: this.props.theme.palette.error.main
+          backgroundColor: this.props.theme.palette.error.main,
+          color: this.props.theme.palette.common.white
         },{
           title: 'FEATURED',
-          backgroundColor: this.props.theme.palette.warning.main
+          backgroundColor: this.props.theme.palette.warning.main,
+          color: this.props.theme.palette.common.white
         },{
           title: 'LONG TERM',
-          backgroundColor: this.props.theme.palette.success.main
+          backgroundColor: this.props.theme.palette.success.main,
+          color: this.props.theme.palette.common.white
         }]),
         createdAt: faker.date.past(),
         skills,
@@ -430,44 +429,26 @@ class FindWork extends PureComponent {
           <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
         </Box>
         <Box mt={1} display="flex">
-          <Box className={this.props.classes.tagContainer} flex={1}>
-            {job.categories.map((category, j) => (
-              <Typography
-                key={j}
-                component="div"
-                variant="body2"
-                className={this.props.classes.tag}
-                style={{
-                  backgroundColor: category.backgroundColor,
-                  color: this.props.theme.palette.common.white
-                }}
-              >{category.title}</Typography>
-            ))}
+          <Box flex={1}>
+            <ChipContainer chips={job.categories} />
           </Box>
-          <Typography variant="body2" color="textSecondary">{job.type}</Typography>
+          <Box ml={5}>
+            <Typography variant="body2" color="textSecondary">{job.type}</Typography>
+          </Box>
         </Box>
         <Box mt={1.5}>
           <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
         </Box>
         <Box mt={1} mb={2.5} display="flex">
-          <Box className={this.props.classes.tagContainer} flex={1} mr={5}>
-            {job.skills.map((skill, j) => (
-              <Typography
-                key={j}
-                component="div"
-                variant="body2"
-                className={this.props.classes.tag}
-                style={{
-                  backgroundColor: this.props.theme.palette.action.disabledBackground,
-                  color: this.props.theme.palette.text.secondary
-                }}
-              >{skill}</Typography>
-            ))}
+          <Box flex={1}>
+            <ChipContainer chips={job.skills} />
           </Box>
-          <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
+          <Box ml={5}>
+            <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
+          </Box>
         </Box>
         <Divider />
-        <Box className={this.props.classes.tagContainer} mt={1.5}>
+        <Box mt={1.5} style={{ whiteSpace: 'break-spaces' }}>
           {this.renderApplyBefore()}
           {this.renderPaymentMethod(job.paymentMethod)}
           {this.renderReview(job.reviewCount, job.reviewAverage)}
@@ -503,19 +484,8 @@ class FindWork extends PureComponent {
     }}>
       <CardContent>
         <Typography variant="subtitle1">{job.title}</Typography>
-        <Box mt={1} className={this.props.classes.tagContainer}>
-          {job.categories.map((category, j) => (
-            <Typography
-              key={j}
-              component="div"
-              variant="body2"
-              className={this.props.classes.tag}
-              style={{
-                backgroundColor: category.backgroundColor,
-                color: this.props.theme.palette.common.white
-              }}
-            >{category.title}</Typography>
-          ))}
+        <Box mt={1}>
+          <ChipContainer chips={job.categories} />
         </Box>
         <Box mt={1.5}>
           <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
@@ -529,22 +499,11 @@ class FindWork extends PureComponent {
         <Box mt={1.5}>
           <Typography variant="body2" color="textSecondary">{job.type}</Typography>
         </Box>
-        <Box mt={1} mb={2.5} className={this.props.classes.tagContainer}>
-          {job.skills.map((skill, j) => (
-            <Typography
-              key={j}
-              component="div"
-              variant="body2"
-              className={this.props.classes.tag}
-              style={{
-                backgroundColor: this.props.theme.palette.action.disabledBackground,
-                color: this.props.theme.palette.text.secondary
-              }}
-            >{skill}</Typography>
-          ))}
+        <Box mt={1} mb={2.5}>
+          <ChipContainer chips={job.skills} />
         </Box>
         <Divider />
-        <Box className={this.props.classes.tagContainer} mt={1.5}>
+        <Box mt={1.5} style={{ whiteSpace: 'break-spaces' }}>
           {this.renderApplyBefore()}
           {this.renderPaymentMethod(job.paymentMethod)}
           {this.renderReview(job.reviewCount, job.reviewAverage)}

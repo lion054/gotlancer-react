@@ -33,6 +33,18 @@ const styles = (theme) => ({
       margin: theme.spacing(0, 2)
     }
   },
+  outerMargin: {
+    padding: theme.spacing(-2),
+    [theme.breakpoints.only('xs')]: {
+      padding: theme.spacing(-1)
+    }
+  },
+  innerPadding: {
+    padding: theme.spacing(2),
+    [theme.breakpoints.only('xs')]: {
+      padding: theme.spacing(1)
+    }
+  },
   card: {
     borderRadius: theme.spacing(1.5),
     borderColor: theme.palette.divider,
@@ -160,32 +172,34 @@ class BuyerHome extends PureComponent {
       <Divider />
       {this.state.recentPostedJobs.map((job, index) => (
         <Fragment key={index}>
-          <Grid container>
-            <Grid item xl={6} xs={12}>
-              <Box mt={1} mr={2} mb={1} ml={2}>
-                <Typography variant="body1">{job.title}</Typography>
-                <Typography variant="body2" color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
-              </Box>
+          <Box className={this.props.classes.outerMargin}>
+            <Grid container>
+              <Grid item xl={6} xs={12}>
+                <Box className={this.props.classes.innerPadding}>
+                  <Typography variant="body1">{job.title}</Typography>
+                  <Typography variant="body2" color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
+                </Box>
+              </Grid>
+              <Grid item xl={2} xs={4}>
+                <Box className={this.props.classes.innerPadding}>
+                  <Typography variant="body1">30</Typography>
+                  <Typography variant="body2" color="textSecondary">Bid</Typography>
+                </Box>
+              </Grid>
+              <Grid item xl={2} xs={3}>
+                <Box className={this.props.classes.innerPadding}>
+                  <Typography variant="body1">{job.hiredCount}</Typography>
+                  <Typography variant="body2" color="textSecondary">Hired</Typography>
+                </Box>
+              </Grid>
+              <Grid item xl={2} xs={5}>
+                <Box className={this.props.classes.innerPadding}>
+                  <Typography variant="body1">{formatCurrency(job.budget)}</Typography>
+                  <Typography variant="body2" color="textSecondary">{job.status}</Typography>
+                </Box>
+              </Grid>
             </Grid>
-            <Grid item xl={2} xs={4}>
-              <Box mt={1} mr={2} mb={1} ml={2}>
-                <Typography variant="body1">30</Typography>
-                <Typography variant="body2" color="textSecondary">Bid</Typography>
-              </Box>
-            </Grid>
-            <Grid item xl={2} xs={3}>
-              <Box mt={1} mr={2} mb={1} ml={2}>
-                <Typography variant="body1">{job.hiredCount}</Typography>
-                <Typography variant="body2" color="textSecondary">Hired</Typography>
-              </Box>
-            </Grid>
-            <Grid item xl={2} xs={5}>
-              <Box mt={1} mr={2} mb={1} ml={2}>
-                <Typography variant="body1">{formatCurrency(job.budget)}</Typography>
-                <Typography variant="body2" color="textSecondary">{job.status}</Typography>
-              </Box>
-            </Grid>
-          </Grid>
+          </Box>
           <Divider />
         </Fragment>
       ))}

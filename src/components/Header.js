@@ -125,7 +125,7 @@ class Header extends PureComponent {
                     <MenuItem className={this.props.classes.label}>Saved Jobs</MenuItem>
                     <MenuItem className={this.props.classes.label}>Bids</MenuItem>
                     <MenuItem className={this.props.classes.label}>My Stats</MenuItem>
-                    <MenuItem className={this.props.classes.label}>My Project</MenuItem>
+                    <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/projects')}>My Projects</MenuItem>
                   </Menu>
                 </Box>
                 <Box className={this.props.classes.optional}>

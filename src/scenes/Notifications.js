@@ -32,7 +32,7 @@ const styles = (theme) => ({
       padding: theme.spacing(1)
     }
   }
-})
+});
 
 class Membership extends PureComponent {
   state = {
@@ -69,8 +69,8 @@ class Membership extends PureComponent {
                   <ListItem key={index} disableGutters divider>
                     <Box flex={1}>
                       {!!title && <Typography variant="body1">{title}</Typography>}
-                      {!!subtitle && <Typography variant="body2">{subtitle}</Typography>}
-                      {!!time && <Typography variant="body2">{moment(time).fromNow()}</Typography>}
+                      {!!subtitle && <Typography variant="body2" color="textSecondary">{subtitle}</Typography>}
+                      {!!time && <Typography variant="body2" color="textSecondary">{moment(time).fromNow()}</Typography>}
                     </Box>
                     <IconButton onClick={() => this.setState({ activeIndex: index })}>
                       <Close />

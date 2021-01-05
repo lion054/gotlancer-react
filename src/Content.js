@@ -13,6 +13,8 @@ import Profile from './scenes/Profile';
 import PostProject from './scenes/PostProject';
 import Membership from './scenes/Membership';
 import Notifications from './scenes/Notifications';
+import Projects from './scenes/Projects';
+import Project from './scenes/Project';
 
 import BuyBidCredit from './scenes/Finance/BuyBidCredit';
 import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
@@ -70,6 +72,12 @@ const routes = [{
 },{
   path: '/membership',
   component: Membership
+},{
+  path: '/projects',
+  component: Projects
+},{
+  path: '/project',
+  component: Project
 },{
   path: '/notifications',
   component: Notifications

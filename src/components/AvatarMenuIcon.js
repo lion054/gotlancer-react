@@ -161,7 +161,7 @@ class AvatarMenuIcon extends PureComponent {
             },{
               label: 'My Stats'
             },{
-              label: 'My Project'
+              label: 'My Projects'
             }]
           },{
             label: 'Hire',
