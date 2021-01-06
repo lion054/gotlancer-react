@@ -357,9 +357,6 @@ class Proposals extends PureComponent {
     <CompactCard key={index}>
       <CardContent>
         <Typography variant="subtitle1">{record.name}</Typography>
-        <Box mt={1}>
-          <ChipContainer chips={record.badges} />
-        </Box>
         <Box mt={1.5}>
           <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
         </Box>
@@ -392,9 +389,9 @@ class Proposals extends PureComponent {
                 }}
               >
                 {record.saved ? (
-                  <Favorite color={this.props.theme.palette.secondary.main} />
+                  <Favorite color="secondary" />
                 ) : (
-                  <FavoriteBorder color={this.props.theme.palette.action.disabled} />
+                  <FavoriteBorder color="disabled" />
                 )}
               </IconButton>
               <Box ml={1}>
