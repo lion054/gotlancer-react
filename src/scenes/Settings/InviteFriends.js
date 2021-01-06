@@ -7,6 +7,8 @@ import {
   Breadcrumbs,
   Button,
   CardContent,
+  CardHeader,
+  Divider,
   Grid,
   InputBase,
   Link,
@@ -55,7 +57,7 @@ const styles = (theme) => ({
   },
   sharePanel: {
     padding: theme.spacing(2),
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.paper
   }
 })
 
@@ -209,21 +211,27 @@ class InviteFriends extends PureComponent {
   )
 
   renderSharePanel = () => (
-    <Paper variant="outlined" className={this.props.classes.sharePanel}>
-      <Typography variant="subtitle2">Share Gotlancer with friends</Typography>
-      <Box mt={1}>
+    <CompactCard>
+      <CardHeader
+        title="Share Gotlancer with friends"
+        titleTypographyProps={{
+          variant: 'subtitle2'
+        }}
+      />
+      <Divider />
+      <CardContent>
         <Typography variant="body2">Email friends who've never tried Gotlancer, and we’ll send them a reminder, too.</Typography>
-      </Box>
-      <Box mt={1}>
-        <Paper variant="outlined" className={this.props.classes.addressBar}>
-          <InputBase placeholder="Enter email address" style={{ flex: 1 }} />
-          <Button variant="contained" size="large">Send</Button>
-        </Paper>
-      </Box>
-      <Box mt={1}>
-        <Typography variant="body2">Enter one email at a time</Typography>
-      </Box>
-    </Paper>
+        <Box mt={1}>
+          <Paper variant="outlined" className={this.props.classes.addressBar}>
+            <InputBase placeholder="Enter email address" style={{ flex: 1 }} />
+            <Button variant="contained" size="large">Send</Button>
+          </Paper>
+        </Box>
+        <Box mt={1}>
+          <Typography variant="body2">Enter one email at a time</Typography>
+        </Box>
+      </CardContent>
+    </CompactCard>
   )
 
   getExpandIcon(id) {

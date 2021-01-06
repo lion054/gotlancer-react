@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import {
   Box,
   Button,
@@ -9,8 +9,6 @@ import {
   Grid,
   List,
   ListItem,
-  Paper,
-  Toolbar,
   Typography,
   withStyles,
   withTheme
@@ -47,12 +45,11 @@ const styles = (theme) => ({
   subtotal: {
     padding: theme.spacing(3)
   },
-  panel: {
-    height: theme.spacing(50),
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
-    padding: 'unset'
+  emptyList: {
+    height: theme.spacing(40),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 
@@ -98,34 +95,34 @@ class BuyerHome extends PureComponent {
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
-            <Box mt={4}>
+            <Box className={this.props.classes.outerMargin} mt={4}>
               <Grid container>
                 <Grid item xs={6} sm={3}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     {this.renderSummaryCard('Work In Progress', formatCurrency(9000))}
                   </Box>
                 </Grid>
                 <Grid item xs={6} sm={3}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     {this.renderSummaryCard('Projects Completed', '326')}
                   </Box>
                 </Grid>
                 <Grid item xs={6} sm={3}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     {this.renderSummaryCard('Total Spent', formatCurrency(50000))}
                   </Box>
                 </Grid>
                 <Grid item xs={6} sm={3}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     {this.renderSummaryCard('Total Spent', formatCurrency(50000))}
                   </Box>
                 </Grid>
               </Grid>
             </Box>
-            <Box mt={8}>
+            <Box className={this.props.classes.outerMargin} mt={8}>
               <Grid container>
                 <Grid item md={8} xs={12}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     {this.renderRecentProjects()}
                     <Box mt={3}>
                       {this.renderDraftProjects()}
@@ -133,7 +130,7 @@ class BuyerHome extends PureComponent {
                   </Box>
                 </Grid>
                 <Grid item md={4} xs={12}>
-                  <Box p={2}>
+                  <Box className={this.props.classes.innerPadding}>
                     {this.renderSideBar()}
                   </Box>
                 </Grid>
@@ -157,63 +154,78 @@ class BuyerHome extends PureComponent {
   )
 
   renderRecentProjects = () => (
-    <Paper elevation={0} className={this.props.classes.panel}>
-      <Toolbar>
-        <Typography variant="subtitle1" style={{ flex: 1 }}>Recent Projects</Typography>
-        <Typography variant="body2">3 projects found</Typography>
-      </Toolbar>
-      <Divider />
-      {this.state.recentPostedJobs.map((job, index) => (
-        <Fragment key={index}>
-          <Box className={this.props.classes.outerMargin}>
-            <Grid container>
-              <Grid item xl={6} xs={12}>
-                <Box className={this.props.classes.innerPadding}>
-                  <Typography variant="body1">{job.title}</Typography>
-                  <Typography variant="body2" color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
-                </Box>
-              </Grid>
-              <Grid item xl={2} xs={4}>
-                <Box className={this.props.classes.innerPadding}>
-                  <Typography variant="body1">30</Typography>
-                  <Typography variant="body2" color="textSecondary">Bid</Typography>
-                </Box>
-              </Grid>
-              <Grid item xl={2} xs={3}>
-                <Box className={this.props.classes.innerPadding}>
-                  <Typography variant="body1">{job.hiredCount}</Typography>
-                  <Typography variant="body2" color="textSecondary">Hired</Typography>
-                </Box>
-              </Grid>
-              <Grid item xl={2} xs={5}>
-                <Box className={this.props.classes.innerPadding}>
-                  <Typography variant="body1">{formatCurrency(job.budget)}</Typography>
-                  <Typography variant="body2" color="textSecondary">{job.status}</Typography>
-                </Box>
-              </Grid>
-            </Grid>
+    <CompactCard>
+      <CardHeader
+        title="Recent Projects"
+        titleTypographyProps={{
+          variant: 'subtitle1'
+        }}
+        action={(
+          <Box mt={1.5} mr={1}>
+            <Typography variant="body2">3 projects found</Typography>
           </Box>
-          <Divider />
-        </Fragment>
-      ))}
-    </Paper>
+        )}
+      />
+      <Divider />
+      <List disablePadding>
+        {this.state.recentPostedJobs.map((job, index) => (
+          <ListItem key={index} disableGutters divider>
+            <Box className={this.props.classes.outerMargin} width="100%">
+              <Grid container>
+                <Grid item xl={6} xs={12}>
+                  <Box className={this.props.classes.innerPadding}>
+                    <Typography variant="body1">{job.title}</Typography>
+                    <Typography variant="body2" color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
+                  </Box>
+                </Grid>
+                <Grid item xl={2} xs={4}>
+                  <Box className={this.props.classes.innerPadding}>
+                    <Typography variant="body1">30</Typography>
+                    <Typography variant="body2" color="textSecondary">Bid</Typography>
+                  </Box>
+                </Grid>
+                <Grid item xl={2} xs={3}>
+                  <Box className={this.props.classes.innerPadding}>
+                    <Typography variant="body1">{job.hiredCount}</Typography>
+                    <Typography variant="body2" color="textSecondary">Hired</Typography>
+                  </Box>
+                </Grid>
+                <Grid item xl={2} xs={5}>
+                  <Box className={this.props.classes.innerPadding}>
+                    <Typography variant="body1">{formatCurrency(job.budget)}</Typography>
+                    <Typography variant="body2" color="textSecondary">{job.status}</Typography>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+          </ListItem>
+        ))}
+      </List>
+    </CompactCard>
   )
 
   renderDraftProjects = () => (
-    <Paper elevation={0} className={this.props.classes.panel} style={{ display: 'flex', flexDirection: 'column' }}>
-      <Toolbar>
-        <Typography variant="subtitle1" style={{ flex: 1 }}>Draft Projects</Typography>
-        <Typography variant="body2">0 projects found</Typography>
-      </Toolbar>
+    <CompactCard>
+      <CardHeader
+        title="Draft Projects"
+        titleTypographyProps={{
+          variant: 'subtitle1'
+        }}
+        action={(
+          <Box mt={1.5} mr={1}>
+            <Typography variant="body2">0 projects found</Typography>
+          </Box>
+        )}
+      />
       <Divider />
-      <Box flex={1} display="flex" alignItems="center" justifyContent="center">
+      <Box className={this.props.classes.emptyList}>
         <Box textAlign="center">
           <img alt="" src={require('../assets/images/freelancers.svg')} style={{ width: this.props.theme.spacing(8) }} />
           <Typography variant="h6">No draft project Found</Typography>
           <Typography variant="body2">You did not save any project as draft</Typography>
         </Box>
       </Box>
-    </Paper>
+    </CompactCard>
   )
 
   renderSideBar = () => (

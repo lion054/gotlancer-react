@@ -14,7 +14,6 @@ import {
   ListItemText,
   MenuItem,
   OutlinedInput,
-  Tab,
   Tabs,
   Typography,
   withStyles,
@@ -27,9 +26,10 @@ import faker from 'faker';
 import { compose } from 'redux';
 
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 import FileUpload from '../components/FileUpload';
 import PlaceholderSelect from '../components/PlaceholderSelect';
-import { CompactCard, formatCurrency } from '../global';
+import { CompactCard, CompactTab, formatCurrency } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -124,134 +124,124 @@ class PostProject extends PureComponent {
               <Grid container>
                 <Grid item md={8} xs={12}>
                   <Box className={this.props.classes.innerPadding}>
-                    <Tabs
-                      value={this.state.activeTab}
-                      onChange={this.handleTabChange}
-                      indicatorColor="primary"
-                      textColor="primary"
-                    >
-                      <Tab label="Fixed Price Project" />
-                      <Tab label="Uourly Project" />
-                    </Tabs>
-                    <Box mt={2} mb={1}>
-                      <Typography variant="subtitle2">Provide a name for your project</Typography>
-                    </Box>
-                    <OutlinedInput
-                      fullWidth
-                      margin="dense"
-                    />
-                    <Box mt={2} mb={1}>
-                      <Typography variant="subtitle2">Tell us more about your project</Typography>
-                    </Box>
-                    <Box mb={1}>
-                      <Typography variant="body2">Start with a bit about yourself or your business, and include an overview of what you need one.</Typography>
-                    </Box>
-                    <OutlinedInput
-                      fullWidth
-                      margin="dense"
-                      multiline
-                      rows={5}
-                    />
-                    <Box mt={1} mb={1}>
-                      <Typography variant="body2" align="right">0/5000</Typography>
-                    </Box>
-                    <Box mt={3} mb={1}>
-                      <Typography variant="subtitle2">Suggested files or attachment (optional)</Typography>
-                    </Box>
-                    <FileUpload />
-                    <Box mt={2} mb={2}>
-                      <Divider />
-                    </Box>
-                    <Box className={this.props.classes.outerMargin}>
-                      <Grid container>
-                        <Grid item sm={6} xs={12}>
-                          <Box className={this.props.classes.innerPadding}>
-                            <Box mb={1}>
-                              <Typography variant="subtitle2">Select project categories</Typography>
-                            </Box>
-                            <PlaceholderSelect
-                              fullWidth
-                              margin="dense"
-                              variant="outlined"
-                              placeholder="Select one"
-                            >
-                              {this.state.categories.map((category, index) => (
-                                <MenuItem key={index} value={category}>{category}</MenuItem>
-                              ))}
-                            </PlaceholderSelect>
-                          </Box>
-                        </Grid>
-                        <Grid item sm={6} xs={12}>
-                          <Box className={this.props.classes.innerPadding}>
-                            <Box mb={1}>
-                              <Typography variant="subtitle2">Select sub-categories</Typography>
-                            </Box>
-                            <PlaceholderSelect
-                              fullWidth
-                              margin="dense"
-                              variant="outlined"
-                              placeholder="Select one"
-                            >
-                              {this.state.categories.map((category, index) => (
-                                <MenuItem key={index} value={category}>{category}</MenuItem>
-                              ))}
-                            </PlaceholderSelect>
-                          </Box>
-                        </Grid>
-                      </Grid>
-                    </Box>
-                    <Box mt={3}>
-                      <Typography variant="subtitle2">What skills are required?</Typography>
-                    </Box>
-                    <Box mt={1} mb={1}>
-                      <Typography variant="body2">We have detected the following skills to suit your project. Feel free to modify these choices to best suit your needs.</Typography>
-                    </Box>
-                    <Box mb={2}>
-                      <OutlinedInput
-                        fullWidth
-                        margin="dense"
-                        placeholder="Type your required skills"
-                      />
-                    </Box>
-                    <Box className={this.props.classes.outerMargin}>
-                      <Grid container>
-                        <Grid item sm={6} xs={12}>
-                          <Box className={this.props.classes.innerPadding}>
-                            <Box mb={1}>
-                              <Typography variant="subtitle2">I need to complete in</Typography>
-                              <Typography variant="body2">Set a amazing budget for your project.</Typography>
-                            </Box>
-                            <PlaceholderSelect
-                              fullWidth
-                              margin="dense"
-                              variant="outlined"
-                              placeholder="Select one"
-                            >
-                              <MenuItem value="7d">7 days or less</MenuItem>
-                              <MenuItem value="14d">14 days or less</MenuItem>
-                              <MenuItem value="1m">1 month or less</MenuItem>
-                            </PlaceholderSelect>
-                          </Box>
-                        </Grid>
-                        <Grid item sm={6} xs={12}>
-                          <Box className={this.props.classes.innerPadding}>
-                            <Box mb={1}>
-                              <Typography variant="subtitle2">Project Budget</Typography>
-                              <Typography variant="body2">Set a amazing budget for your project.</Typography>
-                            </Box>
-                            <Box display="flex" alignItems="center">
-                              <OutlinedInput
-                                fullWidth
-                                margin="dense"
-                                startAdornment={(
-                                  <InputAdornment position="start">
-                                    <AttachMoney />
-                                  </InputAdornment>
-                                )}
-                              />
-                              {this.state.activeTab === 1 && (
-                                <Fragment>
-                                  <Typography variant="body2" noWrap style={{ minWidth: 44 }}>/hr To </Typography>
+                    <CompactCard>
+                      <CardContent>
+                        <Tabs
+                          value={this.state.activeTab}
+                          onChange={this.handleTabChange}
+                          indicatorColor="primary"
+                          textColor="primary"
+                        >
+                          <CompactTab label="Fixed Price Project" />
+                          <CompactTab label="Uourly Project" />
+                        </Tabs>
+                        <Box mt={2} mb={1}>
+                          <Typography variant="subtitle2">Provide a name for your project</Typography>
+                        </Box>
+                        <OutlinedInput
+                          fullWidth
+                          margin="dense"
+                        />
+                        <Box mt={2} mb={1}>
+                          <Typography variant="subtitle2">Tell us more about your project</Typography>
+                        </Box>
+                        <Box mb={1}>
+                          <Typography variant="body2">Start with a bit about yourself or your business, and include an overview of what you need one.</Typography>
+                        </Box>
+                        <OutlinedInput
+                          fullWidth
+                          margin="dense"
+                          multiline
+                          rows={5}
+                        />
+                        <Box mt={1} mb={1}>
+                          <Typography variant="body2" align="right">0/5000</Typography>
+                        </Box>
+                        <Box mt={3} mb={1}>
+                          <Typography variant="subtitle2">Suggested files or attachment (optional)</Typography>
+                        </Box>
+                        <FileUpload />
+                        <Box mt={2} mb={2}>
+                          <Divider />
+                        </Box>
+                        <Box className={this.props.classes.outerMargin}>
+                          <Grid container>
+                            <Grid item sm={6} xs={12}>
+                              <Box className={this.props.classes.innerPadding}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">Select project categories</Typography>
+                                </Box>
+                                <PlaceholderSelect
+                                  fullWidth
+                                  margin="dense"
+                                  variant="outlined"
+                                  placeholder="Select one"
+                                >
+                                  {this.state.categories.map((category, index) => (
+                                    <MenuItem key={index} value={category}>{category}</MenuItem>
+                                  ))}
+                                </PlaceholderSelect>
+                              </Box>
+                            </Grid>
+                            <Grid item sm={6} xs={12}>
+                              <Box className={this.props.classes.innerPadding}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">Select sub-categories</Typography>
+                                </Box>
+                                <PlaceholderSelect
+                                  fullWidth
+                                  margin="dense"
+                                  variant="outlined"
+                                  placeholder="Select one"
+                                >
+                                  {this.state.categories.map((category, index) => (
+                                    <MenuItem key={index} value={category}>{category}</MenuItem>
+                                  ))}
+                                </PlaceholderSelect>
+                              </Box>
+                            </Grid>
+                          </Grid>
+                        </Box>
+                        <Box mt={3}>
+                          <Typography variant="subtitle2">What skills are required?</Typography>
+                        </Box>
+                        <Box mt={1} mb={1}>
+                          <Typography variant="body2">We have detected the following skills to suit your project. Feel free to modify these choices to best suit your needs.</Typography>
+                        </Box>
+                        <Box mb={2}>
+                          <OutlinedInput
+                            fullWidth
+                            margin="dense"
+                            placeholder="Type your required skills"
+                          />
+                        </Box>
+                        <Box className={this.props.classes.outerMargin}>
+                          <Grid container>
+                            <Grid item sm={6} xs={12}>
+                              <Box className={this.props.classes.innerPadding}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">I need to complete in</Typography>
+                                  <Typography variant="body2">Set a amazing budget for your project.</Typography>
+                                </Box>
+                                <PlaceholderSelect
+                                  fullWidth
+                                  margin="dense"
+                                  variant="outlined"
+                                  placeholder="Select one"
+                                >
+                                  <MenuItem value="7d">7 days or less</MenuItem>
+                                  <MenuItem value="14d">14 days or less</MenuItem>
+                                  <MenuItem value="1m">1 month or less</MenuItem>
+                                </PlaceholderSelect>
+                              </Box>
+                            </Grid>
+                            <Grid item sm={6} xs={12}>
+                              <Box className={this.props.classes.innerPadding}>
+                                <Box mb={1}>
+                                  <Typography variant="subtitle2">Project Budget</Typography>
+                                  <Typography variant="body2">Set a amazing budget for your project.</Typography>
+                                </Box>
+                                <Box display="flex" alignItems="center">
                                   <OutlinedInput
                                     fullWidth
                                     margin="dense"
@@ -261,41 +251,55 @@ class PostProject extends PureComponent {
                                       </InputAdornment>
                                     )}
                                   />
-                                  <Typography variant="body2">/hr</Typography>
-                                </Fragment>
-                              )}
-                            </Box>
+                                  {this.state.activeTab === 1 && (
+                                    <Fragment>
+                                      <Typography variant="body2" noWrap style={{ minWidth: 44 }}>/hr To </Typography>
+                                      <OutlinedInput
+                                        fullWidth
+                                        margin="dense"
+                                        startAdornment={(
+                                          <InputAdornment position="start">
+                                            <AttachMoney />
+                                          </InputAdornment>
+                                        )}
+                                      />
+                                      <Typography variant="body2">/hr</Typography>
+                                    </Fragment>
+                                  )}
+                                </Box>
+                              </Box>
+                            </Grid>
+                          </Grid>
+                        </Box>
+                        <Box mt={3}>
+                          <Typography variant="subtitle2">Select your listing</Typography>
+                        </Box>
+                        <Box mt={1} mb={1}>
+                          <Typography variant="body2">Upgrade your listing from below and get dozens of skilled freelancers for your project instantly.</Typography>
+                        </Box>
+                        {this.renderBadgeList()}
+                        <Box mt={1} mb={3}>
+                          <Divider />
+                        </Box>
+                        <Typography variant="body1" align="right">Total: {formatCurrency(0)}</Typography>
+                        <Box mt={3} mb={3}>
+                          <Divider />
+                        </Box>
+                        <FormControlLabel
+                          control={(
+                            <Checkbox onClick={(e) => e.stopPropagation()} />
+                          )}
+                          label={<Typography variant="body2">I acknowledge that the Gotlancer screening process is confidential and that I will not publicly disclose details about this process. By submitting you acknowledge that you have read and agree to our Terms and Conditions, Privacy Policy and Cookie Policy.</Typography>}
+                          onClick={() => {}}
+                        />
+                        <Box mt={4} width="100%" textAlign="center">
+                          <Box display="inline-block">
+                            <Button variant="outlined" size="large" style={{ marginRight: this.props.theme.spacing(2) }}>Save as draft</Button>
+                            <Button variant="contained" size="large">Post my project</Button>
                           </Box>
-                        </Grid>
-                      </Grid>
-                    </Box>
-                    <Box mt={3}>
-                      <Typography variant="subtitle2">Select your listing</Typography>
-                    </Box>
-                    <Box mt={1} mb={1}>
-                      <Typography variant="body2">Upgrade your listing from below and get dozens of skilled freelancers for your project instantly.</Typography>
-                    </Box>
-                    {this.renderBadgeList()}
-                    <Box mt={1} mb={3}>
-                      <Divider />
-                    </Box>
-                    <Typography variant="body1" align="right">Total: {formatCurrency(0)}</Typography>
-                    <Box mt={3} mb={3}>
-                      <Divider />
-                    </Box>
-                    <FormControlLabel
-                      control={(
-                        <Checkbox onClick={(e) => e.stopPropagation()} />
-                      )}
-                      label={<Typography variant="body2">I acknowledge that the Gotlancer screening process is confidential and that I will not publicly disclose details about this process. By submitting you acknowledge that you have read and agree to our Terms and Conditions, Privacy Policy and Cookie Policy.</Typography>}
-                      onClick={() => {}}
-                    />
-                    <Box mt={4} width="100%" textAlign="center">
-                      <Box display="inline-block">
-                        <Button variant="outlined" size="large" style={{ marginRight: this.props.theme.spacing(2) }}>Save as draft</Button>
-                        <Button variant="contained" size="large">Post my project</Button>
-                      </Box>
-                    </Box>
+                        </Box>
+                      </CardContent>
+                    </CompactCard>
                   </Box>
                 </Grid>
                 <Grid item md={4} xs={12}>
@@ -309,6 +313,7 @@ class PostProject extends PureComponent {
           <Grid item lg={2} />
         </Grid>
       </Box>
+      <Footer />
     </div>
   )
 
@@ -358,7 +363,7 @@ class PostProject extends PureComponent {
       <CardContent>
         <List disablePadding>
           {this.state.faqList.map((faq, index) => (
-            <ListItem key={index} disableGutters divider>
+            <ListItem key={index} disableGutters divider={index < this.state.faqList.length - 1}>
               <ListItemText
                 primary={faq.question}
                 secondary={faq.answer}

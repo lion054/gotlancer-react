@@ -23,7 +23,7 @@ import {
   withTheme,
   withWidth
 } from '@material-ui/core';
-import { Pagination, Rating } from '@material-ui/lab';
+import { Rating } from '@material-ui/lab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faClock, faDollarSign, faHeart, faMapMarkedAlt, faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 import pluralize from 'pluralize';
@@ -35,6 +35,7 @@ import { compose } from 'redux';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ChipContainer from '../components/ChipContainer';
+import CompactPagination from '../components/CompactPagination';
 import { CompactCard } from '../global';
 
 const styles = (theme) => ({
@@ -106,15 +107,6 @@ const styles = (theme) => ({
   search: {
     padding: theme.spacing(2, 0, 2, 2),
     fontSize: theme.spacing(1.5)
-  },
-  pagination: {
-    padding: theme.spacing(2, 0, 4, 0),
-    display: 'flex',
-    justifyContent: 'center',
-    [theme.breakpoints.down('sm')]: {
-      borderTopColor: theme.palette.divider,
-      borderTopStyle: 'solid'
-    }
   },
   description: {
     height: theme.spacing(7.5), // 3 lines
@@ -390,23 +382,11 @@ class FindWork extends PureComponent {
             return this.renderDesktopJobCard(job, i);
         }
       })}
-      <Box className={this.props.classes.pagination}>
-        <Pagination count={10} size={this.getControlSize()} />
+      <Box mb={4}>
+        <CompactPagination />
       </Box>
     </Box>
   )
-
-  getControlSize() {
-    switch (this.props.width) {
-      case 'sm':
-      case 'xs':
-        return 'small';
-      case 'md':
-        return 'medium';
-      default:
-        return 'large';
-    }
-  }
 
   renderDesktopJobCard = (job, i) => (
     <Box key={i} mb={1}>

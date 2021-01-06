@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import {
   Box,
   Button,
+  CardContent,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Divider,
   Grid,
   IconButton,
   List,
@@ -17,7 +17,6 @@ import {
   withWidth
 } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
-import { Pagination } from '@material-ui/lab';
 import { cloneDeep } from 'lodash';
 import moment from 'moment';
 import faker from 'faker';
@@ -25,6 +24,8 @@ import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CompactPagination from '../components/CompactPagination';
+import { CompactCard } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -36,14 +37,8 @@ const styles = (theme) => ({
       padding: theme.spacing(1)
     }
   },
-  pagination: {
-    padding: theme.spacing(2, 0, 4, 0),
-    display: 'flex',
-    justifyContent: 'center',
-    [theme.breakpoints.down('sm')]: {
-      borderTopColor: theme.palette.divider,
-      borderTopStyle: 'solid'
-    }
+  list: {
+    backgroundColor: theme.palette.background.paper
   }
 });
 
@@ -65,18 +60,6 @@ class Notifications extends PureComponent {
     this.setState({ records });
   }
 
-  getControlSize() {
-    switch (this.props.width) {
-      case 'sm':
-      case 'xs':
-        return 'small';
-      case 'md':
-        return 'medium';
-      default:
-        return 'large';
-    }
-  }
-
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
@@ -87,26 +70,25 @@ class Notifications extends PureComponent {
             <Box mb={1}>
               <Typography variant="h5">Notifications</Typography>
             </Box>
-            <Box>
-              <Divider />
-              <List disablePadding>
-                {this.state.records.map(({ title, subtitle, time }, index) => (
-                  <ListItem key={index} disableGutters divider>
-                    <Box flex={1}>
-                      {!!title && <Typography variant="body1">{title}</Typography>}
-                      {!!subtitle && <Typography variant="body2" color="textSecondary">{subtitle}</Typography>}
-                      {!!time && <Typography variant="body2" color="textSecondary">{moment(time).fromNow()}</Typography>}
-                    </Box>
-                    <IconButton onClick={() => this.setState({ activeIndex: index })}>
-                      <Close />
-                    </IconButton>
-                  </ListItem>
-                ))}
-              </List>
-              <Box className={this.props.classes.pagination}>
-                <Pagination count={10} size={this.getControlSize()} />
-              </Box>
-            </Box>
+            <CompactCard>
+              <CardContent>
+                <List disablePadding>
+                  {this.state.records.map(({ title, subtitle, time }, index) => (
+                    <ListItem key={index} disableGutters divider>
+                      <Box flex={1}>
+                        {!!title && <Typography variant="body1">{title}</Typography>}
+                        {!!subtitle && <Typography variant="body2" color="textSecondary">{subtitle}</Typography>}
+                        {!!time && <Typography variant="body2" color="textSecondary">{moment(time).fromNow()}</Typography>}
+                      </Box>
+                      <IconButton onClick={() => this.setState({ activeIndex: index })}>
+                        <Close />
+                      </IconButton>
+                    </ListItem>
+                  ))}
+                </List>
+                <CompactPagination />
+              </CardContent>
+            </CompactCard>
           </Grid>
           <Grid item lg={2} />
         </Grid>

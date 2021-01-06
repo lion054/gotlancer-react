@@ -33,7 +33,7 @@ import {
   TurnedIn,
   WatchLater
 } from '@material-ui/icons';
-import { Pagination, Rating } from '@material-ui/lab';
+import { Rating } from '@material-ui/lab';
 import pluralize from 'pluralize';
 import moment from 'moment';
 import faker from 'faker';
@@ -52,6 +52,7 @@ import AddEducation from './AddEducation';
 import AddEmployment from './AddEmployment';
 import AddCertification from './AddCertification';
 import ChangeTitle from './ChangeTitle';
+import CompactPagination from '../../components/CompactPagination';
 import { CompactCard, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
@@ -203,15 +204,6 @@ const styles = (theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  pagination: {
-    paddingTop: theme.spacing(2),
-    display: 'flex',
-    justifyContent: 'center',
-    [theme.breakpoints.down('sm')]: {
-      borderTopColor: theme.palette.divider,
-      borderTopStyle: 'solid'
-    }
   }
 })
 
@@ -638,18 +630,6 @@ class Profile extends PureComponent {
     </Box>
   )
 
-  getControlSize() {
-    switch (this.props.width) {
-      case 'sm':
-      case 'xs':
-        return 'small';
-      case 'md':
-        return 'medium';
-      default:
-        return 'large';
-    }
-  }
-
   renderPortfolio = () => (
     <Box className={this.props.classes.innerPadding}>
       <CompactCard>
@@ -682,9 +662,7 @@ class Profile extends PureComponent {
               ))}
             </Grid>
           </Box>
-          <Box className={this.props.classes.pagination}>
-            <Pagination count={10} size={this.getControlSize()} />
-          </Box>
+          <CompactPagination />
         </CardContent>
       </CompactCard>
     </Box>
@@ -788,9 +766,7 @@ class Profile extends PureComponent {
               </ListItem>
             ))}
           </List>
-          <Box className={this.props.classes.pagination}>
-            <Pagination count={10} size={this.getControlSize()} />
-          </Box>
+          <CompactPagination />
         </CardContent>
       </CompactCard>
     </Box>
