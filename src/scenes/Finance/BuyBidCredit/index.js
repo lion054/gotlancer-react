@@ -27,15 +27,12 @@ import { formatCurrency } from '../../../global';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.default
   },
   card: {
     borderRadius: theme.spacing(1.5),
     borderColor: theme.palette.divider,
     borderStyle: 'solid'
-  },
-  background: {
-    backgroundColor: theme.palette.background.default
   },
   outerMargin: {
     margin: theme.spacing(-2),
@@ -137,7 +134,7 @@ class BuyBidCredit extends PureComponent {
                         }}
                       />
                       <Divider />
-                      <CardContent className={this.props.classes.background}>
+                      <CardContent>
                         <Typography variant="body2">Select a bid credit bundle</Typography>
                         <Typography variant="body2">Buy bid credit to apply more project</Typography>
                         <List disablePadding>
@@ -204,7 +201,7 @@ class BuyBidCredit extends PureComponent {
                         }}
                       />
                       <Divider />
-                      <CardContent className={this.props.classes.background}>
+                      <CardContent>
                         <Box display="flex" mb={1} alignItems="center">
                           <Box flex={1}>
                             <Typography variant="body2">10 bid credit for</Typography>
@@ -289,7 +286,7 @@ class BuyBidCredit extends PureComponent {
           variant: 'subtitle1'
         }}
       />
-      <CardContent className={this.props.classes.background}>
+      <CardContent>
         <Box className={this.props.classes.outerMargin}>
           <Grid container>
             {this.state.faqList.map((faq, index) => (

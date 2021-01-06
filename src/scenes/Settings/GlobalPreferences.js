@@ -25,7 +25,7 @@ import LoadingButton from '../../components/LoadingButton';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.default
   },
   expandIcon: { // Avoid rotation of collapse icon
     '&$expanded': {

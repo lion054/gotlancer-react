@@ -28,7 +28,7 @@ import Footer from '../components/Footer';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.default
   },
   innerPadding: {
     padding: theme.spacing(2),

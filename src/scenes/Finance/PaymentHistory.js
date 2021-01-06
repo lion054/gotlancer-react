@@ -36,9 +36,6 @@ import { formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper
-  },
-  background: {
     backgroundColor: theme.palette.background.default
   },
   outerMargin: {
@@ -145,7 +142,7 @@ class PaymentHistory extends PureComponent {
             </Box>
             <Divider />
             <List disablePadding>
-              <ListItem disableGutters divider className={this.props.classes.background}>
+              <ListItem disableGutters divider>
                 <ListItemIcon className={this.props.classes.icon} onClick={this.handleHeadCheck}>
                   <Box p={1.125}>
                     {this.isAllChecked() ? (

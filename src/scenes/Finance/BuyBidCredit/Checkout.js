@@ -26,15 +26,12 @@ import Footer from '../../../components/Footer';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.default
   },
   card: {
     borderRadius: theme.spacing(1.5),
     borderColor: theme.palette.divider,
     borderStyle: 'solid'
-  },
-  background: {
-    backgroundColor: theme.palette.background.default
   },
   outerMargin: {
     margin: theme.spacing(-2),
@@ -89,7 +86,6 @@ class Checkout extends PureComponent {
                   <Box className={this.props.classes.innerPadding}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardHeader
-                        className={this.props.classes.background}
                         title="Order Summary"
                         titleTypographyProps={{
                           variant: 'subtitle1'
@@ -164,7 +160,6 @@ class Checkout extends PureComponent {
                   <Box className={this.props.classes.innerPadding}>
                     <Card elevation={0} className={this.props.classes.card}>
                       <CardHeader
-                        className={this.props.classes.background}
                         title="Add fund to your account"
                         titleTypographyProps={{
                           variant: 'subtitle1'
@@ -294,7 +289,7 @@ class Checkout extends PureComponent {
           variant: 'subtitle1'
         }}
       />
-      <CardContent className={this.props.classes.background}>
+      <CardContent>
         <Box className={this.props.classes.outerMargin}>
           <Grid container>
             {this.state.faqList.map((faq, index) => (

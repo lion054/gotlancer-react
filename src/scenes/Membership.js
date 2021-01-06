@@ -25,7 +25,7 @@ import Footer from '../components/Footer';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.default
   },
   background: {
     backgroundColor: theme.palette.background.default

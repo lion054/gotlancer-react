@@ -34,9 +34,6 @@ import { formatCurrency } from '../global';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper
-  },
-  background: {
     backgroundColor: theme.palette.background.default
   },
   outerMargin: {

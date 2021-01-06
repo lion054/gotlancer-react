@@ -39,7 +39,7 @@ import ChipContainer from '../components/ChipContainer';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.default
   },
   container: {
     [theme.breakpoints.up('md')]: {

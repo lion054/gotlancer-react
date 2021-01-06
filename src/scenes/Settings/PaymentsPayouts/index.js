@@ -23,7 +23,7 @@ import AddVat from './AddVat';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.default
   },
   card: {
     borderRadius: theme.spacing(1.5),

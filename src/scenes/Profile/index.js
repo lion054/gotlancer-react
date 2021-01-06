@@ -44,6 +44,7 @@ import 'material-ui-phone-number/src/styles.less';
 import 'material-ui-phone-number/src/flags.png';
 
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import ChangeAvatar from './ChangeAvatar';
 import ChangeHourlyRate from './ChangeHourlyRate';
 import ChangeSummary from './ChangeSummary';
@@ -56,9 +57,6 @@ import { formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper
-  },
-  background: {
     backgroundColor: theme.palette.background.default
   },
   container: {
@@ -297,6 +295,7 @@ class Profile extends PureComponent {
           <Grid item lg={2} />
         </Grid>
       </Box>
+      <Footer />
       <ChangeAvatar
         open={this.state.avatarOpened}
         onClose={() => this.setState({ avatarOpened: false })}
@@ -629,7 +628,6 @@ class Profile extends PureComponent {
     <Box className={this.props.classes.innerPadding}>
       <Card elevation={0} className={this.props.classes.card}>
         <CardHeader
-          className={this.props.classes.background}
           title={(
             <Box display="flex" alignItems="center">
               <Typography variant="subtitle1">Summary</Typography>
@@ -663,12 +661,12 @@ class Profile extends PureComponent {
     <Box className={this.props.classes.innerPadding}>
       <Card elevation={0} className={this.props.classes.card}>
         <CardHeader
-          className={this.props.classes.background}
-          title={(
-            <Box display="flex" alignItems="center">
-              <Box flex={1}>
-                <Typography variant="subtitle1">Portfolio</Typography>
-              </Box>
+          title="Portfolio"
+          titleTypographyProps={{
+            variant: 'subtitle1'
+          }}
+          action={(
+            <Box mt={1}>
               <Button variant="contained">Add New</Button>
             </Box>
           )}
@@ -703,7 +701,6 @@ class Profile extends PureComponent {
     <Box className={this.props.classes.innerPadding}>
       <Card elevation={0} className={this.props.classes.card}>
         <CardHeader
-          className={this.props.classes.background}
           title="Reviews"
           titleTypographyProps={{
             variant: 'subtitle1'
@@ -810,7 +807,6 @@ class Profile extends PureComponent {
     <Box className={this.props.classes.innerPadding}>
       <Card elevation={0} className={this.props.classes.card}>
         <CardHeader
-          className={this.props.classes.background}
           title={(
             <Box display="flex" alignItems="center">
               <Box flex={1}>
@@ -834,7 +830,6 @@ class Profile extends PureComponent {
     <Box className={this.props.classes.innerPadding}>
       <Card elevation={0} className={this.props.classes.card}>
         <CardHeader
-          className={this.props.classes.background}
           title={(
             <Box display="flex" alignItems="center">
               <Box flex={1}>
@@ -858,7 +853,6 @@ class Profile extends PureComponent {
     <Box className={this.props.classes.innerPadding}>
       <Card elevation={0} className={this.props.classes.card}>
         <CardHeader
-          className={this.props.classes.background}
           title={(
             <Box display="flex" alignItems="center">
               <Box flex={1}>

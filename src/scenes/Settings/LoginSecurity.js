@@ -31,7 +31,7 @@ import ResendTimer from '../../components/otp/ResendTimer';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.default
   },
   expandIcon: { // Avoid rotation of collapse icon
     '&$expanded': {
