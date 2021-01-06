@@ -3,7 +3,6 @@ import {
   Box,
   Divider,
   Grid,
-  Tab,
   Tabs,
   Typography,
   withStyles,

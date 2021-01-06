@@ -2,7 +2,6 @@ import React, { Fragment, PureComponent } from 'react';
 import {
   Box,
   Button,
-  Card,
   CardActions,
   CardContent,
   CardHeader,
@@ -22,7 +21,7 @@ import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { formatCurrency } from '../global';
+import { CompactCard, formatCurrency } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -44,12 +43,6 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
-  },
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
-    padding: 'unset'
   },
   subtotal: {
     padding: theme.spacing(3)
@@ -155,12 +148,12 @@ class BuyerHome extends PureComponent {
   )
 
   renderSummaryCard = (title, subtitle) => (
-    <Card elevation={0} className={this.props.classes.card}>
+    <CompactCard>
       <CardContent className={this.props.classes.subtotal}>
         <Typography variant="body2" noWrap>{title}</Typography>
         <Typography variant="subtitle1" color="primary">{subtitle}</Typography>
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 
   renderRecentProjects = () => (
@@ -238,7 +231,7 @@ class BuyerHome extends PureComponent {
         </Grid>
       </Grid>
       <Box mt={2}>
-        <Card elevation={0} className={this.props.classes.card}>
+        <CompactCard>
           <CardHeader
             title="COVID-19"
             titleTypographyProps={{
@@ -249,10 +242,10 @@ class BuyerHome extends PureComponent {
           <CardContent>
             <Typography variant="body2">See how other businesses are connecting with experts to adjust in these uncertain times. Choose a job template to quickly fill projects you need now.</Typography>
           </CardContent>
-        </Card>
+        </CompactCard>
       </Box>
       <Box mt={2}>
-        <Card elevation={0} className={this.props.classes.card}>
+        <CompactCard>
           <CardHeader
             title="Recent Completed"
             titleTypographyProps={{
@@ -285,7 +278,7 @@ class BuyerHome extends PureComponent {
           <CardActions>
             <Button variant="outlined" fullWidth>View all projects</Button>
           </CardActions>
-        </Card>
+        </CompactCard>
       </Box>
     </Box>
   )

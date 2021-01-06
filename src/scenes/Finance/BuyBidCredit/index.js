@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import {
   Box,
   Button,
-  Card,
   CardContent,
   CardHeader,
   Checkbox,
@@ -23,16 +22,11 @@ import { compose } from 'redux';
 
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
-import { formatCurrency } from '../../../global';
+import { CompactCard, formatCurrency } from '../../../global';
 
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.default
-  },
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid'
   },
   outerMargin: {
     margin: theme.spacing(-2),
@@ -126,7 +120,7 @@ class BuyBidCredit extends PureComponent {
               <Grid container>
                 <Grid item md={7} sm={8} xs={12}>
                   <Box className={this.props.classes.innerPadding}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard>
                       <CardHeader
                         title="Buy bid credit"
                         titleTypographyProps={{
@@ -187,13 +181,13 @@ class BuyBidCredit extends PureComponent {
                           ))}
                         </List>
                       </CardContent>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
                 <Grid item md={1} />
                 <Grid item sm={4} xs={12}>
                   <Box className={this.props.classes.innerPadding}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard>
                       <CardHeader
                         title="Billing"
                         titleTypographyProps={{
@@ -259,7 +253,7 @@ class BuyBidCredit extends PureComponent {
                           <Typography variant="body2">This page will redirect to checkout page. You could pay with your selected payment method.</Typography>
                         </Box>
                       </CardContent>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
                 <Grid item xs={12}>
@@ -279,7 +273,7 @@ class BuyBidCredit extends PureComponent {
   )
 
   renderFaqList = () => (
-    <Card elevation={0} className={this.props.classes.card}>
+    <CompactCard>
       <CardHeader
         title="Frequently asked questions"
         titleTypographyProps={{
@@ -302,7 +296,7 @@ class BuyBidCredit extends PureComponent {
           </Grid>
         </Box>
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 }
 

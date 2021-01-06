@@ -6,7 +6,6 @@ import {
   Box,
   Breadcrumbs,
   Button,
-  Card,
   CardContent,
   Grid,
   IconButton,
@@ -28,6 +27,7 @@ import Footer from '../../components/Footer';
 import LoadingButton from '../../components/LoadingButton';
 import OtpInput from '../../components/otp';
 import ResendTimer from '../../components/otp/ResendTimer';
+import { CompactCard } from '../../global';
 
 const styles = (theme) => ({
   root: {
@@ -39,11 +39,6 @@ const styles = (theme) => ({
     }
   },
   expanded: {}, // Avoid rotation of collapse icon
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid'
-  },
   cardIcon: {
     width: theme.spacing(8),
     height: theme.spacing(7)
@@ -259,14 +254,14 @@ class LoginSecurity extends PureComponent {
                 <Grid item md={1} />
                 <Grid item sm={4} xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard>
                       <CardContent>
                         <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/login-info.svg')} />
                         <Typography variant="subtitle2">Let's make your account more secure</Typography>
                         <Typography variant="body2">Your account security: Medium</Typography>
                         <Typography variant="body2">We’re always working on ways to increase safety in our community. That’s why we look at every account to make sure it’s as secure as possible.</Typography>
                       </CardContent>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
               </Grid>

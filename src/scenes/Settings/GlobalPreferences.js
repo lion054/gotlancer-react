@@ -5,7 +5,6 @@ import {
   AccordionSummary,
   Box,
   Breadcrumbs,
-  Card,
   CardContent,
   Grid,
   Link,
@@ -22,6 +21,7 @@ import { compose } from 'redux';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import LoadingButton from '../../components/LoadingButton';
+import { CompactCard } from '../../global';
 
 const styles = (theme) => ({
   root: {
@@ -33,11 +33,6 @@ const styles = (theme) => ({
     }
   },
   expanded: {}, // Avoid rotation of collapse icon
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid'
-  },
   cardIcon: {
     width: theme.spacing(8),
     height: theme.spacing(7)
@@ -110,13 +105,13 @@ class GlobalPreferences extends PureComponent {
                 <Grid item md={3} />
                 <Grid item md={3} sm={4} xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard>
                       <CardContent>
                         <img alt="" className={this.props.classes.cardIcon} src={require('../../assets/images/settings/global-preferences.svg')} />
                         <Typography variant="subtitle2">Global preferences</Typography>
                         <Typography variant="body2">Changing your cur rency updates how you see prices. You can change how you get payments in your payments &amp; payouts preferences.</Typography>
                       </CardContent>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
               </Grid>

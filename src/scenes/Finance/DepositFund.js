@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import {
   Box,
   Button,
-  Card,
   CardContent,
   CardHeader,
   Divider,
@@ -24,18 +23,10 @@ import { compose } from 'redux';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { formatCurrency } from '../../global';
+import { CompactCard, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.default
-  },
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid'
-  },
-  background: {
     backgroundColor: theme.palette.background.default
   },
   outerMargin: {
@@ -95,9 +86,8 @@ class DepositFund extends PureComponent {
                 <Grid container>
                   <Grid item md={7} sm={8} xs={12}>
                     <Box className={this.props.classes.innerPadding}>
-                      <Card elevation={0} className={this.props.classes.card}>
+                      <CompactCard>
                         <CardHeader
-                          className={this.props.classes.background}
                           title="Add fund to your account"
                           titleTypographyProps={{
                             variant: 'subtitle1'
@@ -118,11 +108,10 @@ class DepositFund extends PureComponent {
                             />
                           </Box>
                         </CardContent>
-                      </Card>
+                      </CompactCard>
                       <Box mt={2}>
-                        <Card elevation={0} className={this.props.classes.card}>
+                        <CompactCard>
                           <CardHeader
-                            className={this.props.classes.background}
                             title="Add fund to your account"
                             titleTypographyProps={{
                               variant: 'subtitle1'
@@ -173,14 +162,14 @@ class DepositFund extends PureComponent {
                               </Box>
                             </RadioGroup>
                           </CardContent>
-                        </Card>
+                        </CompactCard>
                       </Box>
                     </Box>
                   </Grid>
                   <Grid item md={1} />
                   <Grid item sm={4} xs={12}>
                     <Box className={this.props.classes.innerPadding}>
-                      <Card elevation={0} className={this.props.classes.card}>
+                      <CompactCard>
                         <CardHeader
                           title="Order Summary"
                           titleTypographyProps={{
@@ -188,7 +177,7 @@ class DepositFund extends PureComponent {
                           }}
                         />
                         <Divider />
-                        <CardContent className={this.props.classes.background}>
+                        <CardContent>
                           <Box display="flex" mb={1} alignItems="center">
                             <Box flex={1}>
                               <Typography variant="body2">Deposit amount</Typography>
@@ -231,7 +220,7 @@ class DepositFund extends PureComponent {
                             <Typography variant="body2">This page will redirect to checkout page. You could pay with your selected payment method.</Typography>
                           </Box>
                         </CardContent>
-                      </Card>
+                      </CompactCard>
                     </Box>
                   </Grid>
                   <Grid item xs={12}>
@@ -251,14 +240,14 @@ class DepositFund extends PureComponent {
   )
 
   renderFaqList = () => (
-    <Card elevation={0} className={this.props.classes.card}>
+    <CompactCard>
       <CardHeader
         title="Frequently asked questions"
         titleTypographyProps={{
           variant: 'subtitle1'
         }}
       />
-      <CardContent className={this.props.classes.background}>
+      <CardContent>
         <Box className={this.props.classes.outerMargin}>
           <Grid container>
             {this.state.faqList.map((faq, index) => (
@@ -274,7 +263,7 @@ class DepositFund extends PureComponent {
           </Grid>
         </Box>
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 }
 

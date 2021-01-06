@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
   Box,
-  Card,
   CardContent,
   Divider,
   Grid,
@@ -22,7 +21,7 @@ import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { formatCurrency } from '../global';
+import { CompactCard, formatCurrency } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -44,12 +43,6 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
-  },
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
-    padding: 'unset'
   },
   subtotal: {
     padding: theme.spacing(3)
@@ -120,12 +113,12 @@ class Projects extends PureComponent {
   )
 
   renderSummaryCard = (title, subtitle) => (
-    <Card elevation={0} className={this.props.classes.card}>
+    <CompactCard>
       <CardContent className={this.props.classes.subtotal}>
         <Typography variant="body2" noWrap>{title}</Typography>
         <Typography variant="subtitle1" color="primary">{subtitle}</Typography>
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 
   handleTabChange = (event, newValue) => {

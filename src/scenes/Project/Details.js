@@ -3,7 +3,6 @@ import {
   Box,
   Breadcrumbs,
   Button,
-  Card,
   CardContent,
   CardHeader,
   Checkbox,
@@ -38,7 +37,7 @@ import { compose } from 'redux';
 
 import AddFile from './AddFile';
 import ChipContainer from '../../components/ChipContainer';
-import { formatCurrency } from '../../global';
+import { CompactCard, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   outerMargin: {
@@ -52,12 +51,6 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
-  },
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
-    padding: 'unset'
   }
 });
 
@@ -194,7 +187,7 @@ class Details extends PureComponent {
       <Grid container>
         <Grid item md={8} xs={12}>
           <Box className={this.props.classes.innerPadding}>
-            <Card elevation={0} className={this.props.classes.card}>
+            <CompactCard>
               <CardHeader
                 title="Project Details"
                 titleTypographyProps={{
@@ -216,10 +209,10 @@ class Details extends PureComponent {
                   <RedButton variant="text">Report as spam</RedButton>
                 </Box>
               </CardContent>
-            </Card>
+            </CompactCard>
           </Box>
           <Box className={this.props.classes.innerPadding}>
-            <Card elevation={0} className={this.props.classes.card}>
+            <CompactCard>
               <CardHeader
                 title="Attachments"
                 titleTypographyProps={{
@@ -254,10 +247,10 @@ class Details extends PureComponent {
                   ))}
                 </List>
               </CardContent>
-            </Card>
+            </CompactCard>
           </Box>
           <Box className={this.props.classes.innerPadding}>
-            <Card elevation={0} className={this.props.classes.card}>
+            <CompactCard>
               <CardHeader
                 title="Category and Skills"
                 titleTypographyProps={{
@@ -276,7 +269,7 @@ class Details extends PureComponent {
                 </Box>
                 <ChipContainer chips={this.state.skills} />
               </CardContent>
-            </Card>
+            </CompactCard>
           </Box>
           <Box mt={3}>
             <Typography variant="subtitle2">Select your listing</Typography>
@@ -297,7 +290,7 @@ class Details extends PureComponent {
         </Grid>
         <Grid item md={4} xs={12}>
           <Box className={this.props.classes.innerPadding}>
-            <Card elevation={0} className={this.props.classes.card}>
+            <CompactCard>
               <CardHeader
                 title="Project Status"
                 titleTypographyProps={{
@@ -330,7 +323,7 @@ class Details extends PureComponent {
                   ))}
                 </Timeline>
               </CardContent>
-            </Card>
+            </CompactCard>
           </Box>
         </Grid>
       </Grid>

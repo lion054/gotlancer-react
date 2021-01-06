@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import {
   Box,
   CardActionArea,
-  Card,
   CardContent,
   Grid,
   Link,
@@ -15,15 +14,13 @@ import { compose } from 'redux';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { CompactCard } from '../../global';
 
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.default
   },
   card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
     height: theme.spacing(21)
   },
   cardAction: {
@@ -53,7 +50,7 @@ class Settings extends PureComponent {
               <Grid container>
                 <Grid item md={4} sm={6} xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard className={this.props.classes.card}>
                       <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/personal_info')}>
                         <CardContent>
                           <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/personal-info.svg')} />
@@ -64,12 +61,12 @@ class Settings extends PureComponent {
                           <Typography variant="body2">Provide personal details and how we can reach you</Typography>
                         </CardContent>
                       </CardActionArea>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard className={this.props.classes.card}>
                       <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/login_security')}>
                         <CardContent>
                           <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/login-info.svg')} />
@@ -80,12 +77,12 @@ class Settings extends PureComponent {
                           <Typography variant="body2">Update your email, password, mobile and secure your account</Typography>
                         </CardContent>
                       </CardActionArea>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard className={this.props.classes.card}>
                       <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/payments_payouts')}>
                         <CardContent>
                           <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/payments-and-payouts.svg')} />
@@ -96,12 +93,12 @@ class Settings extends PureComponent {
                           <Typography variant="body2">Review payments, payouts and taxes</Typography>
                         </CardContent>
                       </CardActionArea>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard className={this.props.classes.card}>
                       <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/verify_identity')}>
                         <CardContent>
                           <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/verify-identity.svg')} />
@@ -112,12 +109,12 @@ class Settings extends PureComponent {
                           <Typography variant="body2">Verify your identity for get paid from gotlancer and secured your account with Gotlancer.</Typography>
                         </CardContent>
                       </CardActionArea>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard className={this.props.classes.card}>
                       <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/membership')}>
                         <CardContent>
                           <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/membership.svg')} />
@@ -128,12 +125,12 @@ class Settings extends PureComponent {
                           <Typography variant="body2">Set your default language and timezone</Typography>
                         </CardContent>
                       </CardActionArea>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard className={this.props.classes.card}>
                       <CardActionArea className={this.props.classes.cardAction}>
                         <CardContent>
                           <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/business-account.svg')} />
@@ -144,12 +141,12 @@ class Settings extends PureComponent {
                           <Typography variant="body2">Manage your team, group chat, task share, large project management</Typography>
                         </CardContent>
                       </CardActionArea>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard className={this.props.classes.card}>
                       <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/notifications')}>
                         <CardContent>
                           <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/notifications.svg')} />
@@ -160,12 +157,12 @@ class Settings extends PureComponent {
                           <Typography variant="body2">Choose notification preferences and how you want to be contacted</Typography>
                         </CardContent>
                       </CardActionArea>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard className={this.props.classes.card}>
                       <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/global_preferences')}>
                         <CardContent>
                           <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/global-preferences.svg')} />
@@ -176,12 +173,12 @@ class Settings extends PureComponent {
                           <Typography variant="body2">Set your default language and timezone</Typography>
                         </CardContent>
                       </CardActionArea>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
                 <Grid item md={4} sm={6} xs={12}>
                   <Box p={2}>
-                    <Card elevation={0} className={this.props.classes.card}>
+                    <CompactCard className={this.props.classes.card}>
                       <CardActionArea className={this.props.classes.cardAction} onClick={() => this.props.history.push('/settings/invite_friends')}>
                         <CardContent>
                           <img alt="" className={this.props.classes.icon} src={require('../../assets/images/settings/invite-friends.svg')} />
@@ -192,7 +189,7 @@ class Settings extends PureComponent {
                           <Typography variant="body2">When they join and spend at least $100, you will get $30 instantly</Typography>
                         </CardContent>
                       </CardActionArea>
-                    </Card>
+                    </CompactCard>
                   </Box>
                 </Grid>
               </Grid>

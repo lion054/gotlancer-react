@@ -1,4 +1,13 @@
-import { Button, Checkbox, Radio, Tab, colors, fade, withStyles } from '@material-ui/core';
+import {
+  Button,
+  Card,
+  Checkbox,
+  Radio,
+  Tab,
+  colors,
+  fade,
+  withStyles
+} from '@material-ui/core';
 
 export const GreenButton = withStyles((theme) => ({
   text: {
@@ -63,6 +72,17 @@ export const CompactTab = withStyles((theme) => ({
     }
   }
 }))(Tab);
+
+export const CompactCard = withStyles((theme) => ({
+  root: {
+    borderRadius: theme.spacing(1.5),
+    border: `solid 1px ${theme.palette.divider}`,
+    padding: 'unset'
+  }
+}))(Card);
+CompactCard.defaultProps = {
+  elevation: 0
+};
 
 export const formatCurrency = (value) => {
   return new Intl.NumberFormat('en-US', {

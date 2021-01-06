@@ -2,7 +2,6 @@ import React, { Fragment, PureComponent } from 'react';
 import {
   Box,
   Button,
-  Card,
   CardContent,
   CardHeader,
   Checkbox,
@@ -25,18 +24,10 @@ import { compose } from 'redux';
 
 import Header from '../../components/Header';
 import CommentRoom from '../../components/CommentRoom';
-import { formatCurrency } from '../../global';
+import { CompactCard, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.default
-  },
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid'
-  },
-  background: {
     backgroundColor: theme.palette.background.default
   },
   outerMargin: {
@@ -219,7 +210,7 @@ class Disputation extends PureComponent {
   )
 
   renderNoteCard = () => (
-    <Card elevation={0} className={this.props.classes.card}>
+    <CompactCard>
       <CardHeader
         title="Dispute Note"
         titleTypographyProps={{
@@ -230,11 +221,11 @@ class Disputation extends PureComponent {
       <CardContent>
         <Typography variant="body2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</Typography>
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 
   renderDetailsCard = () => (
-    <Card elevation={0} className={this.props.classes.card}>
+    <CompactCard>
       <CardHeader
         title="Dispute Details"
         titleTypographyProps={{
@@ -257,11 +248,11 @@ class Disputation extends PureComponent {
           <Typography variant="body2">Reply before: <span style={{ color: this.props.theme.palette.success.main }}>21 hours 26min  33 sec</span></Typography>
         )}
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 
   renderCreditsCard = () => (
-    <Card elevation={0} className={this.props.classes.card}>
+    <CompactCard>
       <CardHeader
         title="Dispute Credits"
         titleTypographyProps={{
@@ -327,7 +318,7 @@ class Disputation extends PureComponent {
           </Box>
         )}
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 
   renderCreationPanel = () => (

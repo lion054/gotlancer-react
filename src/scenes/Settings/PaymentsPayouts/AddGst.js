@@ -22,11 +22,6 @@ const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.default
   },
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid'
-  },
   field: {
     margin: theme.spacing(3, 0)
   },

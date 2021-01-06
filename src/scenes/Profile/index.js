@@ -3,7 +3,6 @@ import {
   Avatar,
   Box,
   Button,
-  Card,
   CardContent,
   CardHeader,
   Divider,
@@ -53,7 +52,7 @@ import AddEducation from './AddEducation';
 import AddEmployment from './AddEmployment';
 import AddCertification from './AddCertification';
 import ChangeTitle from './ChangeTitle';
-import { formatCurrency } from '../../global';
+import { CompactCard, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   root: {
@@ -75,12 +74,6 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
-  },
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
-    padding: 'unset'
   },
   avatar: {
     [theme.breakpoints.only('xl')]: {
@@ -333,7 +326,7 @@ class Profile extends PureComponent {
 
   renderSideBar = () => (
     <Box className={this.props.classes.innerPadding}>
-      <Card elevation={0} className={this.props.classes.card}>
+      <CompactCard>
         <CardContent>
           {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && (
             <Box textAlign="center" md={4}>
@@ -526,13 +519,13 @@ class Profile extends PureComponent {
             </Box>
           </Box>
         </CardContent>
-      </Card>
+      </CompactCard>
     </Box>
   )
 
   renderAbout = () => (
     <Box className={this.props.classes.innerPadding}>
-      <Card elevation={0} className={this.props.classes.card}>
+      <CompactCard>
         <CardContent>
           <Box className={this.props.classes.outerMargin}>
             <Grid container>
@@ -620,13 +613,13 @@ class Profile extends PureComponent {
             </Fragment>
           )}
         </CardContent>
-      </Card>
+      </CompactCard>
     </Box>
   )
 
   renderSummary = () => (
     <Box className={this.props.classes.innerPadding}>
-      <Card elevation={0} className={this.props.classes.card}>
+      <CompactCard>
         <CardHeader
           title={(
             <Box display="flex" alignItems="center">
@@ -641,7 +634,7 @@ class Profile extends PureComponent {
         <CardContent>
           <Typography variant="body2">{this.state.summary}</Typography>
         </CardContent>
-      </Card>
+      </CompactCard>
     </Box>
   )
 
@@ -659,7 +652,7 @@ class Profile extends PureComponent {
 
   renderPortfolio = () => (
     <Box className={this.props.classes.innerPadding}>
-      <Card elevation={0} className={this.props.classes.card}>
+      <CompactCard>
         <CardHeader
           title="Portfolio"
           titleTypographyProps={{
@@ -693,13 +686,13 @@ class Profile extends PureComponent {
             <Pagination count={10} size={this.getControlSize()} />
           </Box>
         </CardContent>
-      </Card>
+      </CompactCard>
     </Box>
   )
 
   renderReviews = () => (
     <Box className={this.props.classes.innerPadding}>
-      <Card elevation={0} className={this.props.classes.card}>
+      <CompactCard>
         <CardHeader
           title="Reviews"
           titleTypographyProps={{
@@ -799,13 +792,13 @@ class Profile extends PureComponent {
             <Pagination count={10} size={this.getControlSize()} />
           </Box>
         </CardContent>
-      </Card>
+      </CompactCard>
     </Box>
   )
 
   renderExperiences = () => (
     <Box className={this.props.classes.innerPadding}>
-      <Card elevation={0} className={this.props.classes.card}>
+      <CompactCard>
         <CardHeader
           title={(
             <Box display="flex" alignItems="center">
@@ -822,13 +815,13 @@ class Profile extends PureComponent {
             <Typography variant="body1">No work experience added</Typography>
           </Box>
         </CardContent>
-      </Card>
+      </CompactCard>
     </Box>
   )
 
   renderEducations = () => (
     <Box className={this.props.classes.innerPadding}>
-      <Card elevation={0} className={this.props.classes.card}>
+      <CompactCard>
         <CardHeader
           title={(
             <Box display="flex" alignItems="center">
@@ -845,13 +838,13 @@ class Profile extends PureComponent {
             <Typography variant="body1">No work experience added</Typography>
           </Box>
         </CardContent>
-      </Card>
+      </CompactCard>
     </Box>
   )
 
   renderCertifications = () => (
     <Box className={this.props.classes.innerPadding}>
-      <Card elevation={0} className={this.props.classes.card}>
+      <CompactCard>
         <CardHeader
           title={(
             <Box display="flex" alignItems="center">
@@ -868,7 +861,7 @@ class Profile extends PureComponent {
             <Typography variant="body1">No work experience added</Typography>
           </Box>
         </CardContent>
-      </Card>
+      </CompactCard>
     </Box>
   )
 

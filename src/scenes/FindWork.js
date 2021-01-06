@@ -3,7 +3,6 @@ import {
   Avatar,
   Box,
   Button,
-  Card,
   CardActions,
   CardContent,
   CardHeader,
@@ -36,6 +35,7 @@ import { compose } from 'redux';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ChipContainer from '../components/ChipContainer';
+import { CompactCard } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -63,12 +63,6 @@ const styles = (theme) => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
-  },
-  profileCard: {
-    borderRadius: theme.spacing(0.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
-    padding: 'unset'
   },
   tab: {
     minWidth: 'unset',
@@ -266,7 +260,7 @@ class FindWork extends PureComponent {
   )
 
   renderTabsCard = () => (
-    <Card elevation={0} className={this.props.classes.profileCard}>
+    <CompactCard>
       <CardContent style={{ padding: 0 }}>
         <Tabs
           value={this.state.activeTab}
@@ -309,11 +303,11 @@ class FindWork extends PureComponent {
       <CardActions className={this.props.classes.cardActions}>
         <Button fullWidth>View profile</Button>
       </CardActions>
-    </Card>
+    </CompactCard>
   )
 
   renderMembershipCard = () => (
-    <Card elevation={0} className={this.props.classes.profileCard}>
+    <CompactCard>
       <CardHeader
         title="Membership"
         titleTypographyProps={{
@@ -331,11 +325,11 @@ class FindWork extends PureComponent {
         </Box>
         <Button variant="outlined" fullWidth>Upgrade membership</Button>
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 
   renderBidCredit = () => (
-    <Card elevation={0} className={this.props.classes.profileCard}>
+    <CompactCard>
       <CardHeader
         title="Bid Credit"
         titleTypographyProps={{
@@ -350,7 +344,7 @@ class FindWork extends PureComponent {
         </Box>
         <Button variant="outlined" fullWidth>Buy Bid Credit</Button>
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 
   renderJobList = () => (
@@ -377,6 +371,7 @@ class FindWork extends PureComponent {
                 </InputAdornment>
               )}
               style={{
+                backgroundColor: this.props.theme.palette.background.paper,
                 paddingRight: this.props.theme.spacing(0.5)
               }}
             />
@@ -414,74 +409,67 @@ class FindWork extends PureComponent {
   }
 
   renderDesktopJobCard = (job, i) => (
-    <Card key={i} elevation={0} style={{
-      marginBottom: this.props.theme.spacing(1),
-      borderRadius: this.props.theme.spacing(1.5),
-      borderColor: this.props.theme.palette.divider,
-      borderStyle: 'solid',
-      padding: 'unset'
-    }}>
-      <CardContent>
-        <Box display="flex">
-          <Box flex={1}>
-            <Typography variant="subtitle1">{job.title}</Typography>
+    <Box key={i} mb={1}>
+      <CompactCard>
+        <CardContent>
+          <Box display="flex">
+            <Box flex={1}>
+              <Typography variant="subtitle1">{job.title}</Typography>
+            </Box>
+            <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
           </Box>
-          <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
-        </Box>
-        <Box mt={1} display="flex">
-          <Box flex={1}>
-            <ChipContainer chips={job.badges} />
+          <Box mt={1} display="flex">
+            <Box flex={1}>
+              <ChipContainer chips={job.badges} />
+            </Box>
+            <Box ml={5}>
+              <Typography variant="body2" color="textSecondary">{job.type}</Typography>
+            </Box>
           </Box>
-          <Box ml={5}>
-            <Typography variant="body2" color="textSecondary">{job.type}</Typography>
+          <Box mt={1.5}>
+            <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
           </Box>
-        </Box>
-        <Box mt={1.5}>
-          <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
-        </Box>
-        <Box mt={1} mb={2.5} display="flex">
-          <Box flex={1}>
-            <ChipContainer chips={job.skills} />
+          <Box mt={1} mb={2.5} display="flex">
+            <Box flex={1}>
+              <ChipContainer chips={job.skills} />
+            </Box>
+            <Box ml={5}>
+              <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
+            </Box>
           </Box>
-          <Box ml={5}>
-            <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
-          </Box>
-        </Box>
-        <Divider />
-        <Box mt={1.5} style={{ whiteSpace: 'break-spaces' }}>
-          {this.renderApplyBefore()}
-          {this.renderPaymentMethod(job.paymentMethod)}
-          {this.renderReview(job.reviewCount, job.reviewAverage)}
-          {this.renderLocation(job.location)}
-          <Box display="inline-block">
-            <Box display="flex" alignItems="center">
-              <IconButton
-                className={this.props.classes.savedIcon}
-                onClick={() => {
-                  const jobs = cloneDeep(this.state.jobs);
-                  jobs[i].saved = !jobs[i].saved;
-                  this.setState({ jobs });
-                }}
-              >
-                <FontAwesomeIcon icon={faHeart} style={{
-                  color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
-                }} />
-              </IconButton>
-              <Box ml={1}>
-                <Typography variant="body2" align="right">Saved</Typography>
+          <Divider />
+          <Box mt={1.5} style={{ whiteSpace: 'break-spaces' }}>
+            {this.renderApplyBefore()}
+            {this.renderPaymentMethod(job.paymentMethod)}
+            {this.renderReview(job.reviewCount, job.reviewAverage)}
+            {this.renderLocation(job.location)}
+            <Box display="inline-block">
+              <Box display="flex" alignItems="center">
+                <IconButton
+                  className={this.props.classes.savedIcon}
+                  onClick={() => {
+                    const jobs = cloneDeep(this.state.jobs);
+                    jobs[i].saved = !jobs[i].saved;
+                    this.setState({ jobs });
+                  }}
+                >
+                  <FontAwesomeIcon icon={faHeart} style={{
+                    color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
+                  }} />
+                </IconButton>
+                <Box ml={1}>
+                  <Typography variant="body2" align="right">Saved</Typography>
+                </Box>
               </Box>
             </Box>
           </Box>
-        </Box>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </CompactCard>
+    </Box>
   )
 
   renderMobileJobCard = (job, i) => (
-    <Card key={i} elevation={0} style={{
-      borderTopColor: this.props.theme.palette.divider,
-      borderTopStyle: 'solid'
-    }}>
+    <CompactCard key={i}>
       <CardContent>
         <Typography variant="subtitle1">{job.title}</Typography>
         <Box mt={1}>
@@ -529,7 +517,7 @@ class FindWork extends PureComponent {
           </Box>
         </Box>
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 
   renderApplyBefore = () => (

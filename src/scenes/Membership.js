@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import {
   Box,
   Button,
-  Card,
   CardContent,
   CardHeader,
   Divider,
@@ -22,12 +21,10 @@ import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { CompactCard } from '../global';
 
 const styles = (theme) => ({
   root: {
-    backgroundColor: theme.palette.background.default
-  },
-  background: {
     backgroundColor: theme.palette.background.default
   },
   outerMargin: {
@@ -41,12 +38,6 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
-  },
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
-    padding: 'unset'
   },
   membershipCard: {
     [theme.breakpoints.up('sm')]: {
@@ -193,7 +184,7 @@ class Membership extends PureComponent {
   )
 
   renderBasicCard = () => (
-    <Card elevation={0} className={clsx(this.props.classes.card, this.props.classes.membershipCard)}>
+    <CompactCard className={this.props.classes.membershipCard}>
       <CardHeader
         title="Basic"
         titleTypographyProps={{
@@ -220,7 +211,7 @@ class Membership extends PureComponent {
         )}
       />
       <Divider />
-      <CardContent className={this.props.classes.background}>
+      <CardContent>
         <Box display="flex" alignItems="center" mt={1} mb={1}>
           <Box className={this.props.classes.check}>
             <Check />
@@ -282,11 +273,11 @@ class Membership extends PureComponent {
           </Box>
         )}
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 
   renderProCard = () => (
-    <Card elevation={0} className={clsx(this.props.classes.card, this.props.classes.membershipCard)}>
+    <CompactCard className={this.props.classes.membershipCard}>
       <CardHeader
         title="Pro"
         titleTypographyProps={{
@@ -313,7 +304,7 @@ class Membership extends PureComponent {
         )}
       />
       <Divider />
-      <CardContent className={this.props.classes.background}>
+      <CardContent>
         <Box display="flex" alignItems="center" mt={1} mb={1}>
           <Box className={this.props.classes.check}>
             <Check />
@@ -370,11 +361,11 @@ class Membership extends PureComponent {
           )}
         </Box>
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 
   renderFaqList = () => (
-    <Card elevation={0} className={this.props.classes.card}>
+    <CompactCard>
       <CardHeader
         title="Frequently asked questions"
         titleTypographyProps={{
@@ -382,7 +373,7 @@ class Membership extends PureComponent {
         }}
       />
       <Divider />
-      <CardContent className={this.props.classes.background}>
+      <CardContent>
         <Box className={this.props.classes.outerMargin}>
           <Grid container>
             {this.state.faqList.map((faq, index) => (
@@ -398,7 +389,7 @@ class Membership extends PureComponent {
           </Grid>
         </Box>
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 }
 

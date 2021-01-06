@@ -1,7 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 import {
   Box,
-  Card,
   CardHeader,
   CardContent,
   Checkbox,
@@ -30,7 +29,7 @@ import { compose } from 'redux';
 import Header from '../components/Header';
 import FileUpload from '../components/FileUpload';
 import PlaceholderSelect from '../components/PlaceholderSelect';
-import { formatCurrency } from '../global';
+import { CompactCard, formatCurrency } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -47,12 +46,6 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
-  },
-  card: {
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
-    padding: 'unset'
   }
 })
 
@@ -354,7 +347,7 @@ class PostProject extends PureComponent {
   )
 
   renderFaqCard = () => (
-    <Card elevation={0} className={this.props.classes.card}>
+    <CompactCard>
       <CardHeader
         title="Recomanded articles"
         titleTypographyProps={{
@@ -374,7 +367,7 @@ class PostProject extends PureComponent {
           ))}
         </List>
       </CardContent>
-    </Card>
+    </CompactCard>
   )
 }
 
