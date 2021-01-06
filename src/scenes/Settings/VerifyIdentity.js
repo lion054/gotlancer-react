@@ -5,22 +5,26 @@ import {
   AccordionSummary,
   Box,
   Breadcrumbs,
-  Button,
   CardContent,
-  Divider,
   Grid,
-  IconButton,
   Link,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemSecondaryAction,
+  ListItemText,
   MenuItem,
   Typography,
   withStyles,
   withTheme
 } from '@material-ui/core';
-import { ChevronRight, CloudUpload, Delete } from '@material-ui/icons';
+import { AttachFile, ChevronRight } from '@material-ui/icons';
 import { compose } from 'redux';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import FileUpload from '../../components/FileUpload';
+import PlaceholderSelect from '../../components/PlaceholderSelect';
 import LoadingButton from '../../components/LoadingButton';
 import { CompactCard } from '../../global';
 
@@ -37,15 +41,19 @@ const styles = (theme) => ({
   cardIcon: {
     width: theme.spacing(8),
     height: theme.spacing(7)
-  },
-  fileUpload: {
-    color: theme.palette.success.main
   }
 })
 
 class VerifyIdentity extends PureComponent {
   state = {
     currentEntry: '',
+    uploadedFiles: [{
+      name: 'Front-side.png',
+      status: 'Rejected'
+    },{
+      name: 'Back-side.png',
+      status: 'Rejected'
+    }],
     loading: false
   }
 
@@ -73,40 +81,66 @@ class VerifyIdentity extends PureComponent {
                       id: 'Document',
                       title: 'Document Verification',
                       formattedValue: 'Not verified',
-                      details: (
+                      upperBody: (
                         <Box>
-                          <Box mb={2}>
-                            <Typography variant="body2">Verify your account and staty secured your account and get more facility from Gtoalancer</Typography>
+                          <Typography variant="body2">Verify your account and staty secured your account and get more facility from Gtoalancer</Typography>
+                          <Box mt={2} mb={1}>
+                            <Typography variant="subtitle2">Select ID type</Typography>
                           </Box>
-                          <Box mb={2}>
-                            <Button variant="outlined" startIcon={<CloudUpload />}>Upload File</Button>
+                          <PlaceholderSelect
+                            fullWidth
+                            margin="dense"
+                            variant="outlined"
+                            placeholder="Select one"
+                          >
+                            <MenuItem value="0">Passport</MenuItem>
+                            <MenuItem value="1">Driving License</MenuItem>
+                          </PlaceholderSelect>
+                          <Box mt={2} mb={1}>
+                            <Typography variant="subtitle2">Upload front and back side of your government ID proof</Typography>
                           </Box>
-                          <Divider />
-                          <Box mt={2}>
-                            <Typography variant="body2">1 file uploaded</Typography>
-                          </Box>
-                          <Box mt={2} display="flex">
-                            <MenuItem disableGutters className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
-                            <IconButton>
-                              <Delete />
-                            </IconButton>
-                          </Box>
-                          <Box mb={2} display="flex">
-                            <MenuItem disableGutters className={this.props.classes.fileUpload}>Your_uploaded_file_here</MenuItem>
-                            <IconButton>
-                              <Delete />
-                            </IconButton>
-                          </Box>
+                          <FileUpload />
                         </Box>
                       ),
-                      buttonTitle: 'Submit Now',
-                      buttonClicked: () => {}
+                      buttonTitle: 'Resubmit',
+                      buttonClicked: () => {},
+                      lowerBody: (
+                        <List disablePadding>
+                          <ListItem disableGutters divider>
+                            <ListItemText
+                              primary="Uploaded Files"
+                              primaryTypographyProps={{
+                                variant: 'subtitle2'
+                              }}
+                            />
+                            <ListItemSecondaryAction>
+                              <Typography variant="subtitle2">Status</Typography>
+                            </ListItemSecondaryAction>
+                          </ListItem>
+                          {this.state.uploadedFiles.map((file, index) => (
+                            <ListItem key={index} disableGutters divider>
+                              <ListItemIcon>
+                                <AttachFile />
+                              </ListItemIcon>
+                              <ListItemText
+                                primary={file.name}
+                                primaryTypographyProps={{
+                                  variant: 'body2'
+                                }}
+                              />
+                              <ListItemSecondaryAction>
+                                <Typography variant="body2" color="secondary">{file.status}</Typography>
+                              </ListItemSecondaryAction>
+                            </ListItem>
+                          ))}
+                        </List>
+                      )
                     })}
                     {this.renderEntry({
                       id: 'Video',
                       title: 'Video Verification',
                       formattedValue: 'Verify your account and staty secured your account and get more facility from Gtoalancer',
-                      details: (
+                      upperBody: (
                         <div></div>
                       ),
                       buttonTitle: 'Submit Now',
@@ -149,7 +183,7 @@ class VerifyIdentity extends PureComponent {
     );
   }
 
-  renderEntry = ({ id, title, formattedValue, details, buttonTitle, buttonClicked }) => (
+  renderEntry = ({ id, title, formattedValue, upperBody, buttonTitle, buttonClicked, lowerBody }) => (
     <Accordion expanded={this.state.currentEntry === id}>
       <AccordionSummary
         expandIcon={this.getExpandIcon(id)}
@@ -176,7 +210,7 @@ class VerifyIdentity extends PureComponent {
       </AccordionSummary>
       <AccordionDetails>
         <Box width="100%">
-          {details}
+          {upperBody}
           <Box mt={2}>
             <LoadingButton
               variant="contained"
@@ -186,6 +220,11 @@ class VerifyIdentity extends PureComponent {
               onClick={buttonClicked}
             />
           </Box>
+          {!!lowerBody && (
+            <Box mt={2}>
+              {lowerBody}
+            </Box>
+          )}
         </Box>
       </AccordionDetails>
     </Accordion>
