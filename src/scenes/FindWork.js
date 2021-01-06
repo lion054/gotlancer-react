@@ -109,16 +109,16 @@ const styles = (theme) => ({
     fontSize: theme.spacing(1.5)
   },
   description: {
-    height: theme.spacing(7.5), // 3 lines
+    height: theme.spacing(5), // 2 lines
     overflow: 'hidden'
   },
-  buyerIcon: {
+  actionIcon: {
     width: theme.spacing(4),
     height: theme.spacing(4),
     backgroundColor: theme.palette.divider,
     color: theme.palette.action.active
   },
-  savedIcon: {
+  saveIcon: {
     padding: theme.spacing(1),
     border: `solid 1px ${theme.palette.divider}`
   }
@@ -373,13 +373,13 @@ class FindWork extends PureComponent {
           <Typography variant="body2">{pluralize('job', 4500, true)} found</Typography>
         </Box>
       </Box>
-      {this.state.jobs.map((job, i) => {
+      {this.state.jobs.map((job, index) => {
         switch (this.props.width) {
           case 'sm':
           case 'xs':
-            return this.renderMobileJobCard(job, i);
+            return this.renderMobileJobCard(job, index);
           default:
-            return this.renderDesktopJobCard(job, i);
+            return this.renderDesktopJobCard(job, index);
         }
       })}
       <Box mb={4}>
@@ -388,8 +388,8 @@ class FindWork extends PureComponent {
     </Box>
   )
 
-  renderDesktopJobCard = (job, i) => (
-    <Box key={i} mb={1}>
+  renderDesktopJobCard = (job, index) => (
+    <Box key={index} mb={1}>
       <CompactCard>
         <CardContent>
           <Box display="flex">
@@ -418,7 +418,7 @@ class FindWork extends PureComponent {
             </Box>
           </Box>
           <Divider />
-          <Box mt={1.5} style={{ whiteSpace: 'break-spaces' }}>
+          <Box mt={1.5} style={{ whiteSpace: 'break-spaces', lineHeight: 3 }}>
             {this.renderApplyBefore()}
             {this.renderPaymentMethod(job.paymentMethod)}
             {this.renderReview(job.reviewCount, job.reviewAverage)}
@@ -426,10 +426,10 @@ class FindWork extends PureComponent {
             <Box display="inline-block">
               <Box display="flex" alignItems="center">
                 <IconButton
-                  className={this.props.classes.savedIcon}
+                  className={this.props.classes.saveIcon}
                   onClick={() => {
                     const jobs = cloneDeep(this.state.jobs);
-                    jobs[i].saved = !jobs[i].saved;
+                    jobs[index].saved = !jobs[index].saved;
                     this.setState({ jobs });
                   }}
                 >
@@ -448,8 +448,8 @@ class FindWork extends PureComponent {
     </Box>
   )
 
-  renderMobileJobCard = (job, i) => (
-    <CompactCard key={i}>
+  renderMobileJobCard = (job, index) => (
+    <CompactCard key={index}>
       <CardContent>
         <Typography variant="subtitle1">{job.title}</Typography>
         <Box mt={1}>
@@ -471,7 +471,7 @@ class FindWork extends PureComponent {
           <ChipContainer chips={job.skills} />
         </Box>
         <Divider />
-        <Box mt={1.5} style={{ whiteSpace: 'break-spaces' }}>
+        <Box mt={1.5} style={{ whiteSpace: 'break-spaces', lineHeight: 3 }}>
           {this.renderApplyBefore()}
           {this.renderPaymentMethod(job.paymentMethod)}
           {this.renderReview(job.reviewCount, job.reviewAverage)}
@@ -479,10 +479,10 @@ class FindWork extends PureComponent {
           <Box display="inline-block">
             <Box display="flex" alignItems="center">
               <IconButton
-                className={this.props.classes.savedIcon}
+                className={this.props.classes.saveIcon}
                 onClick={() => {
                   const jobs = cloneDeep(this.state.jobs);
-                  jobs[i].saved = !jobs[i].saved;
+                  jobs[index].saved = !jobs[index].saved;
                   this.setState({ jobs });
                 }}
               >
@@ -501,9 +501,9 @@ class FindWork extends PureComponent {
   )
 
   renderApplyBefore = () => (
-    <Box mr={2} mb={1} display="inline-block">
+    <Box mr={2} display="inline-block">
       <Box display="flex" alignItems="center">
-        <Avatar className={this.props.classes.buyerIcon}>
+        <Avatar className={this.props.classes.actionIcon}>
           <FontAwesomeIcon icon={faClock} />
         </Avatar>
         <Box ml={1}>
@@ -515,9 +515,9 @@ class FindWork extends PureComponent {
   )
 
   renderPaymentMethod = (value) => (
-    <Box mr={2} mb={1} display="inline-block">
+    <Box mr={2} display="inline-block">
       <Box display="flex" alignItems="center">
-        <Avatar className={this.props.classes.buyerIcon}>
+        <Avatar className={this.props.classes.actionIcon}>
           <FontAwesomeIcon icon={faDollarSign} />
         </Avatar>
         <Box ml={1}>
@@ -529,23 +529,25 @@ class FindWork extends PureComponent {
   )
 
   renderReview = (count, average) => (
-    <Box mr={2} mb={1} display="inline-block">
+    <Box mr={2} display="inline-block">
       <Box display="flex" alignItems="center">
-        <Avatar className={this.props.classes.buyerIcon}>
+        <Avatar className={this.props.classes.actionIcon}>
           <FontAwesomeIcon icon={faStar} />
         </Avatar>
         <Box ml={1}>
           <Typography variant="body2" noWrap>{pluralize('Review', count, true)}</Typography>
-          <Rating name="read-only" value={average} readOnly size="small" />
+          <Box style={{ lineHeight: 1 }}>
+            <Rating name="read-only" value={average} readOnly size="small" />
+          </Box>
         </Box>
       </Box>
     </Box>
   )
 
   renderLocation = (value) => (
-    <Box mr={2} mb={1} display="inline-block">
+    <Box mr={2} display="inline-block">
       <Box display="flex" alignItems="center">
-        <Avatar className={this.props.classes.buyerIcon}>
+        <Avatar className={this.props.classes.actionIcon}>
           <FontAwesomeIcon icon={faMapMarkedAlt} />
         </Avatar>
         <Box ml={1}>

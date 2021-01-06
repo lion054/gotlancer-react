@@ -32,6 +32,13 @@ export const lightTheme = createMuiTheme({
         padding: '8px 16px'
       }
     },
+    MuiCardContent: {
+      root: {
+        '&:last-child': {
+          paddingBottom: 16
+        }
+      }
+    },
     MuiInputLabel: {
       outlined: {
         '&$shrink': {
@@ -105,6 +112,13 @@ export const darkTheme = createMuiTheme({
     MuiCardHeader: {
       root: {
         padding: '8px 16px'
+      }
+    },
+    MuiCardContent: {
+      root: {
+        '&:last-child': {
+          paddingBottom: 16
+        }
       }
     },
     MuiInputLabel: {

@@ -15,6 +15,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ChipContainer from '../../components/ChipContainer';
 import Details from './Details';
+import Proposals from './Proposals';
 import { CompactTab } from '../../global';
 
 const styles = (theme) => ({
@@ -24,7 +25,7 @@ const styles = (theme) => ({
 class Project extends PureComponent {
   state = {
     badges: [],
-    activeTab: 0
+    activeTab: 1
   }
 
   componentDidMount() {
@@ -101,6 +102,9 @@ class Project extends PureComponent {
           <Grid item lg={8} xs={12}>
             <div role="tabpanel" hidden={this.state.activeTab !== 0}>
               <Details />
+            </div>
+            <div role="tabpanel" hidden={this.state.activeTab !== 1}>
+              <Proposals />
             </div>
           </Grid>
           <Grid item lg={2} />

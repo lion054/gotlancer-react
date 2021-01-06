@@ -168,7 +168,7 @@ class Details extends PureComponent {
       checked: true
     },{
       title: 'Create Milestone',
-      subtitle: 'Deposit a fund on your Job'
+      subtitle: 'Deposit a fund on your job'
     },{
       title: 'Release Milestone',
       subtitle: 'Sattle all of pending payment'
