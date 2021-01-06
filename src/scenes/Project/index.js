@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import {
   Box,
+  Divider,
   Grid,
   Tab,
   Tabs,
@@ -12,13 +13,13 @@ import faker from 'faker';
 import { compose } from 'redux';
 
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import ChipContainer from '../../components/ChipContainer';
 import Details from './Details';
+import { CompactTab } from '../../global';
 
 const styles = (theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.paper
-  }
+  root: {}
 });
 
 class Project extends PureComponent {
@@ -59,7 +60,7 @@ class Project extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2} mb={8}>
+      <Box pt={8} pl={2} pr={2} bgcolor={this.props.theme.palette.background.default}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -83,13 +84,22 @@ class Project extends PureComponent {
               indicatorColor="primary"
               textColor="primary"
             >
-              <Tab label="Details" />
-              <Tab label="Proposals (10)" />
-              <Tab label="Hired (2)" />
-              <Tab label="Payment (33)" />
-              <Tab label="Work Diary" />
-              <Tab label="Files" />
+              <CompactTab label="Details" />
+              <CompactTab label="Proposals (10)" />
+              <CompactTab label="Hired (2)" />
+              <CompactTab label="Payment (33)" />
+              <CompactTab label="Work Diary" />
+              <CompactTab label="Files" />
             </Tabs>
+          </Grid>
+          <Grid item lg={2} />
+        </Grid>
+      </Box>
+      <Divider />
+      <Box pb={8} pl={2} pr={2} bgcolor={this.props.theme.palette.background.paper}>
+        <Grid container>
+          <Grid item lg={2} />
+          <Grid item lg={8} xs={12}>
             <div role="tabpanel" hidden={this.state.activeTab !== 0}>
               <Details />
             </div>
@@ -97,6 +107,7 @@ class Project extends PureComponent {
           <Grid item lg={2} />
         </Grid>
       </Box>
+      <Footer />
     </div>
   )
 }

@@ -46,19 +46,6 @@ export const lightTheme = createMuiTheme({
         }
       }
     },
-    MuiTab: {
-      textColorInherit: {
-        color: 'rgba(0, 0, 0, 0.87)',
-        '&$selected': {
-          color: colors.green[500]
-        }
-      }
-    },
-    // MuiTabs: {
-    //   indicator: {
-    //     backgroundColor: colors.green[500]
-    //   }
-    // },
     MuiTypography: {
       h1: {
         fontWeight: 'bold'
@@ -134,19 +121,6 @@ export const darkTheme = createMuiTheme({
         }
       }
     },
-    MuiTab: {
-      textColorInherit: {
-        color: colors.common.white,
-        '&$selected': {
-          color: colors.green[500]
-        }
-      }
-    },
-    // MuiTabs: {
-    //   indicator: {
-    //     backgroundColor: colors.green[500]
-    //   }
-    // },
     MuiTypography: {
       h1: {
         fontWeight: 'bold'

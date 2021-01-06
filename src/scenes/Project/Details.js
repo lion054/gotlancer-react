@@ -7,6 +7,7 @@ import {
   CardContent,
   CardHeader,
   Checkbox,
+  Chip,
   Divider,
   Grid,
   IconButton,
@@ -51,12 +52,6 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
-  },
-  badge: {
-    display: 'inline-block',
-    padding: theme.spacing(0, 1),
-    borderRadius: 12,
-    color: theme.palette.common.white
   },
   card: {
     borderRadius: theme.spacing(1.5),
@@ -274,7 +269,7 @@ class Details extends PureComponent {
                 <Typography variant="body1">Category and Sub-Category</Typography>
                 <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
                   <Typography variant="body2">IT and Website</Typography>
-                  <Typography color="textSecondary">Frontend Developer</Typography>
+                  <Typography variant="body2">Frontend Developer</Typography>
                 </Breadcrumbs>
                 <Box mt={2} mb={1}>
                   <Typography variant="body1">Skills</Typography>
@@ -290,6 +285,10 @@ class Details extends PureComponent {
             <Typography variant="body2">Upgrade your listing from below and get dozens of skilled freelancers for your project instantly.</Typography>
           </Box>
           {this.renderBadgeList()}
+          <Box mt={1} mb={3}>
+            <Divider />
+          </Box>
+          <Typography variant="body1" align="right">Total: {formatCurrency(0)}</Typography>
         </Grid>
         <Grid item md={4} xs={12}>
           <Box className={this.props.classes.innerPadding}>
@@ -358,9 +357,10 @@ class Details extends PureComponent {
             >
               <Grid container alignItems="center">
                 <Grid item sm={2} xs={3}>
-                  <Box className={this.props.classes.badge} bgcolor={badge.color}>
-                    <Typography variant="body1">{badge.title}</Typography>
-                  </Box>
+                  <Chip label={badge.title} style={{
+                    backgroundColor: badge.color,
+                    color: this.props.theme.palette.common.white
+                  }} />
                 </Grid>
                 <Grid item sm={8} xs={7}>
                   <Typography variant="body2">{badge.description}</Typography>

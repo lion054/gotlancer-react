@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardContent,
   Checkbox,
+  Chip,
   Divider,
   FormControlLabel,
   Grid,
@@ -49,12 +50,6 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
-  },
-  badge: {
-    display: 'inline-block',
-    padding: theme.spacing(0, 1),
-    borderRadius: 12,
-    color: theme.palette.common.white
   },
   card: {
     borderRadius: theme.spacing(1.5),
@@ -342,9 +337,10 @@ class PostProject extends PureComponent {
             >
               <Grid container alignItems="center">
                 <Grid item sm={2} xs={3}>
-                  <Box className={this.props.classes.badge} bgcolor={badge.color}>
-                    <Typography variant="body1">{badge.title}</Typography>
-                  </Box>
+                  <Chip label={badge.title} style={{
+                    backgroundColor: badge.color,
+                    color: this.props.theme.palette.common.white
+                  }} />
                 </Grid>
                 <Grid item sm={8} xs={7}>
                   <Typography variant="body2">{badge.description}</Typography>

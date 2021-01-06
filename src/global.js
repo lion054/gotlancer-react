@@ -1,4 +1,4 @@
-import { Button, Checkbox, Radio, colors, fade, withStyles } from '@material-ui/core';
+import { Button, Checkbox, Radio, Tab, colors, fade, withStyles } from '@material-ui/core';
 
 export const GreenButton = withStyles((theme) => ({
   text: {
@@ -55,6 +55,14 @@ export const GreenRadio = withStyles((theme) => ({
   },
   checked: {}
 }))(Radio);
+
+export const CompactTab = withStyles((theme) => ({
+  root: {
+    [theme.breakpoints.up('sm')]: {
+      minWidth: 'unset'
+    }
+  }
+}))(Tab);
 
 export const formatCurrency = (value) => {
   return new Intl.NumberFormat('en-US', {
