@@ -1,11 +1,13 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import {
   Box,
-  Button,
   Card,
   CardContent,
   Divider,
   Grid,
+  Link,
+  List,
+  ListItem,
   Paper,
   Tab,
   Tabs,
@@ -51,13 +53,6 @@ const styles = (theme) => ({
   },
   subtotal: {
     padding: theme.spacing(3)
-  },
-  panel: {
-    height: theme.spacing(50),
-    borderRadius: theme.spacing(1.5),
-    borderColor: theme.palette.divider,
-    borderStyle: 'solid',
-    padding: 'unset'
   }
 })
 
@@ -138,7 +133,7 @@ class Projects extends PureComponent {
   }
 
   renderOpenJobs = () => (
-    <Paper elevation={0} className={this.props.classes.panel}>
+    <Paper elevation={0} className={this.props.classes.card}>
       <Tabs
         value={this.state.activeTab}
         onChange={this.handleTabChange}
@@ -152,44 +147,40 @@ class Projects extends PureComponent {
         <Tab label="DRAFTS (33)" />
       </Tabs>
       <Divider />
-      {this.state.openJobs.map((job, index) => (
-        <Fragment key={index}>
-          <Box className={this.props.classes.outerMargin}>
-            <Grid container>
-              <Grid item xl={6} xs={12}>
-                <Box className={this.props.classes.innerPadding}>
-                  <Typography variant="body1">{job.title}</Typography>
-                  <Typography variant="body2" color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
-                </Box>
+      <List disablePadding>
+        {this.state.openJobs.map((job, index) => (
+          <ListItem key={index} disableGutters divider>
+            <Box className={this.props.classes.outerMargin} width="100%">
+              <Grid container>
+                <Grid item xl={6} xs={12}>
+                  <Box className={this.props.classes.innerPadding}>
+                    <Link href="/project" variant="body1">{job.title}</Link>
+                    <Typography variant="body2" color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
+                  </Box>
+                </Grid>
+                <Grid item xl={2} xs={4}>
+                  <Box className={this.props.classes.innerPadding}>
+                    <Typography variant="body1">30</Typography>
+                    <Typography variant="body2" color="textSecondary">Bid</Typography>
+                  </Box>
+                </Grid>
+                <Grid item xl={2} xs={3}>
+                  <Box className={this.props.classes.innerPadding}>
+                    <Typography variant="body1">{job.hiredCount}</Typography>
+                    <Typography variant="body2" color="textSecondary">Hired</Typography>
+                  </Box>
+                </Grid>
+                <Grid item xl={2} xs={5}>
+                  <Box className={this.props.classes.innerPadding}>
+                    <Typography variant="body1">{formatCurrency(job.budget)}</Typography>
+                    <Typography variant="body2" color="textSecondary">{job.status}</Typography>
+                  </Box>
+                </Grid>
               </Grid>
-              <Grid item xl={1} xs={4}>
-                <Box className={this.props.classes.innerPadding}>
-                  <Typography variant="body1">30</Typography>
-                  <Typography variant="body2" color="textSecondary">Bid</Typography>
-                </Box>
-              </Grid>
-              <Grid item xl={1} xs={3}>
-                <Box className={this.props.classes.innerPadding}>
-                  <Typography variant="body1">{job.hiredCount}</Typography>
-                  <Typography variant="body2" color="textSecondary">Hired</Typography>
-                </Box>
-              </Grid>
-              <Grid item xl={2} xs={5}>
-                <Box className={this.props.classes.innerPadding}>
-                  <Typography variant="body1">{formatCurrency(job.budget)}</Typography>
-                  <Typography variant="body2" color="textSecondary">{job.status}</Typography>
-                </Box>
-              </Grid>
-              <Grid item xl={2} xs={12}>
-                <Box className={this.props.classes.innerPadding}>
-                  <Button variant="contained" onClick={() => this.props.history.push('/project')}>Manage Project</Button>
-                </Box>
-              </Grid>
-            </Grid>
-          </Box>
-          <Divider />
-        </Fragment>
-      ))}
+            </Box>
+          </ListItem>
+        ))}
+      </List>
     </Paper>
   )
 }

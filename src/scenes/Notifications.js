@@ -13,14 +13,18 @@ import {
   List,
   ListItem,
   Typography,
-  withStyles
+  withStyles,
+  withWidth
 } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
+import { Pagination } from '@material-ui/lab';
 import { cloneDeep } from 'lodash';
 import moment from 'moment';
 import faker from 'faker';
+import { compose } from 'redux';
 
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const styles = (theme) => ({
   root: {
@@ -31,10 +35,19 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
+  },
+  pagination: {
+    padding: theme.spacing(2, 0, 4, 0),
+    display: 'flex',
+    justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      borderTopColor: theme.palette.divider,
+      borderTopStyle: 'solid'
+    }
   }
 });
 
-class Membership extends PureComponent {
+class Notifications extends PureComponent {
   state = {
     records: [],
     activeIndex: -1
@@ -50,6 +63,18 @@ class Membership extends PureComponent {
       });
     }
     this.setState({ records });
+  }
+
+  getControlSize() {
+    switch (this.props.width) {
+      case 'sm':
+      case 'xs':
+        return 'small';
+      case 'md':
+        return 'medium';
+      default:
+        return 'large';
+    }
   }
 
   render = () => (
@@ -78,11 +103,15 @@ class Membership extends PureComponent {
                   </ListItem>
                 ))}
               </List>
+              <Box className={this.props.classes.pagination}>
+                <Pagination count={10} size={this.getControlSize()} />
+              </Box>
             </Box>
           </Grid>
           <Grid item lg={2} />
         </Grid>
       </Box>
+      <Footer />
       {this.rnederDialog()}
     </div>
   )
@@ -112,4 +141,7 @@ class Membership extends PureComponent {
   }
 }
 
-export default withStyles(styles)(Membership);
+export default compose(
+  withStyles(styles),
+  withWidth()
+)(Notifications);

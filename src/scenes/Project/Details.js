@@ -288,7 +288,12 @@ class Details extends PureComponent {
           <Box mt={1} mb={3}>
             <Divider />
           </Box>
-          <Typography variant="body1" align="right">Total: {formatCurrency(0)}</Typography>
+          <Box display="flex" alignItems="center">
+            <Box flex={1}>
+              <Typography variant="body1">Total: {formatCurrency(0)}</Typography>
+            </Box>
+            <Button variant="contained">Pay and Upgrade</Button>
+          </Box>
         </Grid>
         <Grid item md={4} xs={12}>
           <Box className={this.props.classes.innerPadding}>

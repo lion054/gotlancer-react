@@ -21,6 +21,7 @@ import clsx from 'clsx';
 import { compose } from 'redux';
 
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const styles = (theme) => ({
   root: {
@@ -187,6 +188,7 @@ class Membership extends PureComponent {
           <Grid item lg={2} />
         </Grid>
       </Box>
+      <Footer />
     </div>
   )
 
