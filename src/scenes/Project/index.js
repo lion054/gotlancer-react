@@ -18,6 +18,7 @@ import Details from './Details';
 import Proposals from './Proposals';
 import Hired from './Hired';
 import Payment from './Payment';
+import WorkDiary from './WorkDiary';
 import { CompactTab } from '../../global';
 
 const styles = (theme) => ({
@@ -65,7 +66,7 @@ const GreenText = withStyles((theme) => ({
 class Project extends PureComponent {
   state = {
     badges: [],
-    activeTab: 3
+    activeTab: 4
   }
 
   componentDidMount() {
@@ -128,7 +129,6 @@ class Project extends PureComponent {
               <CompactTab label="Hired (2)" />
               <CompactTab label="Payment (33)" />
               <CompactTab label="Work Diary" />
-              <CompactTab label="Files" />
             </Tabs>
           </Grid>
           <Grid item lg={2} />
@@ -150,6 +150,9 @@ class Project extends PureComponent {
             </div>
             <div role="tabpanel" hidden={this.state.activeTab !== 3}>
               <Payment />
+            </div>
+            <div role="tabpanel" hidden={this.state.activeTab !== 4}>
+              <WorkDiary />
             </div>
           </Grid>
           <Grid item lg={2} />

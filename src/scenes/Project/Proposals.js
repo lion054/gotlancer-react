@@ -301,7 +301,7 @@ class Proposals extends PureComponent {
             </Box>
           </Box>
           <Divider />
-          <Box mt={1.5} style={{ whiteSpace: 'break-spaces', lineHeight: 3 }}>
+          <Box mt={1.5} whiteSpace="break-spaces" lineHeight={3}>
             {this.renderProjectsCompleted(record.projectsCompleted)}
             {this.renderReview(record.reviewCount, record.reviewAverage)}
             {this.renderCertificates()}
@@ -396,7 +396,7 @@ class Proposals extends PureComponent {
             </Box>
           </Box>
           <Divider />
-          <Box mt={1.5} style={{ whiteSpace: 'break-spaces', lineHeight: 3 }}>
+          <Box mt={1.5} whiteSpace="break-spaces" lineHeight={3}>
             {this.renderProjectsCompleted(record.projectsCompleted)}
             {this.renderReview(record.reviewCount, record.reviewAverage)}
             {this.renderCertificates()}

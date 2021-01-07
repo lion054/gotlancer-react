@@ -433,7 +433,7 @@ class FindWork extends PureComponent {
             </Box>
           </Box>
           <Divider />
-          <Box mt={1.5} style={{ whiteSpace: 'break-spaces', lineHeight: 3 }}>
+          <Box mt={1.5} whiteSpace="break-spaces" lineHeight={3}>
             {this.renderApplyBefore()}
             {this.renderPaymentMethod(job.paymentMethod)}
             {this.renderReview(job.reviewCount, job.reviewAverage)}
@@ -486,7 +486,7 @@ class FindWork extends PureComponent {
           <ChipContainer chips={job.skills} />
         </Box>
         <Divider />
-        <Box mt={1.5} style={{ whiteSpace: 'break-spaces', lineHeight: 3 }}>
+        <Box mt={1.5} whiteSpace="break-spaces" lineHeight={3}>
           {this.renderApplyBefore()}
           {this.renderPaymentMethod(job.paymentMethod)}
           {this.renderReview(job.reviewCount, job.reviewAverage)}
