@@ -46,6 +46,9 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
+  },
+  moneyPrefix: {
+    marginLeft: theme.spacing(-0.5)
   }
 })
 
@@ -133,7 +136,7 @@ class PostProject extends PureComponent {
                           textColor="primary"
                         >
                           <CompactTab label="Fixed Price Project" />
-                          <CompactTab label="Uourly Project" />
+                          <CompactTab label="Hourly Project" />
                         </Tabs>
                         <Box mt={2} mb={1}>
                           <Typography variant="subtitle2">Provide a name for your project</Typography>
@@ -246,24 +249,31 @@ class PostProject extends PureComponent {
                                     fullWidth
                                     margin="dense"
                                     startAdornment={(
-                                      <InputAdornment position="start">
+                                      <InputAdornment position="start" className={this.props.classes.moneyPrefix}>
                                         <AttachMoney />
                                       </InputAdornment>
+                                    )}
+                                    endAdornment={this.state.activeTab === 1 && (
+                                      <Typography variant="body2">/hr</Typography>
                                     )}
                                   />
                                   {this.state.activeTab === 1 && (
                                     <Fragment>
-                                      <Typography variant="body2" noWrap style={{ minWidth: 44 }}>/hr To </Typography>
+                                      <Box ml={1} mr={1}>
+                                        <Typography variant="body2">To</Typography>
+                                      </Box>
                                       <OutlinedInput
                                         fullWidth
                                         margin="dense"
                                         startAdornment={(
-                                          <InputAdornment position="start">
+                                          <InputAdornment position="start" className={this.props.classes.moneyPrefix}>
                                             <AttachMoney />
                                           </InputAdornment>
                                         )}
+                                        endAdornment={(
+                                          <Typography variant="body2">/hr</Typography>
+                                        )}
                                       />
-                                      <Typography variant="body2">/hr</Typography>
                                     </Fragment>
                                   )}
                                 </Box>

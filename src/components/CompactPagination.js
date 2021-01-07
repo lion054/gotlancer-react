@@ -8,7 +8,7 @@ const styles = (theme) => ({
     paddingTop: theme.spacing(2),
     display: 'flex',
     justifyContent: 'center'
-  },
+  }
 });
 
 class CompactPagination extends PureComponent {

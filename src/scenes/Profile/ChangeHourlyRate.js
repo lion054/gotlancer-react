@@ -28,6 +28,9 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
+  },
+  moneyPrefix: {
+    marginLeft: theme.spacing(-0.5)
   }
 });
 
@@ -111,7 +114,7 @@ class ChangeHourlyRate extends PureComponent {
           }
         }}
         startAdornment={(
-          <InputAdornment position="start">
+          <InputAdornment position="start" className={this.props.classes.moneyPrefix}>
             <AttachMoney />
           </InputAdornment>
         )}
