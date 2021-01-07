@@ -16,6 +16,7 @@ import Footer from '../../components/Footer';
 import ChipContainer from '../../components/ChipContainer';
 import Details from './Details';
 import Proposals from './Proposals';
+import Hired from './Hired';
 import { CompactTab } from '../../global';
 
 const styles = (theme) => ({
@@ -63,7 +64,7 @@ const GreenText = withStyles((theme) => ({
 class Project extends PureComponent {
   state = {
     badges: [],
-    activeTab: 1
+    activeTab: 2
   }
 
   componentDidMount() {
@@ -142,6 +143,9 @@ class Project extends PureComponent {
             </div>
             <div role="tabpanel" hidden={this.state.activeTab !== 1}>
               <Proposals />
+            </div>
+            <div role="tabpanel" hidden={this.state.activeTab !== 2}>
+              <Hired />
             </div>
           </Grid>
           <Grid item lg={2} />

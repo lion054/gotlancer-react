@@ -113,7 +113,7 @@ const OddTimelineItem = withStyles({
   }
 })(TimelineItem);
 
-class Proposals extends PureComponent {
+class Hired extends PureComponent {
   state = {
     records: [],
     roadmap: []
@@ -292,7 +292,7 @@ class Proposals extends PureComponent {
                 </Box>
                 <Box>
                   <Box>
-                    <Button fullWidth variant="contained">Hire me</Button>
+                    <Button fullWidth variant="contained" color="secondary">End Contract</Button>
                   </Box>
                   <Box mt={1}>
                     <Button fullWidth variant="outlined">Contact</Button>
@@ -390,7 +390,7 @@ class Proposals extends PureComponent {
           </Box>
           <Box display="flex">
             <Box flex={1} mr={1}>
-              <Button fullWidth variant="contained">Hire me</Button>
+              <Button fullWidth variant="contained" color="secondary">End Contract</Button>
             </Box>
             <Box flex={1} ml={1}>
               <Button fullWidth variant="outlined">Contact</Button>
@@ -498,4 +498,4 @@ export default compose(
   withStyles(styles),
   withTheme,
   withWidth()
-)(Proposals);
+)(Hired);
