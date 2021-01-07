@@ -1,16 +1,12 @@
 import React, { PureComponent } from 'react';
 import {
-  Avatar,
   Box,
-  Breadcrumbs,
   Button,
   CardContent,
   CardHeader,
   Divider,
   Grid,
   IconButton,
-  LinearProgress,
-  Link,
   List,
   ListItem,
   ListItemText,
@@ -21,18 +17,8 @@ import {
   withTheme,
   withWidth
 } from '@material-ui/core';
+import { Check, MoreVert } from '@material-ui/icons';
 import {
-  Apple,
-  Camera,
-  Check,
-  Favorite,
-  FavoriteBorder,
-  MoreVert,
-  Redeem,
-  Star
-} from '@material-ui/icons';
-import {
-  Rating,
   Timeline,
   TimelineConnector,
   TimelineContent,
@@ -40,16 +26,13 @@ import {
   TimelineItem,
   TimelineSeparator
 } from '@material-ui/lab';
-import { cloneDeep } from 'lodash';
-import pluralize from 'pluralize';
 import moment from 'moment';
 import faker from 'faker';
 import { v4 as uuidv4 } from 'uuid';
 import { compose } from 'redux';
 
-import ChipContainer from '../../components/ChipContainer';
 import CustomTablePagination from '../../components/pagination/CustomTablePagination';
-import { CompactCard } from '../../global';
+import { CompactCard, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   outerMargin: {
@@ -64,52 +47,6 @@ const styles = (theme) => ({
       padding: theme.spacing(1)
     }
   },
-  avatar: {
-    width: 96,
-    height: 96,
-    borderRadius: 48,
-    [theme.breakpoints.down('sm')]: {
-      marginRight: theme.spacing(1)
-    },
-    [theme.breakpoints.up('md')]: {
-      marginRight: theme.spacing(2)
-    }
-  },
-  verifiedIcon: {
-    marginLeft: theme.spacing(1),
-    width: theme.spacing(2.5),
-    height: theme.spacing(2.5)
-  },
-  description: {
-    height: theme.spacing(5), // 2 lines
-    overflow: 'hidden'
-  },
-  actionIcon: {
-    width: theme.spacing(4),
-    height: theme.spacing(4),
-    backgroundColor: theme.palette.divider,
-    color: theme.palette.action.active
-  },
-  progress: {
-    height: theme.spacing(1),
-    [theme.breakpoints.down('sm')]: {
-      width: theme.spacing(8)
-    },
-    [theme.breakpoints.up('md')]: {
-      width: theme.spacing(16)
-    }
-  },
-  progressThumb: {
-    backgroundColor: theme.palette.success.main
-  },
-  progressText: {
-    width: 52,
-    textAlign: 'right'
-  },
-  saveIcon: {
-    padding: theme.spacing(1),
-    border: `solid 1px ${theme.palette.divider}`
-  },
   menuItem: {
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
@@ -118,32 +55,6 @@ const styles = (theme) => ({
     },
     '&:hover > .MuiListItemText-root > .MuiTypography-root': {
       color: theme.palette.primary.main
-    }
-  },
-  floatLeft: {
-    [theme.breakpoints.up('sm')]: {
-      float: 'left',
-      width: 'calc(100% - 160px)'
-    }
-  },
-  floatRight: {
-    [theme.breakpoints.up('sm')]: {
-      float: 'right',
-      width: 160,
-      '& > .MuiTypography-root': {
-        display: 'block'
-      }
-    },
-    [theme.breakpoints.down('xs')]: {
-      '& > .MuiTypography-root': {
-        display: 'inline-block'
-      }
-    },
-    textAlign: 'right'
-  },
-  floatClear: {
-    [theme.breakpoints.up('sm')]: {
-      clear: 'both' // Reset above float operation
     }
   }
 });
@@ -175,8 +86,8 @@ class Payment extends PureComponent {
         name: faker.name.findName(),
         budget: `$${faker.random.number({ min: 100, max: 1000 })} ${faker.random.boolean() ? 'Hourly' : 'Fixed'}`,
         startedAt: faker.date.past(),
-        status: faker.random.arrayElement(['Pending', 'In Progress', 'Rejected', 'Released']),
-        details: 'First milestone',
+        status: faker.random.arrayElement(['Pending', 'In Progress', 'Under Dispute', 'Rejected', 'Released']),
+        title: 'First milestone',
         amount: faker.random.number({ min: 100, max: 1000 })
       });
     }
@@ -211,22 +122,37 @@ class Payment extends PureComponent {
     page: 0
   })
 
+  getStatusColor(value) {
+    switch (value) {
+      case 'Pending':
+        return this.props.theme.palette.primary.main;
+      case 'In Progress':
+        return this.props.theme.palette.secondary.main;
+      case 'Under Dispute':
+        return this.props.theme.palette.error.main;
+      case 'Rejected':
+        return this.props.theme.palette.info.main;
+      case 'Released':
+        return this.props.theme.palette.success.main;
+      default:
+        return this.props.theme.palette.warning.main;
+    }
+  }
+
   render = () => (
     <Box className={this.props.classes.outerMargin}>
       <Grid container>
         <Grid item md={8} xs={12}>
           <Box className={this.props.classes.innerPadding}>
             <CompactCard>
-              <Box className={this.props.classes.innerPadding}>
-                <Box className={this.props.classes.floatLeft}>
-                  <Typography variant="subtitle1">Financial Payment Management</Typography>
+              <Box className={this.props.classes.innerPadding} display="flex" alignItems="center">
+                <Box flex={1}>
+                  <Typography variant="subtitle2">Payment Management</Typography>
                   <Typography variant="body2">Here all of your payment that you made recently</Typography>
                 </Box>
-                <Box className={this.props.classes.floatRight}>
-                  <Button variant="contained">Create Milestone</Button>
-                </Box>
+                <Button variant="contained" size="small">Create Milestone</Button>
               </Box>
-              <Box className={this.props.classes.floatClear}>
+              <Box className={this.props.classes.floatClear} pt={1}>
                 <Divider />
               </Box>
               <CardContent className="noVertPadding">
@@ -234,27 +160,12 @@ class Payment extends PureComponent {
                   <ListItem disableGutters divider>
                     <Box className={this.props.classes.outerMargin} flex={1}>
                       <Grid container alignItems="center">
-                        <Grid item md={1} xs={2}>
-                          <Box className={this.props.classes.innerPadding}>
-                            <Typography variant="subtitle2">#</Typography>
-                          </Box>
-                        </Grid>
-                        <Grid item md={3} xs={6}>
-                          <Box className={this.props.classes.innerPadding}>
-                            <Typography variant="subtitle2">Freelancer</Typography>
-                          </Box>
-                        </Grid>
-                        <Grid item md={2} xs={4}>
-                          <Box className={this.props.classes.innerPadding}>
-                            <Typography variant="subtitle2">Date</Typography>
-                          </Box>
-                        </Grid>
-                        <Grid item md={3} xs={6}>
+                        <Grid item sm={8} xs={7}>
                           <Box className={this.props.classes.innerPadding}>
                             <Typography variant="subtitle2">Details</Typography>
                           </Box>
                         </Grid>
-                        <Grid item md={3} xs={6}>
+                        <Grid item sm={4} xs={5}>
                           <Box className={this.props.classes.innerPadding}>
                             <Typography variant="subtitle2">Amount</Typography>
                           </Box>
@@ -266,39 +177,18 @@ class Payment extends PureComponent {
                     <ListItem key={index} disableGutters divider>
                       <Box className={this.props.classes.outerMargin} flex={1}>
                         <Grid container alignItems="center">
-                          <Grid item md={1} xs={2}>
+                          <Grid item sm={8} xs={6}>
                             <Box className={this.props.classes.innerPadding}>
-                              <Typography variant="body2">{index + 1}</Typography>
+                              <Typography variant="subtitle2">{record.title}</Typography>
+                              <Typography variant="body2">{moment(record.startedAt).format('MM/DD/YYYY')} - For <span style={{ color: this.props.theme.palette.success.main }}>shopnill012</span></Typography>
                             </Box>
                           </Grid>
-                          <Grid item md={3} xs={6}>
-                            <Box className={this.props.classes.innerPadding}>
-                              <Typography variant="body2">{record.name}</Typography>
-                              <Typography variant="body2" color="textSecondary">{record.budget}</Typography>
-                            </Box>
-                          </Grid>
-                          <Grid item md={2} xs={4}>
-                            <Box className={this.props.classes.innerPadding}>
-                              <Typography variant="body2">{moment(record.startedAt).format('MM/DD/YYYY')}</Typography>
-                              <Typography variant="body2" color="textSecondary">{record.status}</Typography>
-                            </Box>
-                          </Grid>
-                          <Grid item md={3} xs={6}>
-                            <Box className={this.props.classes.innerPadding}>
-                              <Typography variant="body2">{record.details}</Typography>
-                            </Box>
-                          </Grid>
-                          <Grid item md={2} xs={4}>
-                            <Box className={this.props.classes.innerPadding}>
-                              <Typography variant="body2">{new Intl.NumberFormat('en-US', {
-                                style: 'currency',
-                                currency: 'USD'
-                              }).format(record.amount)}</Typography>
-                              <Typography variant="body2" color="textSecondary">USD</Typography>
-                            </Box>
-                          </Grid>
-                          <Grid item md={1} xs={2}>
-                            <Box className={this.props.classes.innerPadding}>
+                          <Grid item sm={4} xs={6}>
+                            <Box className={this.props.classes.innerPadding} display="flex">
+                              <Box flex={1}>
+                                <Typography variant="subtitle2">{formatCurrency(record.amount)}</Typography>
+                                <Typography variant="body2" style={{ color: this.getStatusColor(record.status) }}>{record.status}</Typography>
+                              </Box>
                               <IconButton onClick={(e) => this.onOpenMoreMenu(e, record.id)}>
                                 <MoreVert />
                               </IconButton>
