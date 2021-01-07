@@ -152,7 +152,7 @@ class Payment extends PureComponent {
                 </Box>
                 <Button variant="contained" size="small">Create Milestone</Button>
               </Box>
-              <Box className={this.props.classes.floatClear} pt={1}>
+              <Box mt={0.5}>
                 <Divider />
               </Box>
               <CardContent className="noVertPadding">

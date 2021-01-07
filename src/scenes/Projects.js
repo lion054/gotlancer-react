@@ -97,7 +97,7 @@ class Projects extends PureComponent {
             <Box mt={8} mb={4}>
               <Box className={this.props.classes.innerPadding}>
                 <CompactCard>
-                  <CardContent className="noVertPadding">
+                  <CardContent style={{ paddingTop: 0 }}>
                     <Tabs
                       value={this.state.activeTab}
                       onChange={this.handleTabChange}
