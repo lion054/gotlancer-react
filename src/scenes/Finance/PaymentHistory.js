@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import {
   Box,
+  CardContent,
   Checkbox,
   Divider,
   Grid,
@@ -32,7 +33,7 @@ import { compose } from 'redux';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import CustomTablePagination from '../../components/pagination/CustomTablePagination';
-import { formatCurrency } from '../../global';
+import { CompactCard, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   root: {
@@ -125,7 +126,7 @@ class PaymentHistory extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2} mb={8}>
+      <Box className={this.props.classes.innerPadding} mt={6} mb={6}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -140,94 +141,97 @@ class PaymentHistory extends PureComponent {
                 <Print />
               </IconButton>
             </Box>
-            <Divider />
-            <List disablePadding>
-              <ListItem disableGutters divider>
-                <ListItemIcon className={this.props.classes.icon} onClick={this.handleHeadCheck}>
-                  <Box p={1.125}>
-                    {this.isAllChecked() ? (
-                      <CheckBox color="secondary" />
-                    ) : this.isAllUnchecked() ? (
-                      <CheckBoxOutlineBlank color="disabled" />
-                    ) : (
-                      <IndeterminateCheckBox color="secondary" />
-                    )}
-                  </Box>
-                </ListItemIcon>
-                <Box className={this.props.classes.outerMargin} flex={1}>
-                  <Grid container alignItems="center">
-                    <Grid item md={2} xs={4}>
-                      <Box className={this.props.classes.innerPadding}>
-                        <Typography variant="subtitle2">Date</Typography>
+            <CompactCard>
+              <CardContent className="noVertPadding">
+                <List disablePadding>
+                  <ListItem disableGutters divider>
+                    <ListItemIcon className={this.props.classes.icon} onClick={this.handleHeadCheck}>
+                      <Box p={1.125}>
+                        {this.isAllChecked() ? (
+                          <CheckBox color="secondary" />
+                        ) : this.isAllUnchecked() ? (
+                          <CheckBoxOutlineBlank color="disabled" />
+                        ) : (
+                          <IndeterminateCheckBox color="secondary" />
+                        )}
                       </Box>
-                    </Grid>
-                    <Grid item md={4} xs={8}>
-                      <Box className={this.props.classes.innerPadding}>
-                        <Typography variant="subtitle2">Details</Typography>
+                    </ListItemIcon>
+                    <Box className={this.props.classes.outerMargin} flex={1}>
+                      <Grid container alignItems="center">
+                        <Grid item md={2} xs={4}>
+                          <Box className={this.props.classes.innerPadding}>
+                            <Typography variant="subtitle2">Date</Typography>
+                          </Box>
+                        </Grid>
+                        <Grid item md={4} xs={8}>
+                          <Box className={this.props.classes.innerPadding}>
+                            <Typography variant="subtitle2">Details</Typography>
+                          </Box>
+                        </Grid>
+                        <Grid item md={2} xs={4}>
+                          <Box className={this.props.classes.innerPadding}>
+                            <Typography variant="subtitle2">Payment method</Typography>
+                          </Box>
+                        </Grid>
+                        <Grid item md={2} xs={4}>
+                          <Box className={this.props.classes.innerPadding}>
+                            <Typography variant="subtitle2">Status</Typography>
+                          </Box>
+                        </Grid>
+                        <Grid item md={2} xs={4}>
+                          <Box className={this.props.classes.innerPadding}>
+                            <Typography variant="subtitle2">Amount</Typography>
+                          </Box>
+                        </Grid>
+                      </Grid>
+                    </Box>
+                  </ListItem>
+                  {this.state.records.map((record, index) => (
+                    <ListItem key={index} disableGutters divider>
+                      <ListItemIcon className={this.props.classes.icon}>
+                        <Checkbox checked={!!record.checked} onClick={this.handleRowCheck(index)} />
+                      </ListItemIcon>
+                      <Box className={this.props.classes.outerMargin} flex={1}>
+                        <Grid container alignItems="center">
+                          <Grid item md={2} xs={4}>
+                            <Box className={this.props.classes.innerPadding}>
+                              <Typography variant="body2">{moment(record.date).format('MM/DD/YYYY')}</Typography>
+                            </Box>
+                          </Grid>
+                          <Grid item md={4} xs={8}>
+                            <Box className={this.props.classes.innerPadding}>
+                              <Typography variant="body2">{record.details}</Typography>
+                            </Box>
+                          </Grid>
+                          <Grid item md={2} xs={4}>
+                            <Box className={this.props.classes.innerPadding}>
+                              <Typography variant="body2">{record.paymentMethod}</Typography>
+                            </Box>
+                          </Grid>
+                          <Grid item md={2} xs={4}>
+                            <Box className={this.props.classes.innerPadding} display="inline-block">
+                              {this.renderStatus(record.status)}
+                            </Box>
+                          </Grid>
+                          <Grid item md={2} xs={4}>
+                            <Box className={this.props.classes.innerPadding}>
+                              <Typography variant="body2">{formatCurrency(record.amount)}</Typography>
+                            </Box>
+                          </Grid>
+                        </Grid>
                       </Box>
-                    </Grid>
-                    <Grid item md={2} xs={4}>
-                      <Box className={this.props.classes.innerPadding}>
-                        <Typography variant="subtitle2">Payment method</Typography>
-                      </Box>
-                    </Grid>
-                    <Grid item md={2} xs={4}>
-                      <Box className={this.props.classes.innerPadding}>
-                        <Typography variant="subtitle2">Status</Typography>
-                      </Box>
-                    </Grid>
-                    <Grid item md={2} xs={4}>
-                      <Box className={this.props.classes.innerPadding}>
-                        <Typography variant="subtitle2">Amount</Typography>
-                      </Box>
-                    </Grid>
-                  </Grid>
-                </Box>
-              </ListItem>
-              {this.state.records.map((record, index) => (
-                <ListItem key={index} disableGutters divider>
-                  <ListItemIcon className={this.props.classes.icon}>
-                    <Checkbox checked={!!record.checked} onClick={this.handleRowCheck(index)} />
-                  </ListItemIcon>
-                  <Box className={this.props.classes.outerMargin} flex={1}>
-                    <Grid container alignItems="center">
-                      <Grid item md={2} xs={4}>
-                        <Box className={this.props.classes.innerPadding}>
-                          <Typography variant="body2">{moment(record.date).format('MM/DD/YYYY')}</Typography>
-                        </Box>
-                      </Grid>
-                      <Grid item md={4} xs={8}>
-                        <Box className={this.props.classes.innerPadding}>
-                          <Typography variant="body2">{record.details}</Typography>
-                        </Box>
-                      </Grid>
-                      <Grid item md={2} xs={4}>
-                        <Box className={this.props.classes.innerPadding}>
-                          <Typography variant="body2">{record.paymentMethod}</Typography>
-                        </Box>
-                      </Grid>
-                      <Grid item md={2} xs={4}>
-                        <Box className={this.props.classes.innerPadding} display="inline-block">
-                          {this.renderStatus(record.status)}
-                        </Box>
-                      </Grid>
-                      <Grid item md={2} xs={4}>
-                        <Box className={this.props.classes.innerPadding}>
-                          <Typography variant="body2">{formatCurrency(record.amount)}</Typography>
-                        </Box>
-                      </Grid>
-                    </Grid>
-                  </Box>
-                </ListItem>
-              ))}
-            </List>
-            <CustomTablePagination
-              count={this.state.total}
-              rowsPerPage={this.state.rowsPerPage}
-              page={this.state.page}
-              onChangePage={this.handleChangePage}
-              onChangeRowsPerPage={this.handleChangeRowsPerPage}
-            />
+                    </ListItem>
+                  ))}
+                </List>
+                <CustomTablePagination
+                  count={this.state.total}
+                  rowsPerPage={this.state.rowsPerPage}
+                  page={this.state.page}
+                  onChangePage={this.handleChangePage}
+                  onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                />
+              </CardContent>
+            </CompactCard>
           </Grid>
           <Grid item lg={2} />
         </Grid>

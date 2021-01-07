@@ -87,8 +87,8 @@ class Checkout extends PureComponent {
                         }}
                       />
                       <Divider />
-                      <CardContent>
-                        <List>
+                      <CardContent className="noVertPadding">
+                        <List disablePadding>
                           <ListItem divider disableGutters>
                             <Box flex={1}>
                               <Typography variant="body1">I need a logo design</Typography>
@@ -129,6 +129,7 @@ class Checkout extends PureComponent {
                           bgcolor={colors.yellow[50]}
                           pr={1}
                           pl={1}
+                          mb={2}
                         >
                           <Box display="flex" mt={1}>
                             <Box flex={1}>
@@ -284,6 +285,7 @@ class Checkout extends PureComponent {
           variant: 'subtitle1'
         }}
       />
+      <Divider />
       <CardContent>
         <Box className={this.props.classes.outerMargin}>
           <Grid container>

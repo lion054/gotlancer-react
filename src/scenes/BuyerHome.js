@@ -25,15 +25,10 @@ const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.default
   },
-  container: {
-    [theme.breakpoints.up('md')]: {
-      margin: theme.spacing(0, 2)
-    }
-  },
   outerMargin: {
-    padding: theme.spacing(-2),
+    margin: theme.spacing(-2),
     [theme.breakpoints.only('xs')]: {
-      padding: theme.spacing(-1)
+      margin: theme.spacing(-1)
     }
   },
   innerPadding: {
@@ -91,7 +86,7 @@ class BuyerHome extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box className={this.props.classes.container}>
+      <Box className={this.props.classes.innerPadding}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -167,40 +162,42 @@ class BuyerHome extends PureComponent {
         )}
       />
       <Divider />
-      <List disablePadding>
-        {this.state.recentPostedJobs.map((job, index) => (
-          <ListItem key={index} disableGutters divider>
-            <Box className={this.props.classes.outerMargin} width="100%">
-              <Grid container>
-                <Grid item xl={6} xs={12}>
-                  <Box className={this.props.classes.innerPadding}>
-                    <Typography variant="body1">{job.title}</Typography>
-                    <Typography variant="body2" color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
-                  </Box>
+      <CardContent className="noVertPadding">
+        <List disablePadding className="noLastDivider">
+          {this.state.recentPostedJobs.map((job, index) => (
+            <ListItem key={index} disableGutters divider>
+              <Box className={this.props.classes.outerMargin} width="100%">
+                <Grid container>
+                  <Grid item xl={6} xs={12}>
+                    <Box className={this.props.classes.innerPadding}>
+                      <Typography variant="body1">{job.title}</Typography>
+                      <Typography variant="body2" color="textSecondary">{job.type} - Posted {moment(job.createdAt).fromNow()}</Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xl={2} xs={4}>
+                    <Box className={this.props.classes.innerPadding}>
+                      <Typography variant="body1">30</Typography>
+                      <Typography variant="body2" color="textSecondary">Bid</Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xl={2} xs={3}>
+                    <Box className={this.props.classes.innerPadding}>
+                      <Typography variant="body1">{job.hiredCount}</Typography>
+                      <Typography variant="body2" color="textSecondary">Hired</Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xl={2} xs={5}>
+                    <Box className={this.props.classes.innerPadding}>
+                      <Typography variant="body1">{formatCurrency(job.budget)}</Typography>
+                      <Typography variant="body2" color="textSecondary">{job.status}</Typography>
+                    </Box>
+                  </Grid>
                 </Grid>
-                <Grid item xl={2} xs={4}>
-                  <Box className={this.props.classes.innerPadding}>
-                    <Typography variant="body1">30</Typography>
-                    <Typography variant="body2" color="textSecondary">Bid</Typography>
-                  </Box>
-                </Grid>
-                <Grid item xl={2} xs={3}>
-                  <Box className={this.props.classes.innerPadding}>
-                    <Typography variant="body1">{job.hiredCount}</Typography>
-                    <Typography variant="body2" color="textSecondary">Hired</Typography>
-                  </Box>
-                </Grid>
-                <Grid item xl={2} xs={5}>
-                  <Box className={this.props.classes.innerPadding}>
-                    <Typography variant="body1">{formatCurrency(job.budget)}</Typography>
-                    <Typography variant="body2" color="textSecondary">{job.status}</Typography>
-                  </Box>
-                </Grid>
-              </Grid>
-            </Box>
-          </ListItem>
-        ))}
-      </List>
+              </Box>
+            </ListItem>
+          ))}
+        </List>
+      </CardContent>
     </CompactCard>
   )
 
@@ -265,8 +262,8 @@ class BuyerHome extends PureComponent {
             }}
           />
           <Divider />
-          <CardContent style={{ paddingTop: 0, paddingBottom: 0 }}>
-            <List>
+          <CardContent className="noVertPadding">
+            <List disablePadding className="noLastDivider">
               {this.state.recentCompletedJobs.map((job, index) => {
                 const terms = [job.type];
                 terms.push(moment(job.finishedAt).fromNow());
@@ -275,7 +272,7 @@ class BuyerHome extends PureComponent {
                 }
                 terms.push(job.status);
                 return (
-                  <ListItem key={index} disableGutters button divider={index !== this.state.recentCompletedJobs.length - 1}>
+                  <ListItem key={index} disableGutters>
                     <Box>
                       <Typography variant="body2">{job.title}</Typography>
                       <Typography variant="body2">{terms.join(' - ')}</Typography>

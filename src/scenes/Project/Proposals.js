@@ -6,36 +6,23 @@ import {
   Button,
   CardContent,
   CardHeader,
-  Checkbox,
   Divider,
   Grid,
   IconButton,
   LinearProgress,
   Link,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
   Typography,
-  colors,
-  fade,
   withStyles,
   withTheme,
   withWidth
 } from '@material-ui/core';
 import {
   Apple,
-  AttachFile,
-  AttachMoney,
   Camera,
   Check,
-  ChevronRight,
-  Delete,
   Favorite,
   FavoriteBorder,
   Redeem,
-  Room,
   Star
 } from '@material-ui/icons';
 import {
@@ -58,16 +45,10 @@ import CompactPagination from '../../components/CompactPagination';
 import { CompactCard, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
-  container: {
-    padding: theme.spacing(2, 0),
-    [theme.breakpoints.only('xs')]: {
-      padding: theme.spacing(1, 0)
-    }
-  },
   outerMargin: {
-    padding: theme.spacing(-2),
+    margin: theme.spacing(-2),
     [theme.breakpoints.only('xs')]: {
-      padding: theme.spacing(-1)
+      margin: theme.spacing(-1)
     }
   },
   innerPadding: {
@@ -195,7 +176,7 @@ class Proposals extends PureComponent {
     <Box className={this.props.classes.outerMargin}>
       <Grid container>
         <Grid item md={8} xs={12}>
-          <Box className={this.props.classes.container}>
+          <Box className={this.props.classes.innerPadding}>
             {this.state.records.map((record, index) => {
               switch (this.props.width) {
                 case 'sm':
@@ -354,54 +335,98 @@ class Proposals extends PureComponent {
   )
 
   renderMobileCard = (record, index) => (
-    <CompactCard key={index}>
-      <CardContent>
-        <Typography variant="subtitle1">{record.name}</Typography>
-        <Box mt={1.5}>
-          <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
-        </Box>
-        <Box mt={1.5} display="flex" alignItems="center">
-          <Box flex={1}>
-            <Typography variant="h6">${record.budget.min}-${record.budget.max} USD</Typography>
+    <Box key={index} mb={1}>
+      <CompactCard>
+        <CardContent>
+          <Box display="flex" alignItems="center">
+            <Box position="relative">
+              <img alt="" src={record.avatar} className={this.props.classes.avatar} />
+              <Box
+                width={20}
+                height={20}
+                borderRadius={10}
+                bgcolor={this.props.theme.palette.common.white}
+                position="absolute"
+                top={76}
+                left={76}
+              />
+              <Box
+                width={16}
+                height={16}
+                borderRadius={8}
+                bgcolor={record.online ? this.props.theme.palette.success.main : this.props.theme.palette.action.disabled}
+                position="absolute"
+                top={78}
+                left={78}
+              />
+            </Box>
+            <Box flex={1}>
+              <Box display="flex" alignItems="center">
+                <Typography variant="subtitle1">{record.name}</Typography>
+                <Avatar className={this.props.classes.verifiedIcon} style={record.verified ? {
+                  backgroundColor: this.props.theme.palette.success.main
+                } : {}}>
+                  <Check style={{ fontSize: '1rem' }} />
+                </Avatar>
+              </Box>
+              <Breadcrumbs aria-label="breadcrumb" separator="|">
+                <Typography variant="body2">{record.title}</Typography>
+                <Typography variant="body2">Member since {moment(record.memberSince).format('LL')}</Typography>
+              </Breadcrumbs>
+            </Box>
           </Box>
-          <Typography variant="body2" color="textSecondary">Posted {moment(record.createdAt).fromNow()}</Typography>
-        </Box>
-        <Box mt={1.5}>
-          <Typography variant="body2" color="textSecondary">{record.type}</Typography>
-        </Box>
-        <Box mt={1} mb={2.5}>
-          <ChipContainer chips={record.skills} />
-        </Box>
-        <Divider />
-        <Box mt={1.5} style={{ whiteSpace: 'break-spaces', lineHeight: 3 }}>
-          {this.renderProjectsCompleted(record.projectsCompleted)}
-          {this.renderReview(record.reviewCount, record.reviewAverage)}
-          {this.renderCertificates()}
-          {this.renderSuccessRate(record.successRate)}
-          <Box display="inline-block">
-            <Box display="flex" alignItems="center">
-              <IconButton
-                className={this.props.classes.saveIcon}
-                onClick={() => {
-                  const records = cloneDeep(this.state.records);
-                  records[index].saved = !records[index].saved;
-                  this.setState({ records });
-                }}
-              >
-                {record.saved ? (
-                  <Favorite color="secondary" />
-                ) : (
-                  <FavoriteBorder color="disabled" />
-                )}
-              </IconButton>
-              <Box ml={1}>
-                <Typography variant="body2" align="right">Saved</Typography>
+          <Box>
+            <Typography variant="body2" component="span">My Bid&nbsp;</Typography>
+            <Typography variant="subtitle1" component="span">{record.budget}</Typography>
+          </Box>
+          <Box mt={0.5}>
+            <Link href="#">Cover Letter</Link>
+          </Box>
+          <Box mt={1.5}>
+            <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
+          </Box>
+          <Box mt={0.5} mb={1.5}>
+            <ChipContainer chips={record.skills} />
+          </Box>
+          <Box display="flex">
+            <Box flex={1} mr={1}>
+              <Button fullWidth variant="contained">Hire me</Button>
+            </Box>
+            <Box flex={1} ml={1}>
+              <Button fullWidth variant="outlined">Contact</Button>
+            </Box>
+          </Box>
+          <Divider />
+          <Box mt={1.5} style={{ whiteSpace: 'break-spaces', lineHeight: 3 }}>
+            {this.renderProjectsCompleted(record.projectsCompleted)}
+            {this.renderReview(record.reviewCount, record.reviewAverage)}
+            {this.renderCertificates()}
+            {this.renderSuccessRate(record.successRate)}
+            <Box display="inline-block">
+              <Box display="flex" alignItems="center">
+                <IconButton
+                  className={this.props.classes.saveIcon}
+                  onClick={() => {
+                    const records = cloneDeep(this.state.records);
+                    records[index].saved = !records[index].saved;
+                    this.setState({ records });
+                  }}
+                >
+                  {record.saved ? (
+                    <Favorite color="secondary" />
+                  ) : (
+                    <FavoriteBorder color="disabled" />
+                  )}
+                </IconButton>
+                <Box ml={1}>
+                  <Typography variant="body2" align="right">Saved</Typography>
+                </Box>
               </Box>
             </Box>
           </Box>
-        </Box>
-      </CardContent>
-    </CompactCard>
+        </CardContent>
+      </CompactCard>
+    </Box>
   )
 
   renderProjectsCompleted = (value) => (

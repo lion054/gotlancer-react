@@ -41,9 +41,9 @@ import { CompactCard, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   outerMargin: {
-    padding: theme.spacing(-2),
+    margin: theme.spacing(-2),
     [theme.breakpoints.only('xs')]: {
-      padding: theme.spacing(-1)
+      margin: theme.spacing(-1)
     }
   },
   innerPadding: {
@@ -271,21 +271,23 @@ class Details extends PureComponent {
               </CardContent>
             </CompactCard>
           </Box>
-          <Box mt={3}>
-            <Typography variant="subtitle2">Select your listing</Typography>
-          </Box>
-          <Box mt={1} mb={1}>
-            <Typography variant="body2">Upgrade your listing from below and get dozens of skilled freelancers for your project instantly.</Typography>
-          </Box>
-          {this.renderBadgeList()}
-          <Box mt={1} mb={3}>
-            <Divider />
-          </Box>
-          <Box display="flex" alignItems="center">
-            <Box flex={1}>
-              <Typography variant="body1">Total: {formatCurrency(0)}</Typography>
+          <Box className={this.props.classes.innerPadding}>
+            <Box mt={3}>
+              <Typography variant="subtitle2">Select your listing</Typography>
             </Box>
-            <Button variant="contained">Pay and Upgrade</Button>
+            <Box mt={1} mb={1}>
+              <Typography variant="body2">Upgrade your listing from below and get dozens of skilled freelancers for your project instantly.</Typography>
+            </Box>
+            {this.renderBadgeList()}
+            <Box mt={1} mb={2}>
+              <Divider />
+            </Box>
+            <Box display="flex" alignItems="center">
+              <Box flex={1}>
+                <Typography variant="body1">Total: {formatCurrency(0)}</Typography>
+              </Box>
+              <Button variant="contained">Pay and Upgrade</Button>
+            </Box>
           </Box>
         </Grid>
         <Grid item md={4} xs={12}>

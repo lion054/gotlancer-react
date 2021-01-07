@@ -25,15 +25,10 @@ const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.default
   },
-  container: {
-    [theme.breakpoints.up('md')]: {
-      margin: theme.spacing(0, 2)
-    }
-  },
   outerMargin: {
-    padding: theme.spacing(-2),
+    margin: theme.spacing(-2),
     [theme.breakpoints.only('xs')]: {
-      padding: theme.spacing(-1)
+      margin: theme.spacing(-1)
     }
   },
   innerPadding: {
@@ -71,7 +66,7 @@ class Projects extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box className={this.props.classes.container}>
+      <Box className={this.props.classes.innerPadding}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -102,20 +97,20 @@ class Projects extends PureComponent {
             <Box mt={8} mb={4}>
               <Box className={this.props.classes.innerPadding}>
                 <CompactCard>
-                  <Tabs
-                    value={this.state.activeTab}
-                    onChange={this.handleTabChange}
-                    variant="scrollable"
-                    scrollButtons="on"
-                    indicatorColor="primary"
-                    textColor="primary"
-                  >
-                    <CompactTab label="OPEN (10)" />
-                    <CompactTab label="NDER REVIEW (2)" />
-                    <CompactTab label="DRAFTS (33)" />
-                  </Tabs>
-                  <Divider />
-                  {this.renderOpenJobs()}
+                  <CardContent className="noVertPadding">
+                    <Tabs
+                      value={this.state.activeTab}
+                      onChange={this.handleTabChange}
+                      indicatorColor="primary"
+                      textColor="primary"
+                    >
+                      <CompactTab label="OPEN (10)" />
+                      <CompactTab label="NDER REVIEW (2)" />
+                      <CompactTab label="DRAFTS (33)" />
+                    </Tabs>
+                    <Divider />
+                    {this.renderOpenJobs()}
+                  </CardContent>
                 </CompactCard>
               </Box>
             </Box>
@@ -141,7 +136,7 @@ class Projects extends PureComponent {
   }
 
   renderOpenJobs = () => (
-    <List disablePadding>
+    <List disablePadding className="noLastDivider">
       {this.state.openJobs.map((job, index) => (
         <ListItem key={index} disableGutters divider>
           <Box className={this.props.classes.outerMargin} width="100%">

@@ -19,8 +19,46 @@ import Proposals from './Proposals';
 import { CompactTab } from '../../global';
 
 const styles = (theme) => ({
-  root: {}
+  root: {},
+  titleLeft: {
+    [theme.breakpoints.up('md')]: {
+      float: 'left',
+      width: 'calc(100% - 200px)'
+    }
+  },
+  titleRight: {
+    [theme.breakpoints.up('md')]: {
+      float: 'right',
+      width: 200,
+      '& > .MuiTypography-root': {
+        display: 'block'
+      }
+    },
+    [theme.breakpoints.down('sm')]: {
+      '& > .MuiTypography-root': {
+        display: 'inline-block'
+      }
+    },
+    textAlign: 'right'
+  },
+  tabs: {
+    [theme.breakpoints.up('md')]: {
+      clear: 'both' // Reset above float operation
+    }
+  },
+  innerPadding: {
+    padding: theme.spacing(2),
+    [theme.breakpoints.only('xs')]: {
+      padding: theme.spacing(1)
+    }
+  }
 });
+
+const GreenText = withStyles((theme) => ({
+  root: {
+    color: theme.palette.success.main
+  }
+}))(Typography);
 
 class Project extends PureComponent {
   state = {
@@ -64,19 +102,18 @@ class Project extends PureComponent {
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
-            <Box display="flex">
-              <Box flex={1}>
+            <Box>
+              <Box className={this.props.classes.titleLeft}>
                 <Typography variant="h5">I need a WordPress Site (5 pages) and a Logo Design</Typography>
                 <ChipContainer chips={this.state.badges} />
               </Box>
-              <Box>
-                <Box color={this.props.theme.palette.success.main}>
-                  <Typography variant="body2">In progress</Typography>
-                </Box>
-                <Typography variant="body2">$10-$30 USD/hr</Typography>
+              <Box className={this.props.classes.titleRight}>
+                <GreenText variant="body2">In progress</GreenText>
+                <Typography variant="body2">&nbsp;$10-$30 USD/hr</Typography>
               </Box>
             </Box>
             <Tabs
+              className={this.props.classes.tabs}
               value={this.state.activeTab}
               onChange={this.handleTabChange}
               variant="scrollable"
@@ -96,7 +133,7 @@ class Project extends PureComponent {
         </Grid>
       </Box>
       <Divider />
-      <Box pb={8} pl={2} pr={2} bgcolor={this.props.theme.palette.background.paper}>
+      <Box className={this.props.classes.innerPadding} bgcolor={this.props.theme.palette.background.paper}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>

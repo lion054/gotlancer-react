@@ -1,3 +1,12 @@
 .App {
   height: 100%;
 }
+
+.noVertPadding {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.noLastDivider .MuiListItem-divider:last-child {
+  border-bottom: none;
+}

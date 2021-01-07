@@ -360,10 +360,10 @@ class PostProject extends PureComponent {
         }}
       />
       <Divider />
-      <CardContent>
-        <List disablePadding>
+      <CardContent className="noVertPadding">
+        <List disablePadding className="noLastDivider">
           {this.state.faqList.map((faq, index) => (
-            <ListItem key={index} disableGutters divider={index < this.state.faqList.length - 1}>
+            <ListItem key={index} disableGutters divider>
               <ListItemText
                 primary={faq.question}
                 secondary={faq.answer}
