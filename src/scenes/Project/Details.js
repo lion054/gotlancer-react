@@ -299,32 +299,31 @@ class Details extends PureComponent {
                   variant: 'body1'
                 }}
               />
-              <CardContent>
-                <Timeline>
-                  {this.state.roadmap.map((point, index) => (
-                    <OddTimelineItem key={index}>
-                      <TimelineSeparator>
-                        {!!point.checked ? (
-                          <TimelineDot style={{ backgroundColor: this.props.theme.palette.success.main }}>
-                            <Check fontSize="small" />
-                          </TimelineDot>
-                        ) : (
-                          <TimelineDot color="grey" style={{ width: 20, height: 20 }} />
-                        )}
-                        {index < this.state.roadmap.length - 1 && (
-                          <TimelineConnector style={!!point.checked ? {
-                            backgroundColor: this.props.theme.palette.success.main
-                          } : {}} />
-                        )}
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <Typography variant="body1">{point.title}</Typography>
-                        <Typography variant="body2">{point.subtitle}</Typography>
-                      </TimelineContent>
-                    </OddTimelineItem>
-                  ))}
-                </Timeline>
-              </CardContent>
+              <Divider />
+              <Timeline>
+                {this.state.roadmap.map((point, index) => (
+                  <OddTimelineItem key={index}>
+                    <TimelineSeparator>
+                      {!!point.checked ? (
+                        <TimelineDot style={{ backgroundColor: this.props.theme.palette.success.main }}>
+                          <Check fontSize="small" />
+                        </TimelineDot>
+                      ) : (
+                        <TimelineDot color="grey" style={{ width: 20, height: 20 }} />
+                      )}
+                      {index < this.state.roadmap.length - 1 && (
+                        <TimelineConnector style={!!point.checked ? {
+                          backgroundColor: this.props.theme.palette.success.main
+                        } : {}} />
+                      )}
+                    </TimelineSeparator>
+                    <TimelineContent>
+                      <Typography variant="body1">{point.title}</Typography>
+                      <Typography variant="body2">{point.subtitle}</Typography>
+                    </TimelineContent>
+                  </OddTimelineItem>
+                ))}
+              </Timeline>
             </CompactCard>
           </Box>
         </Grid>

@@ -281,10 +281,10 @@ const styles = (theme) => ({
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(3),
     '&:hover > .MuiListItemIcon-root > .MuiBox-root > svg': {
-      color: theme.palette.info.main
+      color: theme.palette.primary.main
     },
     '&:hover > .MuiListItemText-root > .MuiTypography-root': {
-      color: theme.palette.info.main
+      color: theme.palette.primary.main
     }
   },
   menuIcon: {

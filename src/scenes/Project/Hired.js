@@ -200,32 +200,31 @@ class Hired extends PureComponent {
                   variant: 'body1'
                 }}
               />
-              <CardContent>
-                <Timeline>
-                  {this.state.roadmap.map((point, index) => (
-                    <OddTimelineItem key={index}>
-                      <TimelineSeparator>
-                        {!!point.checked ? (
-                          <TimelineDot style={{ backgroundColor: this.props.theme.palette.success.main }}>
-                            <Check fontSize="small" />
-                          </TimelineDot>
-                        ) : (
-                          <TimelineDot color="grey" style={{ width: 20, height: 20 }} />
-                        )}
-                        {index < this.state.roadmap.length - 1 && (
-                          <TimelineConnector style={!!point.checked ? {
-                            backgroundColor: this.props.theme.palette.success.main
-                          } : {}} />
-                        )}
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <Typography variant="body1">{point.title}</Typography>
-                        <Typography variant="body2">{point.subtitle}</Typography>
-                      </TimelineContent>
-                    </OddTimelineItem>
-                  ))}
-                </Timeline>
-              </CardContent>
+              <Divider />
+              <Timeline>
+                {this.state.roadmap.map((point, index) => (
+                  <OddTimelineItem key={index}>
+                    <TimelineSeparator>
+                      {!!point.checked ? (
+                        <TimelineDot style={{ backgroundColor: this.props.theme.palette.success.main }}>
+                          <Check fontSize="small" />
+                        </TimelineDot>
+                      ) : (
+                        <TimelineDot color="grey" style={{ width: 20, height: 20 }} />
+                      )}
+                      {index < this.state.roadmap.length - 1 && (
+                        <TimelineConnector style={!!point.checked ? {
+                          backgroundColor: this.props.theme.palette.success.main
+                        } : {}} />
+                      )}
+                    </TimelineSeparator>
+                    <TimelineContent>
+                      <Typography variant="body1">{point.title}</Typography>
+                      <Typography variant="body2">{point.subtitle}</Typography>
+                    </TimelineContent>
+                  </OddTimelineItem>
+                ))}
+              </Timeline>
             </CompactCard>
           </Box>
         </Grid>
@@ -241,22 +240,22 @@ class Hired extends PureComponent {
             <Box position="relative">
               <img alt="" src={record.avatar} className={this.props.classes.avatar} />
               <Box
+                width={24}
+                height={24}
+                borderRadius={11}
+                bgcolor={this.props.theme.palette.common.white}
+                position="absolute"
+                top={72}
+                left={72}
+              />
+              <Box
                 width={20}
                 height={20}
                 borderRadius={10}
-                bgcolor={this.props.theme.palette.common.white}
-                position="absolute"
-                top={76}
-                left={76}
-              />
-              <Box
-                width={16}
-                height={16}
-                borderRadius={8}
                 bgcolor={record.online ? this.props.theme.palette.success.main : this.props.theme.palette.action.disabled}
                 position="absolute"
-                top={78}
-                left={78}
+                top={74}
+                left={74}
               />
             </Box>
             <Box flex={1}>
@@ -342,22 +341,22 @@ class Hired extends PureComponent {
             <Box position="relative">
               <img alt="" src={record.avatar} className={this.props.classes.avatar} />
               <Box
+                width={24}
+                height={24}
+                borderRadius={12}
+                bgcolor={this.props.theme.palette.common.white}
+                position="absolute"
+                top={72}
+                left={72}
+              />
+              <Box
                 width={20}
                 height={20}
                 borderRadius={10}
-                bgcolor={this.props.theme.palette.common.white}
-                position="absolute"
-                top={76}
-                left={76}
-              />
-              <Box
-                width={16}
-                height={16}
-                borderRadius={8}
                 bgcolor={record.online ? this.props.theme.palette.success.main : this.props.theme.palette.action.disabled}
                 position="absolute"
-                top={78}
-                left={78}
+                top={74}
+                left={74}
               />
             </Box>
             <Box flex={1}>

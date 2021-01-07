@@ -22,13 +22,13 @@ import { CompactTab } from '../../global';
 
 const styles = (theme) => ({
   root: {},
-  titleLeft: {
+  floatLeft: {
     [theme.breakpoints.up('md')]: {
       float: 'left',
       width: 'calc(100% - 200px)'
     }
   },
-  titleRight: {
+  floatRight: {
     [theme.breakpoints.up('md')]: {
       float: 'right',
       width: 200,
@@ -43,7 +43,7 @@ const styles = (theme) => ({
     },
     textAlign: 'right'
   },
-  tabs: {
+  floatClear: {
     [theme.breakpoints.up('md')]: {
       clear: 'both' // Reset above float operation
     }
@@ -105,17 +105,17 @@ class Project extends PureComponent {
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
             <Box>
-              <Box className={this.props.classes.titleLeft}>
+              <Box className={this.props.classes.floatLeft}>
                 <Typography variant="h5">I need a WordPress Site (5 pages) and a Logo Design</Typography>
                 <ChipContainer chips={this.state.badges} />
               </Box>
-              <Box className={this.props.classes.titleRight}>
+              <Box className={this.props.classes.floatRight}>
                 <GreenText variant="body2">In progress</GreenText>
                 <Typography variant="body2">&nbsp;$10-$30 USD/hr</Typography>
               </Box>
             </Box>
             <Tabs
-              className={this.props.classes.tabs}
+              className={this.props.classes.floatClear}
               value={this.state.activeTab}
               onChange={this.handleTabChange}
               variant="scrollable"
