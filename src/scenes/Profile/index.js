@@ -11,7 +11,6 @@ import {
   LinearProgress,
   List,
   ListItem,
-  ListItemIcon,
   Tooltip,
   Typography,
   fade,
@@ -198,6 +197,14 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.action.disabledBackground,
     color: theme.palette.text.disabled,
     fontSize: 12
+  },
+  reviewAvatar: {
+    width: 64,
+    height: 64,
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.only('xs')]: {
+      marginRight: theme.spacing(1)
+    }
   },
   emptyContent: {
     minHeight: 200,
@@ -645,23 +652,22 @@ class Profile extends PureComponent {
           )}
         />
         <Divider />
-        <CardContent>
-          <Box className={this.props.classes.outerMargin}>
-            <Grid container>
-              {this.state.exhibitions.map((exhibition, index) => (
-                <Grid key={index} item md={3} sm={6} xs={12}>
-                  <Box className={this.props.classes.innerPadding}>
-                    <img alt="" src={exhibition.avatar} style={{ borderRadius: 4, width: '100%' }} />
-                    <Box display="flex">
-                      <Button style={{ color: this.props.theme.palette.success.main }}>Edit</Button>
-                      <Divider orientation="vertical" flexItem />
-                      <Button color="secondary">Delete</Button>
-                    </Box>
+        <CardContent style={{ paddingTop: 0 }}>
+          <Grid container>
+            {this.state.exhibitions.map((exhibition, index) => (
+              <Grid key={index} item md={3} sm={6} xs={12}>
+                <Box className={this.props.classes.innerPadding}>
+                  <img alt="" src={exhibition.avatar} style={{ borderRadius: 4, width: '100%' }} />
+                  <Box display="flex">
+                    <Button style={{ color: this.props.theme.palette.success.main }}>Edit</Button>
+                    <Divider orientation="vertical" flexItem />
+                    <Button color="secondary">Delete</Button>
                   </Box>
-                </Grid>
-              ))}
-            </Grid>
-          </Box>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+          <Divider />
           <CompactPagination />
         </CardContent>
       </CompactCard>
@@ -730,46 +736,92 @@ class Profile extends PureComponent {
           </Box>
           <Divider />
           <List disablePadding>
-            {this.state.reviews.map((review, index) => (
-              <ListItem key={index} disableGutters divider>
-                <ListItemIcon>
-                  <Avatar src={review.avatar} style={{ width: 64, height: 64 }} />
-                </ListItemIcon>
-                <Box ml={2} width="100%">
-                  <Typography variant="body1" color="primary">{review.title}</Typography>
-                  <Box display="flex" alignItems="center">
-                    {this.renderScore(4.9)}
-                    <Box ml={1}>
-                      <Typography variant="body2">{formatCurrency(review.budget)}</Typography>
-                    </Box>
-                  </Box>
-                  <Typography variant="body1">&ldquo;{review.comment}&rdquo;</Typography>
-                  <Box mt={1}>
-                    <Grid container alignItems="center">
-                      <Grid item xs={4}>
-                        <Typography variant="body2" color="primary">{review.name}</Typography>
-                      </Grid>
-                      <Grid item xs={4}>
-                        <Box display="flex" alignItems="center">
-                          <Box mr={0.5}>
-                            <Room />
-                          </Box>
-                          <Typography variant="body2">{review.location}</Typography>
-                        </Box>
-                      </Grid>
-                      <Grid item xs={4}>
-                        <Typography variant="body2" style={{ textTransform: 'capitalize' }}>{moment(review.createdAt).fromNow()}</Typography>
-                      </Grid>
-                    </Grid>
-                  </Box>
-                </Box>
-              </ListItem>
-            ))}
+            {this.state.reviews.map((review, index) => {
+              switch (this.props.width) {
+                case 'sm':
+                case 'xs':
+                  return this.renderMobileReview(review, index);
+                default:
+                  return this.renderDesktopReview(review, index);
+              }
+            })}
           </List>
           <CompactPagination />
         </CardContent>
       </CompactCard>
     </Box>
+  )
+
+  renderDesktopReview = (review, index) => (
+    <ListItem key={index} disableGutters divider>
+      <Avatar src={review.avatar} className={this.props.classes.reviewAvatar} />
+      <Box flex={1}>
+        <Typography variant="body1" color="primary">{review.title}</Typography>
+        <Box display="flex" alignItems="center">
+          {this.renderScore(4.9)}
+          <Box ml={1}>
+            <Typography variant="body2">{formatCurrency(review.budget)}</Typography>
+          </Box>
+        </Box>
+        <Box mt={1} mb={1}>
+          <Typography variant="body1">&ldquo;{review.comment}&rdquo;</Typography>
+        </Box>
+        <Grid container alignItems="center">
+          <Grid item xs={4}>
+            <Typography variant="body2" color="primary">{review.name}</Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Box display="flex" alignItems="center">
+              <Box mr={0.5}>
+                <Room />
+              </Box>
+              <Typography variant="body2">{review.location}</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="body2" style={{ textTransform: 'capitalize' }}>{moment(review.createdAt).fromNow()}</Typography>
+          </Grid>
+        </Grid>
+      </Box>
+    </ListItem>
+  )
+
+  renderMobileReview = (review, index) => (
+    <ListItem key={index} disableGutters divider>
+      <Box>
+        <Box display="flex">
+          <Avatar src={review.avatar} className={this.props.classes.reviewAvatar} />
+          <Box>
+            <Typography variant="body1" color="primary">{review.title}</Typography>
+            <Box display="flex" alignItems="center">
+              {this.renderScore(4.9)}
+              <Box ml={1}>
+                <Typography variant="body2">{formatCurrency(review.budget)}</Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+        <Box mt={1} mb={1}>
+          <Typography variant="body1">&ldquo;{review.comment}&rdquo;</Typography>
+        </Box>
+        <Grid container alignItems="center">
+          <Grid item xs={4}>
+            <Typography variant="body2" color="primary">{review.name}</Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Box display="flex" alignItems="center">
+              <Box mr={0.5}>
+                <Room />
+              </Box>
+              <Typography variant="body2">{review.location}</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="body2" style={{ textTransform: 'capitalize' }}>{moment(review.createdAt).fromNow()}</Typography>
+          </Grid>
+        </Grid>
+      </Box>
+    </ListItem>
   )
 
   renderExperiences = () => (

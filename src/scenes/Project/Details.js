@@ -174,7 +174,7 @@ class Details extends PureComponent {
       subtitle: 'Sattle all of pending payment'
     },{
       title: 'End Contract',
-      subtitle: 'End contract from hired  list'
+      subtitle: 'End contract from hired list'
     },{
       title: 'Give Feedback',
       subtitle: 'Rate your freelancer'

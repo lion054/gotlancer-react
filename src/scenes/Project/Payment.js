@@ -113,7 +113,7 @@ const OddTimelineItem = withStyles({
   }
 })(TimelineItem);
 
-class Hired extends PureComponent {
+class Payment extends PureComponent {
   state = {
     records: [],
     roadmap: []
@@ -498,4 +498,4 @@ export default compose(
   withStyles(styles),
   withTheme,
   withWidth()
-)(Hired);
+)(Payment);

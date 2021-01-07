@@ -164,7 +164,7 @@ class Proposals extends PureComponent {
       subtitle: 'Sattle all of pending payment'
     },{
       title: 'End Contract',
-      subtitle: 'End contract from hired  list'
+      subtitle: 'End contract from hired list'
     },{
       title: 'Give Feedback',
       subtitle: 'Rate your freelancer'
@@ -388,7 +388,7 @@ class Proposals extends PureComponent {
           <Box mt={0.5} mb={1.5}>
             <ChipContainer chips={record.skills} />
           </Box>
-          <Box display="flex">
+          <Box display="flex" mb={1.5}>
             <Box flex={1} mr={1}>
               <Button fullWidth variant="contained">Hire me</Button>
             </Box>

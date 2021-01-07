@@ -7,11 +7,7 @@ const styles = (theme) => ({
   root: {
     paddingTop: theme.spacing(2),
     display: 'flex',
-    justifyContent: 'center',
-    [theme.breakpoints.down('sm')]: {
-      borderTopColor: theme.palette.divider,
-      borderTopStyle: 'solid'
-    }
+    justifyContent: 'center'
   },
 });
 

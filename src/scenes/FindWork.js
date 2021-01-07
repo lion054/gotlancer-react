@@ -14,6 +14,8 @@ import {
   IconButton,
   InputAdornment,
   LinearProgress,
+  List,
+  ListItem,
   MenuItem,
   OutlinedInput,
   Tab,
@@ -28,6 +30,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faClock, faDollarSign, faHeart, faMapMarkedAlt, faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 import pluralize from 'pluralize';
 import moment from 'moment';
+import clsx from 'clsx';
 import { cloneDeep } from 'lodash';
 import faker from 'faker';
 import { compose } from 'redux';
@@ -42,14 +45,16 @@ const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.background.default
   },
-  container: {
-    [theme.breakpoints.up('md')]: {
-      margin: theme.spacing(0, 2)
+  outerMargin: {
+    margin: theme.spacing(-2),
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(-1)
     }
   },
-  subcontainer: {
+  innerPadding: {
+    padding: theme.spacing(2),
     [theme.breakpoints.down('sm')]: {
-      margin: theme.spacing(0, 2)
+      padding: theme.spacing(1)
     }
   },
   leftSideBar: {
@@ -199,7 +204,7 @@ class FindWork extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box className={this.props.classes.container}>
+      <Box className={this.props.classes.innerPadding}>
         <Box height={this.props.theme.spacing(8)} display="flex" justifyContent="center" alignItems="center">
           {!!this.state.newJobs && (
             <MenuItem
@@ -208,30 +213,32 @@ class FindWork extends PureComponent {
             >View {pluralize('new job', this.state.newJobs, true)}</MenuItem>
           )}
         </Box>
-        <Grid container>
-          <Grid item lg={2} />
-          <Grid item lg={8} xs={12} style={{ display: 'flex' }}>
-            <Box className={this.props.classes.leftSideBar}>
-              {this.renderTabsCard()}
-              <Box mt={2}>
-                {this.renderMembershipCard()}
-              </Box>
-              <Box mt={2}>
-                {this.renderBidCredit()}
-              </Box>
+      </Box>
+      <Grid container>
+        <Grid item lg={2} />
+        <Grid item lg={8} xs={12} style={{ display: 'flex' }}>
+          <Box className={clsx(this.props.classes.innerPadding, this.props.classes.leftSideBar)}>
+            {this.renderTabsCard()}
+            <Box mt={2}>
+              {this.renderMembershipCard()}
             </Box>
-            <Grid container style={{ flex: 1 }}>
-              <Grid item md={9}>
-                {this.renderJobList()}
-              </Grid>
-              <Grid item md={3} className={this.props.classes.rightSideBar}>
+            <Box mt={2}>
+              {this.renderBidCredit()}
+            </Box>
+          </Box>
+          <Grid container style={{ flex: 1 }}>
+            <Grid item md={9}>
+              {this.renderJobList()}
+            </Grid>
+            <Grid item md={3}>
+              <Box className={clsx(this.props.classes.innerPadding, this.props.classes.rightSideBar)}>
                 {this.renderConditionBar()}
-              </Grid>
+              </Box>
             </Grid>
           </Grid>
-          <Grid item lg={2} />
         </Grid>
-      </Box>
+        <Grid item lg={2} />
+      </Grid>
       <Footer />
       <Drawer
         anchor="left"
@@ -340,48 +347,56 @@ class FindWork extends PureComponent {
   )
 
   renderJobList = () => (
-    <Box className={this.props.classes.container}>
-      <Box className={this.props.classes.subcontainer}>
-        <Box display="flex" flexDirection="row">
-          <Box className={this.props.classes.menuButton}>
-            <IconButton onClick={() => this.setState({ drawerOpened: true })}>
-              <FontAwesomeIcon icon={faBars} />
-            </IconButton>
-          </Box>
-          <Box flex={1}>
-            <OutlinedInput
-              fullWidth
-              placeholder="Search for project"
-              inputProps={{
-                className: this.props.classes.search
-              }}
-              endAdornment={(
-                <InputAdornment position="end">
-                  <IconButton>
-                    <FontAwesomeIcon icon={faSearch} style={{ fontSize: '0.8em' }} />
-                  </IconButton>
-                </InputAdornment>
-              )}
-              style={{
-                backgroundColor: this.props.theme.palette.background.paper,
-                paddingRight: this.props.theme.spacing(0.5)
-              }}
-            />
-          </Box>
+    <Box className={this.props.classes.innerPadding}>
+      <Box display="flex" flexDirection="row">
+        <Box className={this.props.classes.menuButton}>
+          <IconButton onClick={() => this.setState({ drawerOpened: true })}>
+            <FontAwesomeIcon icon={faBars} />
+          </IconButton>
         </Box>
-        <Box mt={2} mb={2}>
-          <Typography variant="body2">{pluralize('job', 4500, true)} found</Typography>
+        <Box flex={1}>
+          <OutlinedInput
+            fullWidth
+            placeholder="Search for project"
+            inputProps={{
+              className: this.props.classes.search
+            }}
+            endAdornment={(
+              <InputAdornment position="end">
+                <IconButton>
+                  <FontAwesomeIcon icon={faSearch} style={{ fontSize: '0.8em' }} />
+                </IconButton>
+              </InputAdornment>
+            )}
+            style={{
+              backgroundColor: this.props.theme.palette.background.paper,
+              paddingRight: this.props.theme.spacing(0.5)
+            }}
+          />
         </Box>
       </Box>
-      {this.state.jobs.map((job, index) => {
-        switch (this.props.width) {
-          case 'sm':
-          case 'xs':
-            return this.renderMobileJobCard(job, index);
-          default:
-            return this.renderDesktopJobCard(job, index);
-        }
-      })}
+      <Box mt={2} mb={2}>
+        <Typography variant="body2">{pluralize('job', 4500, true)} found</Typography>
+      </Box>
+      <List disablePadding>
+        {this.state.jobs.map((job, index) => {
+          switch (this.props.width) {
+            case 'sm':
+            case 'xs':
+              return (
+                <ListItem key={index} disableGutters>
+                  {this.renderMobileJobCard(job, index)}
+                </ListItem>
+              );
+            default:
+              return (
+                <ListItem key={index} disableGutters>
+                  {this.renderDesktopJobCard(job, index)}
+                </ListItem>
+              );
+          }
+        })}
+      </List>
       <Box mb={4}>
         <CompactPagination />
       </Box>
@@ -409,7 +424,7 @@ class FindWork extends PureComponent {
           <Box mt={1.5}>
             <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
           </Box>
-          <Box mt={1} mb={2.5} display="flex">
+          <Box mt={1} mb={1.5} display="flex">
             <Box flex={1}>
               <ChipContainer chips={job.skills} />
             </Box>
@@ -467,7 +482,7 @@ class FindWork extends PureComponent {
         <Box mt={1.5}>
           <Typography variant="body2" color="textSecondary">{job.type}</Typography>
         </Box>
-        <Box mt={1} mb={2.5}>
+        <Box mt={1} mb={1.5}>
           <ChipContainer chips={job.skills} />
         </Box>
         <Divider />
