@@ -66,7 +66,7 @@ const GreenText = withStyles((theme) => ({
 class Project extends PureComponent {
   state = {
     badges: [],
-    activeTab: 4
+    activeTab: 1
   }
 
   componentDidMount() {

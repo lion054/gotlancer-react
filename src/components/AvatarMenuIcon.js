@@ -116,19 +116,20 @@ class AvatarMenuIcon extends PureComponent {
         <MenuList classes={{ root: this.props.classes.menuList }}>
           {this.renderListItems('', [{
             element: () => (
-              <Fragment>
-                <Box mr={1.5}>
-                  <FontAwesomeIcon icon={faUserCircle} color={this.props.theme.palette.text.secondary} size="2x" />
+              <Box flex={1} display="flex" justifyContent="space-between">
+                <Box display="flex" alignItems="center">
+                  <Box mr={1.5}>
+                    <FontAwesomeIcon icon={faUserCircle} color={this.props.theme.palette.text.secondary} size="2x" />
+                  </Box>
+                  <Box display="inline-block">
+                    <Typography variant="body2" display="block" noWrap>Hi, Apurba</Typography>
+                    <Typography variant="body2" display="block" noWrap>{formatCurrency(100)}</Typography>
+                  </Box>
                 </Box>
-                <Box display="inline-block">
-                  <Typography variant="body2" display="block" noWrap>Hi, Apurba</Typography>
-                  <Typography variant="body2" display="block" noWrap>{formatCurrency(100)}</Typography>
-                </Box>
-                <div style={{ flex: 1 }} />
                 <IconButton onClick={this.handleDrawer}>
                   <FontAwesomeIcon icon={faTimes} color={this.props.theme.palette.text.secondary} size="1x" />
                 </IconButton>
-              </Fragment>
+              </Box>
             )
           },{
             label: 'Settings',

@@ -268,7 +268,7 @@ class WithdrawFund extends PureComponent {
     <CompactCard>
       <CardHeader
         title={(
-          <Box className={this.props.classes.outerMargin} flex={1}>
+          <Box className={this.props.classes.outerMargin}>
             <Grid container>
               <Grid item md={3} xs={6}>
                 <Box className={this.props.classes.innerPadding}>

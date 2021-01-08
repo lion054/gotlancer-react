@@ -27,6 +27,7 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.background.paper
   },
   toolbar: {
+    justifyContent: 'space-between',
     height: theme.spacing(8),
     [theme.breakpoints.up('md')]: {
       paddingLeft: theme.spacing(2)
@@ -107,114 +108,117 @@ class Header extends PureComponent {
             <Grid item lg={2} />
             <Grid item lg={8} xs={12}>
               <Toolbar disableGutters className={this.props.classes.toolbar}>
-                <IconButton className={this.props.classes.logoContainer} onClick={() => this.props.history.push('/')}>
-                  <img alt="" className={this.props.classes.logo} src={require('../assets/images/gl-logo-black.svg')} />
-                </IconButton>
-                <Box className={this.props.classes.optional} ml={1}>
-                  <MenuButton onClick={this.onOpenProjects}>Projects</MenuButton>
-                  <Menu
-                    id="projects-menu"
-                    anchorEl={this.state.projectsEl}
-                    keepMounted
-                    open={!!this.state.projectsEl}
-                    onClose={this.onCloseProjects}
-                    getContentAnchorEl={null} // menu should be display below anchor
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
-                  >
-                    <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/find_work')}>Find Work</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Saved Jobs</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Bids</MenuItem>
-                    <MenuItem className={this.props.classes.label}>My Stats</MenuItem>
-                    <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/projects')}>My Projects</MenuItem>
-                  </Menu>
-                </Box>
-                <Box className={this.props.classes.optional}>
-                  <MenuButton onClick={this.onOpenHire}>Hire</MenuButton>
-                  <Menu
-                    id="hire-menu"
-                    anchorEl={this.state.hireEl}
-                    keepMounted
-                    open={!!this.state.hireEl}
-                    onClose={this.onCloseHire}
-                    getContentAnchorEl={null} // menu should be display below anchor
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
-                  >
-                    <MenuItem className={this.props.classes.label}>Find Freelancer</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Saved Freelancer</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Hired Freelancer</MenuItem>
-                  </Menu>
-                </Box>
-                <Box className={this.props.classes.optional}>
-                  <MenuButton onClick={this.onOpenFinance}>Finance</MenuButton>
-                  <Menu
-                    id="finance-menu"
-                    anchorEl={this.state.financeEl}
-                    keepMounted
-                    open={!!this.state.financeEl}
-                    onClose={this.onCloseFinance}
-                    getContentAnchorEl={null} // menu should be display below anchor
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
-                  >
-                    <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/deposit_fund')}>Deposit Fund</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Balance Sheet</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Overview</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Bid History</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Transaction History</MenuItem>
-                    <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/payment_history')}>Payment History</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Withdrawal History</MenuItem>
-                    <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/disputation')}>Disputation</MenuItem>
-                    <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/withdraw_fund')}>Withdraw Fund</MenuItem>
-                  </Menu>
-                </Box>
-                <Box className={this.props.classes.optional}>
-                  <MenuButton onClick={this.onOpenContest}>Contest</MenuButton>
-                  <Menu
-                    id="contest-menu"
-                    anchorEl={this.state.contestEl}
-                    keepMounted
-                    open={!!this.state.contestEl}
-                    onClose={this.onCloseContest}
-                    getContentAnchorEl={null} // menu should be display below anchor
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
-                  >
-                    <MenuItem className={this.props.classes.label}>Find Contest</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Saved Contest</MenuItem>
-                  </Menu>
-                </Box>
-                <Box className={this.props.classes.optional}>
-                  <MenuButton onClick={this.onOpenMarket}>Market</MenuButton>
-                  <Menu
-                    id="market-menu"
-                    anchorEl={this.state.marketEl}
-                    keepMounted
-                    open={!!this.state.marketEl}
-                    onClose={this.onCloseMarket}
-                    getContentAnchorEl={null} // menu should be display below anchor
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
-                  >
-                    <MenuItem className={this.props.classes.label}>Explore Market</MenuItem>
-                    <MenuItem className={this.props.classes.label}>Saved Market</MenuItem>
-                  </Menu>
-                </Box>
-                <Box className={this.props.classes.optional}>
-                  <Button variant="contained" style={{ marginLeft: 8, borderRadius: 18 }} onClick={() => this.props.history.push('/post_project')}>Post a project</Button>
-                </Box>
-                <div style={{ flex: 1 }} />
-                <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
-                  <IconButton onClick={() => this.props.history.push('/messenger')}>
-                    <FontAwesomeIcon icon={faEnvelope} size="1x" />
+                <Box display="flex" alignItems="center">
+                  <IconButton className={this.props.classes.logoContainer} onClick={() => this.props.history.push('/')}>
+                    <img alt="" className={this.props.classes.logo} src={require('../assets/images/gl-logo-black.svg')} />
                   </IconButton>
-                </Badge>
-                <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
-                  <IconButton onClick={() => this.props.history.push('/notifications')}>
-                    <FontAwesomeIcon icon={faBell} size="1x" />
-                  </IconButton>
-                </Badge>
-                {this.props.width === 'xs' ? (
-                  <AvatarMenuIcon />
-                ) : (
-                  <AvatarMenuButton />
-                )}
+                  <Box className={this.props.classes.optional} ml={1}>
+                    <MenuButton onClick={this.onOpenProjects}>Projects</MenuButton>
+                    <Menu
+                      id="projects-menu"
+                      anchorEl={this.state.projectsEl}
+                      keepMounted
+                      open={!!this.state.projectsEl}
+                      onClose={this.onCloseProjects}
+                      getContentAnchorEl={null} // menu should be display below anchor
+                      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
+                    >
+                      <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/find_work')}>Find Work</MenuItem>
+                      <MenuItem className={this.props.classes.label}>Saved Jobs</MenuItem>
+                      <MenuItem className={this.props.classes.label}>Bids</MenuItem>
+                      <MenuItem className={this.props.classes.label}>My Stats</MenuItem>
+                      <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/projects')}>My Projects</MenuItem>
+                    </Menu>
+                  </Box>
+                  <Box className={this.props.classes.optional}>
+                    <MenuButton onClick={this.onOpenHire}>Hire</MenuButton>
+                    <Menu
+                      id="hire-menu"
+                      anchorEl={this.state.hireEl}
+                      keepMounted
+                      open={!!this.state.hireEl}
+                      onClose={this.onCloseHire}
+                      getContentAnchorEl={null} // menu should be display below anchor
+                      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
+                    >
+                      <MenuItem className={this.props.classes.label}>Find Freelancer</MenuItem>
+                      <MenuItem className={this.props.classes.label}>Saved Freelancer</MenuItem>
+                      <MenuItem className={this.props.classes.label}>Hired Freelancer</MenuItem>
+                    </Menu>
+                  </Box>
+                  <Box className={this.props.classes.optional}>
+                    <MenuButton onClick={this.onOpenFinance}>Finance</MenuButton>
+                    <Menu
+                      id="finance-menu"
+                      anchorEl={this.state.financeEl}
+                      keepMounted
+                      open={!!this.state.financeEl}
+                      onClose={this.onCloseFinance}
+                      getContentAnchorEl={null} // menu should be display below anchor
+                      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
+                    >
+                      <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/deposit_fund')}>Deposit Fund</MenuItem>
+                      <MenuItem className={this.props.classes.label}>Balance Sheet</MenuItem>
+                      <MenuItem className={this.props.classes.label}>Overview</MenuItem>
+                      <MenuItem className={this.props.classes.label}>Bid History</MenuItem>
+                      <MenuItem className={this.props.classes.label}>Transaction History</MenuItem>
+                      <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/payment_history')}>Payment History</MenuItem>
+                      <MenuItem className={this.props.classes.label}>Withdrawal History</MenuItem>
+                      <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/disputation')}>Disputation</MenuItem>
+                      <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/withdraw_fund')}>Withdraw Fund</MenuItem>
+                    </Menu>
+                  </Box>
+                  <Box className={this.props.classes.optional}>
+                    <MenuButton onClick={this.onOpenContest}>Contest</MenuButton>
+                    <Menu
+                      id="contest-menu"
+                      anchorEl={this.state.contestEl}
+                      keepMounted
+                      open={!!this.state.contestEl}
+                      onClose={this.onCloseContest}
+                      getContentAnchorEl={null} // menu should be display below anchor
+                      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
+                    >
+                      <MenuItem className={this.props.classes.label}>Find Contest</MenuItem>
+                      <MenuItem className={this.props.classes.label}>Saved Contest</MenuItem>
+                    </Menu>
+                  </Box>
+                  <Box className={this.props.classes.optional}>
+                    <MenuButton onClick={this.onOpenMarket}>Market</MenuButton>
+                    <Menu
+                      id="market-menu"
+                      anchorEl={this.state.marketEl}
+                      keepMounted
+                      open={!!this.state.marketEl}
+                      onClose={this.onCloseMarket}
+                      getContentAnchorEl={null} // menu should be display below anchor
+                      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
+                    >
+                      <MenuItem className={this.props.classes.label}>Explore Market</MenuItem>
+                      <MenuItem className={this.props.classes.label}>Saved Market</MenuItem>
+                    </Menu>
+                  </Box>
+                  <Box className={this.props.classes.optional}>
+                    <Button variant="contained" style={{ marginLeft: 8, borderRadius: 18 }} onClick={() => this.props.history.push('/post_project')}>Post a project</Button>
+                  </Box>
+                </Box>
+                <Box display="flex">
+                  <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
+                    <IconButton onClick={() => this.props.history.push('/messenger')}>
+                      <FontAwesomeIcon icon={faEnvelope} size="1x" />
+                    </IconButton>
+                  </Badge>
+                  <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
+                    <IconButton onClick={() => this.props.history.push('/notifications')}>
+                      <FontAwesomeIcon icon={faBell} size="1x" />
+                    </IconButton>
+                  </Badge>
+                  {this.props.width === 'xs' ? (
+                    <AvatarMenuIcon />
+                  ) : (
+                    <AvatarMenuButton />
+                  )}
+                </Box>
               </Toolbar>
             </Grid>
             <Grid item lg={2} />

@@ -104,10 +104,8 @@ class Screenshots extends PureComponent {
       <Box mt={2}>
         {this.state.tasks.map(({ title, startedAt, endedAt, duration, captures }, i) => (
           <Box key={i}>
-            <Box className={this.props.classes.title} display="flex" alignItems="center">
-              <Box flex={1}>
-                <Typography variant="body2">{title}</Typography>
-              </Box>
+            <Box className={this.props.classes.title} display="flex" justifyContent="space-between" alignItems="center">
+              <Typography variant="body2">{title}</Typography>
               <TitleButton variant="text">Edit Title</TitleButton>
             </Box>
             {this.props.width === 'xs' || this.props.width === 'sm' ? (
@@ -151,10 +149,8 @@ class Screenshots extends PureComponent {
                   <Grid key={j} item xl={2} lg={3} md={4} sm={6} xs={12}>
                     <Box className={this.props.classes.innerPadding}>
                       <img alt="" src={url} className={this.props.classes.capture} />
-                      <Box display="flex" alignItems="center">
-                        <Box flex={1}>
-                          <Typography variant="body2">{moment(createdAt).format('LT')}</Typography>
-                        </Box>
+                      <Box display="flex" justifyContent="space-between" alignItems="center">
+                        <Typography variant="body2">{moment(createdAt).format('LT')}</Typography>
                         <Button variant="text">Delete</Button>
                       </Box>
                     </Box>

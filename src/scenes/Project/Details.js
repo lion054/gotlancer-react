@@ -202,10 +202,8 @@ class Details extends PureComponent {
               <Divider />
               <CardContent>
                 <Typography variant="body2">{this.state.details}</Typography>
-                <Box mt={1} display="flex" alignItems="center">
-                  <Box flex={1}>
-                    <Typography variant="body2">Project ID: {this.state.id}</Typography>
-                  </Box>
+                <Box mt={1} display="flex" justifyContent="space-between" alignItems="center">
+                  <Typography variant="body2">Project ID: {this.state.id}</Typography>
                   <RedButton variant="text">Report as spam</RedButton>
                 </Box>
               </CardContent>
@@ -282,10 +280,8 @@ class Details extends PureComponent {
             <Box mt={1} mb={2}>
               <Divider />
             </Box>
-            <Box display="flex" alignItems="center">
-              <Box flex={1}>
-                <Typography variant="body1">Total: {formatCurrency(0)}</Typography>
-              </Box>
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+              <Typography variant="body1">Total: {formatCurrency(0)}</Typography>
               <Button variant="contained">Pay and Upgrade</Button>
             </Box>
           </Box>

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import {
   Avatar,
   Box,
@@ -22,6 +22,7 @@ import {
   Apple,
   Camera,
   Check,
+  CheckCircle,
   Favorite,
   FavoriteBorder,
   Redeem,
@@ -114,6 +115,32 @@ const styles = (theme) => ({
   saveIcon: {
     padding: theme.spacing(1),
     border: `solid 1px ${theme.palette.divider}`
+  },
+  score: {
+    [theme.breakpoints.only('xs')]: {
+      position: 'relative',
+      top: -3
+    },
+    marginRight: theme.spacing(1),
+    borderRadius: theme.spacing(0.5),
+    padding: theme.spacing(0, 0.5),
+    backgroundColor: theme.palette.warning.main,
+    color: theme.palette.common.white,
+    fontSize: 12
+  },
+  skill: {
+    marginRight: theme.spacing(1),
+    borderRadius: theme.spacing(0.5),
+    padding: theme.spacing(0.5, 1),
+    backgroundColor: theme.palette.action.disabledBackground,
+    color: theme.palette.text.disabled,
+    fontSize: 12
+  },
+  buttonLabel: {
+    whiteSpace: 'nowrap'
+  },
+  drawer: {
+    backgroundColor: theme.palette.background.default
   }
 });
 
@@ -129,7 +156,7 @@ class Proposals extends PureComponent {
   state = {
     records: [],
     roadmap: [],
-    drawerOpened: false
+    activeRecord: null
   }
 
   componentDidMount() {
@@ -184,8 +211,6 @@ class Proposals extends PureComponent {
     }];
     this.setState({ records, roadmap });
   }
-
-  handleDrawer = () => this.setState({ drawerOpened: !this.state.drawerOpened })
 
   render = () => (
     <Box className={this.props.classes.outerMargin}>
@@ -261,9 +286,9 @@ class Proposals extends PureComponent {
               />
             </Box>
             <Box flex={1}>
-              <Box display="flex">
-                <Box flex={1}>
-                  <Box flex={1} display="flex" alignItems="center">
+              <Box display="flex" justifyContent="space-between">
+                <Box>
+                  <Box display="flex" alignItems="center">
                     <Typography variant="subtitle1">{record.name}</Typography>
                     <Avatar className={this.props.classes.verifiedIcon} style={record.verified ? {
                       backgroundColor: this.props.theme.palette.success.main
@@ -284,19 +309,24 @@ class Proposals extends PureComponent {
               <Box mt={0.5}>
                 <Link href="#">Cover Letter</Link>
               </Box>
-              <Box mt={1.5} display="flex">
-                <Box flex={1}>
+              <Box mt={1.5} display="flex" justifyContent="space-between">
+                <Box>
                   <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
                   <Box mt={0.5} mb={1.5}>
                     <ChipContainer chips={record.skills} />
                   </Box>
                 </Box>
                 <Box>
-                  <Box>
-                    <Button fullWidth variant="contained">Hire me</Button>
-                  </Box>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    onClick={() => this.setState({ activeRecord: record })}
+                    classes={{
+                      label: this.props.classes.buttonLabel
+                    }}
+                  >Hire me</Button>
                   <Box mt={1}>
-                    <Button fullWidth variant="outlined">Contact</Button>
+                    <Button fullWidth variant="outlined" onClick={() => this.setState({ activeRecord: record })}>Contact</Button>
                   </Box>
                 </Box>
               </Box>
@@ -377,10 +407,10 @@ class Proposals extends PureComponent {
           </Box>
           <Box display="flex" mb={1.5}>
             <Box flex={1} mr={1}>
-              <Button fullWidth variant="contained">Hire me</Button>
+              <Button fullWidth variant="contained" onClick={() => this.setState({ activeRecord: record })}>Hire me</Button>
             </Box>
             <Box flex={1} ml={1}>
-              <Button fullWidth variant="outlined">Contact</Button>
+              <Button fullWidth variant="outlined" onClick={() => this.setState({ activeRecord: record })}>Contact</Button>
             </Box>
           </Box>
           <Divider />
@@ -483,13 +513,72 @@ class Proposals extends PureComponent {
   renderDrawer = () => (
     <Drawer
       anchor="right"
-      open={this.state.drawerOpened}
-      onClose={this.handleDrawer}
+      open={!!this.state.activeRecord}
+      onClose={() => this.setState({ activeRecord: null })}
+      classes={{
+        paper: this.props.classes.drawer
+      }}
     >
-      <Box>
-
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        className={this.props.classes.innerPadding}
+        bgcolor={this.props.theme.palette.background.paper}
+      >
+        <Button>Back to all proposals</Button>
+        <Button>View profile in new window</Button>
+      </Box>
+      <Box className={this.props.classes.innerPadding} display="flex">
+        <Box position="relative">
+          <img alt="" src={this.state.activeRecord && this.state.activeRecord.avatar} className={this.props.classes.avatar} />
+          <Box
+            className={this.props.classes.status}
+            bgcolor={this.state.activeRecord && this.state.activeRecord.online ? this.props.theme.palette.success.main : colors.grey[400]}
+          />
+        </Box>
+        <Box flex={1}>
+          <Box display={this.props.width === 'xs' ? 'block' : 'flex'}>
+            <Box display="flex" alignItems="center">
+              <Box mr={2} color={this.props.theme.palette.success.main}>
+                <Typography variant="body1">{this.state.activeRecord && this.state.activeRecord.name}</Typography>
+              </Box>
+              <Box mx={1}>
+                <CheckCircle htmlColor={this.props.theme.palette.success.main} />
+              </Box>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <Box mx={1}>
+                <Star htmlColor={this.props.theme.palette.warning.main} />
+              </Box>
+              <Box mx={1} color={this.props.theme.palette.warning.main}>
+                <Typography variant="body2">HIGHTEST RATED</Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box mr={1}>
+            <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
+          </Box>
+          <Box display={this.props.width === 'xs' ? 'block' : 'flex'} alignItems="center" my={0.5}>
+            {this.renderScore(4.9)}
+            <Box ml={1}>
+              <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
+            </Box>
+          </Box>
+          <Box>
+            <span className={this.props.classes.skill}>Augmented Reality (AR)</span>
+            <span className={this.props.classes.skill}>Virtual Reality (VR)</span>
+            <span className={this.props.classes.skill}>Unity3D</span>
+          </Box>
+        </Box>
       </Box>
     </Drawer>
+  )
+
+  renderScore = (value) => (
+    <Fragment>
+      <span className={this.props.classes.score}>{value}</span>
+      <Rating name="read-only" value={value} readOnly size="small" />
+    </Fragment>
   )
 }
 

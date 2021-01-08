@@ -124,43 +124,37 @@ class DepositFund extends PureComponent {
                           <CardContent>
                             <Typography variant="subtitle2">Payment method</Typography>
                             <RadioGroup value={this.state.paymentMethod} onChange={(e) => this.setState({ paymentMethod: e.target.value })}>
-                              <Box display="flex" alignItems="center">
-                                <Box flex={1}>
-                                  <FormControlLabel
-                                    value="stripe-checkout"
-                                    control={(
-                                      <Radio checked={this.state.paymentMethod === 'stripe-checkout'} onClick={(e) => e.stopPropagation()} />
-                                    )}
-                                    label={<Typography variant="body1" component="span">Stripe Checkout</Typography>}
-                                    onClick={() => this.setState({ paymentMethod: 'stripe-checkout' })}
-                                  />
-                                </Box>
+                              <Box display="flex" justifyContent="space-between" alignItems="center">
+                                <FormControlLabel
+                                  value="stripe-checkout"
+                                  control={(
+                                    <Radio checked={this.state.paymentMethod === 'stripe-checkout'} onClick={(e) => e.stopPropagation()} />
+                                  )}
+                                  label={<Typography variant="body1" component="span">Stripe Checkout</Typography>}
+                                  onClick={() => this.setState({ paymentMethod: 'stripe-checkout' })}
+                                />
                                 <img alt="" className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/stripe-checkout.png')} />
                               </Box>
-                              <Box display="flex" alignItems="center">
-                                <Box flex={1}>
-                                  <FormControlLabel
-                                    value="paypal"
-                                    control={(
-                                      <Radio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
-                                    )}
-                                    label={<Typography variant="body1" component="span">PayPal</Typography>}
-                                    onClick={() => this.setState({ paymentMethod: 'paypal' })}
-                                  />
-                                </Box>
+                              <Box display="flex" justifyContent="space-between" alignItems="center">
+                                <FormControlLabel
+                                  value="paypal"
+                                  control={(
+                                    <Radio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
+                                  )}
+                                  label={<Typography variant="body1" component="span">PayPal</Typography>}
+                                  onClick={() => this.setState({ paymentMethod: 'paypal' })}
+                                />
                                 <img alt="" className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/paypal.png')} />
                               </Box>
-                              <Box display="flex" alignItems="center">
-                                <Box flex={1}>
-                                  <FormControlLabel
-                                    value="payu"
-                                    control={(
-                                      <Radio checked={this.state.paymentMethod === 'payu'} onClick={(e) => e.stopPropagation()} />
-                                    )}
-                                    label={<Typography variant="body1" component="span">PayU</Typography>}
-                                    onClick={() => this.setState({ paymentMethod: 'payu' })}
-                                  />
-                                </Box>
+                              <Box display="flex" justifyContent="space-between" alignItems="center">
+                                <FormControlLabel
+                                  value="payu"
+                                  control={(
+                                    <Radio checked={this.state.paymentMethod === 'payu'} onClick={(e) => e.stopPropagation()} />
+                                  )}
+                                  label={<Typography variant="body1" component="span">PayU</Typography>}
+                                  onClick={() => this.setState({ paymentMethod: 'payu' })}
+                                />
                                 <img alt="" className={this.props.classes.creditCard} src={require('../../assets/images/deposit-fund/payu.png')} />
                               </Box>
                             </RadioGroup>
@@ -181,26 +175,20 @@ class DepositFund extends PureComponent {
                         />
                         <Divider />
                         <CardContent>
-                          <Box display="flex" mb={1} alignItems="center">
-                            <Box flex={1}>
-                              <Typography variant="body2">Deposit amount</Typography>
-                            </Box>
+                          <Box mb={1} display="flex" justifyContent="space-between" alignItems="center">
+                            <Typography variant="body2">Deposit amount</Typography>
                             <Typography variant="body2">{formatCurrency(26)}</Typography>
                           </Box>
-                          <Box display="flex" mb={1} alignItems="center">
-                            <Box flex={1}>
-                              <Typography variant="body2">VAT/Tax (2.5%)</Typography>
-                            </Box>
+                          <Box mb={1} display="flex" justifyContent="space-between" alignItems="center">
+                            <Typography variant="body2">VAT/Tax (2.5%)</Typography>
                             <Typography variant="body2">{formatCurrency(0.3)}</Typography>
                           </Box>
-                          <Box display="flex" mb={1} alignItems="center">
-                            <Box flex={1}>
-                              <Typography variant="body2">Processing fee (0%)</Typography>
-                            </Box>
+                          <Box mb={1} display="flex" justifyContent="space-between" alignItems="center">
+                            <Typography variant="body2">Processing fee (0%)</Typography>
                             <Typography variant="body2">{formatCurrency(0)}</Typography>
                           </Box>
-                          <Box display="flex" mb={3} alignItems="center">
-                            <Box flex={1}>
+                          <Box mb={3} display="flex" justifyContent="space-between" alignItems="center">
+                            <Box>
                               <Typography variant="subtitle2">Total</Typography>
                               <Typography variant="body2">(Incl. VAT)</Typography>
                             </Box>
@@ -208,10 +196,8 @@ class DepositFund extends PureComponent {
                           </Box>
                           <Box className={this.props.classes.info}>
                             <Typography variant="body2">Account after top up</Typography>
-                            <Box display="flex" alignItems="center" mt={1}>
-                              <Box flex={1}>
-                                <Typography variant="subtitle2">Balance will add</Typography>
-                              </Box>
+                            <Box mt={1} display="flex" justifyContent="space-between" alignItems="center">
+                              <Typography variant="subtitle2">Balance will add</Typography>
                               <Typography variant="subtitle1">+ {formatCurrency(26.3)}</Typography>
                             </Box>
                           </Box>

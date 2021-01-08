@@ -216,26 +216,30 @@ class FindWork extends PureComponent {
       </Box>
       <Grid container>
         <Grid item lg={2} />
-        <Grid item lg={8} xs={12} style={{ display: 'flex' }}>
-          <Box className={clsx(this.props.classes.innerPadding, this.props.classes.leftSideBar)}>
-            {this.renderTabsCard()}
-            <Box mt={2}>
-              {this.renderMembershipCard()}
+        <Grid item lg={8} xs={12}>
+          <Box display="flex">
+            <Box className={clsx(this.props.classes.innerPadding, this.props.classes.leftSideBar)}>
+              {this.renderTabsCard()}
+              <Box mt={2}>
+                {this.renderMembershipCard()}
+              </Box>
+              <Box mt={2}>
+                {this.renderBidCredit()}
+              </Box>
             </Box>
-            <Box mt={2}>
-              {this.renderBidCredit()}
+            <Box flex={1}>
+              <Grid container>
+                <Grid item md={9}>
+                  {this.renderJobList()}
+                </Grid>
+                <Grid item md={3}>
+                  <Box className={clsx(this.props.classes.innerPadding, this.props.classes.rightSideBar)}>
+                    {this.renderConditionBar()}
+                  </Box>
+                </Grid>
+              </Grid>
             </Box>
           </Box>
-          <Grid container style={{ flex: 1 }}>
-            <Grid item md={9}>
-              {this.renderJobList()}
-            </Grid>
-            <Grid item md={3}>
-              <Box className={clsx(this.props.classes.innerPadding, this.props.classes.rightSideBar)}>
-                {this.renderConditionBar()}
-              </Box>
-            </Grid>
-          </Grid>
         </Grid>
         <Grid item lg={2} />
       </Grid>
@@ -348,7 +352,7 @@ class FindWork extends PureComponent {
 
   renderJobList = () => (
     <Box className={this.props.classes.innerPadding}>
-      <Box display="flex" flexDirection="row">
+      <Box display="flex">
         <Box className={this.props.classes.menuButton}>
           <IconButton onClick={() => this.setState({ drawerOpened: true })}>
             <FontAwesomeIcon icon={faBars} />
@@ -407,16 +411,12 @@ class FindWork extends PureComponent {
     <Box key={index} mb={1}>
       <CompactCard>
         <CardContent>
-          <Box display="flex">
-            <Box flex={1}>
-              <Typography variant="subtitle1">{job.title}</Typography>
-            </Box>
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="subtitle1">{job.title}</Typography>
             <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
           </Box>
           <Box mt={1} display="flex">
-            <Box flex={1}>
-              <ChipContainer chips={job.badges} />
-            </Box>
+            <ChipContainer chips={job.badges} />
             <Box ml={5}>
               <Typography variant="body2" color="textSecondary">{job.type}</Typography>
             </Box>
@@ -424,10 +424,8 @@ class FindWork extends PureComponent {
           <Box mt={1.5}>
             <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
           </Box>
-          <Box mt={1} mb={1.5} display="flex">
-            <Box flex={1}>
-              <ChipContainer chips={job.skills} />
-            </Box>
+          <Box mt={1} mb={1.5} display="flex" justifyContent="space-between">
+            <ChipContainer chips={job.skills} />
             <Box ml={5}>
               <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
             </Box>
@@ -473,10 +471,8 @@ class FindWork extends PureComponent {
         <Box mt={1.5}>
           <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
         </Box>
-        <Box mt={1.5} display="flex" alignItems="center">
-          <Box flex={1}>
-            <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
-          </Box>
+        <Box mt={1.5} display="flex" justifyContent="space-between" alignItems="center">
+          <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
           <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
         </Box>
         <Box mt={1.5}>

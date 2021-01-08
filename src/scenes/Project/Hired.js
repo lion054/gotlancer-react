@@ -113,6 +113,9 @@ const styles = (theme) => ({
   saveIcon: {
     padding: theme.spacing(1),
     border: `solid 1px ${theme.palette.divider}`
+  },
+  buttonLabel: {
+    whiteSpace: 'nowrap'
   }
 });
 
@@ -256,9 +259,9 @@ class Hired extends PureComponent {
               />
             </Box>
             <Box flex={1}>
-              <Box display="flex">
-                <Box flex={1}>
-                  <Box flex={1} display="flex" alignItems="center">
+              <Box display="flex" justifyContent="space-between">
+                <Box>
+                  <Box display="flex" alignItems="center">
                     <Typography variant="subtitle1">{record.name}</Typography>
                     <Avatar className={this.props.classes.verifiedIcon} style={record.verified ? {
                       backgroundColor: this.props.theme.palette.success.main
@@ -279,17 +282,22 @@ class Hired extends PureComponent {
               <Box mt={0.5}>
                 <Link href="#">Cover Letter</Link>
               </Box>
-              <Box mt={1.5} display="flex">
-                <Box flex={1}>
+              <Box mt={1.5} display="flex" justifyContent="space-between">
+                <Box>
                   <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
                   <Box mt={0.5} mb={1.5}>
                     <ChipContainer chips={record.skills} />
                   </Box>
                 </Box>
                 <Box>
-                  <Box>
-                    <Button fullWidth variant="contained" color="secondary">End Contract</Button>
-                  </Box>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    color="secondary"
+                    classes={{
+                      label: this.props.classes.buttonLabel
+                    }}
+                  >End Contract</Button>
                   <Box mt={1}>
                     <Button fullWidth variant="outlined">Contact</Button>
                   </Box>

@@ -217,6 +217,19 @@ const styles = (theme) => ({
 class Profile extends PureComponent {
   state = {
     avatar: faker.image.image(),
+    skills: [{
+      title: 'PHP',
+      completed: 90
+    },{
+      title: 'HTML',
+      completed: 82
+    },{
+      title: 'Adobe Illustrator',
+      completed: 70
+    },{
+      title: 'Photoshop',
+      completed: 100
+    }],
     address: {
       country: {
         iso2: 'in',
@@ -364,63 +377,27 @@ class Profile extends PureComponent {
               <Typography variant="body2" component="span" className={this.props.classes.hour}>1 hour</Typography>
               <Typography variant="body2" component="span">Respond time</Typography>
             </Box>
-            <Box display="flex" alignItems="center" mt={3} mb={1}>
-              <Box flex={1}>
-                <Typography variant="body2" component="span">Certificate</Typography>
-              </Box>
+            <Box mt={3} mb={1} display="flex" justifyContent="space-between" alignItems="center">
+              <Typography variant="body2" component="span">Certificate</Typography>
               <Button variant="outlined">Get Certificate</Button>
             </Box>
           </Box>
           <Divider />
           <Box>
-            <Box>
-              <Typography variant="body2">PHP</Typography>
-              <Box display="flex" alignItems="center">
-                <Box flex={1}>
-                  <LinearProgress variant="determinate" value={90} classes={{
-                    root: this.props.classes.progress,
-                    barColorPrimary: this.props.classes.progressThumb
-                  }} />
+            {this.state.skills.map(({ title, completed }, index) => (
+              <Box key={index}>
+                <Typography variant="body2">{title}</Typography>
+                <Box display="flex" alignItems="center">
+                  <Box flex={1}>
+                    <LinearProgress variant="determinate" value={completed} classes={{
+                      root: this.props.classes.progress,
+                      barColorPrimary: this.props.classes.progressThumb
+                    }} />
+                  </Box>
+                  <Typography variant="body1" className={this.props.classes.progressText}>{completed}%</Typography>
                 </Box>
-                <Typography variant="body1" className={this.props.classes.progressText}>90%</Typography>
               </Box>
-            </Box>
-            <Box>
-              <Typography variant="body2">HTML</Typography>
-              <Box display="flex" alignItems="center">
-                <Box flex={1}>
-                  <LinearProgress variant="determinate" value={82} classes={{
-                    root: this.props.classes.progress,
-                    barColorPrimary: this.props.classes.progressThumb
-                  }} />
-                </Box>
-                <Typography variant="body1" className={this.props.classes.progressText}>82%</Typography>
-              </Box>
-            </Box>
-            <Box>
-              <Typography variant="body2">Adobe Illustrator</Typography>
-              <Box display="flex" alignItems="center">
-                <Box flex={1}>
-                  <LinearProgress variant="determinate" value={70} classes={{
-                    root: this.props.classes.progress,
-                    barColorPrimary: this.props.classes.progressThumb
-                  }} />
-                </Box>
-                <Typography variant="body1" className={this.props.classes.progressText}>70%</Typography>
-              </Box>
-            </Box>
-            <Box>
-              <Typography variant="body2">Photoshop</Typography>
-              <Box display="flex" alignItems="center">
-                <Box flex={1}>
-                  <LinearProgress variant="determinate" value={100} classes={{
-                    root: this.props.classes.progress,
-                    barColorPrimary: this.props.classes.progressThumb
-                  }} />
-                </Box>
-                <Typography variant="body1" className={this.props.classes.progressText}>100%</Typography>
-              </Box>
-            </Box>
+            ))}
           </Box>
           <Divider />
           <Box my={3}>
@@ -540,29 +517,26 @@ class Profile extends PureComponent {
               )}
               <Grid item md={12} xs={8}>
                 <Box className={this.props.classes.innerPadding}>
-                  <Box mb={0.5} display={this.props.width === 'xs' ? 'block' : 'flex'}>
-                    <Box display="flex" alignItems="center" component="span">
-                      <Box mr={2} color={this.props.theme.palette.success.main}>
-                        <Typography variant="body1">Greg Prickril</Typography>
+                  <Box mb={0.5} display={this.props.width === 'xs' ? 'block' : 'flex'} justifyContent="space-between">
+                    <Box display="flex" alignItems="center">
+                      <Box display="flex" alignItems="center">
+                        <Box mr={2} color={this.props.theme.palette.success.main}>
+                          <Typography variant="body1">Greg Prickril</Typography>
+                        </Box>
+                        <Box mx={1}>
+                          <CheckCircle htmlColor={this.props.theme.palette.success.main} />
+                        </Box>
                       </Box>
-                      <Box mx={1}>
-                        <CheckCircle htmlColor={this.props.theme.palette.success.main} />
+                      <Box display="flex" alignItems="center">
+                        <Box mx={1}>
+                          <Star htmlColor={this.props.theme.palette.warning.main} />
+                        </Box>
+                        <Box mx={1} color={this.props.theme.palette.warning.main}>
+                          <Typography variant="body2">HIGHTEST RATED</Typography>
+                        </Box>
                       </Box>
                     </Box>
-                    <Box display="flex" alignItems="center" component="span">
-                      <Box mx={1}>
-                        <Star htmlColor={this.props.theme.palette.warning.main} />
-                      </Box>
-                      <Box mx={1} color={this.props.theme.palette.warning.main}>
-                        <Typography variant="body2">HIGHTEST RATED</Typography>
-                      </Box>
-                    </Box>
-                    {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && (
-                      <Fragment>
-                        <span style={{ flex: 1 }} />
-                        {this.renderHourlyRate()}
-                      </Fragment>
-                    )}
+                    {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && this.renderHourlyRate()}
                   </Box>
                   <Box display="flex" alignItems="center" mb={0.5}>
                     <Box mr={1}>
@@ -699,34 +673,24 @@ class Profile extends PureComponent {
                 <Box className={this.props.classes.innerPadding} display="flex">
                   <Divider orientation="vertical" flexItem />
                   <Box ml={1} flex={1}>
-                    <Box display="flex" alignItems="center" m={1}>
-                      <Box flex={1}>
-                        <Typography variant="body2">Awesome freelancer</Typography>
-                      </Box>
+                    <Box m={1} display="flex" justifyContent="space-between" alignItems="center">
+                      <Typography variant="body2">Awesome freelancer</Typography>
                       <Rating name="read-only" value={5} readOnly size="small" />
                     </Box>
-                    <Box display="flex" alignItems="center" m={1}>
-                      <Box flex={1}>
-                        <Typography variant="body2">Pretty good</Typography>
-                      </Box>
+                    <Box m={1} display="flex" justifyContent="space-between" alignItems="center">
+                      <Typography variant="body2">Pretty good</Typography>
                       <Rating name="read-only" value={4} readOnly size="small" />
                     </Box>
-                    <Box display="flex" alignItems="center" m={1}>
-                      <Box flex={1}>
-                        <Typography variant="body2">Could've been better</Typography>
-                      </Box>
+                    <Box m={1} display="flex" justifyContent="space-between" alignItems="center">
+                      <Typography variant="body2">Could've been better</Typography>
                       <Rating name="read-only" value={3} readOnly size="small" />
                     </Box>
-                    <Box display="flex" alignItems="center" m={1}>
-                      <Box flex={1}>
-                        <Typography variant="body2">Needs improvement</Typography>
-                      </Box>
+                    <Box m={1} display="flex" justifyContent="space-between" alignItems="center">
+                      <Typography variant="body2">Needs improvement</Typography>
                       <Rating name="read-only" value={2} readOnly size="small" />
                     </Box>
-                    <Box display="flex" alignItems="center" m={1}>
-                      <Box flex={1}>
-                        <Typography variant="body2">Unsatisfactory</Typography>
-                      </Box>
+                    <Box m={1} display="flex" justifyContent="space-between" alignItems="center">
+                      <Typography variant="body2">Unsatisfactory</Typography>
                       <Rating name="read-only" value={1} readOnly size="small" />
                     </Box>
                   </Box>
@@ -829,10 +793,8 @@ class Profile extends PureComponent {
       <CompactCard>
         <CardHeader
           title={(
-            <Box display="flex" alignItems="center">
-              <Box flex={1}>
-                <Typography variant="subtitle1">Experiences</Typography>
-              </Box>
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+              <Typography variant="subtitle1">Experiences</Typography>
               <Button variant="contained" onClick={() => this.setState({ employmentOpened: true })}>Add New</Button>
             </Box>
           )}
@@ -852,10 +814,8 @@ class Profile extends PureComponent {
       <CompactCard>
         <CardHeader
           title={(
-            <Box display="flex" alignItems="center">
-              <Box flex={1}>
-                <Typography variant="subtitle1">Educations</Typography>
-              </Box>
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+              <Typography variant="subtitle1">Educations</Typography>
               <Button variant="contained" onClick={() => this.setState({ educationOpened: true })}>Add New</Button>
             </Box>
           )}
@@ -875,10 +835,8 @@ class Profile extends PureComponent {
       <CompactCard>
         <CardHeader
           title={(
-            <Box display="flex" alignItems="center">
-              <Box flex={1}>
-                <Typography variant="subtitle1">Certifications</Typography>
-              </Box>
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+              <Typography variant="subtitle1">Certifications</Typography>
               <Button variant="contained" onClick={() => this.setState({ certificationOpened: true })}>Add New</Button>
             </Box>
           )}

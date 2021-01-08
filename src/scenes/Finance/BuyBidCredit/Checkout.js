@@ -130,19 +130,15 @@ class Checkout extends PureComponent {
                           px={1}
                           mb={2}
                         >
-                          <Box display="flex" mt={1}>
-                            <Box flex={1}>
-                              <Typography variant="body2">We will charge you</Typography>
-                            </Box>
+                          <Box mt={1} display="flex" justifyContent="space-between">
+                            <Typography variant="body2">We will charge you</Typography>
                             <Box color={this.props.theme.palette.success.main}>
                               <Typography variant="subtitle1">₹225337.11</Typography>
                             </Box>
                           </Box>
                           <Divider style={{ backgroundColor: colors.yellow[700] }} />
-                          <Box display="flex" mt={1}>
-                            <Box flex={1}>
-                              <Typography variant="body2">Current exchange rate</Typography>
-                            </Box>
+                          <Box mt={1} display="flex" justifyContent="space-between">
+                            <Typography variant="body2">Current exchange rate</Typography>
                             <Typography variant="body1">$1 USD = ₹73.16</Typography>
                           </Box>
                         </Box>
@@ -164,67 +160,59 @@ class Checkout extends PureComponent {
                       <CardContent>
                         <Typography variant="subtitle2">Payment method</Typography>
                         <RadioGroup value={this.state.paymentMethod} onChange={(e) => this.setState({ paymentMethod: e.target.value })}>
-                          <Box display="flex" alignItems="center">
-                            <Box flex={1}>
-                              <FormControlLabel
-                                value="stripe-checkout"
-                                control={(
-                                  <Radio checked={this.state.paymentMethod === 'stripe-checkout'} onClick={(e) => e.stopPropagation()} />
-                                )}
-                                label={<Typography variant="body1" component="span">Stripe Checkout</Typography>}
-                                onClick={() => this.setState({ paymentMethod: 'stripe-checkout' })}
-                              />
-                            </Box>
+                          <Box display="flex" justifyContent="space-between" alignItems="center">
+                            <FormControlLabel
+                              value="stripe-checkout"
+                              control={(
+                                <Radio checked={this.state.paymentMethod === 'stripe-checkout'} onClick={(e) => e.stopPropagation()} />
+                              )}
+                              label={<Typography variant="body1" component="span">Stripe Checkout</Typography>}
+                              onClick={() => this.setState({ paymentMethod: 'stripe-checkout' })}
+                            />
                             <img alt="" className={this.props.classes.creditCard} src={require('../../../assets/images/deposit-fund/stripe-checkout.png')} />
                           </Box>
                           <Divider />
-                          <Box display="flex" alignItems="center">
-                            <Box flex={1}>
-                              <FormControlLabel
-                                value="paypal"
-                                control={(
-                                  <Radio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
-                                )}
-                                label={<Typography variant="body1" component="span">PayPal</Typography>}
-                                onClick={() => this.setState({ paymentMethod: 'paypal' })}
-                              />
-                            </Box>
+                          <Box display="flex" justifyContent="space-between" alignItems="center">
+                            <FormControlLabel
+                              value="paypal"
+                              control={(
+                                <Radio checked={this.state.paymentMethod === 'paypal'} onClick={(e) => e.stopPropagation()} />
+                              )}
+                              label={<Typography variant="body1" component="span">PayPal</Typography>}
+                              onClick={() => this.setState({ paymentMethod: 'paypal' })}
+                            />
                             <img alt="" className={this.props.classes.creditCard} src={require('../../../assets/images/deposit-fund/paypal.png')} />
                           </Box>
                           <Divider />
-                          <Box display="flex" alignItems="center">
-                            <Box flex={1}>
-                              <FormControlLabel
-                                value="payu"
-                                control={(
-                                  <Radio checked={this.state.paymentMethod === 'payu'} onClick={(e) => e.stopPropagation()} />
-                                )}
-                                label={<Typography variant="body1" component="span">PayU</Typography>}
-                                onClick={() => this.setState({ paymentMethod: 'payu' })}
-                              />
-                            </Box>
+                          <Box display="flex" justifyContent="space-between" alignItems="center">
+                            <FormControlLabel
+                              value="payu"
+                              control={(
+                                <Radio checked={this.state.paymentMethod === 'payu'} onClick={(e) => e.stopPropagation()} />
+                              )}
+                              label={<Typography variant="body1" component="span">PayU</Typography>}
+                              onClick={() => this.setState({ paymentMethod: 'payu' })}
+                            />
                             <img alt="" className={this.props.classes.creditCard} src={require('../../../assets/images/deposit-fund/payu.png')} />
                           </Box>
                           <Divider />
-                          <Box display="flex" alignItems="center">
-                            <Box flex={1}>
-                              <FormControlLabel
-                                value="wallet"
-                                control={(
-                                  <Radio checked={this.state.paymentMethod === 'wallet'} onClick={(e) => e.stopPropagation()} />
-                                )}
-                                label={(
-                                  <Box py={1}>
-                                    <Typography variant="body1" component="span">Pay from wallet</Typography>
-                                    <Typography variant="body2">
-                                      <span style={{ color: this.props.theme.palette.secondary.main }}>Sorry not insufficiant fund in wallet.</span>
-                                      <span style={{ color: this.props.theme.palette.primary.main }}>Add Fund</span> in wallet.
-                                    </Typography>
-                                  </Box>
-                                )}
-                                onClick={() => this.setState({ paymentMethod: 'payu' })}
-                              />
-                            </Box>
+                          <Box display="flex" justifyContent="space-between" alignItems="center">
+                            <FormControlLabel
+                              value="wallet"
+                              control={(
+                                <Radio checked={this.state.paymentMethod === 'wallet'} onClick={(e) => e.stopPropagation()} />
+                              )}
+                              label={(
+                                <Box py={1}>
+                                  <Typography variant="body1" component="span">Pay from wallet</Typography>
+                                  <Typography variant="body2">
+                                    <span style={{ color: this.props.theme.palette.secondary.main }}>Sorry not insufficiant fund in wallet.</span>
+                                    <span style={{ color: this.props.theme.palette.primary.main }}>Add Fund</span> in wallet.
+                                  </Typography>
+                                </Box>
+                              )}
+                              onClick={() => this.setState({ paymentMethod: 'payu' })}
+                            />
                             <Typography variant="body1" component="span">$1,080.00</Typography>
                           </Box>
                           <Divider />

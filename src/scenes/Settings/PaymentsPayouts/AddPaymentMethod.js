@@ -66,12 +66,14 @@ class AddPaymentMethod extends PureComponent {
               />
             </AccordionSummary>
             <AccordionDetails style={{ flexDirection: 'column' }}>
-              <Box display="flex" alignItems="baseline" className={this.props.classes.label}>
-                <Typography component="span" variant="subtitle2" style={{ flex: 1 }}>Card Number</Typography>
-                <img alt="" src={require('../../../assets/images/payment-method/credit-cards/visa.png')} className={this.props.classes.creditCard} />
-                <img alt="" src={require('../../../assets/images/payment-method/credit-cards/master.png')} className={this.props.classes.creditCard} />
-                <img alt="" src={require('../../../assets/images/payment-method/credit-cards/amex.png')} className={this.props.classes.creditCard} />
-                <img alt="" src={require('../../../assets/images/payment-method/credit-cards/discover.png')} className={this.props.classes.creditCard} />
+              <Box display="flex" justifyContent="space-between" alignItems="baseline" className={this.props.classes.label}>
+                <Typography component="span" variant="subtitle2">Card Number</Typography>
+                <Box display="flex">
+                  <img alt="" src={require('../../../assets/images/payment-method/credit-cards/visa.png')} className={this.props.classes.creditCard} />
+                  <img alt="" src={require('../../../assets/images/payment-method/credit-cards/master.png')} className={this.props.classes.creditCard} />
+                  <img alt="" src={require('../../../assets/images/payment-method/credit-cards/amex.png')} className={this.props.classes.creditCard} />
+                  <img alt="" src={require('../../../assets/images/payment-method/credit-cards/discover.png')} className={this.props.classes.creditCard} />
+                </Box>
               </Box>
               <OutlinedInput
                 fullWidth

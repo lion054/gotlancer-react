@@ -145,8 +145,8 @@ class Payment extends PureComponent {
         <Grid item md={8} xs={12}>
           <Box className={this.props.classes.innerPadding}>
             <CompactCard>
-              <Box className={this.props.classes.innerPadding} display="flex" alignItems="center">
-                <Box flex={1}>
+              <Box className={this.props.classes.innerPadding} display="flex" justifyContent="space-between" alignItems="center">
+                <Box>
                   <Typography variant="subtitle2">Payment Management</Typography>
                   <Typography variant="body2">Here all of your payment that you made recently</Typography>
                 </Box>
@@ -184,8 +184,8 @@ class Payment extends PureComponent {
                             </Box>
                           </Grid>
                           <Grid item sm={4} xs={6}>
-                            <Box className={this.props.classes.innerPadding} display="flex">
-                              <Box flex={1}>
+                            <Box className={this.props.classes.innerPadding} display="flex" justifyContent="space-between">
+                              <Box>
                                 <Typography variant="subtitle2">{formatCurrency(record.amount)}</Typography>
                                 <Typography variant="body2" style={{ color: this.getStatusColor(record.status) }}>{record.status}</Typography>
                               </Box>

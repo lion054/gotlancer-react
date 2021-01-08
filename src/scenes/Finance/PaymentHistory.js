@@ -129,16 +129,16 @@ class PaymentHistory extends PureComponent {
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
-            <Box mb={2} display="flex">
-              <Box flex={1}>
-                <Typography variant="h5">Payment history</Typography>
+            <Box mb={2} display="flex" justifyContent="space-between">
+              <Typography variant="h5">Payment history</Typography>
+              <Box>
+                <IconButton>
+                  <CloudDownload />
+                </IconButton>
+                <IconButton>
+                  <Print />
+                </IconButton>
               </Box>
-              <IconButton>
-                <CloudDownload />
-              </IconButton>
-              <IconButton>
-                <Print />
-              </IconButton>
             </Box>
             <CompactCard>
               <CardContent className="noVertPadding">

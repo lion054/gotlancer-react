@@ -134,7 +134,7 @@ class BuyBidCredit extends PureComponent {
                         <List disablePadding>
                           {this.state.products.map((product, index) => (
                             <ListItem key={index} disableGutters button onClick={this.handleClick(index)}>
-                              <Box width="100%" display="flex" alignItems="center">
+                              <Box flex={1} display="flex" alignItems="center">
                                 <Checkbox checked={!!product.checked} onClick={this.handleClick(index)} />
                                 <Box
                                   flex={1}
@@ -196,38 +196,28 @@ class BuyBidCredit extends PureComponent {
                       />
                       <Divider />
                       <CardContent>
-                        <Box display="flex" mb={1} alignItems="center">
-                          <Box flex={1}>
-                            <Typography variant="body2">10 bid credit for</Typography>
-                          </Box>
+                        <Box mb={1} display="flex" justifyContent="space-between" alignItems="center">
+                          <Typography variant="body2">10 bid credit for</Typography>
                           <Box color={this.props.theme.palette.success.main}>
                             <Typography variant="body2">{formatCurrency(1)}</Typography>
                           </Box>
                         </Box>
-                        <Box display="flex" mb={1} alignItems="center">
-                          <Box flex={1}>
-                            <Typography variant="body2">300 bid credit for</Typography>
-                          </Box>
+                        <Box mb={1} display="flex" justifyContent="space-between" alignItems="center">
+                          <Typography variant="body2">300 bid credit for</Typography>
                           <Box color={this.props.theme.palette.success.main}>
                             <Typography variant="body2">{formatCurrency(25)}</Typography>
                           </Box>
                         </Box>
-                        <Box display="flex" mb={1} alignItems="center">
-                          <Box flex={1}>
-                            <Typography variant="body2">Tax</Typography>
-                          </Box>
+                        <Box mb={1} display="flex" justifyContent="space-between" alignItems="center">
+                          <Typography variant="body2">Tax</Typography>
                           <Typography variant="body2">{formatCurrency(0)}</Typography>
                         </Box>
-                        <Box display="flex" mb={1} alignItems="center">
-                          <Box flex={1}>
-                            <Typography variant="body2">Processing fee</Typography>
-                          </Box>
+                        <Box mb={1} display="flex" justifyContent="space-between" alignItems="center">
+                          <Typography variant="body2">Processing fee</Typography>
                           <Typography variant="body2">{formatCurrency(0)}</Typography>
                         </Box>
-                        <Box display="flex" mb={1} alignItems="center">
-                          <Box flex={1}>
-                            <Typography variant="body1">Due today</Typography>
-                          </Box>
+                        <Box mb={1} display="flex" justifyContent="space-between" alignItems="center">
+                          <Typography variant="body1">Due today</Typography>
                           <Typography variant="body1">{formatCurrency(26)}</Typography>
                         </Box>
                         <Box
@@ -237,10 +227,8 @@ class BuyBidCredit extends PureComponent {
                           px={1}
                         >
                           <Typography variant="body2">Bid Credit will add after payment</Typography>
-                          <Box display="flex" mt={1}>
-                            <Box flex={1}>
-                              <Typography variant="subtitle2">Credit will add</Typography>
-                            </Box>
+                          <Box mt={1} display="flex" justifyContent="space-between">
+                            <Typography variant="subtitle2">Credit will add</Typography>
                             <Typography variant="subtitle1">310</Typography>
                           </Box>
                         </Box>

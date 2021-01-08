@@ -55,8 +55,8 @@ class CommentRoom extends PureComponent {
             />
           </Box>
           <Box flex={1}>
-            <Box display="flex">
-              <Typography variant="body2" style={{ flex: 1 }}>{author.name}</Typography>
+            <Box display="flex" justifyContent="space-between">
+              <Typography variant="body2">{author.name}</Typography>
               <Typography variant="body2">{moment(time).fromNow()}</Typography>
             </Box>
             <Box className={this.props.classes.comment}>
