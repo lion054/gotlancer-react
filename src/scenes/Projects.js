@@ -95,24 +95,22 @@ class Projects extends PureComponent {
               </Grid>
             </Box>
             <Box mt={8} mb={4}>
-              <Box className={this.props.classes.innerPadding}>
-                <CompactCard>
-                  <CardContent style={{ paddingTop: 0 }}>
-                    <Tabs
-                      value={this.state.activeTab}
-                      onChange={this.handleTabChange}
-                      indicatorColor="primary"
-                      textColor="primary"
-                    >
-                      <CompactTab label="OPEN (10)" />
-                      <CompactTab label="NDER REVIEW (2)" />
-                      <CompactTab label="DRAFTS (33)" />
-                    </Tabs>
-                    <Divider />
-                    {this.renderOpenJobs()}
-                  </CardContent>
-                </CompactCard>
-              </Box>
+              <CompactCard>
+                <CardContent style={{ paddingTop: 0 }}>
+                  <Tabs
+                    value={this.state.activeTab}
+                    onChange={this.handleTabChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                  >
+                    <CompactTab label="OPEN (10)" />
+                    <CompactTab label="NDER REVIEW (2)" />
+                    <CompactTab label="DRAFTS (33)" />
+                  </Tabs>
+                  <Divider />
+                  {this.renderOpenJobs()}
+                </CardContent>
+              </CompactCard>
             </Box>
           </Grid>
           <Grid item lg={2} />
