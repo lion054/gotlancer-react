@@ -158,7 +158,7 @@ const styles = (theme) => ({
       height: 28,
       borderRadius: 14
     },
-    border: `solid 5px ${theme.palette.background.default}`,
+    border: `solid 5px ${theme.palette.common.white}`,
     position: 'absolute',
     bottom: 0,
     right: 0
@@ -901,7 +901,10 @@ class Profile extends PureComponent {
           <Create />
         </IconButton>
       </Tooltip>
-      <div className={this.props.classes.status} style={{ backgroundColor: this.props.theme.palette.success.main }} />
+      <Box
+        className={this.props.classes.status}
+        bgcolor={this.props.theme.palette.success.main}
+      />
     </Box>
   )
 

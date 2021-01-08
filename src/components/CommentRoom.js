@@ -25,6 +25,16 @@ const styles = (theme) => ({
     padding: theme.spacing(0.5, 1),
     backgroundColor: theme.palette.action.selected,
     color: theme.palette.text.secondary
+  },
+  status: {
+    boxSizing: 'border-box',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    border: `solid 2px ${theme.palette.common.white}`,
+    position: 'absolute',
+    top: 44,
+    left: 44
   }
 });
 
@@ -40,22 +50,8 @@ class CommentRoom extends PureComponent {
               className={this.props.classes.avatar}
             />
             <Box
-              width={20}
-              height={20}
-              borderRadius={10}
-              bgcolor={this.props.theme.palette.common.white}
-              position="absolute"
-              top={44}
-              left={44}
-            />
-            <Box
-              width={16}
-              height={16}
-              borderRadius={8}
+              className={this.props.classes.status}
               bgcolor={this.props.theme.palette.success.main}
-              position="absolute"
-              top={46}
-              left={46}
             />
           </Box>
           <Box flex={1}>

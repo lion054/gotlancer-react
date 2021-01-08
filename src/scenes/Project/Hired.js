@@ -12,6 +12,7 @@ import {
   LinearProgress,
   Link,
   Typography,
+  colors,
   withStyles,
   withTheme,
   withWidth
@@ -82,6 +83,16 @@ const styles = (theme) => ({
     height: theme.spacing(4),
     backgroundColor: theme.palette.divider,
     color: theme.palette.action.active
+  },
+  status: {
+    boxSizing: 'border-box',
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    border: `solid 2px ${theme.palette.common.white}`,
+    position: 'absolute',
+    top: 72,
+    left: 72
   },
   progress: {
     height: theme.spacing(1),
@@ -240,22 +251,8 @@ class Hired extends PureComponent {
             <Box position="relative">
               <img alt="" src={record.avatar} className={this.props.classes.avatar} />
               <Box
-                width={24}
-                height={24}
-                borderRadius={11}
-                bgcolor={this.props.theme.palette.common.white}
-                position="absolute"
-                top={72}
-                left={72}
-              />
-              <Box
-                width={20}
-                height={20}
-                borderRadius={10}
-                bgcolor={record.online ? this.props.theme.palette.success.main : this.props.theme.palette.action.disabled}
-                position="absolute"
-                top={74}
-                left={74}
+                className={this.props.classes.status}
+                bgcolor={record.online ? this.props.theme.palette.success.main : colors.grey[400]}
               />
             </Box>
             <Box flex={1}>
@@ -341,22 +338,8 @@ class Hired extends PureComponent {
             <Box position="relative">
               <img alt="" src={record.avatar} className={this.props.classes.avatar} />
               <Box
-                width={24}
-                height={24}
-                borderRadius={12}
-                bgcolor={this.props.theme.palette.common.white}
-                position="absolute"
-                top={72}
-                left={72}
-              />
-              <Box
-                width={20}
-                height={20}
-                borderRadius={10}
-                bgcolor={record.online ? this.props.theme.palette.success.main : this.props.theme.palette.action.disabled}
-                position="absolute"
-                top={74}
-                left={74}
+                className={this.props.classes.status}
+                bgcolor={record.online ? this.props.theme.palette.success.main : colors.grey[400]}
               />
             </Box>
             <Box flex={1}>
