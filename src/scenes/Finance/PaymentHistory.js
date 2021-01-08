@@ -125,7 +125,7 @@ class PaymentHistory extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box className={this.props.classes.innerPadding} mt={6} mb={6}>
+      <Box className={this.props.classes.innerPadding} my={6}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -256,10 +256,8 @@ class PaymentHistory extends PureComponent {
         borderRadius={16}
         display="flex"
         alignItems="center"
-        pt={0.5}
-        pr={1}
-        pb={0.5}
-        pl={1}
+        px={1}
+        py={0.5}
       >
         {status === 'Completed' && <Check className={this.props.classes.status} style={{ color }} />}
         {status === 'Pending' && <Cached className={this.props.classes.status} style={{ color }} />}

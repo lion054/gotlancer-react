@@ -275,7 +275,7 @@ class Details extends PureComponent {
             <Box mt={3}>
               <Typography variant="subtitle2">Select your listing</Typography>
             </Box>
-            <Box mt={1} mb={1}>
+            <Box my={1}>
               <Typography variant="body2">Upgrade your listing from below and get dozens of skilled freelancers for your project instantly.</Typography>
             </Box>
             {this.renderBadgeList()}

@@ -119,7 +119,7 @@ class PostProject extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2} mb={8}>
+      <Box mx={2} my={8}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -157,14 +157,14 @@ class PostProject extends PureComponent {
                           multiline
                           rows={5}
                         />
-                        <Box mt={1} mb={1}>
+                        <Box my={1}>
                           <Typography variant="body2" align="right">0/5000</Typography>
                         </Box>
                         <Box mt={3} mb={1}>
                           <Typography variant="subtitle2">Suggested files or attachment (optional)</Typography>
                         </Box>
                         <FileUpload />
-                        <Box mt={2} mb={2}>
+                        <Box my={2}>
                           <Divider />
                         </Box>
                         <Box className={this.props.classes.outerMargin}>
@@ -208,7 +208,7 @@ class PostProject extends PureComponent {
                         <Box mt={3}>
                           <Typography variant="subtitle2">What skills are required?</Typography>
                         </Box>
-                        <Box mt={1} mb={1}>
+                        <Box my={1}>
                           <Typography variant="body2">We have detected the following skills to suit your project. Feel free to modify these choices to best suit your needs.</Typography>
                         </Box>
                         <Box mb={2}>
@@ -259,7 +259,7 @@ class PostProject extends PureComponent {
                                   />
                                   {this.state.activeTab === 1 && (
                                     <Fragment>
-                                      <Box ml={1} mr={1}>
+                                      <Box mx={1}>
                                         <Typography variant="body2">To</Typography>
                                       </Box>
                                       <OutlinedInput
@@ -284,7 +284,7 @@ class PostProject extends PureComponent {
                         <Box mt={3}>
                           <Typography variant="subtitle2">Select your listing</Typography>
                         </Box>
-                        <Box mt={1} mb={1}>
+                        <Box my={1}>
                           <Typography variant="body2">Upgrade your listing from below and get dozens of skilled freelancers for your project instantly.</Typography>
                         </Box>
                         {this.renderBadgeList()}
@@ -292,7 +292,7 @@ class PostProject extends PureComponent {
                           <Divider />
                         </Box>
                         <Typography variant="body1" align="right">Total: {formatCurrency(0)}</Typography>
-                        <Box mt={3} mb={3}>
+                        <Box my={3}>
                           <Divider />
                         </Box>
                         <FormControlLabel
@@ -364,7 +364,7 @@ class PostProject extends PureComponent {
   renderFaqCard = () => (
     <CompactCard>
       <CardHeader
-        title="Recomanded articles"
+        title="Recommended articles"
         titleTypographyProps={{
           variant: 'subtitle1'
         }}

@@ -101,7 +101,7 @@ class Project extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box pt={8} pl={2} pr={2} bgcolor={this.props.theme.palette.background.default}>
+      <Box pt={8} px={2} bgcolor={this.props.theme.palette.background.default}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>

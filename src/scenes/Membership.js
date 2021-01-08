@@ -127,7 +127,7 @@ class Membership extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2} mb={8}>
+      <Box mx={2} my={8}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -145,7 +145,7 @@ class Membership extends PureComponent {
                 <Box flex={1}>
                   <Typography variant="body2" align="right">Monthly</Typography>
                 </Box>
-                <Box ml={2} mr={2}>
+                <Box mx={2}>
                   <Switch checked={this.state.grade === 'yearly'} onChange={(e) => this.setState({
                     grade: e.target.checked ? 'yearly' : 'monthly',
                     unit: e.target.checked ? '/yr' : '/mo',
@@ -212,49 +212,49 @@ class Membership extends PureComponent {
       />
       <Divider />
       <CardContent>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">20% Gotlancer fee</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">No Project Accept Fee</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">20 Skills</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">Yearly Rewards</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">Weekly Withdrawal Requests</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">5 Employer Followings</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1} color={this.props.theme.palette.text.disabled}>
+        <Box display="flex" alignItems="center" my={1} color={this.props.theme.palette.text.disabled}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">No Free hidden entry</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1} color={this.props.theme.palette.text.disabled}>
+        <Box display="flex" alignItems="center" my={1} color={this.props.theme.palette.text.disabled}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
@@ -305,49 +305,49 @@ class Membership extends PureComponent {
       />
       <Divider />
       <CardContent>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">5% Gotlancer fee</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">No Project Accept Fee</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">50 Skills</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">Monthly Rewards</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">Daily Withdrawal Requests</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">Unlimited Employer Followings</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>
           <Typography variant="body2">Free hidden entry</Typography>
         </Box>
-        <Box display="flex" alignItems="center" mt={1} mb={1}>
+        <Box display="flex" alignItems="center" my={1}>
           <Box className={this.props.classes.check}>
             <Check />
           </Box>

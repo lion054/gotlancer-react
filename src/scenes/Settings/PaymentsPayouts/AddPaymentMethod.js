@@ -123,7 +123,7 @@ class AddPaymentMethod extends PureComponent {
                   <OutlinedInput fullWidth margin="dense" />
                 </Box>
               </Box>
-              <Box textAlign="right" mt={2} mb={2}>
+              <Box textAlign="right" my={2}>
                 <Button variant="contained">Continue</Button>
               </Box>
             </AccordionDetails>

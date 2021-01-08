@@ -33,7 +33,7 @@ class Notifications extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2} mb={8}>
+      <Box mx={2} my={8}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -120,7 +120,7 @@ class Notifications extends PureComponent {
       <Box mt={2}>
         <Typography variant="subtitle1">{title}</Typography>
       </Box>
-      <Box mt={1} mb={1}>
+      <Box my={1}>
         <Typography variant="body2">{subtitle}</Typography>
       </Box>
     </Fragment>

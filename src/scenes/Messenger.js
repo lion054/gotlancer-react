@@ -656,7 +656,7 @@ class Messenger extends PureComponent {
           </ChatContainer>
         </MainContainer>
       </div>
-      <Box mt={1} mb={1} justifyContent="center">
+      <Box my={1} justifyContent="center">
         <Typography variant="body2" color="textSecondary" align="center">&copy; 2020 Gotlancer, Inc. All rights reserved.</Typography>
       </Box>
       {this.rnederDialog()}

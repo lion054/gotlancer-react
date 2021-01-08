@@ -111,7 +111,7 @@ class BuyBidCredit extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={6} mb={6}>
+      <Box my={6}>
       <Box className={this.props.classes.innerPadding}>
         <Grid container>
           <Grid item lg={2} />
@@ -234,8 +234,7 @@ class BuyBidCredit extends PureComponent {
                           borderRadius={this.props.theme.spacing(1)}
                           bgcolor={colors.blue[50]}
                           pt={1}
-                          pr={1}
-                          pl={1}
+                          px={1}
                         >
                           <Typography variant="body2">Bid Credit will add after payment</Typography>
                           <Box display="flex" mt={1}>
@@ -245,7 +244,7 @@ class BuyBidCredit extends PureComponent {
                             <Typography variant="subtitle1">310</Typography>
                           </Box>
                         </Box>
-                        <Box mt={1} mb={1} textAlign="center">
+                        <Box my={1} textAlign="center">
                           <Typography variant="body2">By continuing, you are agreeing to our <Link href="#">terms and conditions</Link>. Its an ontime payment.</Typography>
                         </Box>
                         <Button fullWidth variant="contained" onClick={() => this.props.history.push('/buy_bid_credit/checkout')}>Checkout  <ChevronRight /></Button>

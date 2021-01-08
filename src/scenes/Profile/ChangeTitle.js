@@ -25,7 +25,7 @@ export default class ChangeTitle extends PureComponent {
       <Divider />
       <DialogContent>
         <Typography variant="subtitle2">Your title</Typography>
-        <Box mt={2} mb={2}>
+        <Box my={2}>
           <Typography variant="body2">Enter a single sentence description of your perfessional skills/experience (e.g. Expert Web Designer with Ajax experience)</Typography>
         </Box>
         <OutlinedInput

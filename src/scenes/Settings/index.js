@@ -36,7 +36,7 @@ class Settings extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2}>
+      <Box mt={8} mx={2}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8}>

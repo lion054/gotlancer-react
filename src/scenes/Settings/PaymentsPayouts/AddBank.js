@@ -40,7 +40,7 @@ class AddBank extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2} mb={8}>
+      <Box mx={2} my={8}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12} style={{ maxWidth: 600 }}>

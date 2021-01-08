@@ -338,7 +338,7 @@ class FindWork extends PureComponent {
       />
       <CardContent>
         <Typography variant="body2">Available Bids</Typography>
-        <Box mt={1} mb={1}>
+        <Box my={1}>
           <Typography variant="body1">76</Typography>
         </Box>
         <Button variant="outlined" fullWidth>Buy Bid Credit</Button>
@@ -375,7 +375,7 @@ class FindWork extends PureComponent {
           />
         </Box>
       </Box>
-      <Box mt={2} mb={2}>
+      <Box my={2}>
         <Typography variant="body2">{pluralize('job', 4500, true)} found</Typography>
       </Box>
       <List disablePadding>

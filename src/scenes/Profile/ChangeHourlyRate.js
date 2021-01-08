@@ -52,7 +52,7 @@ class ChangeHourlyRate extends PureComponent {
       <Divider />
       <DialogContent>
         <Typography variant="body2">Please note that your new <b>Expert on Logo Design</b> hourly rate will only apply to new contracts. The Gotlancer Service Fee is 20% when you begin a contract with a new buyer. Once you bill over $500 with your buyer, the fee will be 10%.</Typography>
-        <Box mt={2} mb={2}>
+        <Box my={2}>
           <Typography variant="body2">Your profile rate: <b>$15.00/hr</b></Typography>
         </Box>
         <Divider />

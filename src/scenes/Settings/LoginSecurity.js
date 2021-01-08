@@ -91,7 +91,7 @@ class LoginSecurity extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2} mb={8}>
+      <Box mx={2} my={8}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -114,7 +114,7 @@ class LoginSecurity extends PureComponent {
                       formattedValue: `Last updated ${moment([2018, 2, 25]).fromNow()}`,
                       details: (
                         <Fragment>
-                          <Box mt={2} mb={2}>
+                          <Box my={2}>
                             <TextField
                               variant="outlined"
                               label="Current password"
@@ -142,7 +142,7 @@ class LoginSecurity extends PureComponent {
                               }}
                             />
                           </Box>
-                          <Box mt={2} mb={2}>
+                          <Box my={2}>
                             <TextField
                               variant="outlined"
                               label="New password"
@@ -170,7 +170,7 @@ class LoginSecurity extends PureComponent {
                               }}
                             />
                           </Box>
-                          <Box mt={2} mb={2}>
+                          <Box my={2}>
                             <TextField
                               variant="outlined"
                               label="Confirm new password"
@@ -207,7 +207,7 @@ class LoginSecurity extends PureComponent {
                       formattedValue: this.state.emailAddress,
                       details: (
                         <Fragment>
-                          <Box mt={2} mb={2}>
+                          <Box my={2}>
                             <TextField
                               variant="outlined"
                               label="Enter your new email"
@@ -217,7 +217,7 @@ class LoginSecurity extends PureComponent {
                               margin="dense"
                             />
                           </Box>
-                          <Box mt={2} mb={2}>
+                          <Box my={2}>
                             <TextField
                               variant="outlined"
                               label="Enter email password"

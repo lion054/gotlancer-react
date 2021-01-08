@@ -120,7 +120,7 @@ class FileUpload extends PureComponent {
             <label htmlFor={this.state.inputId}>
               <Button variant="outlined" component="span">Select file to upload</Button>
             </label>
-            <Box mt={1} mb={1}>
+            <Box my={1}>
               <Typography variant="body2" color="textSecondary">Supported files types are: PNG, JPG, JPEG, GIF, PDF, ZIP, Doc</Typography>
             </Box>
             <Typography variant="body2" color="textSecondary">Maximum File Count: 5, Maximum File Size: 20MB</Typography>

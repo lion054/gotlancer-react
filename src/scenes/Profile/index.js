@@ -423,12 +423,12 @@ class Profile extends PureComponent {
             </Box>
           </Box>
           <Divider />
-          <Box mt={3} mb={3}>
+          <Box my={3}>
             <Box display="flex" alignItems="center">
               <Avatar>
                 <Phone />
               </Avatar>
-              <Box flex={1} ml={1} mr={1}>
+              <Box flex={1} mx={1}>
                 <Typography variant="body2">Mobile Verification</Typography>
               </Box>
               <Tooltip title="Verify Mobile">
@@ -441,7 +441,7 @@ class Profile extends PureComponent {
               <Avatar style={{ backgroundColor: this.props.theme.palette.success.main }}>
                 <Email />
               </Avatar>
-              <Box flex={1} ml={1} mr={1}>
+              <Box flex={1} mx={1}>
                 <Typography variant="body2">Email Verification</Typography>
               </Box>
             </Box>
@@ -449,7 +449,7 @@ class Profile extends PureComponent {
               <Avatar style={{ backgroundColor: this.props.theme.palette.success.main }}>
                 <Check />
               </Avatar>
-              <Box flex={1} ml={1} mr={1}>
+              <Box flex={1} mx={1}>
                 <Typography variant="body2">KYC Verification</Typography>
               </Box>
             </Box>
@@ -457,7 +457,7 @@ class Profile extends PureComponent {
               <Avatar>
                 <AttachMoney />
               </Avatar>
-              <Box flex={1} ml={1} mr={1}>
+              <Box flex={1} mx={1}>
                 <Typography variant="body2">Payment Verification</Typography>
               </Box>
               <Tooltip title="Add Payment Method">
@@ -468,7 +468,7 @@ class Profile extends PureComponent {
             </Box>
           </Box>
           <Divider />
-          <Box mt={3} mb={3}>
+          <Box my={3}>
             <Box display="flex" alignItems="center">
               <Box width={40} height={40} position="relative">
                 <Box
@@ -492,7 +492,7 @@ class Profile extends PureComponent {
                 height: 40,
                 color: this.props.theme.palette.primary.main
               }} />
-              <Box flex={1} ml={1} mr={1}>
+              <Box flex={1} mx={1}>
                 <Typography variant="body2">It’s curently 4:25 PM here</Typography>
               </Box>
             </Box>
@@ -502,7 +502,7 @@ class Profile extends PureComponent {
                 height: 40,
                 color: this.props.theme.palette.warning.main
               }} />
-              <Box flex={1} ml={1} mr={1}>
+              <Box flex={1} mx={1}>
                 <Typography variant="body2">Joined, Sep 13, 2013</Typography>
               </Box>
             </Box>
@@ -512,7 +512,7 @@ class Profile extends PureComponent {
                 height: 40,
                 color: this.props.theme.palette.secondary.main
               }} />
-              <Box flex={1} ml={1} mr={1}>
+              <Box flex={1} mx={1}>
                 <Typography variant="body2">0 Recomandations</Typography>
               </Box>
             </Box>
@@ -545,15 +545,15 @@ class Profile extends PureComponent {
                       <Box mr={2} color={this.props.theme.palette.success.main}>
                         <Typography variant="body1">Greg Prickril</Typography>
                       </Box>
-                      <Box ml={1} mr={1}>
+                      <Box mx={1}>
                         <CheckCircle htmlColor={this.props.theme.palette.success.main} />
                       </Box>
                     </Box>
                     <Box display="flex" alignItems="center" component="span">
-                      <Box ml={1} mr={1}>
+                      <Box mx={1}>
                         <Star htmlColor={this.props.theme.palette.warning.main} />
                       </Box>
-                      <Box ml={1} mr={1} color={this.props.theme.palette.warning.main}>
+                      <Box mx={1} color={this.props.theme.palette.warning.main}>
                         <Typography variant="body2">HIGHTEST RATED</Typography>
                       </Box>
                     </Box>
@@ -580,7 +580,7 @@ class Profile extends PureComponent {
                       </IconButton>
                     </Tooltip>
                   </Box>
-                  <Box display={this.props.width === 'xs' ? 'block' : 'flex'} alignItems="center" mt={0.5} mb={0.5}>
+                  <Box display={this.props.width === 'xs' ? 'block' : 'flex'} alignItems="center" my={0.5}>
                     {this.renderScore(4.9)}
                     <Box ml={1} flex={1}>
                       <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
@@ -603,7 +603,7 @@ class Profile extends PureComponent {
           </Box>
           {(this.props.width === 'xs' || this.props.width === 'sm') && (
             <Fragment>
-              <Box mt={2} mb={2}>
+              <Box my={2}>
                 <Divider />
               </Box>
               <Box textAlign="center">
@@ -763,7 +763,7 @@ class Profile extends PureComponent {
             <Typography variant="body2">{formatCurrency(review.budget)}</Typography>
           </Box>
         </Box>
-        <Box mt={1} mb={1}>
+        <Box my={1}>
           <Typography variant="body1">&ldquo;{review.comment}&rdquo;</Typography>
         </Box>
         <Grid container alignItems="center">
@@ -801,7 +801,7 @@ class Profile extends PureComponent {
             </Box>
           </Box>
         </Box>
-        <Box mt={1} mb={1}>
+        <Box my={1}>
           <Typography variant="body1">&ldquo;{review.comment}&rdquo;</Typography>
         </Box>
         <Grid container alignItems="center">

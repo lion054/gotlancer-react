@@ -21,6 +21,7 @@ import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
 import DepositFund from './scenes/Finance/DepositFund';
 import PaymentHistory from './scenes/Finance/PaymentHistory';
 import Disputation from './scenes/Finance/Disputation';
+import WithdrawFund from './scenes/Finance/WithdrawFund';
 
 import AddBank from './scenes/Settings/PaymentsPayouts/AddBank';
 import AddBkash from './scenes/Settings/PaymentsPayouts/AddBkash';
@@ -66,6 +67,9 @@ const routes = [{
 },{
   path: '/disputation',
   component: Disputation
+},{
+  path: '/withdraw_fund',
+  component: WithdrawFund
 },{
   path: '/post_project',
   component: PostProject

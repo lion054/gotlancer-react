@@ -114,7 +114,7 @@ class Disputation extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={6} mb={6}>
+      <Box my={6}>
         <Box className={this.props.classes.innerPadding}>
           <Grid container>
             <Grid item lg={2} />
@@ -144,7 +144,7 @@ class Disputation extends PureComponent {
                       </div>
                       <div role="tabpanel" hidden={this.state.activeTab !== 1}>
                         <Box className={this.props.classes.innerPadding}>
-                          <Box mt={2} mb={2}>
+                          <Box my={2}>
                             <Typography variant="subtitle2">Freelancer Response</Typography>
                           </Box>
                           <Divider />
@@ -153,7 +153,7 @@ class Disputation extends PureComponent {
                       </div>
                       <div role="tabpanel" hidden={this.state.activeTab !== 2}>
                         <Box className={this.props.classes.innerPadding}>
-                          <Box mt={2} mb={2}>
+                          <Box my={2}>
                             <Typography variant="subtitle2">Freelancer Response</Typography>
                           </Box>
                           <Divider />
@@ -162,7 +162,7 @@ class Disputation extends PureComponent {
                       </div>
                       <div role="tabpanel" hidden={this.state.activeTab !== 3}>
                         <Box className={this.props.classes.innerPadding}>
-                          <Box mt={2} mb={2}>
+                          <Box my={2}>
                             <Typography variant="subtitle2">Freelancer Response</Typography>
                           </Box>
                           <Divider />
@@ -323,11 +323,11 @@ class Disputation extends PureComponent {
 
   renderCreationPanel = () => (
     <Box className={this.props.classes.innerPadding}>
-      <Box mt={2} mb={2}>
+      <Box my={2}>
         <Typography variant="subtitle2">Create Dispute</Typography>
       </Box>
       <Divider />
-      <Box mt={2} mb={2}>
+      <Box my={2}>
         <Typography variant="subtitle2">Select Project</Typography>
       </Box>
       <Select
@@ -339,7 +339,7 @@ class Disputation extends PureComponent {
           <MenuItem key={index} value={project.id}>{project.title} (Project ID: {project.id})</MenuItem>
         ))}
       </Select>
-      <Box mt={2} mb={2}>
+      <Box my={2}>
         <Typography variant="subtitle2">Select Milestone(s) to Dispute</Typography>
       </Box>
       <Box>
@@ -369,7 +369,7 @@ class Disputation extends PureComponent {
           onClick={() => {}}
         />
       </Box>
-      <Box mt={2} mb={2}>
+      <Box my={2}>
         <Typography variant="subtitle2">Dispute Reason</Typography>
       </Box>
       <OutlinedInput
@@ -379,7 +379,7 @@ class Disputation extends PureComponent {
         rows={5}
         placeholder="Tell us more about why you want dispute"
       />
-      <Box mt={2} mb={2}>
+      <Box my={2}>
         <Typography variant="subtitle2">Attach abidance (Optional)</Typography>
       </Box>
       <Box display="flex" alignItems="center">

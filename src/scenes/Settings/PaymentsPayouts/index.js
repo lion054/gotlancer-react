@@ -58,7 +58,7 @@ class PaymentsPayouts extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2} mb={8}>
+      <Box mx={2} my={8}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -93,7 +93,7 @@ class PaymentsPayouts extends PureComponent {
                           body: (
                             <Box mt={4}>
                               <Typography variant="h6">Payment methods</Typography>
-                              <Box mt={2} mb={2}>
+                              <Box my={2}>
                                 <Typography variant="body2">Add a payment method using our secure payment system, then start your project with Gotlancer</Typography>
                               </Box>
                               <Button variant="contained" size="large" onClick={() => this.setState({ paymentMethodOpened: true })}>Add Payment Method</Button>
@@ -220,7 +220,7 @@ class PaymentsPayouts extends PureComponent {
   renderEntry = ({ title, description, buttonTitle, buttonClicked }) => (
     <Box mt={3}>
       <Typography variant="h6">{title}</Typography>
-      <Box mt={2} mb={2}>
+      <Box my={2}>
         <Typography variant="body2">{description}</Typography>
       </Box>
       <Button variant="contained" size="large" onClick={buttonClicked}>{buttonTitle}</Button>

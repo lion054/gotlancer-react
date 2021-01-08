@@ -68,7 +68,7 @@ class Checkout extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <Header />
-      <Box mt={8} ml={2} mr={2} mb={8}>
+      <Box mx={2} my={8}>
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
@@ -127,8 +127,7 @@ class Checkout extends PureComponent {
                           border={`solid 1px ${colors.yellow[700]}`}
                           borderRadius={this.props.theme.spacing(1)}
                           bgcolor={colors.yellow[50]}
-                          pr={1}
-                          pl={1}
+                          px={1}
                           mb={2}
                         >
                           <Box display="flex" mt={1}>
@@ -215,7 +214,7 @@ class Checkout extends PureComponent {
                                   <Radio checked={this.state.paymentMethod === 'wallet'} onClick={(e) => e.stopPropagation()} />
                                 )}
                                 label={(
-                                  <Box pt={1} pb={1}>
+                                  <Box py={1}>
                                     <Typography variant="body1" component="span">Pay from wallet</Typography>
                                     <Typography variant="body2">
                                       <span style={{ color: this.props.theme.palette.secondary.main }}>Sorry not insufficiant fund in wallet.</span>
