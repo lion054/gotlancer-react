@@ -69,7 +69,7 @@ const styles = (theme) => ({
       padding: theme.spacing(1)
     }
   },
-  card: {
+  paper: {
     marginBottom: theme.spacing(2),
     [theme.breakpoints.down('sm')]: {
       marginBottom: theme.spacing(1)
@@ -126,6 +126,11 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.divider,
     color: theme.palette.action.active
   },
+  saveIcon: {
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+    border: `solid 1px ${theme.palette.divider}`
+  },
   progress: {
     height: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
@@ -141,10 +146,6 @@ const styles = (theme) => ({
   progressText: {
     width: 52,
     textAlign: 'right'
-  },
-  saveIcon: {
-    padding: theme.spacing(1),
-    border: `solid 1px ${theme.palette.divider}`
   },
   score: {
     [theme.breakpoints.only('xs')]: {
@@ -311,7 +312,7 @@ class Proposals extends PureComponent {
   )
 
   renderDesktopCard = (record, index) => (
-    <Paper key={index} className={this.props.classes.card}>
+    <Paper key={index} className={this.props.classes.paper}>
       <ListItem button onClick={() => this.setState({ activeRecord: record })}>
         <Box flex={1}>
           <Box display="flex" alignItems="center">
@@ -402,7 +403,7 @@ class Proposals extends PureComponent {
   )
 
   renderMobileCard = (record, index) => (
-    <Paper key={index} className={this.props.classes.card}>
+    <Paper key={index} className={this.props.classes.paper}>
       <ListItem button onClick={() => this.setState({ activeRecord: record })}>
         <Box flex={1}>
           <Box position="relative" className={this.props.classes.avatarWrapper} style={{ float: 'left' }}>

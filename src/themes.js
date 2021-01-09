@@ -2,10 +2,7 @@ import { colors, createMuiTheme } from '@material-ui/core';
 
 export const lightTheme = createMuiTheme({
   palette: {
-    type: 'light',
-    background: {
-      default: colors.grey[100]
-    }
+    type: 'light'
   },
   overrides: {
     MuiButton: {

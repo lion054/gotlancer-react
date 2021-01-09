@@ -84,6 +84,11 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.divider,
     color: theme.palette.action.active
   },
+  saveIcon: {
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+    border: `solid 1px ${theme.palette.divider}`
+  },
   status: {
     boxSizing: 'border-box',
     width: 24,
@@ -109,10 +114,6 @@ const styles = (theme) => ({
   progressText: {
     width: 52,
     textAlign: 'right'
-  },
-  saveIcon: {
-    padding: theme.spacing(1),
-    border: `solid 1px ${theme.palette.divider}`
   },
   buttonLabel: {
     whiteSpace: 'nowrap'

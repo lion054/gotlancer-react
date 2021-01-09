@@ -52,7 +52,7 @@ const styles = (theme) => ({
   }
 })
 
-class PostProject extends PureComponent {
+class PostJob extends PureComponent {
   state = {
     activeTab: 0,
     faqList: [],
@@ -389,4 +389,4 @@ class PostProject extends PureComponent {
 export default compose(
   withStyles(styles),
   withTheme
-)(PostProject);
+)(PostJob);

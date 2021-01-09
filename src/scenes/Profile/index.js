@@ -174,6 +174,14 @@ const styles = (theme) => ({
     width: 52,
     textAlign: 'right'
   },
+  sideIcon: {
+    width: 32,
+    height: 32
+  },
+  sideIconButton: {
+    border: `solid 1px ${theme.palette.divider}`,
+    padding: 5
+  },
   hour: {
     display: 'inline-block',
     width: 60,
@@ -405,43 +413,43 @@ class Profile extends PureComponent {
           <Divider />
           <Box my={3}>
             <Box display="flex" alignItems="center">
-              <Avatar>
+              <Avatar className={this.props.classes.sideIcon}>
                 <Phone />
               </Avatar>
               <Box flex={1} mx={1}>
                 <Typography variant="body2">Mobile Verification</Typography>
               </Box>
               <Tooltip title="Verify Mobile">
-                <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
+                <IconButton className={this.props.classes.sideIconButton}>
                   <Add htmlColor={this.props.theme.palette.success.main} />
                 </IconButton>
               </Tooltip>
             </Box>
             <Box display="flex" alignItems="center" mt={1}>
-              <Avatar style={{ backgroundColor: this.props.theme.palette.success.main }}>
+              <Avatar className={this.props.classes.sideIcon} style={{ backgroundColor: this.props.theme.palette.success.main }}>
                 <Email />
               </Avatar>
-              <Box flex={1} mx={1}>
+              <Box flex={1} ml={1}>
                 <Typography variant="body2">Email Verification</Typography>
               </Box>
             </Box>
             <Box display="flex" alignItems="center" mt={1}>
-              <Avatar style={{ backgroundColor: this.props.theme.palette.success.main }}>
+              <Avatar className={this.props.classes.sideIcon} style={{ backgroundColor: this.props.theme.palette.success.main }}>
                 <Check />
               </Avatar>
-              <Box flex={1} mx={1}>
+              <Box flex={1} ml={1}>
                 <Typography variant="body2">KYC Verification</Typography>
               </Box>
             </Box>
             <Box display="flex" alignItems="center" mt={1}>
-              <Avatar>
+              <Avatar className={this.props.classes.sideIcon}>
                 <AttachMoney />
               </Avatar>
               <Box flex={1} mx={1}>
                 <Typography variant="body2">Payment Verification</Typography>
               </Box>
               <Tooltip title="Add Payment Method">
-                <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
+                <IconButton className={this.props.classes.sideIconButton}>
                   <Add htmlColor={this.props.theme.palette.success.main} />
                 </IconButton>
               </Tooltip>
@@ -450,14 +458,14 @@ class Profile extends PureComponent {
           <Divider />
           <Box my={3}>
             <Box display="flex" alignItems="center">
-              <Box width={40} height={40} position="relative">
+              <Box className={this.props.classes.sideIcon} position="relative">
                 <Box
                   className={`flag ${this.state.address.country.iso2} margin`}
                   position="absolute"
-                  top={15}
+                  top={10}
                   left={5}
                   style={{
-                    transform: 'scale(2)',
+                    transform: 'scale(1.5)',
                     transformOrigin: 'center left'
                   }}
                 />
@@ -467,32 +475,20 @@ class Profile extends PureComponent {
               </Box>
             </Box>
             <Box display="flex" alignItems="center" mt={1}>
-              <WatchLater style={{
-                width: 40,
-                height: 40,
-                color: this.props.theme.palette.primary.main
-              }} />
-              <Box flex={1} mx={1}>
+              <WatchLater className={this.props.classes.sideIcon} htmlColor={this.props.theme.palette.primary.main} />
+              <Box flex={1} ml={1}>
                 <Typography variant="body2">It’s curently 4:25 PM here</Typography>
               </Box>
             </Box>
             <Box display="flex" alignItems="center" mt={1}>
-              <TurnedIn style={{
-                width: 40,
-                height: 40,
-                color: this.props.theme.palette.warning.main
-              }} />
-              <Box flex={1} mx={1}>
+              <TurnedIn className={this.props.classes.sideIcon} htmlColor={this.props.theme.palette.warning.main} />
+              <Box flex={1} ml={1}>
                 <Typography variant="body2">Joined, Sep 13, 2013</Typography>
               </Box>
             </Box>
             <Box display="flex" alignItems="center" mt={1}>
-              <Favorite style={{
-                width: 40,
-                height: 40,
-                color: this.props.theme.palette.secondary.main
-              }} />
-              <Box flex={1} mx={1}>
+              <Favorite className={this.props.classes.sideIcon} htmlColor={this.props.theme.palette.secondary.main} />
+              <Box flex={1} ml={1}>
                 <Typography variant="body2">0 Recomandations</Typography>
               </Box>
             </Box>

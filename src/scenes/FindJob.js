@@ -18,6 +18,7 @@ import {
   ListItem,
   MenuItem,
   OutlinedInput,
+  Paper,
   Tab,
   Tabs,
   Typography,
@@ -56,6 +57,15 @@ const styles = (theme) => ({
     [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(1)
     }
+  },
+  paper: {
+    marginBottom: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: theme.spacing(1)
+    },
+    borderRadius: theme.spacing(1.5),
+    border: `solid 1px ${theme.palette.divider}`,
+    padding: 'unset'
   },
   leftSideBar: {
     [theme.breakpoints.up('md')]: {
@@ -124,12 +134,13 @@ const styles = (theme) => ({
     color: theme.palette.action.active
   },
   saveIcon: {
-    padding: theme.spacing(1),
+    width: theme.spacing(4),
+    height: theme.spacing(4),
     border: `solid 1px ${theme.palette.divider}`
   }
 })
 
-class FindWork extends PureComponent {
+class FindJob extends PureComponent {
   state = {
     activeTab: 0,
     user: {
@@ -383,23 +394,13 @@ class FindWork extends PureComponent {
         <Typography variant="body2">{pluralize('job', 4500, true)} found</Typography>
       </Box>
       <List disablePadding>
-        {this.state.jobs.map((job, index) => {
-          switch (this.props.width) {
-            case 'sm':
-            case 'xs':
-              return (
-                <ListItem key={index} disableGutters>
-                  {this.renderMobileJobCard(job, index)}
-                </ListItem>
-              );
-            default:
-              return (
-                <ListItem key={index} disableGutters>
-                  {this.renderDesktopJobCard(job, index)}
-                </ListItem>
-              );
-          }
-        })}
+        {this.state.jobs.map((job, index) => (
+          <Paper key={index} className={this.props.classes.paper}>
+            <ListItem button onClick={() => this.props.history.push('/job_details')}>
+              {(this.props.width === 'xs' || this.props.width === 'sm') ? this.renderMobileJob(job, index) : this.renderDesktopJob(job, index)}
+            </ListItem>
+          </Paper>
+        ))}
       </List>
       <Box mb={4}>
         <CompactPagination />
@@ -407,104 +408,98 @@ class FindWork extends PureComponent {
     </Box>
   )
 
-  renderDesktopJobCard = (job, index) => (
-    <Box key={index} mb={1}>
-      <CompactCard>
-        <CardContent>
-          <Box display="flex" justifyContent="space-between">
-            <Typography variant="subtitle1">{job.title}</Typography>
-            <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
-          </Box>
-          <Box mt={1} display="flex" justifyContent="space-between" alignItems="center">
-            <ChipContainer chips={job.badges} readOnly />
-            <Typography variant="body2" color="textSecondary">{job.type}</Typography>
-          </Box>
-          <Box mt={1.5}>
-            <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
-          </Box>
-          <Box mt={1} mb={1.5} display="flex" justifyContent="space-between">
-            <ChipContainer chips={job.skills} readOnly />
-            <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
-          </Box>
-          <Divider />
-          <Box mt={1.5} whiteSpace="break-spaces" lineHeight={3}>
-            {this.renderApplyBefore()}
-            {this.renderPaymentMethod(job.paymentMethod)}
-            {this.renderReview(job.reviewCount, job.reviewAverage)}
-            {this.renderLocation(job.location)}
-            <Box display="inline-block">
-              <Box display="flex" alignItems="center">
-                <IconButton
-                  className={this.props.classes.saveIcon}
-                  onClick={() => {
-                    const jobs = cloneDeep(this.state.jobs);
-                    jobs[index].saved = !jobs[index].saved;
-                    this.setState({ jobs });
-                  }}
-                >
-                  <FontAwesomeIcon icon={faHeart} style={{
-                    color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
-                  }} />
-                </IconButton>
-                <Box ml={1}>
-                  <Typography variant="body2" align="right">Saved</Typography>
-                </Box>
-              </Box>
+  renderDesktopJob = (job, index) => (
+    <Box flex={1}>
+      <Box display="flex" justifyContent="space-between">
+        <Typography variant="subtitle1">{job.title}</Typography>
+        <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
+      </Box>
+      <Box mt={1} display="flex" justifyContent="space-between" alignItems="center">
+        <ChipContainer chips={job.badges} readOnly />
+        <Typography variant="body2" color="textSecondary">{job.type}</Typography>
+      </Box>
+      <Box mt={1.5}>
+        <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
+      </Box>
+      <Box mt={1} mb={1.5} display="flex" justifyContent="space-between">
+        <ChipContainer chips={job.skills} readOnly />
+        <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
+      </Box>
+      <Divider />
+      <Box mt={1.5} whiteSpace="break-spaces" lineHeight={3}>
+        {this.renderApplyBefore()}
+        {this.renderPaymentMethod(job.paymentMethod)}
+        {this.renderReview(job.reviewCount, job.reviewAverage)}
+        {this.renderLocation(job.location)}
+        <Box display="inline-block">
+          <Box display="flex" alignItems="center">
+            <IconButton
+              className={this.props.classes.saveIcon}
+              onClick={() => {
+                const jobs = cloneDeep(this.state.jobs);
+                jobs[index].saved = !jobs[index].saved;
+                this.setState({ jobs });
+              }}
+            >
+              <FontAwesomeIcon icon={faHeart} style={{
+                color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
+              }} />
+            </IconButton>
+            <Box ml={1}>
+              <Typography variant="body2" align="right">Saved</Typography>
             </Box>
           </Box>
-        </CardContent>
-      </CompactCard>
+        </Box>
+      </Box>
     </Box>
   )
 
-  renderMobileJobCard = (job, index) => (
-    <CompactCard key={index}>
-      <CardContent>
-        <Typography variant="subtitle1">{job.title}</Typography>
-        <Box mt={1}>
-          <ChipContainer chips={job.badges} readOnly />
-        </Box>
-        <Box mt={1.5}>
-          <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
-        </Box>
-        <Box mt={1.5} display="flex" justifyContent="space-between" alignItems="center">
-          <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
-          <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
-        </Box>
-        <Box mt={1.5}>
-          <Typography variant="body2" color="textSecondary">{job.type}</Typography>
-        </Box>
-        <Box mt={1} mb={1.5}>
-          <ChipContainer chips={job.skills} readOnly />
-        </Box>
-        <Divider />
-        <Box mt={1.5} whiteSpace="break-spaces" lineHeight={3}>
-          {this.renderApplyBefore()}
-          {this.renderPaymentMethod(job.paymentMethod)}
-          {this.renderReview(job.reviewCount, job.reviewAverage)}
-          {this.renderLocation(job.location)}
-          <Box display="inline-block">
-            <Box display="flex" alignItems="center">
-              <IconButton
-                className={this.props.classes.saveIcon}
-                onClick={() => {
-                  const jobs = cloneDeep(this.state.jobs);
-                  jobs[index].saved = !jobs[index].saved;
-                  this.setState({ jobs });
-                }}
-              >
-                <FontAwesomeIcon icon={faHeart} style={{
-                  color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
-                }} />
-              </IconButton>
-              <Box ml={1}>
-                <Typography variant="body2" align="right">Saved</Typography>
-              </Box>
+  renderMobileJob = (job, index) => (
+    <Box flex={1}>
+      <Typography variant="subtitle1">{job.title}</Typography>
+      <Box mt={1}>
+        <ChipContainer chips={job.badges} readOnly />
+      </Box>
+      <Box mt={1.5}>
+        <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
+      </Box>
+      <Box mt={1.5} display="flex" justifyContent="space-between" alignItems="center">
+        <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
+        <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
+      </Box>
+      <Box mt={1.5}>
+        <Typography variant="body2" color="textSecondary">{job.type}</Typography>
+      </Box>
+      <Box mt={1} mb={1.5}>
+        <ChipContainer chips={job.skills} readOnly />
+      </Box>
+      <Divider />
+      <Box mt={1.5} whiteSpace="break-spaces" lineHeight={3}>
+        {this.renderApplyBefore()}
+        {this.renderPaymentMethod(job.paymentMethod)}
+        {this.renderReview(job.reviewCount, job.reviewAverage)}
+        {this.renderLocation(job.location)}
+        <Box display="inline-block">
+          <Box display="flex" alignItems="center">
+            <IconButton
+              className={this.props.classes.saveIcon}
+              onClick={() => {
+                const jobs = cloneDeep(this.state.jobs);
+                jobs[index].saved = !jobs[index].saved;
+                this.setState({ jobs });
+              }}
+            >
+              <FontAwesomeIcon icon={faHeart} style={{
+                color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
+              }} />
+            </IconButton>
+            <Box ml={1}>
+              <Typography variant="body2" align="right">Saved</Typography>
             </Box>
           </Box>
         </Box>
-      </CardContent>
-    </CompactCard>
+      </Box>
+    </Box>
   )
 
   renderApplyBefore = () => (
@@ -699,4 +694,4 @@ export default compose(
   withStyles(styles),
   withTheme,
   withWidth()
-)(FindWork);
+)(FindJob);

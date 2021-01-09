@@ -123,7 +123,7 @@ class Header extends PureComponent {
                       getContentAnchorEl={null} // menu should be display below anchor
                       anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
                     >
-                      <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/find_work')}>Find Work</MenuItem>
+                      <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/find_job')}>Find Job</MenuItem>
                       <MenuItem className={this.props.classes.label}>Saved Jobs</MenuItem>
                       <MenuItem className={this.props.classes.label}>Bids</MenuItem>
                       <MenuItem className={this.props.classes.label}>My Stats</MenuItem>
@@ -199,7 +199,7 @@ class Header extends PureComponent {
                     </Menu>
                   </Box>
                   <Box className={this.props.classes.optional}>
-                    <Button variant="contained" style={{ marginLeft: 8, borderRadius: 18 }} onClick={() => this.props.history.push('/post_project')}>Post a project</Button>
+                    <Button variant="contained" style={{ marginLeft: 8, borderRadius: 18 }} onClick={() => this.props.history.push('/post_job')}>Post Job</Button>
                   </Box>
                 </Box>
                 <Box display="flex">

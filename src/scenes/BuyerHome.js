@@ -224,7 +224,7 @@ class BuyerHome extends PureComponent {
       <Grid container>
         <Grid item xs={6}>
           <Box mr={2}>
-            <Button fullWidth variant="contained" onClick={() => this.props.history.push('/post_project')}>Post a Project</Button>
+            <Button fullWidth variant="contained" onClick={() => this.props.history.push('/post_job')}>Post Job</Button>
           </Box>
         </Grid>
         <Grid item xs={6}>

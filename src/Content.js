@@ -6,11 +6,12 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { connect } from 'react-redux';
 
 import Settings from './scenes/Settings';
-import FindWork from './scenes/FindWork';
+import FindJob from './scenes/FindJob';
+import JobDetails from './scenes/JobDetails';
 import BuyerHome from './scenes/BuyerHome';
 import Messenger from './scenes/Messenger';
 import Profile from './scenes/Profile';
-import PostProject from './scenes/PostProject';
+import PostJob from './scenes/PostJob';
 import Membership from './scenes/Membership';
 import Notifications from './scenes/Notifications';
 import Projects from './scenes/Projects';
@@ -47,8 +48,11 @@ const routes = [{
   path: '/',
   component: BuyerHome
 },{
-  path: '/find_work',
-  component: FindWork
+  path: '/find_job',
+  component: FindJob
+},{
+  path: '/job_details',
+  component: JobDetails
 },{
   path: '/deposit_fund',
   component: DepositFund
@@ -71,8 +75,8 @@ const routes = [{
   path: '/withdraw_fund',
   component: WithdrawFund
 },{
-  path: '/post_project',
-  component: PostProject
+  path: '/post_job',
+  component: PostJob
 },{
   path: '/membership',
   component: Membership
