@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import Settings from './scenes/Settings';
 import FindJob from './scenes/FindJob';
 import JobDetails from './scenes/JobDetails';
+import ApplyJob from './scenes/ApplyJob';
 import BuyerHome from './scenes/BuyerHome';
 import Messenger from './scenes/Messenger';
 import Profile from './scenes/Profile';
@@ -53,6 +54,9 @@ const routes = [{
 },{
   path: '/job_details',
   component: JobDetails
+},{
+  path: '/apply_job',
+  component: ApplyJob
 },{
   path: '/deposit_fund',
   component: DepositFund

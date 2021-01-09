@@ -36,6 +36,7 @@ import {
 import { Rating } from '@material-ui/lab';
 import moment from 'moment';
 import faker from 'faker';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 import Header from '../components/Header';
@@ -227,7 +228,7 @@ class JobDetails extends PureComponent {
                       <CardContent>
                         <Box display="flex" justifyContent="space-between" alignItems="center">
                           <Box flex={1} mr={1}>
-                            <Button fullWidth variant="contained">Apply Now</Button>
+                            <Button fullWidth variant="contained" onClick={() => this.props.history.push('/apply_job')}>Apply Now</Button>
                           </Box>
                           <IconButton
                             className={this.props.classes.saveIcon}
@@ -356,6 +357,7 @@ class JobDetails extends PureComponent {
 }
 
 export default compose(
+  withRouter,
   withStyles(styles),
   withTheme
 )(JobDetails);
