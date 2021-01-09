@@ -189,12 +189,9 @@ class Details extends PureComponent {
           <Box className={this.props.classes.innerPadding}>
             <CompactCard>
               <CardHeader
-                title="Project Details"
-                titleTypographyProps={{
-                  variant: 'subtitle2'
-                }}
-                action={(
-                  <Box mt={1}>
+                title={(
+                  <Box display="flex" justifyContent="space-between" alignItems="center">
+                    <Typography variant="subtitle2">Project Details</Typography>
                     <Button variant="outlined">Edit</Button>
                   </Box>
                 )}
@@ -212,12 +209,9 @@ class Details extends PureComponent {
           <Box className={this.props.classes.innerPadding}>
             <CompactCard>
               <CardHeader
-                title="Attachments"
-                titleTypographyProps={{
-                  variant: 'subtitle2'
-                }}
-                action={(
-                  <Box mt={1}>
+                title={(
+                  <Box display="flex" justifyContent="space-between" alignItems="center">
+                    <Typography variant="subtitle2">Attachments</Typography>
                     <Button variant="outlined" onClick={() => this.setState({ addingFile: true })}>Upload</Button>
                   </Box>
                 )}
@@ -265,7 +259,7 @@ class Details extends PureComponent {
                 <Box mt={2} mb={1}>
                   <Typography variant="body1">Skills</Typography>
                 </Box>
-                <ChipContainer chips={this.state.skills} />
+                <ChipContainer chips={this.state.skills} readOnly />
               </CardContent>
             </CompactCard>
           </Box>

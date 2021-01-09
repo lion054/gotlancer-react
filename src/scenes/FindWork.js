@@ -415,20 +415,16 @@ class FindWork extends PureComponent {
             <Typography variant="subtitle1">{job.title}</Typography>
             <Typography variant="h6">${job.budget.min}-${job.budget.max} USD</Typography>
           </Box>
-          <Box mt={1} display="flex">
-            <ChipContainer chips={job.badges} />
-            <Box ml={5}>
-              <Typography variant="body2" color="textSecondary">{job.type}</Typography>
-            </Box>
+          <Box mt={1} display="flex" justifyContent="space-between" alignItems="center">
+            <ChipContainer chips={job.badges} readOnly />
+            <Typography variant="body2" color="textSecondary">{job.type}</Typography>
           </Box>
           <Box mt={1.5}>
             <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
           </Box>
           <Box mt={1} mb={1.5} display="flex" justifyContent="space-between">
-            <ChipContainer chips={job.skills} />
-            <Box ml={5}>
-              <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
-            </Box>
+            <ChipContainer chips={job.skills} readOnly />
+            <Typography variant="body2" color="textSecondary">Posted {moment(job.createdAt).fromNow()}</Typography>
           </Box>
           <Divider />
           <Box mt={1.5} whiteSpace="break-spaces" lineHeight={3}>
@@ -466,7 +462,7 @@ class FindWork extends PureComponent {
       <CardContent>
         <Typography variant="subtitle1">{job.title}</Typography>
         <Box mt={1}>
-          <ChipContainer chips={job.badges} />
+          <ChipContainer chips={job.badges} readOnly />
         </Box>
         <Box mt={1.5}>
           <Typography variant="body2" className={this.props.classes.description}>{job.description}</Typography>
@@ -479,7 +475,7 @@ class FindWork extends PureComponent {
           <Typography variant="body2" color="textSecondary">{job.type}</Typography>
         </Box>
         <Box mt={1} mb={1.5}>
-          <ChipContainer chips={job.skills} />
+          <ChipContainer chips={job.skills} readOnly />
         </Box>
         <Divider />
         <Box mt={1.5} whiteSpace="break-spaces" lineHeight={3}>

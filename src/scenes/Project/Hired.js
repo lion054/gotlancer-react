@@ -286,7 +286,7 @@ class Hired extends PureComponent {
                 <Box>
                   <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
                   <Box mt={0.5} mb={1.5}>
-                    <ChipContainer chips={record.skills} />
+                    <ChipContainer chips={record.skills} readOnly />
                   </Box>
                 </Box>
                 <Box>
@@ -342,29 +342,25 @@ class Hired extends PureComponent {
     <Box key={index} mb={1}>
       <CompactCard>
         <CardContent>
-          <Box display="flex" alignItems="center">
-            <Box position="relative">
-              <img alt="" src={record.avatar} className={this.props.classes.avatar} />
-              <Box
-                className={this.props.classes.status}
-                bgcolor={record.online ? this.props.theme.palette.success.main : colors.grey[400]}
-              />
-            </Box>
-            <Box flex={1}>
-              <Box display="flex" alignItems="center">
-                <Typography variant="subtitle1">{record.name}</Typography>
-                <Avatar className={this.props.classes.verifiedIcon} style={record.verified ? {
-                  backgroundColor: this.props.theme.palette.success.main
-                } : {}}>
-                  <Check style={{ fontSize: '1rem' }} />
-                </Avatar>
-              </Box>
-              <Breadcrumbs aria-label="breadcrumb" separator="|">
-                <Typography variant="body2">{record.title}</Typography>
-                <Typography variant="body2">Member since {moment(record.memberSince).format('LL')}</Typography>
-              </Breadcrumbs>
-            </Box>
+          <Box position="relative" style={{ float: 'left' }}>
+            <img alt="" src={record.avatar} className={this.props.classes.avatar} />
+            <Box
+              className={this.props.classes.status}
+              bgcolor={record.online ? this.props.theme.palette.success.main : colors.grey[400]}
+            />
           </Box>
+          <Box display="flex" alignItems="center">
+            <Typography variant="subtitle1">{record.name}</Typography>
+            <Avatar className={this.props.classes.verifiedIcon} style={record.verified ? {
+              backgroundColor: this.props.theme.palette.success.main
+            } : {}}>
+              <Check style={{ fontSize: '1rem' }} />
+            </Avatar>
+          </Box>
+          <Breadcrumbs aria-label="breadcrumb" separator="|">
+            <Typography variant="body2">{record.title}</Typography>
+            <Typography variant="body2">Member since {moment(record.memberSince).format('LL')}</Typography>
+          </Breadcrumbs>
           <Box>
             <Typography variant="body2" component="span">My Bid&nbsp;</Typography>
             <Typography variant="subtitle1" component="span">{record.budget}</Typography>
@@ -376,7 +372,7 @@ class Hired extends PureComponent {
             <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
           </Box>
           <Box mt={0.5} mb={1.5}>
-            <ChipContainer chips={record.skills} />
+            <ChipContainer chips={record.skills} readOnly />
           </Box>
           <Box display="flex" mb={1.5}>
             <Box flex={1} mr={1}>

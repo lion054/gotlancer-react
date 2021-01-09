@@ -43,6 +43,7 @@ import 'material-ui-phone-number/src/flags.png';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import ChipContainer from '../../components/ChipContainer';
 import ChangeAvatar from './ChangeAvatar';
 import ChangeHourlyRate from './ChangeHourlyRate';
 import ChangeSummary from './ChangeSummary';
@@ -179,23 +180,11 @@ const styles = (theme) => ({
     color: theme.palette.success.main
   },
   score: {
-    [theme.breakpoints.only('xs')]: {
-      position: 'relative',
-      top: -3
-    },
     marginRight: theme.spacing(1),
     borderRadius: theme.spacing(0.5),
     padding: theme.spacing(0, 0.5),
     backgroundColor: theme.palette.warning.main,
     color: theme.palette.common.white,
-    fontSize: 12
-  },
-  skill: {
-    marginRight: theme.spacing(1),
-    borderRadius: theme.spacing(0.5),
-    padding: theme.spacing(0.5, 1),
-    backgroundColor: theme.palette.action.disabledBackground,
-    color: theme.palette.text.disabled,
     fontSize: 12
   },
   reviewAvatar: {
@@ -217,7 +206,7 @@ const styles = (theme) => ({
 class Profile extends PureComponent {
   state = {
     avatar: faker.image.image(),
-    skills: [{
+    tasks: [{
       title: 'PHP',
       completed: 90
     },{
@@ -237,6 +226,7 @@ class Profile extends PureComponent {
       },
       city: 'Kolkata'
     },
+    skills: [],
     summary: faker.lorem.paragraphs(10),
     exhibitions: [],
     reviews: [],
@@ -252,6 +242,19 @@ class Profile extends PureComponent {
   }
 
   componentDidMount() {
+    const skills = [{
+      title: 'Augmented Reality (AR)',
+      backgroundColor: this.props.theme.palette.action.disabledBackground,
+      color: this.props.theme.palette.text.secondary
+    },{
+      title: 'Virtual Reality (VR)',
+      backgroundColor: this.props.theme.palette.action.disabledBackground,
+      color: this.props.theme.palette.text.secondary
+    },{
+      title: 'Unity3D',
+      backgroundColor: this.props.theme.palette.action.disabledBackground,
+      color: this.props.theme.palette.text.secondary
+    }];
     const exhibitions = [];
     for (let i = 0; i < 8; i++) {
       exhibitions.push({
@@ -271,7 +274,7 @@ class Profile extends PureComponent {
         createdAt: faker.date.past()
       });
     }
-    this.setState({ exhibitions, reviews });
+    this.setState({ skills, exhibitions, reviews });
   }
 
   render = () => (
@@ -384,7 +387,7 @@ class Profile extends PureComponent {
           </Box>
           <Divider />
           <Box>
-            {this.state.skills.map(({ title, completed }, index) => (
+            {this.state.tasks.map(({ title, completed }, index) => (
               <Box key={index}>
                 <Typography variant="body2">{title}</Typography>
                 <Box display="flex" alignItems="center">
@@ -503,81 +506,58 @@ class Profile extends PureComponent {
     <Box className={this.props.classes.innerPadding}>
       <CompactCard>
         <CardContent>
-          <Box className={this.props.classes.outerMargin}>
-            <Grid container>
-              {(this.props.width === 'xs' || this.props.width === 'sm') && (
-                <Grid item xs={4}>
-                  <Box className={this.props.classes.innerPadding}>
-                    {this.renderAvatar()}
-                    <Box mt={2}>
-                      {this.renderHourlyRate()}
-                    </Box>
+          <Box>
+            {(this.props.width === 'xs' || this.props.width === 'sm') && (
+              <Box className={this.props.classes.innerPadding} style={{ float: 'left' }}>
+                {this.renderAvatar()}
+              </Box>
+            )}
+            <Box mb={0.5} display="flex" justifyContent="space-between">
+              <Box display="flex" flexWrap="wrap">
+                <Box display="flex" alignItems="center" mr={1}>
+                  <Box mr={1} color={this.props.theme.palette.success.main}>
+                    <Typography variant="body1" noWrap>Greg Prickril</Typography>
                   </Box>
-                </Grid>
-              )}
-              <Grid item md={12} xs={8}>
-                <Box className={this.props.classes.innerPadding}>
-                  <Box mb={0.5} display={this.props.width === 'xs' ? 'block' : 'flex'} justifyContent="space-between">
-                    <Box display="flex" alignItems="center">
-                      <Box display="flex" alignItems="center">
-                        <Box mr={2} color={this.props.theme.palette.success.main}>
-                          <Typography variant="body1">Greg Prickril</Typography>
-                        </Box>
-                        <Box mx={1}>
-                          <CheckCircle htmlColor={this.props.theme.palette.success.main} />
-                        </Box>
-                      </Box>
-                      <Box display="flex" alignItems="center">
-                        <Box mx={1}>
-                          <Star htmlColor={this.props.theme.palette.warning.main} />
-                        </Box>
-                        <Box mx={1} color={this.props.theme.palette.warning.main}>
-                          <Typography variant="body2">HIGHTEST RATED</Typography>
-                        </Box>
-                      </Box>
-                    </Box>
-                    {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && this.renderHourlyRate()}
-                  </Box>
-                  <Box display="flex" alignItems="center" mb={0.5}>
-                    <Box mr={1}>
-                      <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
-                    </Box>
-                    <Tooltip title="Edit Title">
-                      <IconButton
-                        style={{
-                          border: `solid 1px ${this.props.theme.palette.divider}`,
-                          padding: 7
-                        }}
-                        onClick={() => this.setState({ titleOpened: true })}
-                      >
-                        <Create />
-                      </IconButton>
-                    </Tooltip>
-                  </Box>
-                  <Box display={this.props.width === 'xs' ? 'block' : 'flex'} alignItems="center" my={0.5}>
-                    {this.renderScore(4.9)}
-                    <Box ml={1} flex={1}>
-                      <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
-                    </Box>
-                    {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && this.renderActionButtons()}
-                  </Box>
-                  <Box>
-                    <span className={this.props.classes.skill}>Augmented Reality (AR)</span>
-                    <span className={this.props.classes.skill}>Virtual Reality (VR)</span>
-                    <span className={this.props.classes.skill}>Unity3D</span>
-                    <Tooltip title="Add Skill">
-                      <IconButton style={{ border: `solid 1px ${this.props.theme.palette.divider}`, padding: 7 }}>
-                        <Add htmlColor={this.props.theme.palette.success.main} />
-                      </IconButton>
-                    </Tooltip>
+                  <CheckCircle htmlColor={this.props.theme.palette.success.main} />
+                </Box>
+                <Box display="flex" alignItems="center">
+                  <Star htmlColor={this.props.theme.palette.warning.main} />
+                  <Box mx={1} color={this.props.theme.palette.warning.main}>
+                    <Typography variant="body2" noWrap>HIGHTEST RATED</Typography>
                   </Box>
                 </Box>
-              </Grid>
-            </Grid>
+              </Box>
+              {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && this.renderHourlyRate()}
+            </Box>
+            <Box mb={0.5}>
+              <Box mr={1}>
+                <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
+              </Box>
+              <Tooltip title="Edit Title">
+                <IconButton
+                  style={{
+                    border: `solid 1px ${this.props.theme.palette.divider}`,
+                    padding: 7
+                  }}
+                  onClick={() => this.setState({ titleOpened: true })}
+                >
+                  <Create />
+                </IconButton>
+              </Tooltip>
+            </Box>
+            <Box display="flex" alignItems="center" my={0.5}>
+              {this.renderScore(4.9)}
+              <Box ml={1} flex={1}>
+                <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
+              </Box>
+              {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && this.renderActionButtons()}
+            </Box>
+            <ChipContainer chips={this.state.skills} buttonTitle="Add Skill" />
           </Box>
           {(this.props.width === 'xs' || this.props.width === 'sm') && (
             <Fragment>
-              <Box my={2}>
+              {this.renderHourlyRate()}
+              <Box mt={1} mb={2}>
                 <Divider />
               </Box>
               <Box textAlign="center">
@@ -615,12 +595,9 @@ class Profile extends PureComponent {
     <Box className={this.props.classes.innerPadding}>
       <CompactCard>
         <CardHeader
-          title="Portfolio"
-          titleTypographyProps={{
-            variant: 'subtitle1'
-          }}
-          action={(
-            <Box mt={1}>
+          title={(
+            <Box display="flex" justifyContent="space-between" alignItems="center">
+              <Typography variant="subtitle1">Portfolio</Typography>
               <Button variant="contained">Add New</Button>
             </Box>
           )}
@@ -874,15 +851,12 @@ class Profile extends PureComponent {
   )
 
   renderHourlyRate = () => (
-    <Box display={this.props.width === 'xs' ? 'block' : 'flex'} alignItems="center">
-      {this.props.width !== 'xs' && (
-        <Box bgcolor={this.props.theme.palette.success.main} display="inline-flex">
-          <AttachMoney htmlColor={this.props.theme.palette.common.white} />
-        </Box>
-      )}
+    <Box display="flex" justifyContent="flex-end" alignItems="center">
+      <Box bgcolor={this.props.theme.palette.success.main} display="inline-flex">
+        <AttachMoney htmlColor={this.props.theme.palette.common.white} />
+      </Box>
       <Box
-        ml={this.props.width === 'xs' ? 0 : 1}
-        mr={this.props.width === 'xs' ? 0 : 1}
+        mx={1}
         component="span"
         display="inline-block"
       >

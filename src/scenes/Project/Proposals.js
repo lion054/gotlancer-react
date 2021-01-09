@@ -12,6 +12,12 @@ import {
   IconButton,
   LinearProgress,
   Link,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Paper,
+  Tabs,
   Typography,
   colors,
   withStyles,
@@ -20,11 +26,14 @@ import {
 } from '@material-ui/core';
 import {
   Apple,
+  Attachment,
   Camera,
   Check,
   CheckCircle,
+  ChevronLeft,
   Favorite,
   FavoriteBorder,
+  OpenInNew,
   Redeem,
   Star
 } from '@material-ui/icons';
@@ -45,7 +54,7 @@ import { compose } from 'redux';
 
 import ChipContainer from '../../components/ChipContainer';
 import CompactPagination from '../../components/CompactPagination';
-import { CompactCard, formatCurrency } from '../../global';
+import { CompactCard, CompactTab, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   outerMargin: {
@@ -60,15 +69,46 @@ const styles = (theme) => ({
       padding: theme.spacing(1)
     }
   },
+  card: {
+    marginBottom: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: theme.spacing(1)
+    },
+    borderRadius: theme.spacing(1.5),
+    border: `solid 1px ${theme.palette.divider}`,
+    padding: 'unset'
+  },
+  avatarWrapper: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      marginRight: theme.spacing(1)
+    }
+  },
   avatar: {
     width: 96,
     height: 96,
     borderRadius: 48,
     [theme.breakpoints.down('sm')]: {
-      marginRight: theme.spacing(1)
-    },
-    [theme.breakpoints.up('md')]: {
-      marginRight: theme.spacing(2)
+      width: 64,
+      height: 64,
+      borderRadius: 32
+    }
+  },
+  status: {
+    boxSizing: 'border-box',
+    border: `solid 2px ${theme.palette.common.white}`,
+    position: 'absolute',
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    top: 72,
+    left: 72,
+    [theme.breakpoints.down('sm')]: {
+      width: 18,
+      height: 18,
+      borderRadius: 9,
+      top: 46,
+      left: 46
     }
   },
   verifiedIcon: {
@@ -85,16 +125,6 @@ const styles = (theme) => ({
     height: theme.spacing(4),
     backgroundColor: theme.palette.divider,
     color: theme.palette.action.active
-  },
-  status: {
-    boxSizing: 'border-box',
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    border: `solid 2px ${theme.palette.common.white}`,
-    position: 'absolute',
-    top: 72,
-    left: 72
   },
   progress: {
     height: theme.spacing(1),
@@ -128,19 +158,17 @@ const styles = (theme) => ({
     color: theme.palette.common.white,
     fontSize: 12
   },
-  skill: {
-    marginRight: theme.spacing(1),
-    borderRadius: theme.spacing(0.5),
-    padding: theme.spacing(0.5, 1),
-    backgroundColor: theme.palette.action.disabledBackground,
-    color: theme.palette.text.disabled,
-    fontSize: 12
-  },
   buttonLabel: {
     whiteSpace: 'nowrap'
   },
-  drawer: {
+  drawerPaper: {
     backgroundColor: theme.palette.background.default
+  },
+  drawerBody: {
+    width: '70vw',
+    [theme.breakpoints.down('sm')]: {
+      width: '90vw'
+    }
   }
 });
 
@@ -156,21 +184,27 @@ class Proposals extends PureComponent {
   state = {
     records: [],
     roadmap: [],
-    activeRecord: null
+    activeRecord: null,
+    drawerActiveTab: 0
   }
 
   componentDidMount() {
     const records = [];
+    const skills = [{
+      title: 'Augmented Reality (AR)',
+      backgroundColor: this.props.theme.palette.action.disabledBackground,
+      color: this.props.theme.palette.text.secondary
+    },{
+      title: 'Virtual Reality (VR)',
+      backgroundColor: this.props.theme.palette.action.disabledBackground,
+      color: this.props.theme.palette.text.secondary
+    },{
+      title: 'Unity3D',
+      backgroundColor: this.props.theme.palette.action.disabledBackground,
+      color: this.props.theme.palette.text.secondary
+    }];
     for (let i = 0; i < 3; i++) {
       const budget = faker.random.number({ min: 100, max: 3000 });
-      const skills = [];
-      for (let j = 0; j < 3; j++) {
-        skills.push({
-          title: faker.lorem.words(2),
-          backgroundColor: this.props.theme.palette.action.disabledBackground,
-          color: this.props.theme.palette.text.secondary
-        });
-      }
       records.push({
         avatar: faker.image.image(),
         online: faker.random.boolean(),
@@ -185,7 +219,8 @@ class Proposals extends PureComponent {
         reviewCount: faker.random.number({ min: 0, max: 100 }),
         reviewAverage: faker.random.number({ min: 0, max: 5 }),
         successRate: faker.random.number({ min: 0, max: 100 }),
-        saved: faker.random.boolean()
+        saved: faker.random.boolean(),
+        attachments: ['1.png', '2.png', '3.png']
       });
     }
     const roadmap = [{
@@ -217,15 +252,17 @@ class Proposals extends PureComponent {
       <Grid container>
         <Grid item md={8} xs={12}>
           <Box className={this.props.classes.innerPadding}>
-            {this.state.records.map((record, index) => {
-              switch (this.props.width) {
-                case 'sm':
-                case 'xs':
-                  return this.renderMobileCard(record, index);
-                default:
-                  return this.renderDesktopCard(record, index);
-              }
-            })}
+            <List disablePadding>
+              {this.state.records.map((record, index) => {
+                switch (this.props.width) {
+                  case 'sm':
+                  case 'xs':
+                    return this.renderMobileCard(record, index);
+                  default:
+                    return this.renderDesktopCard(record, index);
+                }
+              })}
+            </List>
             <Box mb={4}>
               <CompactPagination />
             </Box>
@@ -274,11 +311,11 @@ class Proposals extends PureComponent {
   )
 
   renderDesktopCard = (record, index) => (
-    <Box key={index} mb={1}>
-      <CompactCard>
-        <CardContent>
+    <Paper key={index} className={this.props.classes.card}>
+      <ListItem button onClick={() => this.setState({ activeRecord: record })}>
+        <Box flex={1}>
           <Box display="flex" alignItems="center">
-            <Box position="relative">
+            <Box position="relative" className={this.props.classes.avatarWrapper}>
               <img alt="" src={record.avatar} className={this.props.classes.avatar} />
               <Box
                 className={this.props.classes.status}
@@ -313,20 +350,19 @@ class Proposals extends PureComponent {
                 <Box>
                   <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
                   <Box mt={0.5} mb={1.5}>
-                    <ChipContainer chips={record.skills} />
+                    <ChipContainer chips={record.skills} readOnly />
                   </Box>
                 </Box>
                 <Box>
                   <Button
                     fullWidth
                     variant="contained"
-                    onClick={() => this.setState({ activeRecord: record })}
                     classes={{
                       label: this.props.classes.buttonLabel
                     }}
                   >Hire me</Button>
                   <Box mt={1}>
-                    <Button fullWidth variant="outlined" onClick={() => this.setState({ activeRecord: record })}>Contact</Button>
+                    <Button fullWidth variant="outlined">Contact</Button>
                   </Box>
                 </Box>
               </Box>
@@ -360,57 +396,53 @@ class Proposals extends PureComponent {
               </Box>
             </Box>
           </Box>
-        </CardContent>
-      </CompactCard>
-    </Box>
+        </Box>
+      </ListItem>
+    </Paper>
   )
 
   renderMobileCard = (record, index) => (
-    <Box key={index} mb={1}>
-      <CompactCard>
-        <CardContent>
+    <Paper key={index} className={this.props.classes.card}>
+      <ListItem button onClick={() => this.setState({ activeRecord: record })}>
+        <Box flex={1}>
+          <Box position="relative" className={this.props.classes.avatarWrapper} style={{ float: 'left' }}>
+            <img alt="" src={record.avatar} className={this.props.classes.avatar} />
+            <Box
+              className={this.props.classes.status}
+              bgcolor={record.online ? this.props.theme.palette.success.main : colors.grey[400]}
+            />
+          </Box>
           <Box display="flex" alignItems="center">
-            <Box position="relative">
-              <img alt="" src={record.avatar} className={this.props.classes.avatar} />
-              <Box
-                className={this.props.classes.status}
-                bgcolor={record.online ? this.props.theme.palette.success.main : colors.grey[400]}
-              />
-            </Box>
-            <Box flex={1}>
-              <Box display="flex" alignItems="center">
-                <Typography variant="subtitle1">{record.name}</Typography>
-                <Avatar className={this.props.classes.verifiedIcon} style={record.verified ? {
-                  backgroundColor: this.props.theme.palette.success.main
-                } : {}}>
-                  <Check style={{ fontSize: '1rem' }} />
-                </Avatar>
-              </Box>
-              <Breadcrumbs aria-label="breadcrumb" separator="|">
-                <Typography variant="body2">{record.title}</Typography>
-                <Typography variant="body2">Member since {moment(record.memberSince).format('LL')}</Typography>
-              </Breadcrumbs>
-            </Box>
+            <Typography variant="subtitle1">{record.name}</Typography>
+            <Avatar className={this.props.classes.verifiedIcon} style={record.verified ? {
+              backgroundColor: this.props.theme.palette.success.main
+            } : {}}>
+              <Check style={{ fontSize: '1rem' }} />
+            </Avatar>
+          </Box>
+          <Box mb={1}>
+            <Breadcrumbs aria-label="breadcrumb" separator="|">
+              <Typography variant="body2">{record.title}</Typography>
+              <Typography variant="body2">Member since {moment(record.memberSince).format('LL')}</Typography>
+            </Breadcrumbs>
           </Box>
           <Box>
             <Typography variant="body2" component="span">My Bid&nbsp;</Typography>
             <Typography variant="subtitle1" component="span">{record.budget}</Typography>
           </Box>
+          <Link href="#">Cover Letter</Link>
           <Box mt={0.5}>
-            <Link href="#">Cover Letter</Link>
-          </Box>
-          <Box mt={1.5}>
             <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
           </Box>
-          <Box mt={0.5} mb={1.5}>
-            <ChipContainer chips={record.skills} />
+          <Box my={0.5}>
+            <ChipContainer chips={record.skills} readOnly />
           </Box>
-          <Box display="flex" mb={1.5}>
+          <Box display="flex" my={1.5}>
             <Box flex={1} mr={1}>
-              <Button fullWidth variant="contained" onClick={() => this.setState({ activeRecord: record })}>Hire me</Button>
+              <Button fullWidth variant="contained">Hire me</Button>
             </Box>
             <Box flex={1} ml={1}>
-              <Button fullWidth variant="outlined" onClick={() => this.setState({ activeRecord: record })}>Contact</Button>
+              <Button fullWidth variant="outlined">Contact</Button>
             </Box>
           </Box>
           <Divider />
@@ -441,9 +473,9 @@ class Proposals extends PureComponent {
               </Box>
             </Box>
           </Box>
-        </CardContent>
-      </CompactCard>
-    </Box>
+        </Box>
+      </ListItem>
+    </Paper>
   )
 
   renderProjectsCompleted = (value) => (
@@ -516,63 +548,141 @@ class Proposals extends PureComponent {
       open={!!this.state.activeRecord}
       onClose={() => this.setState({ activeRecord: null })}
       classes={{
-        paper: this.props.classes.drawer
+        paper: this.props.classes.drawerPaper
       }}
     >
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        className={this.props.classes.innerPadding}
-        bgcolor={this.props.theme.palette.background.paper}
-      >
-        <Button>Back to all proposals</Button>
-        <Button>View profile in new window</Button>
-      </Box>
-      <Box className={this.props.classes.innerPadding} display="flex">
-        <Box position="relative">
-          <img alt="" src={this.state.activeRecord && this.state.activeRecord.avatar} className={this.props.classes.avatar} />
-          <Box
-            className={this.props.classes.status}
-            bgcolor={this.state.activeRecord && this.state.activeRecord.online ? this.props.theme.palette.success.main : colors.grey[400]}
-          />
+      <Box className={this.props.classes.drawerBody}>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          className={this.props.classes.innerPadding}
+          bgcolor={this.props.theme.palette.background.paper}
+        >
+          {this.props.width === 'xs' ? (
+            <IconButton onClick={() => this.setState({ activeRecord: null })}>
+              <ChevronLeft htmlColor={this.props.theme.palette.success.main} />
+            </IconButton>
+          ) : (
+            <Button
+              variant="text"
+              startIcon={<ChevronLeft htmlColor={this.props.theme.palette.success.main} />}
+              onClick={() => this.setState({ activeRecord: null })}
+            >Back to all proposals</Button>
+          )}
+          {this.props.width === 'xs' ? (
+            <IconButton>
+              <OpenInNew htmlColor={this.props.theme.palette.success.main} />
+            </IconButton>
+          ) : (
+            <Button
+              variant="text"
+              endIcon={<OpenInNew htmlColor={this.props.theme.palette.success.main} />}
+            >View profile in new window</Button>
+          )}
         </Box>
-        <Box flex={1}>
-          <Box display={this.props.width === 'xs' ? 'block' : 'flex'}>
-            <Box display="flex" alignItems="center">
-              <Box mr={2} color={this.props.theme.palette.success.main}>
-                <Typography variant="body1">{this.state.activeRecord && this.state.activeRecord.name}</Typography>
+        <Divider />
+        <Box className={this.props.classes.innerPadding}>
+          <CompactCard>
+            <CardContent>
+              <Box position="relative" className={this.props.classes.avatarWrapper} style={{ float: 'left' }}>
+                <img alt="" src={this.state.activeRecord && this.state.activeRecord.avatar} className={this.props.classes.avatar} />
+                <Box
+                  className={this.props.classes.status}
+                  bgcolor={this.state.activeRecord && this.state.activeRecord.online ? this.props.theme.palette.success.main : colors.grey[400]}
+                />
               </Box>
-              <Box mx={1}>
-                <CheckCircle htmlColor={this.props.theme.palette.success.main} />
+              <Box display="flex" flexWrap="wrap">
+                <Box display="flex" alignItems="center" mr={1}>
+                  <Box mr={1} color={this.props.theme.palette.success.main}>
+                    <Typography variant="body1">{this.state.activeRecord && this.state.activeRecord.name}</Typography>
+                  </Box>
+                  <CheckCircle htmlColor={this.props.theme.palette.success.main} />
+                </Box>
+                <Box display="flex" alignItems="center">
+                  <Star htmlColor={this.props.theme.palette.warning.main} />
+                  <Box mx={1} color={this.props.theme.palette.warning.main}>
+                    <Typography variant="body2">HIGHTEST RATED</Typography>
+                  </Box>
+                </Box>
               </Box>
-            </Box>
-            <Box display="flex" alignItems="center">
-              <Box mx={1}>
-                <Star htmlColor={this.props.theme.palette.warning.main} />
+              <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
+              <Box display="flex" alignItems="center" my={0.5}>
+                {this.renderScore(4.9)}
+                <Box ml={1}>
+                  <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
+                </Box>
               </Box>
-              <Box mx={1} color={this.props.theme.palette.warning.main}>
-                <Typography variant="body2">HIGHTEST RATED</Typography>
-              </Box>
-            </Box>
+              {this.state.activeRecord && (
+                <ChipContainer chips={this.state.activeRecord.skills} readOnly />
+              )}
+            </CardContent>
+          </CompactCard>
+          <Box mt={1} style={{ clear: 'both' }}>
+            <CompactCard>
+              <CardHeader
+                title={(
+                  <Box display="flex" justifyContent="space-between" alignItems="center">
+                    <Typography variant="subtitle1">Cover letter</Typography>
+                    <Typography variant="body1">$500 in 3 days</Typography>
+                  </Box>
+                )}
+              />
+              <Divider />
+              <CardContent>
+                <Typography variant="body2">{this.state.activeRecord && this.state.activeRecord.description}</Typography>
+                <Box my={2}>
+                  <Divider />
+                </Box>
+                <Typography variant="subtitle2">Attachments</Typography>
+                <List disablePadding>
+                  {this.state.activeRecord && this.state.activeRecord.attachments.map((file, index) => (
+                    <ListItem key={index} disableGutters button>
+                      <ListItemIcon>
+                        <Attachment />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={file}
+                        primaryTypographyProps={{
+                          variant: 'body2'
+                        }}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              </CardContent>
+            </CompactCard>
           </Box>
-          <Box mr={1}>
-            <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
-          </Box>
-          <Box display={this.props.width === 'xs' ? 'block' : 'flex'} alignItems="center" my={0.5}>
-            {this.renderScore(4.9)}
-            <Box ml={1}>
-              <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
-            </Box>
-          </Box>
-          <Box>
-            <span className={this.props.classes.skill}>Augmented Reality (AR)</span>
-            <span className={this.props.classes.skill}>Virtual Reality (VR)</span>
-            <span className={this.props.classes.skill}>Unity3D</span>
+          <Box mt={1}>
+            <CompactCard>
+              <CardHeader
+                title={(
+                  <Tabs
+                    value={this.state.drawerActiveTab}
+                    onChange={this.handleTabChange}
+                    indicatorColor="primary"
+                    textColor="primary"
+                  >
+                    <CompactTab label="About me" />
+                    <CompactTab label="Portfolio" />
+                    <CompactTab label="Reviews" />
+                  </Tabs>
+                )}
+                style={{ padding: 0 }}
+              />
+              <Divider />
+              <CardContent>
+                <Typography variant="body2">{this.state.activeRecord && this.state.activeRecord.description}</Typography>
+              </CardContent>
+            </CompactCard>
           </Box>
         </Box>
       </Box>
     </Drawer>
   )
+
+  handleTabChange = (event, newValue) => {
+    this.setState({ drawerActiveTab: newValue });
+  }
 
   renderScore = (value) => (
     <Fragment>

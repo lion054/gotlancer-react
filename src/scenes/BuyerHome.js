@@ -151,12 +151,9 @@ class BuyerHome extends PureComponent {
   renderRecentProjects = () => (
     <CompactCard>
       <CardHeader
-        title="Recent Projects"
-        titleTypographyProps={{
-          variant: 'subtitle1'
-        }}
-        action={(
-          <Box mt={1.5} mr={1}>
+        title={(
+          <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography variant="subtitle1">Recent Projects</Typography>
             <Typography variant="body2">3 projects found</Typography>
           </Box>
         )}
@@ -204,12 +201,9 @@ class BuyerHome extends PureComponent {
   renderDraftProjects = () => (
     <CompactCard>
       <CardHeader
-        title="Draft Projects"
-        titleTypographyProps={{
-          variant: 'subtitle1'
-        }}
-        action={(
-          <Box mt={1.5} mr={1}>
+        title={(
+          <Box display="flex" justifyContent="space-between" alignItems="center">
+            <Typography variant="subtitle1">Draft Projects</Typography>
             <Typography variant="body2">0 projects found</Typography>
           </Box>
         )}

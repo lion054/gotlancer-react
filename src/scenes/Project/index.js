@@ -23,30 +23,19 @@ import { CompactTab } from '../../global';
 
 const styles = (theme) => ({
   root: {},
-  floatLeft: {
+  titleBar: {
+    display: 'block',
     [theme.breakpoints.up('md')]: {
-      float: 'left',
-      width: 'calc(100% - 200px)'
+      display: 'flex',
+      justifyContent: 'space-between'
     }
   },
-  floatRight: {
-    [theme.breakpoints.up('md')]: {
-      float: 'right',
-      width: 200,
-      '& > .MuiTypography-root': {
-        display: 'block'
-      }
-    },
+  titleRight: {
+    textAlign: 'right',
     [theme.breakpoints.down('sm')]: {
       '& > .MuiTypography-root': {
         display: 'inline-block'
       }
-    },
-    textAlign: 'right'
-  },
-  floatClear: {
-    [theme.breakpoints.up('md')]: {
-      clear: 'both' // Reset above float operation
     }
   },
   innerPadding: {
@@ -105,18 +94,17 @@ class Project extends PureComponent {
         <Grid container>
           <Grid item lg={2} />
           <Grid item lg={8} xs={12}>
-            <Box>
-              <Box className={this.props.classes.floatLeft}>
+            <Box className={this.props.classes.titleBar}>
+              <Box>
                 <Typography variant="h5">I need a WordPress Site (5 pages) and a Logo Design</Typography>
-                <ChipContainer chips={this.state.badges} />
+                <ChipContainer chips={this.state.badges} readOnly />
               </Box>
-              <Box className={this.props.classes.floatRight}>
+              <Box className={this.props.classes.titleRight}>
                 <GreenText variant="body2">In progress</GreenText>
                 <Typography variant="body2">&nbsp;$10-$30 USD/hr</Typography>
               </Box>
             </Box>
             <Tabs
-              className={this.props.classes.floatClear}
               value={this.state.activeTab}
               onChange={this.handleTabChange}
               variant="scrollable"
