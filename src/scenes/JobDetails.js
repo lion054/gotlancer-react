@@ -335,8 +335,10 @@ class JobDetails extends PureComponent {
                         </Box>
                         <Box display="flex" alignItems="center" mt={1}>
                           <Stars className={this.props.classes.sideIcon} htmlColor={this.props.theme.palette.action.active} />
-                          <Rating name="read-only" value={5} readOnly size="small" />
-                          <Typography variant="body2">&nbsp;(0 reviews)</Typography>
+                          <Box display="flex" flexWrap="wrap">
+                            <Rating name="read-only" value={5} readOnly size="small" />
+                            <Typography variant="body2">&nbsp;(0 reviews)</Typography>
+                          </Box>
                         </Box>
                       </CardContent>
                     </CompactCard>
