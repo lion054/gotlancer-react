@@ -16,11 +16,13 @@ import {
 import { Search } from '@material-ui/icons';
 import clsx from 'clsx';
 import faker from 'faker';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PlaceholderSelect from '../components/PlaceholderSelect';
+import CompactPagination from '../components/CompactPagination';
 
 const styles = (theme) => ({
   root: {
@@ -64,12 +66,6 @@ const styles = (theme) => ({
   examIcon: {
     width: 24,
     marginRight: 8
-  },
-  examTitle: {
-    width: 'calc(100% - 24px - 8px)',
-    // whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis'
   },
   examDescription: {
     height: 40, // 2 lines
@@ -194,7 +190,7 @@ class Exams extends PureComponent {
                           <Box display="flex" justifyContent="space-between" alignItems="center" className={this.props.classes.innerPadding}>
                             <Box display="flex" alignItems="center" flex={1}>
                               <img alt="" src={icon} className={this.props.classes.examIcon} />
-                              <Typography variant="body2" className={this.props.classes.examTitle} component="span">{title}</Typography>
+                              <Typography variant="body2">{title}</Typography>
                             </Box>
                             <Chip variant="outlined" size="small" label={`Level ${level}`} />
                           </Box>
@@ -207,13 +203,16 @@ class Exams extends PureComponent {
                               <Typography variant="body2">Price</Typography>
                               <Typography variant="subtitle2" style={{ color: this.props.theme.palette.success.main }}>${price}</Typography>
                             </Box>
-                            <Button variant="contained" size="small">Pay &amp; Start Test</Button>
+                            <Button variant="contained" size="small" onClick={() => this.props.history.push('/exam')}>Pay &amp; Start Test</Button>
                           </Box>
                         </Paper>
                       </Box>
                     </Grid>
                   ))}
                 </Grid>
+                <Box mb={4}>
+                  <CompactPagination />
+                </Box>
               </Paper>
             </Box>
           </Grid>
@@ -226,6 +225,7 @@ class Exams extends PureComponent {
 }
 
 export default compose(
+  withRouter,
   withStyles(styles),
   withTheme
 )(Exams);

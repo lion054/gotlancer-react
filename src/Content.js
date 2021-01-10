@@ -18,6 +18,7 @@ import Notifications from './scenes/Notifications';
 import Projects from './scenes/Projects';
 import Project from './scenes/Project';
 import Exams from './scenes/Exams';
+import Exam from './scenes/Exam';
 
 import BuyBidCredit from './scenes/Finance/BuyBidCredit';
 import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
@@ -94,6 +95,9 @@ const routes = [{
 },{
   path: '/exams',
   component: Exams
+},{
+  path: '/exam',
+  component: Exam
 },{
   path: '/notifications',
   component: Notifications

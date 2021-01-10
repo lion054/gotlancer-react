@@ -13,8 +13,6 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
-  colors,
-  fade,
   withStyles,
   withTheme
 } from '@material-ui/core';
@@ -42,7 +40,7 @@ import { compose } from 'redux';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ChipContainer from '../components/ChipContainer';
-import { CompactCard, formatCurrency } from '../global';
+import { CompactCard, RedButton, formatCurrency } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -70,42 +68,6 @@ const styles = (theme) => ({
     marginRight: theme.spacing(1)
   }
 });
-
-export const RedButton = withStyles((theme) => ({
-  text: {
-    color: colors.red[500],
-    '&:hover': {
-      backgroundColor: fade(colors.red[500], theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent'
-      }
-    }
-  },
-  outlined: {
-    color: colors.red[500],
-    border: `1px solid ${fade(colors.red[500], 0.5)}`,
-    '&:hover': {
-      border: `1px solid ${colors.red[500]}`,
-      backgroundColor: fade(colors.red[500], theme.palette.action.hoverOpacity),
-      '@media (hover: none)': {
-        backgroundColor: 'transparent'
-      }
-    }
-  },
-  contained: {
-    color: theme.palette.common.white,
-    backgroundColor: colors.red[500],
-    '&:hover': {
-      backgroundColor: colors.red[700],
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: colors.red[500]
-      }
-    }
-  },
-  disabled: {}
-}))(Button);
 
 class JobDetails extends PureComponent {
   state = {
