@@ -13,8 +13,7 @@ import {
   withTheme,
   withWidth
 } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { FaBell, FaEnvelope } from 'react-icons/fa';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -207,12 +206,12 @@ class Header extends PureComponent {
                 <Box display="flex">
                   <Badge badgeContent={100} classes={{ badge: this.props.classes.badge }}>
                     <IconButton onClick={() => this.props.history.push('/messenger')}>
-                      <FontAwesomeIcon icon={faEnvelope} size="1x" />
+                      <FaEnvelope size={24} />
                     </IconButton>
                   </Badge>
                   <Badge badgeContent={5} classes={{ badge: this.props.classes.badge }}>
                     <IconButton onClick={() => this.props.history.push('/notifications')}>
-                      <FontAwesomeIcon icon={faBell} size="1x" />
+                      <FaBell size={24} />
                     </IconButton>
                   </Badge>
                   {this.props.width === 'xs' ? (

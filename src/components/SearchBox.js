@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { InputBase, fade, withTheme, withStyles } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FaChevronDown, FaSearch } from 'react-icons/fa';
 import { compose } from 'redux';
 
 const styles = (theme) => ({
@@ -58,10 +57,10 @@ class SearchBox extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <div className={this.props.classes.icon}>
-        <FontAwesomeIcon icon={faSearch} color={this.props.textColor} size="sm" />
+        <FaSearch color={this.props.textColor} size={20} />
       </div>
       <div className={this.props.classes.icon + ' ' + this.props.classes.rightIcon}>
-        <FontAwesomeIcon icon={faChevronDown} color={this.props.textColor} size="sm" />
+        <FaChevronDown color={this.props.textColor} size={20} />
       </div>
       <InputBase
         placeholder="Search"

@@ -29,6 +29,7 @@ import {
 import { Rating } from '@material-ui/lab';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faClock, faDollarSign, faHeart, faMapMarkedAlt, faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
+import { FaBars, FaClock, FaDollarSign, FaHeart, FaMapMarkedAlt, FaSearch, FaStar } from 'react-icons/fa';
 import pluralize from 'pluralize';
 import moment from 'moment';
 import clsx from 'clsx';
@@ -298,7 +299,7 @@ class FindJob extends PureComponent {
                 }}>
                   <Typography variant="body2" noWrap style={{ overflow: 'hidden' }}>{this.state.user.name}</Typography>
                   <Typography variant="body2" noWrap style={{ overflow: 'hidden' }}>
-                    <FontAwesomeIcon icon={faStar} size="1x" />  TOP RATED
+                    <FaStar size={16} />  TOP RATED
                   </Typography>
                 </Box>
               </Box>
@@ -366,7 +367,7 @@ class FindJob extends PureComponent {
       <Box display="flex">
         <Box className={this.props.classes.menuButton}>
           <IconButton onClick={() => this.setState({ drawerOpened: true })}>
-            <FontAwesomeIcon icon={faBars} />
+            <FaBars size={20} />
           </IconButton>
         </Box>
         <Box flex={1}>
@@ -379,7 +380,7 @@ class FindJob extends PureComponent {
             endAdornment={(
               <InputAdornment position="end">
                 <IconButton>
-                  <FontAwesomeIcon icon={faSearch} style={{ fontSize: '0.8em' }} />
+                  <FaSearch size={16} />
                 </IconButton>
               </InputAdornment>
             )}

@@ -13,8 +13,7 @@ import {
   withStyles,
   withTheme
 } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp, faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { FaChevronDown, FaChevronUp, FaTimes, FaUserCircle } from 'react-icons/fa';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -24,10 +23,6 @@ import BlueSwitch from '../components/BlueSwitch';
 import { formatCurrency } from '../global';
 
 const styles = (theme) => ({
-  userIcon: {
-    color: theme.palette.action.active,
-    fontSize: theme.spacing(5)
-  },
   menuList: {
     minWidth: theme.spacing(37.5)
   }
@@ -81,11 +76,11 @@ class AvatarMenuIcon extends PureComponent {
   renderCollapseButton = (dir) => (
     <ListItemSecondaryAction>
       <IconButton onClick={() => this.handleSubList(dir)}>
-        <FontAwesomeIcon
-          icon={this.state.currentDir === dir ? faChevronUp : faChevronDown}
-          color={this.props.theme.palette.text.secondary}
-          size="1x"
-        />
+        {this.state.currentDir === dir ? (
+          <FaChevronUp color={this.props.theme.palette.text.secondary} size={16} />
+        ) : (
+          <FaChevronDown color={this.props.theme.palette.text.secondary} size={16} />
+        )}
       </IconButton>
     </ListItemSecondaryAction>
   )
@@ -106,7 +101,7 @@ class AvatarMenuIcon extends PureComponent {
   render = () => (
     <Fragment>
       <IconButton onClick={this.handleDrawer}>
-        <FontAwesomeIcon icon={faUserCircle} className={this.props.classes.userIcon} />
+        <FaUserCircle color={this.props.theme.palette.action.active} size={42} />
       </IconButton>
       <Drawer
         anchor="right"
@@ -119,7 +114,7 @@ class AvatarMenuIcon extends PureComponent {
               <Box flex={1} display="flex" justifyContent="space-between">
                 <Box display="flex" alignItems="center">
                   <Box mr={1.5}>
-                    <FontAwesomeIcon icon={faUserCircle} color={this.props.theme.palette.text.secondary} size="2x" />
+                    <FaUserCircle color={this.props.theme.palette.action.active} size={42} />
                   </Box>
                   <Box display="inline-block">
                     <Typography variant="body2" display="block" noWrap>Hi, Apurba</Typography>
@@ -127,7 +122,7 @@ class AvatarMenuIcon extends PureComponent {
                   </Box>
                 </Box>
                 <IconButton onClick={this.handleDrawer}>
-                  <FontAwesomeIcon icon={faTimes} color={this.props.theme.palette.text.secondary} size="1x" />
+                  <FaTimes color={this.props.theme.palette.text.secondary} size={20} />
                 </IconButton>
               </Box>
             )

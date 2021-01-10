@@ -10,8 +10,7 @@ import {
   withStyles,
   withTheme
 } from '@material-ui/core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faCrown, faShoppingCart, faSignOutAlt, faUser, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { FaCog, FaCrown, FaShoppingCart, FaSignOutAlt, FaUser, FaUserCircle } from 'react-icons/fa';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -25,6 +24,7 @@ const styles = (theme) => ({
     borderRadius: theme.spacing(3)
   },
   optional: {
+    marginRight: theme.spacing(0.5),
     display: 'inline-block',
     [theme.breakpoints.down('sm')]: {
       display: 'none'
@@ -77,7 +77,9 @@ class AvatarMenuButton extends PureComponent {
           <Typography variant="body2" display="block" noWrap align="right">{formatCurrency(100)}</Typography>
         </Box>
         <Box display="inline-block">
-          <FontAwesomeIcon icon={faUserCircle} size="3x" color={this.props.theme.palette.action.active} />
+          <Box display="flex" alignItems="center">
+            <FaUserCircle size={42} color={this.props.theme.palette.action.active} />
+          </Box>
         </Box>
       </Button>
       <Menu
@@ -99,7 +101,7 @@ class AvatarMenuButton extends PureComponent {
         >
           <ListItemIcon>
             <Box width="100%" textAlign="center">
-              <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faCog} />
+              <FaCog className={this.props.classes.menuIcon} />
             </Box>
           </ListItemIcon>
           <ListItemText primary="Settings" primaryTypographyProps={{
@@ -117,7 +119,7 @@ class AvatarMenuButton extends PureComponent {
         >
           <ListItemIcon>
             <Box width="100%" textAlign="center">
-              <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faUser} />
+              <FaUser className={this.props.classes.menuIcon} />
             </Box>
           </ListItemIcon>
           <ListItemText primary="My Profile" primaryTypographyProps={{
@@ -135,7 +137,7 @@ class AvatarMenuButton extends PureComponent {
         >
           <ListItemIcon>
             <Box width="100%" textAlign="center">
-              <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faCrown} />
+              <FaCrown className={this.props.classes.menuIcon} />
             </Box>
           </ListItemIcon>
           <ListItemText primary="Membership" primaryTypographyProps={{
@@ -153,7 +155,7 @@ class AvatarMenuButton extends PureComponent {
         >
           <ListItemIcon>
             <Box width="100%" textAlign="center">
-              <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faShoppingCart} />
+              <FaShoppingCart className={this.props.classes.menuIcon} />
             </Box>
           </ListItemIcon>
           <ListItemText primary="Buy Bid Credit" primaryTypographyProps={{
@@ -168,7 +170,7 @@ class AvatarMenuButton extends PureComponent {
         >
           <ListItemIcon>
             <Box width="100%" textAlign="center">
-              <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faSignOutAlt} />
+              <FaSignOutAlt className={this.props.classes.menuIcon} />
             </Box>
           </ListItemIcon>
           <ListItemText primary="Logout" primaryTypographyProps={{
