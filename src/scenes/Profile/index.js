@@ -53,7 +53,7 @@ import AddEmployment from './AddEmployment';
 import AddCertification from './AddCertification';
 import ChangeTitle from './ChangeTitle';
 import CompactPagination from '../../components/CompactPagination';
-import { CompactCard, formatCurrency } from '../../global';
+import { CompactCard, GreenButton, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
   root: {
@@ -238,6 +238,22 @@ class Profile extends PureComponent {
     summary: faker.lorem.paragraphs(10),
     exhibitions: [],
     reviews: [],
+    reviewFields: [{
+      title: 'Awesome freelancer',
+      score: faker.random.number({ min: 0, max: 5 })
+    },{
+      title: 'Pretty good',
+      score: faker.random.number({ min: 0, max: 5 })
+    },{
+      title: 'Could`ve been better',
+      score: faker.random.number({ min: 0, max: 5 })
+    },{
+      title: 'Needs improvement',
+      score: faker.random.number({ min: 0, max: 5 })
+    },{
+      title: 'Unsatisfactory',
+      score: faker.random.number({ min: 0, max: 5 })
+    }],
     avatarOpened: false,
     hourlyRateOpened: false,
     summaryOpened: false,
@@ -526,9 +542,11 @@ class Profile extends PureComponent {
               {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && this.renderHourlyRate()}
             </Box>
             <Box mb={0.5}>
-              <Box mr={1}>
-                <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
-              </Box>
+              <Typography
+                variant="body1"
+                component="span"
+                style={{ marginRight: this.props.theme.spacing(1) }}
+              >MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
               <Tooltip title="Edit Title">
                 <IconButton
                   style={{
@@ -606,9 +624,9 @@ class Profile extends PureComponent {
                 <Box className={this.props.classes.innerPadding}>
                   <img alt="" src={exhibition.avatar} style={{ borderRadius: 4, width: '100%' }} />
                   <Box display="flex">
-                    <Button style={{ color: this.props.theme.palette.success.main }}>Edit</Button>
+                    <GreenButton variant="text">Edit</GreenButton>
                     <Divider orientation="vertical" flexItem />
-                    <Button color="secondary">Delete</Button>
+                    <Button variant="text" color="secondary">Delete</Button>
                   </Box>
                 </Box>
               </Grid>
@@ -646,26 +664,12 @@ class Profile extends PureComponent {
                 <Box className={this.props.classes.innerPadding} display="flex">
                   <Divider orientation="vertical" flexItem />
                   <Box ml={1} flex={1}>
-                    <Box m={1} display="flex" justifyContent="space-between" alignItems="center">
-                      <Typography variant="body2">Awesome freelancer</Typography>
-                      <Rating name="read-only" value={5} readOnly size="small" />
-                    </Box>
-                    <Box m={1} display="flex" justifyContent="space-between" alignItems="center">
-                      <Typography variant="body2">Pretty good</Typography>
-                      <Rating name="read-only" value={4} readOnly size="small" />
-                    </Box>
-                    <Box m={1} display="flex" justifyContent="space-between" alignItems="center">
-                      <Typography variant="body2">Could've been better</Typography>
-                      <Rating name="read-only" value={3} readOnly size="small" />
-                    </Box>
-                    <Box m={1} display="flex" justifyContent="space-between" alignItems="center">
-                      <Typography variant="body2">Needs improvement</Typography>
-                      <Rating name="read-only" value={2} readOnly size="small" />
-                    </Box>
-                    <Box m={1} display="flex" justifyContent="space-between" alignItems="center">
-                      <Typography variant="body2">Unsatisfactory</Typography>
-                      <Rating name="read-only" value={1} readOnly size="small" />
-                    </Box>
+                    {this.state.reviewFields.map(({ title, score }, index) => (
+                      <Box key={index} m={1} display="flex" justifyContent="space-between" alignItems="center">
+                        <Typography variant="body2">{title}</Typography>
+                        <Rating name="read-only" value={score} readOnly size="small" />
+                      </Box>
+                    ))}
                   </Box>
                 </Box>
               </Grid>

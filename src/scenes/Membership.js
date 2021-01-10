@@ -212,59 +212,17 @@ class Membership extends PureComponent {
       />
       <Divider />
       <CardContent>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">20% Gotlancer fee</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">No Project Accept Fee</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">20 Skills</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">Yearly Rewards</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">Weekly Withdrawal Requests</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">5 Employer Followings</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1} color={this.props.theme.palette.text.disabled}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">No Free hidden entry</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1} color={this.props.theme.palette.text.disabled}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">No Free Highlighted Contest</Typography>
-        </Box>
+        {this.renderCheckItem('20% Gotlancer fee', false)}
+        {this.renderCheckItem('No Project Accept Fee', false)}
+        {this.renderCheckItem('20 Skills', false)}
+        {this.renderCheckItem('Yearly Rewards', false)}
+        {this.renderCheckItem('Weekly Withdrawal Requests', false)}
+        {this.renderCheckItem('5 Employer Followings', false)}
+        {this.renderCheckItem('No Free hidden entry', true)}
+        {this.renderCheckItem('No Free Highlighted Contest', true)}
         {this.state.grade === 'monthly' ? (
-          <Box display="flex" justifyContent="center" alignItems="center">
-            <Box mr={1}>
-              <DeepOrangeButton variant="text">Current Plan</DeepOrangeButton>
-            </Box>
+          <Box display="flex" justifyContent="space-between" alignItems="center">
+            <DeepOrangeButton variant="text">Current Plan</DeepOrangeButton>
             <DeepOrangeButton variant="contained">Cancel Plan</DeepOrangeButton>
           </Box>
         ) : (
@@ -305,54 +263,14 @@ class Membership extends PureComponent {
       />
       <Divider />
       <CardContent>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">5% Gotlancer fee</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">No Project Accept Fee</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">50 Skills</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">Monthly Rewards</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">Daily Withdrawal Requests</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">Unlimited Employer Followings</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">Free hidden entry</Typography>
-        </Box>
-        <Box display="flex" alignItems="center" my={1}>
-          <Box className={this.props.classes.check}>
-            <Check />
-          </Box>
-          <Typography variant="body2">Free Highlighted Contest</Typography>
-        </Box>
+        {this.renderCheckItem('5% Gotlancer fee', false)}
+        {this.renderCheckItem('No Project Accept Fee', false)}
+        {this.renderCheckItem('50 Skills', false)}
+        {this.renderCheckItem('Monthly Rewards', false)}
+        {this.renderCheckItem('Daily Withdrawal Requests', false)}
+        {this.renderCheckItem('Unlimited Employer Followings', false)}
+        {this.renderCheckItem('Free hidden entry', false)}
+        {this.renderCheckItem('Free Highlighted Contest', false)}
         <Box textAlign="center">
           {this.state.grade === 'monthly' ? (
             <Button variant="contained">Try free for 14 days</Button>
@@ -390,6 +308,20 @@ class Membership extends PureComponent {
         </Box>
       </CardContent>
     </CompactCard>
+  )
+
+  renderCheckItem = (text, disabled) => (
+    <Box
+      display="flex"
+      alignItems="center"
+      my={1}
+      color={disabled ? this.props.theme.palette.text.disabled : this.props.theme.palette.text.primary}
+    >
+      <Box className={this.props.classes.check}>
+        <Check />
+      </Box>
+      <Typography variant="body2">{text}</Typography>
+    </Box>
   )
 }
 

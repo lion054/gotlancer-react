@@ -331,7 +331,7 @@ class PostJob extends PureComponent {
     <List disablePadding>
       {this.state.badges.map((badge, index) => (
         <ListItem key={index} disableGutters button onClick={this.handleBadge(index)}>
-          <Box width="100%" display="flex" alignItems="center">
+          <Box display="flex" alignItems="center" flex={1}>
             <Checkbox checked={!!badge.checked} onClick={this.handleBadge(index)} />
             <Box
               flex={1}

@@ -112,7 +112,7 @@ class QaStep extends PureComponent {
         </Grid>
       </Box>
       <Box className={this.props.classes.actionBar}>
-        <Box display="flex">
+        <Box>
           <Button variant="contained" onClick={this.props.onNext}>Confirm &amp; Next</Button>
           <Button variant="outlined" onClick={this.props.onSkip}>Skip, I will try later</Button>
         </Box>

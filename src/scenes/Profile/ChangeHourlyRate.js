@@ -105,26 +105,26 @@ class ChangeHourlyRate extends PureComponent {
   )
 
   renderInput = ({ readOnly, onChange }) => (
-    <Box className={this.props.classes.innerPadding} display="flex" alignItems="center">
-      <OutlinedInput
-        margin="dense"
-        inputProps={{
-          style: {
-            textAlign: 'right'
-          }
-        }}
-        startAdornment={(
-          <InputAdornment position="start" className={this.props.classes.moneyPrefix}>
-            <AttachMoney />
-          </InputAdornment>
-        )}
-        readOnly={readOnly}
-        onChange={onChange}
-      />
-      <Box ml={1}>
-        <Typography variant="body1">/hr</Typography>
-      </Box>
-    </Box>
+    <OutlinedInput
+      margin="dense"
+      inputProps={{
+        style: {
+          textAlign: 'right'
+        }
+      }}
+      startAdornment={(
+        <InputAdornment position="start" className={this.props.classes.moneyPrefix}>
+          <AttachMoney />
+        </InputAdornment>
+      )}
+      endAdornment={(
+        <Box ml={1}>
+          <Typography variant="body1">/hr</Typography>
+        </Box>
+      )}
+      readOnly={readOnly}
+      onChange={onChange}
+    />
   )
 
   handleGrossChange = (event) => {
