@@ -1,7 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 import {
   Box,
-  CardActionArea,
   CardContent,
   CardMedia,
   Checkbox,
@@ -10,6 +9,7 @@ import {
   Grid,
   IconButton,
   InputAdornment,
+  Link,
   OutlinedInput,
   Paper,
   Slider,
@@ -20,6 +20,7 @@ import {
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import { AiFillHeart, AiOutlineHeart, AiOutlineMenu, AiOutlineSearch } from 'react-icons/ai';
+import { cloneDeep } from 'lodash';
 import pluralize from 'pluralize';
 import clsx from 'clsx';
 import faker from 'faker';
@@ -131,50 +132,54 @@ class BrowseOffer extends PureComponent {
                       <Grid key={index} item md={4} sm={6} xs={12}>
                         <Box className={this.props.classes.innerPadding}>
                           <CompactCard>
-                            <CardActionArea>
-                              <CardMedia
-                                className={this.props.classes.productAvatar}
-                                image={record.productAvatar}
-                              />
-                              <CardContent>
-                                <Typography variant="subtitle2">{record.productTitle}</Typography>
-                                <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
-                                  <Box display="flex" alignItems="center">
-                                    <UserAvatar
-                                      url={record.authorAvatar}
-                                      online
-                                      size={this.props.theme.spacing(4)}
-                                      sizeSM={this.props.theme.spacing(3)}
-                                      marginRight={this.props.theme.spacing(2)}
-                                      marginRightSM={this.props.theme.spacing(1)}
-                                    />
-                                    <Box>
-                                      <Typography variant="body2">{record.authorName}</Typography>
-                                      <Typography variant="body2" color="textSecondary">Level {record.authorLevel}</Typography>
-                                    </Box>
+                            <CardMedia
+                              className={this.props.classes.productAvatar}
+                              image={record.productAvatar}
+                            />
+                            <CardContent>
+                              <Link href="#" variant="body1">{record.productTitle}</Link>
+                              <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
+                                <Box display="flex" alignItems="center">
+                                  <UserAvatar
+                                    url={record.authorAvatar}
+                                    online
+                                    size={this.props.theme.spacing(4)}
+                                    sizeSM={this.props.theme.spacing(3)}
+                                    marginRight={this.props.theme.spacing(2)}
+                                    marginRightSM={this.props.theme.spacing(1)}
+                                  />
+                                  <Box>
+                                    <Typography variant="body2">{record.authorName}</Typography>
+                                    <Typography variant="body2" color="textSecondary">Level {record.authorLevel}</Typography>
                                   </Box>
+                                </Box>
+                                <IconButton onClick={() => {
+                                  const records = cloneDeep(this.state.records);
+                                  records[index].saved = !records[index].saved;
+                                  this.setState({ records });
+                                }}>
                                   {record.saved ? (
                                     <AiFillHeart color={this.props.theme.palette.secondary.main} size={this.props.theme.spacing(3)} />
                                   ) : (
                                     <AiOutlineHeart color={this.props.theme.palette.action.active} size={this.props.theme.spacing(3)} />
                                   )}
+                                </IconButton>
+                              </Box>
+                              <Box display="flex" justifyContent="space-between" alignItems="center">
+                                <Box>
+                                  <Rating name="read-only" value={record.reviewScore} readOnly size="small" />
+                                  <Typography variant="body2">({pluralize('review', record.reviewCount, true)})</Typography>
                                 </Box>
-                                <Box display="flex" justifyContent="space-between" alignItems="center">
-                                  <Box>
-                                    <Rating name="read-only" value={record.reviewScore} readOnly size="small" />
-                                    <Typography variant="body2">({pluralize('review', record.reviewCount, true)})</Typography>
-                                  </Box>
-                                  <Box textAlign="center">
-                                    <Typography variant="body1">{record.sales}</Typography>
-                                    <Typography variant="body2">{pluralize('Sale', record.sales)}</Typography>
-                                  </Box>
-                                  <Box textAlign="center">
-                                    <Typography variant="body1" style={{ color: this.props.theme.palette.success.main }}>${record.budget}</Typography>
-                                    <Typography variant="body2">{pluralize('day', record.deadline, true)}</Typography>
-                                  </Box>
+                                <Box textAlign="center">
+                                  <Typography variant="body1">{record.sales}</Typography>
+                                  <Typography variant="body2">{pluralize('Sale', record.sales)}</Typography>
                                 </Box>
-                              </CardContent>
-                            </CardActionArea>
+                                <Box textAlign="center">
+                                  <Typography variant="body1" style={{ color: this.props.theme.palette.success.main }}>${record.budget}</Typography>
+                                  <Typography variant="body2">{pluralize('day', record.deadline, true)}</Typography>
+                                </Box>
+                              </Box>
+                            </CardContent>
                           </CompactCard>
                         </Box>
                       </Grid>
