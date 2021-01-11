@@ -13,28 +13,15 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 
+import UserAvatar from '../components/UserAvatar';
+
 const styles = (theme) => ({
-  avatar: {
-    width: 64,
-    height: 64,
-    borderRadius: 32
-  },
   comment: {
     marginTop: theme.spacing(1),
     borderRadius: theme.spacing(0.5),
     padding: theme.spacing(0.5, 1),
     backgroundColor: theme.palette.action.selected,
     color: theme.palette.text.secondary
-  },
-  status: {
-    boxSizing: 'border-box',
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    border: `solid 2px ${theme.palette.common.white}`,
-    position: 'absolute',
-    top: 44,
-    left: 44
   }
 });
 
@@ -43,17 +30,14 @@ class CommentRoom extends PureComponent {
     <Box>
       {this.props.records.map(({ author, text, time }, index) => (
         <Box key={index} display="flex" mt={2}>
-          <Box position="relative" mr={2}>
-            <img
-              alt=""
-              src={author.isAdmin ? require('../assets/images/gl-logo-black.svg') : author.avatar}
-              className={this.props.classes.avatar}
-            />
-            <Box
-              className={this.props.classes.status}
-              bgcolor={this.props.theme.palette.success.main}
-            />
-          </Box>
+          <UserAvatar
+            url={author.isAdmin ? require('../assets/images/gl-logo-black.svg') : author.avatar}
+            online
+            size={this.props.theme.spacing(8)}
+            sizeSM={this.props.theme.spacing(6)}
+            marginRight={this.props.theme.spacing(2)}
+            marginRightSM={this.props.theme.spacing(1)}
+          />
           <Box flex={1}>
             <Box display="flex" justifyContent="space-between">
               <Typography variant="body2">{author.name}</Typography>

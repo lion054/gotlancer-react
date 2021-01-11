@@ -21,7 +21,6 @@ import {
   Paper,
   Tabs,
   Typography,
-  colors,
   withStyles,
   withTheme,
   withWidth
@@ -49,6 +48,7 @@ import { compose } from 'redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import UserAvatar from '../components/UserAvatar';
 import ChipContainer from '../components/ChipContainer';
 import CompactPagination from '../components/CompactPagination';
 import { CompactCard, CompactTab } from '../global';
@@ -77,39 +77,6 @@ const styles = (theme) => ({
     borderRadius: theme.spacing(1.5),
     border: `solid 1px ${theme.palette.divider}`,
     padding: 'unset'
-  },
-  avatarWrapper: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.down('sm')]: {
-      marginRight: theme.spacing(1)
-    }
-  },
-  avatar: {
-    width: 96,
-    height: 96,
-    borderRadius: 48,
-    [theme.breakpoints.down('sm')]: {
-      width: 64,
-      height: 64,
-      borderRadius: 32
-    }
-  },
-  status: {
-    boxSizing: 'border-box',
-    border: `solid 2px ${theme.palette.common.white}`,
-    position: 'absolute',
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    top: 72,
-    left: 72,
-    [theme.breakpoints.down('sm')]: {
-      width: 18,
-      height: 18,
-      borderRadius: 9,
-      top: 46,
-      left: 46
-    }
   },
   verifiedIcon: {
     marginLeft: theme.spacing(1),
@@ -253,7 +220,7 @@ class FindFreelancer extends PureComponent {
               </Grid>
               <Grid item md={3}>
                 <Box className={clsx(this.props.classes.innerPadding, this.props.classes.rightSideBar)}>
-                  {this.renderConditionBar()}
+                  {this.renderFilterBar()}
                 </Box>
               </Grid>
             </Grid>
@@ -266,133 +233,117 @@ class FindFreelancer extends PureComponent {
     </div>
   )
 
-  renderConditionBar = () => (
+  renderFilterBar = () => (
     <Fragment>
-      {this.renderCategoryPicker()}
-      <Box mt={2}>
-        {this.renderSubcategoryPicker()}
+      <Box>
+        <Typography variant="subtitle2">Select category</Typography>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">All</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Website Development</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Graphic Design</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Digital Marketing</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
       </Box>
       <Box mt={2}>
-        {this.renderTypePicker()}
+        <Typography variant="subtitle2">Select sub-category</Typography>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">All</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Website Development</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Graphic Design</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Digital Marketing</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+      </Box>
+      <Box mt={2}>
+        <Typography variant="subtitle2">Project type</Typography>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">All</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Fixed price</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Hourly</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
       </Box>
     </Fragment>
-  )
-
-  renderCategoryPicker = () => (
-    <Box>
-      <Typography variant="subtitle2">Select category</Typography>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">All</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Website Development</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Graphic Design</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Digital Marketing</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-    </Box>
-  )
-
-  renderSubcategoryPicker = () => (
-    <Box>
-      <Typography variant="subtitle2">Select sub-category</Typography>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">All</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Website Development</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Graphic Design</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Digital Marketing</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-    </Box>
-  )
-
-  renderTypePicker = () => (
-    <Box>
-      <Typography variant="subtitle2">Project type</Typography>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">All</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Fixed price</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Hourly</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-    </Box>
   )
 
   renderDesktopCard = (record, index) => (
@@ -400,13 +351,14 @@ class FindFreelancer extends PureComponent {
       <ListItem button onClick={() => this.setState({ activeRecord: record })}>
         <Box flex={1}>
           <Box display="flex" alignItems="center">
-            <Box position="relative" className={this.props.classes.avatarWrapper}>
-              <img alt="" src={record.avatar} className={this.props.classes.avatar} />
-              <Box
-                className={this.props.classes.status}
-                bgcolor={record.online ? this.props.theme.palette.success.main : colors.grey[400]}
-              />
-            </Box>
+            <UserAvatar
+              url={record.avatar}
+              online={record.online}
+              size={this.props.theme.spacing(12)}
+              sizeSM={this.props.theme.spacing(8)}
+              marginRight={this.props.theme.spacing(2)}
+              marginRightSM={this.props.theme.spacing(1)}
+            />
             <Box flex={1}>
               <Box display="flex" justifyContent="space-between">
                 <Box>
@@ -490,13 +442,14 @@ class FindFreelancer extends PureComponent {
     <Paper key={index} className={this.props.classes.paper}>
       <ListItem button onClick={() => this.setState({ activeRecord: record })}>
         <Box flex={1}>
-          <Box position="relative" className={this.props.classes.avatarWrapper} style={{ float: 'left' }}>
-            <img alt="" src={record.avatar} className={this.props.classes.avatar} />
-            <Box
-              className={this.props.classes.status}
-              bgcolor={record.online ? this.props.theme.palette.success.main : colors.grey[400]}
-            />
-          </Box>
+          <UserAvatar
+            url={record.avatar}
+            online={record.online}
+            size={this.props.theme.spacing(12)}
+            sizeSM={this.props.theme.spacing(8)}
+            marginRight={this.props.theme.spacing(2)}
+            marginRightSM={this.props.theme.spacing(1)}
+          />
           <Box display="flex" alignItems="center">
             <Typography variant="subtitle1">{record.name}</Typography>
             <Avatar className={this.props.classes.verifiedIcon} style={record.verified ? {
@@ -669,13 +622,15 @@ class FindFreelancer extends PureComponent {
         <Box className={this.props.classes.innerPadding}>
           <CompactCard>
             <CardContent>
-              <Box position="relative" className={this.props.classes.avatarWrapper} style={{ float: 'left' }}>
-                <img alt="" src={this.state.activeRecord && this.state.activeRecord.avatar} className={this.props.classes.avatar} />
-                <Box
-                  className={this.props.classes.status}
-                  bgcolor={this.state.activeRecord && this.state.activeRecord.online ? this.props.theme.palette.success.main : colors.grey[400]}
-                />
-              </Box>
+              <UserAvatar
+                style={{ float: 'left' }}
+                url={this.state.activeRecord && this.state.activeRecord.avatar}
+                online={this.state.activeRecord && this.state.activeRecord.online}
+                size={this.props.theme.spacing(12)}
+                sizeSM={this.props.theme.spacing(8)}
+                marginRight={this.props.theme.spacing(2)}
+                marginRightSM={this.props.theme.spacing(1)}
+              />
               <Box display="flex" flexWrap="wrap">
                 <Box display="flex" alignItems="center" mr={1}>
                   <Box mr={1} color={this.props.theme.palette.success.main}>

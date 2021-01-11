@@ -246,7 +246,7 @@ class FindJob extends PureComponent {
                 </Grid>
                 <Grid item md={3}>
                   <Box className={clsx(this.props.classes.innerPadding, this.props.classes.rightSideBar)}>
-                    {this.renderConditionBar()}
+                    {this.renderFilterBar()}
                   </Box>
                 </Grid>
               </Grid>
@@ -262,7 +262,7 @@ class FindJob extends PureComponent {
         onClose={this.handleDrawer}
       >
         <Box m={2}>
-          {this.renderConditionBar()}
+          {this.renderFilterBar()}
         </Box>
       </Drawer>
     </div>
@@ -561,133 +561,117 @@ class FindJob extends PureComponent {
     </Box>
   )
 
-  renderConditionBar = () => (
+  renderFilterBar = () => (
     <Fragment>
-      {this.renderCategoryPicker()}
-      <Box mt={2}>
-        {this.renderSubcategoryPicker()}
+      <Box>
+        <Typography variant="subtitle2">Select category</Typography>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">All</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Website Development</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Graphic Design</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Digital Marketing</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
       </Box>
       <Box mt={2}>
-        {this.renderTypePicker()}
+        <Typography variant="subtitle2">Select sub-category</Typography>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">All</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Website Development</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Graphic Design</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Digital Marketing</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+      </Box>
+      <Box mt={2}>
+        <Typography variant="subtitle2">Project type</Typography>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">All</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Fixed price</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Hourly</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
       </Box>
     </Fragment>
-  )
-
-  renderCategoryPicker = () => (
-    <Box>
-      <Typography variant="subtitle2">Select category</Typography>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">All</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Website Development</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Graphic Design</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Digital Marketing</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-    </Box>
-  )
-
-  renderSubcategoryPicker = () => (
-    <Box>
-      <Typography variant="subtitle2">Select sub-category</Typography>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">All</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Website Development</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Graphic Design</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Digital Marketing</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-    </Box>
-  )
-
-  renderTypePicker = () => (
-    <Box>
-      <Typography variant="subtitle2">Project type</Typography>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">All</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Fixed price</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-      <Box>
-        <FormControlLabel
-          control={(
-            <Checkbox onClick={(e) => e.stopPropagation()} />
-          )}
-          label={<Typography variant="body2">Hourly</Typography>}
-          onClick={() => {}}
-        />
-      </Box>
-    </Box>
   )
 }
 

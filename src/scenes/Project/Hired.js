@@ -12,7 +12,6 @@ import {
   LinearProgress,
   Link,
   Typography,
-  colors,
   withStyles,
   withTheme,
   withWidth
@@ -41,6 +40,7 @@ import moment from 'moment';
 import faker from 'faker';
 import { compose } from 'redux';
 
+import UserAvatar from '../../components/UserAvatar';
 import ChipContainer from '../../components/ChipContainer';
 import CompactPagination from '../../components/CompactPagination';
 import { CompactCard, formatCurrency } from '../../global';
@@ -56,17 +56,6 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
-    }
-  },
-  avatar: {
-    width: 96,
-    height: 96,
-    borderRadius: 48,
-    [theme.breakpoints.down('sm')]: {
-      marginRight: theme.spacing(1)
-    },
-    [theme.breakpoints.up('md')]: {
-      marginRight: theme.spacing(2)
     }
   },
   verifiedIcon: {
@@ -88,16 +77,6 @@ const styles = (theme) => ({
     width: theme.spacing(4),
     height: theme.spacing(4),
     border: `solid 1px ${theme.palette.divider}`
-  },
-  status: {
-    boxSizing: 'border-box',
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    border: `solid 2px ${theme.palette.common.white}`,
-    position: 'absolute',
-    top: 72,
-    left: 72
   },
   progress: {
     height: theme.spacing(1),
@@ -252,13 +231,14 @@ class Hired extends PureComponent {
       <CompactCard>
         <CardContent>
           <Box display="flex" alignItems="center">
-            <Box position="relative">
-              <img alt="" src={record.avatar} className={this.props.classes.avatar} />
-              <Box
-                className={this.props.classes.status}
-                bgcolor={record.online ? this.props.theme.palette.success.main : colors.grey[400]}
-              />
-            </Box>
+            <UserAvatar
+              url={record.avatar}
+              online={record.online}
+              size={this.props.theme.spacing(12)}
+              sizeSM={this.props.theme.spacing(8)}
+              marginRight={this.props.theme.spacing(2)}
+              marginRightSM={this.props.theme.spacing(1)}
+            />
             <Box flex={1}>
               <Box display="flex" justifyContent="space-between">
                 <Box>
@@ -343,13 +323,15 @@ class Hired extends PureComponent {
     <Box key={index} mb={1}>
       <CompactCard>
         <CardContent>
-          <Box position="relative" style={{ float: 'left' }}>
-            <img alt="" src={record.avatar} className={this.props.classes.avatar} />
-            <Box
-              className={this.props.classes.status}
-              bgcolor={record.online ? this.props.theme.palette.success.main : colors.grey[400]}
-            />
-          </Box>
+          <UserAvatar
+            style={{ float: 'left' }}
+            url={record.avatar}
+            online={record.online}
+            size={this.props.theme.spacing(12)}
+            sizeSM={this.props.theme.spacing(8)}
+            marginRight={this.props.theme.spacing(2)}
+            marginRightSM={this.props.theme.spacing(1)}
+          />
           <Box display="flex" alignItems="center">
             <Typography variant="subtitle1">{record.name}</Typography>
             <Avatar className={this.props.classes.verifiedIcon} style={record.verified ? {
