@@ -4,18 +4,19 @@ import {
   Button,
   CardContent,
   CardHeader,
-  Checkbox,
   Divider,
   Grid,
   Link,
   List,
   ListItem,
+  ListItemIcon,
   Typography,
   colors,
   withStyles,
   withTheme
 } from '@material-ui/core';
 import { ChevronRight } from '@material-ui/icons';
+import { AiFillCheckSquare, AiOutlineBorder } from 'react-icons/ai';
 import { cloneDeep } from 'lodash';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
@@ -134,48 +135,52 @@ class BuyBidCredit extends PureComponent {
                         <List disablePadding>
                           {this.state.products.map((product, index) => (
                             <ListItem key={index} disableGutters button onClick={this.handleClick(index)}>
-                              <Box flex={1} display="flex" alignItems="center">
-                                <Checkbox checked={!!product.checked} onClick={this.handleClick(index)} />
-                                <Box
-                                  flex={1}
-                                  className={this.props.classes.innerPaddingWithTag}
-                                  borderRadius={4}
-                                  border={`solid 1px ${product.checked ? this.props.theme.palette.success.main : this.props.theme.palette.divider}`}
-                                  bgcolor={this.props.theme.palette.background.paper}
-                                  position="relative"
-                                >
-                                  <Grid container alignItems="center">
-                                    <Grid item md={1} xs={2}>
-                                      <Typography variant="subtitle1">{product.quantity}</Typography>
-                                    </Grid>
-                                    <Grid item md={5} xs={10}>
-                                      <Typography variant="body2" className={this.props.classes.description}>Buy {product.quantity} bid credit for</Typography>
-                                    </Grid>
-                                    <Grid item md={4} xs={8}>
-                                      {!!product.cutoff && (
-                                        <Typography variant="body2" component="span" className={this.props.classes.cutoff}>Your save {formatCurrency(product.cutoff)}</Typography>
-                                      )}
-                                    </Grid>
-                                    <Grid item md={2} xs={4}>
-                                      <Box color={this.props.theme.palette.success.main}>
-                                        <Typography variant="body1" align="right">{formatCurrency(product.amount)}</Typography>
-                                      </Box>
-                                    </Grid>
+                              <ListItemIcon style={{ minWidth: 32 }}>
+                                {!product.checked ? (
+                                  <AiOutlineBorder size={24} />
+                                ) : (
+                                  <AiFillCheckSquare color={this.props.theme.palette.secondary.main} size={24} />
+                                )}
+                              </ListItemIcon>
+                              <Box
+                                flex={1}
+                                className={this.props.classes.innerPaddingWithTag}
+                                borderRadius={4}
+                                border={`solid 1px ${product.checked ? this.props.theme.palette.success.main : this.props.theme.palette.divider}`}
+                                bgcolor={this.props.theme.palette.background.paper}
+                                position="relative"
+                              >
+                                <Grid container alignItems="center">
+                                  <Grid item md={1} xs={2}>
+                                    <Typography variant="subtitle1">{product.quantity}</Typography>
                                   </Grid>
-                                  {product.popular && (
-                                    <Box
-                                      position="absolute"
-                                      left={0}
-                                      top={0}
-                                      borderRadius={4}
-                                      p="0 4px"
-                                      bgcolor={this.props.theme.palette.primary.dark}
-                                      color={this.props.theme.palette.common.white}
-                                    >
-                                      <Typography style={{ fontSize: 12 }}>Popular</Typography>
+                                  <Grid item md={5} xs={10}>
+                                    <Typography variant="body2" className={this.props.classes.description}>Buy {product.quantity} bid credit for</Typography>
+                                  </Grid>
+                                  <Grid item md={4} xs={8}>
+                                    {!!product.cutoff && (
+                                      <Typography variant="body2" component="span" className={this.props.classes.cutoff}>Your save {formatCurrency(product.cutoff)}</Typography>
+                                    )}
+                                  </Grid>
+                                  <Grid item md={2} xs={4}>
+                                    <Box color={this.props.theme.palette.success.main}>
+                                      <Typography variant="body1" align="right">{formatCurrency(product.amount)}</Typography>
                                     </Box>
-                                  )}
-                                </Box>
+                                  </Grid>
+                                </Grid>
+                                {product.popular && (
+                                  <Box
+                                    position="absolute"
+                                    left={0}
+                                    top={0}
+                                    borderRadius={4}
+                                    p="0 4px"
+                                    bgcolor={this.props.theme.palette.primary.dark}
+                                    color={this.props.theme.palette.common.white}
+                                  >
+                                    <Typography style={{ fontSize: 12 }}>Popular</Typography>
+                                  </Box>
+                                )}
                               </Box>
                             </ListItem>
                           ))}

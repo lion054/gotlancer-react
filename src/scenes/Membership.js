@@ -14,8 +14,7 @@ import {
   withTheme
 } from '@material-ui/core';
 import { Check } from '@material-ui/icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane, faRocket } from '@fortawesome/free-solid-svg-icons';
+import { FaPaperPlane, FaRocket } from 'react-icons/fa';
 import clsx from 'clsx';
 import { compose } from 'redux';
 
@@ -206,7 +205,7 @@ class Membership extends PureComponent {
         )}
         action={(
           <Box mt={1.5}>
-            <FontAwesomeIcon icon={faPaperPlane} size="3x" />
+            <FaPaperPlane size={48} />
           </Box>
         )}
       />
@@ -257,7 +256,7 @@ class Membership extends PureComponent {
         )}
         action={(
           <Box mt={1.5}>
-            <FontAwesomeIcon icon={faRocket} size="3x" />
+            <FaRocket size={48} />
           </Box>
         )}
       />

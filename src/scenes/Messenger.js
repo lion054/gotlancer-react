@@ -34,8 +34,17 @@ import {
   Sidebar,
   TypingIndicator
 } from '@chatscope/chat-ui-kit-react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faCog, faEdit, faEllipsisV, faPaperPlane, faPaperclip, faQuoteLeft, faSmile, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+  FaCheckCircle,
+  FaCog,
+  FaEdit,
+  FaEllipsisV,
+  FaPaperPlane,
+  FaPaperclip,
+  FaQuoteLeft,
+  FaSmile,
+  FaTrash
+} from 'react-icons/fa';
 import EmojiPicker, { SKIN_TONE_MEDIUM_DARK } from 'emoji-picker-react';
 import faker from 'faker';
 import moment from 'moment';
@@ -294,6 +303,10 @@ const styles = (theme) => ({
   sidebarFullWidth: {
     maxWidth: 'unset !important',
     flexBasis: 'unset !important'
+  },
+  toolButton: {
+    display: 'flex',
+    alignItems: 'center'
   }
 });
 
@@ -552,7 +565,7 @@ class Messenger extends PureComponent {
                       <Box>
                         <span>{text}</span>
                         <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
-                          <FontAwesomeIcon icon={faEllipsisV} />
+                          <FaEllipsisV size={20} />
                         )} />
                         {this.renderMoreMenu(id)}
                       </Box>
@@ -580,7 +593,7 @@ class Messenger extends PureComponent {
                         {direction === 'outgoing' && (
                           <Fragment>
                             <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
-                              <FontAwesomeIcon icon={faEllipsisV} />
+                              <FaEllipsisV size={20} />
                             )} />
                             {this.renderMoreMenu(id)}
                           </Fragment>
@@ -589,7 +602,7 @@ class Messenger extends PureComponent {
                         {direction === 'incoming' && (
                           <Fragment>
                             <Button className="msg-more-action" onClick={(e) => this.onOpenMoreMenu(e, id)} icon={(
-                              <FontAwesomeIcon icon={faEllipsisV} />
+                              <FaEllipsisV size={20} />
                             )} />
                             {this.renderMoreMenu(id)}
                           </Fragment>
@@ -625,16 +638,12 @@ class Messenger extends PureComponent {
                   onChange={this.handleAttach}
                 />
                 <label htmlFor="contained-button-file">
-                  <div className="cs-button" style={{
-                    height: '100%',
-                    display: 'flex',
-                    alignItems: 'center'
-                  }}>
-                    <FontAwesomeIcon icon={faPaperclip} />
+                  <div className={`cs-button ${this.props.classes.toolButton}`} style={{ height: '100%' }}>
+                    <FaPaperclip size={20} />
                   </div>
                 </label>
-                <Button onClick={this.onOpenEmojiPopover} icon={(
-                  <FontAwesomeIcon icon={faSmile} />
+                <Button onClick={this.onOpenEmojiPopover} className={this.props.classes.toolButton} icon={(
+                  <FaSmile size={20} />
                 )} />
                 {this.renderEmojiPopover()}
                 <MessageInput
@@ -644,11 +653,11 @@ class Messenger extends PureComponent {
                   value={this.state.text}
                   onChange={(text) => this.setState({ text })}
                 />
-                <Button onClick={this.handleSend} icon={(
-                  <FontAwesomeIcon icon={faPaperPlane} />
+                <Button onClick={this.handleSend} className={this.props.classes.toolButton} icon={(
+                  <FaPaperPlane size={20} />
                 )} />
-                <Button onClick={this.onOpenSettingPopover} icon={(
-                  <FontAwesomeIcon icon={faCog} />
+                <Button onClick={this.onOpenSettingPopover} className={this.props.classes.toolButton} icon={(
+                  <FaCog size={20} />
                 )} />
                 {this.renderSettingPopover()}
               </div>
@@ -679,7 +688,7 @@ class Messenger extends PureComponent {
       }}>
         <ListItemIcon>
           <Box width="100%" textAlign="center">
-            <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faTrash} />
+            <FaTrash className={this.props.classes.menuIcon} size={20} />
           </Box>
         </ListItemIcon>
         <ListItemText primary="Delete" primaryTypographyProps={{
@@ -690,7 +699,7 @@ class Messenger extends PureComponent {
       <MenuItem disableGutters className={this.props.classes.menuItem} onClick={this.onCloseMoreMenu}>
         <ListItemIcon>
           <Box width="100%" textAlign="center">
-            <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faEdit} />
+            <FaEdit className={this.props.classes.menuIcon} size={20} />
           </Box>
         </ListItemIcon>
         <ListItemText primary="Edit" primaryTypographyProps={{
@@ -701,7 +710,7 @@ class Messenger extends PureComponent {
       <MenuItem disableGutters className={this.props.classes.menuItem} onClick={this.onCloseMoreMenu}>
         <ListItemIcon>
           <Box width="100%" textAlign="center">
-            <FontAwesomeIcon className={this.props.classes.menuIcon} icon={faQuoteLeft} />
+            <FaQuoteLeft className={this.props.classes.menuIcon} size={20} />
           </Box>
         </ListItemIcon>
         <ListItemText primary="Quote" primaryTypographyProps={{
@@ -768,7 +777,7 @@ class Messenger extends PureComponent {
           this.onCloseSettingPopover();
         }}>
           <ListItemIcon className={this.props.classes.menuIcon}>
-            <FontAwesomeIcon icon={faCheckCircle} color={this.state.enterMode === 'send' ? this.props.theme.palette.success.main : this.props.theme.palette.text.secondary} />
+            <FaCheckCircle color={this.state.enterMode === 'send' ? this.props.theme.palette.success.main : this.props.theme.palette.text.secondary} size={20} />
           </ListItemIcon>
           <ListItemText primary="Send a message" primaryTypographyProps={{
             variant: 'body1',
@@ -782,7 +791,7 @@ class Messenger extends PureComponent {
           this.onCloseSettingPopover();
         }}>
           <ListItemIcon className={this.props.classes.menuIcon}>
-            <FontAwesomeIcon icon={faCheckCircle} color={this.state.enterMode === 'line-break' ? this.props.theme.palette.success.main : this.props.theme.palette.text.secondary} />
+            <FaCheckCircle color={this.state.enterMode === 'line-break' ? this.props.theme.palette.success.main : this.props.theme.palette.text.secondary} size={20} />
           </ListItemIcon>
           <ListItemText primary="Add a line break" primaryTypographyProps={{
             variant: 'body1',

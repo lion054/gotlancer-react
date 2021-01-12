@@ -5,25 +5,28 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  Checkbox,
   Chip,
   Divider,
   Grid,
-  IconButton,
-  InputAdornment,
   List,
   ListItem,
   ListItemIcon,
-  OutlinedInput,
   Paper,
   Typography,
   withStyles,
   withTheme
 } from '@material-ui/core';
-import { AiFillCheckCircle, AiOutlineClockCircle, AiOutlineEnvironment } from 'react-icons/ai';
+import {
+  AiFillCheckCircle,
+  AiFillCheckSquare,
+  AiOutlineBorder,
+  AiOutlineClockCircle,
+  AiOutlineEnvironment
+} from 'react-icons/ai';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { cloneDeep } from 'lodash';
 import moment from 'moment';
 import pluralize from 'pluralize';
 import faker from 'faker';
@@ -97,6 +100,7 @@ const styles = (theme) => ({
 class OfferDetails extends PureComponent {
   state = {
     pictures: [],
+    description: faker.lorem.paragraphs(),
     addons: [{
       title: 'I can design your A4 letterhead',
       subtitle: 'Additional 1 working day',
@@ -117,6 +121,11 @@ class OfferDetails extends PureComponent {
       title: 'I can design your A4 letterhead & business cards',
       subtitle: 'Additional 1 working day',
       price: faker.random.number({ min: 0, max: 100 })
+    },{
+      icon: require('../assets/images/payment-method/paypal.png'),
+      title: 'I can deliver all work in 1 working day',
+      subtitle: 'Additional 1 working day',
+      price: faker.random.number({ min: 0, max: 100 })
     }],
     reviews: [],
     authorName: faker.name.findName(),
@@ -132,7 +141,8 @@ class OfferDetails extends PureComponent {
         country: faker.address.country(),
         createdAt: faker.date.past(),
         comment: faker.lorem.sentence(),
-        score: faker.random.float({ min: 0, max: 5, precision: 0.1 })
+        score: faker.random.float({ min: 0, max: 5, precision: 0.1 }),
+        indented: faker.random.boolean()
       });
     }
     const pictures = [];
@@ -150,6 +160,12 @@ class OfferDetails extends PureComponent {
       });
     }
     this.setState({ reviews, pictures, relatedOffers });
+  }
+
+  handleAddonClick = (index) => () => {
+    const addons = cloneDeep(this.state.addons);
+    addons[index].checked = !addons[index].checked;
+    this.setState({ addons });
   }
 
   render = () => (
@@ -179,21 +195,39 @@ class OfferDetails extends PureComponent {
                     </Box>
                     <Typography variant="subtitle1">What you get with this offer</Typography>
                     <Box my={2}>
-                      <Typography variant="body2">{faker.lorem.paragraphs()}</Typography>
+                      <Typography variant="body2">{this.state.description}</Typography>
                     </Box>
                     <Typography variant="subtitle1">Get more with Offer Add-ons</Typography>
                     <Box my={2}>
                       <List disablePadding>
                         {this.state.addons.map((addon, index) => (
-                          <ListItem key={index} disableGutters>
-                            <ListItemIcon>
-                              <Checkbox />
+                          <ListItem key={index} disableGutters button onClick={this.handleAddonClick(index)}>
+                            <ListItemIcon style={{ minWidth: 32 }}>
+                              {!addon.checked ? (
+                                <AiOutlineBorder size={24} />
+                              ) : (
+                                <AiFillCheckSquare color={this.props.theme.palette.secondary.main} size={24} />
+                              )}
                             </ListItemIcon>
-                            <Box flex={1}>
-                              <Typography variant="body1">{addon.title}</Typography>
-                              <Typography variant="body2">{addon.subtitle}</Typography>
+                            <Box
+                              flex={1}
+                              borderRadius={4}
+                              border={`solid 1px ${addon.checked ? this.props.theme.palette.success.main : this.props.theme.palette.divider}`}
+                              className={this.props.classes.innerPadding}
+                              display="flex"
+                              alignItems="center"
+                            >
+                              <Box flex={1}>
+                                <Typography variant="body1">
+                                  {!!addon.icon && (
+                                    <img alt="" src={addon.icon} style={{ height: 24, marginRight: 8 }} />
+                                  )}
+                                  <Box component="span">{addon.title}</Box>
+                                </Typography>
+                                <Typography variant="body2">{addon.subtitle}</Typography>
+                              </Box>
+                              <Typography variant="body1" style={{ color: this.props.theme.palette.success.main }}>+${addon.price}</Typography>
                             </Box>
-                            <Typography variant="body1" style={{ color: this.props.theme.palette.success.main }}>+${addon.price}</Typography>
                           </ListItem>
                         ))}
                       </List>
@@ -224,9 +258,8 @@ class OfferDetails extends PureComponent {
                       <List disablePadding>
                         {this.state.reviews.map((review, index) => (
                           <ListItem key={index} disableGutters>
-                            <ListItemIcon>
-                              <img alt="" src={review.avatar} className={this.props.classes.buyerAvatar} />
-                            </ListItemIcon>
+                            {review.indented && <div className={this.props.classes.buyerAvatar} />}
+                            <img alt="" src={review.avatar} className={this.props.classes.buyerAvatar} />
                             <Box flex={1}>
                               <Box display="flex" flexWrap="wrap">
                                 <Box display="flex" alignItems="center" mr={2}>

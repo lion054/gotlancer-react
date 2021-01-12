@@ -5,7 +5,6 @@ import {
   Button,
   CardContent,
   CardHeader,
-  Checkbox,
   Chip,
   Divider,
   Grid,
@@ -28,6 +27,7 @@ import {
   TimelineItem,
   TimelineSeparator
 } from '@material-ui/lab';
+import { AiFillCheckSquare, AiOutlineBorder } from 'react-icons/ai';
 import { cloneDeep } from 'lodash';
 import moment from 'moment';
 import faker from 'faker';
@@ -297,30 +297,34 @@ class Details extends PureComponent {
     <List disablePadding>
       {this.state.badges.map((badge, index) => (
         <ListItem key={index} disableGutters button onClick={this.handleBadge(index)}>
-          <Box display="flex" alignItems="center" flex={1}>
-            <Checkbox checked={!!badge.checked} onClick={this.handleBadge(index)} />
-            <Box
-              flex={1}
-              className={this.props.classes.innerPadding}
-              borderRadius={4}
-              border={`solid 1px ${badge.checked ? this.props.theme.palette.secondary.main : this.props.theme.palette.divider}`}
-              bgcolor={this.props.theme.palette.background.paper}
-            >
-              <Grid container alignItems="center">
-                <Grid item sm={2} xs={3}>
-                  <Chip label={badge.title} style={{
-                    backgroundColor: badge.color,
-                    color: this.props.theme.palette.common.white
-                  }} />
-                </Grid>
-                <Grid item sm={8} xs={7}>
-                  <Typography variant="body2">{badge.description}</Typography>
-                </Grid>
-                <Grid item sm={2} xs={2}>
-                  <Typography variant="body2" align="right">{formatCurrency(badge.price)}</Typography>
-                </Grid>
+          <ListItemIcon style={{ minWidth: 32 }}>
+            {!badge.checked ? (
+              <AiOutlineBorder size={24} />
+            ) : (
+              <AiFillCheckSquare color={this.props.theme.palette.secondary.main} size={24} />
+            )}
+          </ListItemIcon>
+          <Box
+            flex={1}
+            className={this.props.classes.innerPadding}
+            borderRadius={4}
+            border={`solid 1px ${badge.checked ? this.props.theme.palette.secondary.main : this.props.theme.palette.divider}`}
+            bgcolor={this.props.theme.palette.background.paper}
+          >
+            <Grid container alignItems="center">
+              <Grid item sm={2} xs={3}>
+                <Chip label={badge.title} style={{
+                  backgroundColor: badge.color,
+                  color: this.props.theme.palette.common.white
+                }} />
               </Grid>
-            </Box>
+              <Grid item sm={8} xs={7}>
+                <Typography variant="body2">{badge.description}</Typography>
+              </Grid>
+              <Grid item sm={2} xs={2}>
+                <Typography variant="body2" align="right">{formatCurrency(badge.price)}</Typography>
+              </Grid>
+            </Grid>
           </Box>
         </ListItem>
       ))}
