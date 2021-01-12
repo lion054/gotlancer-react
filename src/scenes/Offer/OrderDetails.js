@@ -200,7 +200,7 @@ class OrderDetails extends PureComponent {
                   </List>
                 </CardContent>
                 <CardActions>
-                  <Box display="flex" justifyContent="space-between" alignItems="center">
+                  <Box flex={1} display="flex" justifyContent="space-between" alignItems="center">
                     <Typography variant="subtitle1">Total: {formatCurrency(0)}</Typography>
                     <Button variant="contained">Buy Now</Button>
                   </Box>
