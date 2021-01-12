@@ -33,12 +33,11 @@ import {
   Check,
   CheckCircle,
   ChevronLeft,
-  Favorite,
-  FavoriteBorder,
   OpenInNew,
   Redeem,
   Star
 } from '@material-ui/icons';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import pluralize from 'pluralize';
 import moment from 'moment';
 import clsx from 'clsx';
@@ -51,6 +50,7 @@ import Footer from '../components/Footer';
 import UserAvatar from '../components/UserAvatar';
 import ChipContainer from '../components/ChipContainer';
 import CompactPagination from '../components/CompactPagination';
+import ScoreReview from '../components/ScoreReview';
 import { CompactCard, CompactTab } from '../global';
 
 const styles = (theme) => ({
@@ -112,21 +112,8 @@ const styles = (theme) => ({
     color: theme.palette.action.active
   },
   saveIcon: {
-    width: theme.spacing(4),
-    height: theme.spacing(4),
+    padding: theme.spacing(0.5),
     border: `solid 1px ${theme.palette.divider}`
-  },
-  score: {
-    [theme.breakpoints.only('xs')]: {
-      position: 'relative',
-      top: -3
-    },
-    marginRight: theme.spacing(1),
-    borderRadius: theme.spacing(0.5),
-    padding: theme.spacing(0, 0.5),
-    backgroundColor: theme.palette.warning.main,
-    color: theme.palette.common.white,
-    fontSize: 12
   },
   buttonLabel: {
     whiteSpace: 'nowrap'
@@ -415,16 +402,17 @@ class FindFreelancer extends PureComponent {
               <Box display="flex" alignItems="center">
                 <IconButton
                   className={this.props.classes.saveIcon}
-                  onClick={() => {
+                  onClick={(e) => {
                     const records = cloneDeep(this.state.records);
                     records[index].saved = !records[index].saved;
                     this.setState({ records });
+                    e.stopPropagation();
                   }}
                 >
                   {record.saved ? (
-                    <Favorite color="secondary" />
+                    <AiFillHeart color={this.props.theme.palette.secondary.main} />
                   ) : (
-                    <FavoriteBorder color="disabled" />
+                    <AiOutlineHeart />
                   )}
                 </IconButton>
                 <Box ml={1}>
@@ -493,16 +481,17 @@ class FindFreelancer extends PureComponent {
               <Box display="flex" alignItems="center">
                 <IconButton
                   className={this.props.classes.saveIcon}
-                  onClick={() => {
+                  onClick={(e) => {
                     const records = cloneDeep(this.state.records);
                     records[index].saved = !records[index].saved;
                     this.setState({ records });
+                    e.stopPropagation();
                   }}
                 >
                   {record.saved ? (
-                    <Favorite color="secondary" />
+                    <AiFillHeart color={this.props.theme.palette.secondary.main} />
                   ) : (
-                    <FavoriteBorder color="disabled" />
+                    <AiOutlineHeart />
                   )}
                 </IconButton>
                 <Box ml={1}>
@@ -647,10 +636,8 @@ class FindFreelancer extends PureComponent {
               </Box>
               <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
               <Box display="flex" alignItems="center" my={0.5}>
-                {this.renderScore(4.9)}
-                <Box ml={1}>
-                  <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
-                </Box>
+                <ScoreReview value={4.9} />
+                <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
               </Box>
               {this.state.activeRecord && (
                 <ChipContainer chips={this.state.activeRecord.skills} readOnly />
@@ -723,13 +710,6 @@ class FindFreelancer extends PureComponent {
   handleTabChange = (event, newValue) => {
     this.setState({ drawerActiveTab: newValue });
   }
-
-  renderScore = (value) => (
-    <Fragment>
-      <span className={this.props.classes.score}>{value}</span>
-      <Rating name="read-only" value={value} readOnly size="small" />
-    </Fragment>
-  )
 }
 
 export default compose(

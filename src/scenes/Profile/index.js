@@ -43,6 +43,7 @@ import 'material-ui-phone-number/src/flags.png';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import ScoreReview from '../../components/ScoreReview';
 import ChipContainer from '../../components/ChipContainer';
 import ChangeAvatar from './ChangeAvatar';
 import ChangeHourlyRate from './ChangeHourlyRate';
@@ -186,14 +187,6 @@ const styles = (theme) => ({
     display: 'inline-block',
     width: 60,
     color: theme.palette.success.main
-  },
-  score: {
-    marginRight: theme.spacing(1),
-    borderRadius: theme.spacing(0.5),
-    padding: theme.spacing(0, 0.5),
-    backgroundColor: theme.palette.warning.main,
-    color: theme.palette.common.white,
-    fontSize: 12
   },
   reviewAvatar: {
     width: 64,
@@ -559,9 +552,9 @@ class Profile extends PureComponent {
                 </IconButton>
               </Tooltip>
             </Box>
-            <Box display="flex" alignItems="center" my={0.5}>
-              {this.renderScore(4.9)}
-              <Box ml={1} flex={1}>
+            <Box display="flex" justifyContent="space-between" alignItems="center" my={0.5}>
+              <Box display="flex" alignItems="center">
+                <ScoreReview value={4.9} />
                 <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
               </Box>
               {(this.props.width === 'md' || this.props.width === 'lg' || this.props.width === 'xl') && this.renderActionButtons()}
@@ -699,10 +692,8 @@ class Profile extends PureComponent {
       <Box flex={1}>
         <Typography variant="body1" color="primary">{review.title}</Typography>
         <Box display="flex" alignItems="center">
-          {this.renderScore(4.9)}
-          <Box ml={1}>
-            <Typography variant="body2">{formatCurrency(review.budget)}</Typography>
-          </Box>
+          <ScoreReview value={4.9} />
+          <Typography variant="body2">{formatCurrency(review.budget)}</Typography>
         </Box>
         <Box my={1}>
           <Typography variant="body1">&ldquo;{review.comment}&rdquo;</Typography>
@@ -735,10 +726,8 @@ class Profile extends PureComponent {
           <Box>
             <Typography variant="body1" color="primary">{review.title}</Typography>
             <Box display="flex" alignItems="center">
-              {this.renderScore(4.9)}
-              <Box ml={1}>
-                <Typography variant="body2">{formatCurrency(review.budget)}</Typography>
-              </Box>
+              <ScoreReview value={4.9} />
+              <Typography variant="body2">{formatCurrency(review.budget)}</Typography>
             </Box>
           </Box>
         </Box>
@@ -841,13 +830,6 @@ class Profile extends PureComponent {
         bgcolor={this.props.theme.palette.success.main}
       />
     </Box>
-  )
-
-  renderScore = (value) => (
-    <Fragment>
-      <span className={this.props.classes.score}>{value}</span>
-      <Rating name="read-only" value={value} readOnly size="small" />
-    </Fragment>
   )
 
   renderHourlyRate = () => (

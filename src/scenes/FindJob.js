@@ -27,9 +27,16 @@ import {
   withWidth
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faClock, faDollarSign, faHeart, faMapMarkedAlt, faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
-import { FaBars, FaClock, FaDollarSign, FaHeart, FaMapMarkedAlt, FaSearch, FaStar } from 'react-icons/fa';
+import {
+  AiFillHeart,
+  AiFillClockCircle,
+  AiFillDollarCircle,
+  AiFillEnvironment,
+  AiFillStar,
+  AiOutlineHeart,
+  AiOutlineMenu,
+  AiOutlineSearch
+} from 'react-icons/ai';
 import pluralize from 'pluralize';
 import moment from 'moment';
 import clsx from 'clsx';
@@ -135,8 +142,7 @@ const styles = (theme) => ({
     color: theme.palette.action.active
   },
   saveIcon: {
-    width: theme.spacing(4),
-    height: theme.spacing(4),
+    padding: theme.spacing(0.5),
     border: `solid 1px ${theme.palette.divider}`
   }
 })
@@ -299,7 +305,7 @@ class FindJob extends PureComponent {
                 }}>
                   <Typography variant="body2" noWrap style={{ overflow: 'hidden' }}>{this.state.user.name}</Typography>
                   <Typography variant="body2" noWrap style={{ overflow: 'hidden' }}>
-                    <FaStar size={16} />  TOP RATED
+                    <AiFillStar style={{ position: 'relative', top: 2 }} />  TOP RATED
                   </Typography>
                 </Box>
               </Box>
@@ -367,7 +373,7 @@ class FindJob extends PureComponent {
       <Box display="flex">
         <Box className={this.props.classes.menuButton}>
           <IconButton onClick={() => this.setState({ drawerOpened: true })}>
-            <FaBars size={20} />
+            <AiOutlineMenu />
           </IconButton>
         </Box>
         <Box flex={1}>
@@ -380,7 +386,7 @@ class FindJob extends PureComponent {
             endAdornment={(
               <InputAdornment position="end">
                 <IconButton>
-                  <FaSearch size={16} />
+                  <AiOutlineSearch />
                 </IconButton>
               </InputAdornment>
             )}
@@ -436,15 +442,18 @@ class FindJob extends PureComponent {
           <Box display="flex" alignItems="center">
             <IconButton
               className={this.props.classes.saveIcon}
-              onClick={() => {
+              onClick={(e) => {
                 const jobs = cloneDeep(this.state.jobs);
                 jobs[index].saved = !jobs[index].saved;
                 this.setState({ jobs });
+                e.stopPropagation();
               }}
             >
-              <FontAwesomeIcon icon={faHeart} style={{
-                color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
-              }} />
+              {job.saved ? (
+                <AiFillHeart color={this.props.theme.palette.secondary.main} />
+              ) : (
+                <AiOutlineHeart />
+              )}
             </IconButton>
             <Box ml={1}>
               <Typography variant="body2" align="right">Saved</Typography>
@@ -490,9 +499,11 @@ class FindJob extends PureComponent {
                 this.setState({ jobs });
               }}
             >
-              <FontAwesomeIcon icon={faHeart} style={{
-                color: job.saved ? this.props.theme.palette.secondary.main : this.props.theme.palette.action.disabled
-              }} />
+              {job.saved ? (
+                <AiFillHeart color={this.props.theme.palette.secondary.main} />
+              ) : (
+                <AiOutlineHeart />
+              )}
             </IconButton>
             <Box ml={1}>
               <Typography variant="body2" align="right">Saved</Typography>
@@ -507,7 +518,7 @@ class FindJob extends PureComponent {
     <Box mr={2} display="inline-block">
       <Box display="flex" alignItems="center">
         <Avatar className={this.props.classes.actionIcon}>
-          <FontAwesomeIcon icon={faClock} />
+          <AiFillClockCircle />
         </Avatar>
         <Box ml={1}>
           <Typography variant="body2" noWrap>Apply before</Typography>
@@ -521,7 +532,7 @@ class FindJob extends PureComponent {
     <Box mr={2} display="inline-block">
       <Box display="flex" alignItems="center">
         <Avatar className={this.props.classes.actionIcon}>
-          <FontAwesomeIcon icon={faDollarSign} />
+          <AiFillDollarCircle />
         </Avatar>
         <Box ml={1}>
           <Typography variant="body2" noWrap>Payment method</Typography>
@@ -535,7 +546,7 @@ class FindJob extends PureComponent {
     <Box mr={2} display="inline-block">
       <Box display="flex" alignItems="center">
         <Avatar className={this.props.classes.actionIcon}>
-          <FontAwesomeIcon icon={faStar} />
+          <AiFillStar />
         </Avatar>
         <Box ml={1}>
           <Typography variant="body2" noWrap>{pluralize('Review', count, true)}</Typography>
@@ -551,7 +562,7 @@ class FindJob extends PureComponent {
     <Box mr={2} display="inline-block">
       <Box display="flex" alignItems="center">
         <Avatar className={this.props.classes.actionIcon}>
-          <FontAwesomeIcon icon={faMapMarkedAlt} />
+          <AiFillEnvironment />
         </Avatar>
         <Box ml={1}>
           <Typography variant="body2" noWrap>Buyer country</Typography>

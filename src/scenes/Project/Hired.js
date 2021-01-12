@@ -20,8 +20,6 @@ import {
   Apple,
   Camera,
   Check,
-  Favorite,
-  FavoriteBorder,
   Redeem,
   Star
 } from '@material-ui/icons';
@@ -34,6 +32,7 @@ import {
   TimelineItem,
   TimelineSeparator
 } from '@material-ui/lab';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { cloneDeep } from 'lodash';
 import pluralize from 'pluralize';
 import moment from 'moment';
@@ -74,8 +73,7 @@ const styles = (theme) => ({
     color: theme.palette.action.active
   },
   saveIcon: {
-    width: theme.spacing(4),
-    height: theme.spacing(4),
+    padding: theme.spacing(0.5),
     border: `solid 1px ${theme.palette.divider}`
   },
   progress: {
@@ -303,9 +301,9 @@ class Hired extends PureComponent {
                   }}
                 >
                   {record.saved ? (
-                    <Favorite color="secondary" />
+                    <AiFillHeart color={this.props.theme.palette.secondary.main} />
                   ) : (
-                    <FavoriteBorder color="disabled" />
+                    <AiOutlineHeart />
                   )}
                 </IconButton>
                 <Box ml={1}>
@@ -382,9 +380,9 @@ class Hired extends PureComponent {
                   }}
                 >
                   {record.saved ? (
-                    <Favorite color="secondary" />
+                    <AiFillHeart color={this.props.theme.palette.secondary.main} />
                   ) : (
-                    <FavoriteBorder color="disabled" />
+                    <AiOutlineHeart />
                   )}
                 </IconButton>
                 <Box ml={1}>

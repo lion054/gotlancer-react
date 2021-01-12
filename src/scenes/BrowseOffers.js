@@ -78,13 +78,10 @@ const styles = (theme) => ({
     [theme.breakpoints.down('sm')]: {
       height: 160
     }
-  },
-  saveIcon: {
-    border: `solid 1px ${theme.palette.divider}`
   }
 })
 
-class BrowseOffer extends PureComponent {
+class BrowseOffers extends PureComponent {
   state = {
     budgetRange: [20, 27],
     records: [],
@@ -137,7 +134,7 @@ class BrowseOffer extends PureComponent {
                               image={record.productAvatar}
                             />
                             <CardContent>
-                              <Link href="#" variant="body1">{record.productTitle}</Link>
+                              <Link href="/offer_details" variant="body1">{record.productTitle}</Link>
                               <Box display="flex" justifyContent="space-between" alignItems="center" mt={1}>
                                 <Box display="flex" alignItems="center">
                                   <UserAvatar
@@ -412,4 +409,4 @@ export default compose(
   withStyles(styles),
   withTheme,
   withWidth()
-)(BrowseOffer);
+)(BrowseOffers);

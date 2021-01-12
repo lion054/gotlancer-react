@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import {
   Avatar,
   Box,
@@ -24,14 +24,9 @@ import {
   withWidth
 } from '@material-ui/core';
 import {
-  Apple,
-  Attachment,
-  Camera,
   Check,
   CheckCircle,
   ChevronLeft,
-  Favorite,
-  FavoriteBorder,
   OpenInNew,
   Redeem,
   Star
@@ -45,6 +40,7 @@ import {
   TimelineItem,
   TimelineSeparator
 } from '@material-ui/lab';
+import { AiFillApple, AiFillCamera, AiFillHeart, AiOutlineHeart, AiOutlinePaperClip } from 'react-icons/ai';
 import { cloneDeep } from 'lodash';
 import pluralize from 'pluralize';
 import moment from 'moment';
@@ -54,6 +50,7 @@ import { compose } from 'redux';
 import UserAvatar from '../../components/UserAvatar';
 import ChipContainer from '../../components/ChipContainer';
 import CompactPagination from '../../components/CompactPagination';
+import ScoreReview from '../../components/ScoreReview';
 import { CompactCard, CompactTab, formatCurrency } from '../../global';
 
 const styles = (theme) => ({
@@ -94,8 +91,7 @@ const styles = (theme) => ({
     color: theme.palette.action.active
   },
   saveIcon: {
-    width: theme.spacing(4),
-    height: theme.spacing(4),
+    padding: theme.spacing(0.5),
     border: `solid 1px ${theme.palette.divider}`
   },
   progress: {
@@ -113,18 +109,6 @@ const styles = (theme) => ({
   progressText: {
     width: 52,
     textAlign: 'right'
-  },
-  score: {
-    [theme.breakpoints.only('xs')]: {
-      position: 'relative',
-      top: -3
-    },
-    marginRight: theme.spacing(1),
-    borderRadius: theme.spacing(0.5),
-    padding: theme.spacing(0, 0.5),
-    backgroundColor: theme.palette.warning.main,
-    color: theme.palette.common.white,
-    fontSize: 12
   },
   buttonLabel: {
     whiteSpace: 'nowrap'
@@ -347,16 +331,17 @@ class Proposals extends PureComponent {
               <Box display="flex" alignItems="center">
                 <IconButton
                   className={this.props.classes.saveIcon}
-                  onClick={() => {
+                  onClick={(e) => {
                     const records = cloneDeep(this.state.records);
                     records[index].saved = !records[index].saved;
                     this.setState({ records });
+                    e.stopPropagation();
                   }}
                 >
                   {record.saved ? (
-                    <Favorite color="secondary" />
+                    <AiFillHeart color={this.props.theme.palette.secondary.main} />
                   ) : (
-                    <FavoriteBorder color="disabled" />
+                    <AiOutlineHeart />
                   )}
                 </IconButton>
                 <Box ml={1}>
@@ -426,16 +411,17 @@ class Proposals extends PureComponent {
               <Box display="flex" alignItems="center">
                 <IconButton
                   className={this.props.classes.saveIcon}
-                  onClick={() => {
+                  onClick={(e) => {
                     const records = cloneDeep(this.state.records);
                     records[index].saved = !records[index].saved;
                     this.setState({ records });
+                    e.stopPropagation();
                   }}
                 >
                   {record.saved ? (
-                    <Favorite color="secondary" />
+                    <AiFillHeart color={this.props.theme.palette.secondary.main} />
                   ) : (
-                    <FavoriteBorder color="disabled" />
+                    <AiOutlineHeart />
                   )}
                 </IconButton>
                 <Box ml={1}>
@@ -453,7 +439,7 @@ class Proposals extends PureComponent {
     <Box mr={2} display="inline-block">
       <Box display="flex" alignItems="center">
         <Avatar className={this.props.classes.actionIcon}>
-          <Camera />
+          <AiFillCamera />
         </Avatar>
         <Box ml={1}>
           <Typography variant="body2" noWrap>Projects completed</Typography>
@@ -472,10 +458,10 @@ class Proposals extends PureComponent {
         <Box ml={1}>
           <Typography variant="body2" noWrap>Certificated</Typography>
           <Box display="flex">
-            <Apple color="primary" />
-            <Apple color="primary" />
-            <Apple color="primary" />
-            <Apple color="primary" />
+            <AiFillApple color={this.props.theme.palette.primary.main} />
+            <AiFillApple color={this.props.theme.palette.primary.main} />
+            <AiFillApple color={this.props.theme.palette.primary.main} />
+            <AiFillApple color={this.props.theme.palette.primary.main} />
           </Box>
         </Box>
       </Box>
@@ -580,10 +566,8 @@ class Proposals extends PureComponent {
               </Box>
               <Typography variant="body1">MEAN Stack (Angular | Vue.js | Laravel | Node)</Typography>
               <Box display="flex" alignItems="center" my={0.5}>
-                {this.renderScore(4.9)}
-                <Box ml={1}>
-                  <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
-                </Box>
+                <ScoreReview value={4.9} />
+                <Typography variant="body2">({pluralize('review', 10, true)})</Typography>
               </Box>
               {this.state.activeRecord && (
                 <ChipContainer chips={this.state.activeRecord.skills} readOnly />
@@ -611,7 +595,7 @@ class Proposals extends PureComponent {
                   {this.state.activeRecord && this.state.activeRecord.attachments.map((file, index) => (
                     <ListItem key={index} disableGutters button>
                       <ListItemIcon>
-                        <Attachment />
+                        <AiOutlinePaperClip size={24} />
                       </ListItemIcon>
                       <ListItemText
                         primary={file}
@@ -656,13 +640,6 @@ class Proposals extends PureComponent {
   handleTabChange = (event, newValue) => {
     this.setState({ drawerActiveTab: newValue });
   }
-
-  renderScore = (value) => (
-    <Fragment>
-      <span className={this.props.classes.score}>{value}</span>
-      <Rating name="read-only" value={value} readOnly size="small" />
-    </Fragment>
-  )
 }
 
 export default compose(

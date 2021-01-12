@@ -24,14 +24,13 @@ import {
   CreditCard,
   DesktopMac,
   Email,
-  Favorite,
-  FavoriteBorder,
   PeopleAlt,
   PhoneAndroid,
   Stars,
   WatchLater
 } from '@material-ui/icons';
 import { Rating } from '@material-ui/lab';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import moment from 'moment';
 import faker from 'faker';
 import { withRouter } from 'react-router-dom';
@@ -59,8 +58,7 @@ const styles = (theme) => ({
     }
   },
   saveIcon: {
-    width: theme.spacing(4),
-    height: theme.spacing(4)
+    padding: theme.spacing(0.5)
   },
   sideIcon: {
     width: theme.spacing(3),
@@ -197,9 +195,9 @@ class JobDetails extends PureComponent {
                             onClick={() => this.setState({ saved: !this.state.saved })}
                           >
                             {this.state.saved ? (
-                              <Favorite color="secondary" />
+                              <AiFillHeart color={this.props.theme.palette.secondary.main} />
                             ) : (
-                              <FavoriteBorder color="disabled" />
+                              <AiOutlineHeart />
                             )}
                           </IconButton>
                         </Box>

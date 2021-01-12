@@ -49,10 +49,6 @@ const styles = (theme) => ({
       padding: theme.spacing(1)
     }
   },
-  saveIcon: {
-    width: theme.spacing(4),
-    height: theme.spacing(4)
-  },
   sideIcon: {
     width: theme.spacing(3),
     height: theme.spacing(3),
