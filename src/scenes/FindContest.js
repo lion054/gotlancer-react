@@ -26,6 +26,7 @@ import {
   AiFillClockCircle,
   AiFillDollarCircle,
   AiFillEnvironment,
+  AiFillEyeInvisible,
   AiFillStar,
   AiOutlineHeart,
   AiOutlineMenu,
@@ -129,8 +130,8 @@ class FindContest extends PureComponent {
           color: this.props.theme.palette.text.secondary
         });
       }
-      records.push({
-        thumbnail: faker.image.image(),
+      const record = {
+        private: faker.random.boolean(),
         title: faker.lorem.sentence(3),
         description: faker.lorem.sentences(10),
         type: 'PRIZE',
@@ -164,7 +165,11 @@ class FindContest extends PureComponent {
         reviewAverage: faker.random.number({ min: 0, max: 5 }),
         status: 'Active',
         saved: faker.random.boolean()
-      });
+      };
+      if (!record.private) {
+        record.thumbnail = faker.image.image();
+      }
+      records.push(record);
     }
     this.setState({ records });
   }
@@ -249,7 +254,7 @@ class FindContest extends PureComponent {
       <List disablePadding>
         {this.state.records.map((record, index) => (
           <Paper key={index} className={this.props.classes.paper}>
-            <ListItem button onClick={() => this.props.history.push('/job_details')}>
+            <ListItem button onClick={() => this.props.history.push('/contest')}>
               {(this.props.width === 'xs' || this.props.width === 'sm') ? this.renderMobileCard(record, index) : this.renderDesktopCard(record, index)}
             </ListItem>
           </Paper>
@@ -264,7 +269,7 @@ class FindContest extends PureComponent {
   renderDesktopCard = (record, index) => (
     <Box flex={1}>
       <Box display="flex" alignItems="center">
-        <img alt="" src={record.thumbnail} className={this.props.classes.thumbnail} />
+        {this.renderThumbnail(record)}
         <Box flex={1}>
           <Box display="flex" justifyContent="space-between">
             <Typography variant="subtitle1">{record.title}</Typography>
@@ -364,6 +369,23 @@ class FindContest extends PureComponent {
         </Box>
       </Box>
     </Box>
+  )
+
+  renderThumbnail = (record) => record.private ? (
+    <Box
+      className={this.props.classes.thumbnail}
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      bgcolor={this.props.theme.palette.action.disabledBackground}
+    >
+      <Box textAlign="center">
+        <AiFillEyeInvisible size={32} />
+        <Typography variant="subtitle2">PRIVATE CONTEST</Typography>
+      </Box>
+    </Box>
+  ) : (
+    <img alt="" src={record.thumbnail} className={this.props.classes.thumbnail} />
   )
 
   renderDeadline = (value) => (
