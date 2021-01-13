@@ -2,10 +2,6 @@ import React, { Fragment, PureComponent } from 'react';
 import {
   Avatar,
   Box,
-  Button,
-  CardActions,
-  CardContent,
-  CardHeader,
   Checkbox,
   Drawer,
   FormControlLabel,
@@ -13,17 +9,16 @@ import {
   Grid,
   IconButton,
   InputAdornment,
-  LinearProgress,
   List,
   ListItem,
   OutlinedInput,
   Paper,
-  Tab,
-  Tabs,
+  Slider,
   Typography,
   withStyles,
   withTheme,
-  withWidth
+  withWidth,
+  Button
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
 import {
@@ -47,7 +42,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ChipContainer from '../components/ChipContainer';
 import CompactPagination from '../components/CompactPagination';
-import { CompactCard } from '../global';
+import { formatCurrency } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -68,41 +63,10 @@ const styles = (theme) => ({
     border: `solid 1px ${theme.palette.divider}`,
     padding: 'unset'
   },
-  leftSideBar: {
-    [theme.breakpoints.up('md')]: {
-      width: 224
-    },
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
-  },
   rightSideBar: {
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
-  },
-  tab: {
-    minWidth: 'unset',
-    flex: 1
-  },
-  progress: {
-    height: theme.spacing(1)
-  },
-  progressText: {
-    color: theme.palette.success.main
-  },
-  progressThumb: {
-    backgroundColor: theme.palette.success.main
-  },
-  cardActions: {
-    borderTop: `solid 1px ${theme.palette.divider}`
-  },
-  cardHeader: {
-    padding: theme.spacing(1, 2),
-    borderBottom: `solid 1px ${theme.palette.divider}`
-  },
-  logo: {
-    width: theme.spacing(12)
   },
   newRecords: {
     backgroundColor: theme.palette.primary.main,
@@ -124,6 +88,12 @@ const styles = (theme) => ({
     padding: theme.spacing(2, 0, 2, 2),
     fontSize: theme.spacing(1.5)
   },
+  thumbnail: {
+    width: 160,
+    height: 140,
+    borderRadius: 4,
+    marginRight: 16
+  },
   description: {
     height: theme.spacing(5), // 2 lines
     overflow: 'hidden'
@@ -140,17 +110,12 @@ const styles = (theme) => ({
   }
 })
 
-class FindJob extends PureComponent {
+class FindContest extends PureComponent {
   state = {
-    activeTab: 0,
-    user: {
-      avatar: faker.image.image(),
-      name: faker.name.findName()
-    },
-    progress: faker.random.number({ min: 0, max: 100 }),
     newRecords: 32,
     records: [],
-    drawerOpened: false
+    drawerOpened: false,
+    budgetRange: [20, 27]
   }
 
   componentDidMount() {
@@ -165,13 +130,11 @@ class FindJob extends PureComponent {
         });
       }
       records.push({
+        thumbnail: faker.image.image(),
         title: faker.lorem.sentence(3),
         description: faker.lorem.sentences(10),
-        type: faker.random.arrayElement(['HOURLY', 'FIXED']),
-        budget: {
-          min: faker.random.number({ min: 10, max: 20 }),
-          max: faker.random.number({ min: 30, max: 40 })
-        },
+        type: 'PRIZE',
+        budget: faker.random.number({ min: 30, max: 40 }),
         badges: faker.random.arrayElements([{
           title: 'TOP PROJECT',
           backgroundColor: this.props.theme.palette.primary.main,
@@ -196,18 +159,14 @@ class FindJob extends PureComponent {
         postedAt: faker.date.past(),
         closedAt: faker.date.future(),
         skills,
-        paymentMethod: faker.random.boolean(),
+        entries: faker.random.number({ min: 0, max: 100 }),
         reviewCount: faker.random.number({ min: 0, max: 10 }),
         reviewAverage: faker.random.number({ min: 0, max: 5 }),
-        location: faker.address.country(),
+        status: 'Active',
         saved: faker.random.boolean()
       });
     }
     this.setState({ records });
-  }
-
-  handleTabChange = (event, newValue) => {
-    this.setState({ activeTab: newValue });
   }
 
   handleDrawer = () => this.setState({ drawerOpened: !this.state.drawerOpened })
@@ -222,36 +181,23 @@ class FindJob extends PureComponent {
               size="small"
               className={this.props.classes.newRecords}
               onClick={() => this.setState({ newRecords: 0 })}
-            >View {pluralize('new job', this.state.newRecords, true)}</Button>
+            >View {pluralize('new contest', this.state.newRecords, true)}</Button>
           )}
         </Box>
       </Box>
       <Grid container>
         <Grid item lg={2} />
         <Grid item lg={8} xs={12}>
-          <Box display="flex">
-            <Box className={clsx(this.props.classes.innerPadding, this.props.classes.leftSideBar)}>
-              {this.renderTabsCard()}
-              <Box mt={2}>
-                {this.renderMembershipCard()}
+          <Grid container>
+            <Grid item md={9}>
+              {this.renderList()}
+            </Grid>
+            <Grid item md={3}>
+              <Box className={clsx(this.props.classes.innerPadding, this.props.classes.rightSideBar)}>
+                {this.renderFilterBar()}
               </Box>
-              <Box mt={2}>
-                {this.renderBidCredit()}
-              </Box>
-            </Box>
-            <Box flex={1}>
-              <Grid container>
-                <Grid item md={9}>
-                  {this.renderList()}
-                </Grid>
-                <Grid item md={3}>
-                  <Box className={clsx(this.props.classes.innerPadding, this.props.classes.rightSideBar)}>
-                    {this.renderFilterBar()}
-                  </Box>
-                </Grid>
-              </Grid>
-            </Box>
-          </Box>
+            </Grid>
+          </Grid>
         </Grid>
         <Grid item lg={2} />
       </Grid>
@@ -266,100 +212,6 @@ class FindJob extends PureComponent {
         </Box>
       </Drawer>
     </div>
-  )
-
-  renderTabPanel = ({ index, body }) => (
-    <div role="tabpanel" hidden={this.state.activeTab !== index}>
-      {body}
-    </div>
-  )
-
-  renderTabsCard = () => (
-    <CompactCard>
-      <CardContent style={{ padding: 0 }}>
-        <Tabs
-          value={this.state.activeTab}
-          onChange={this.handleTabChange}
-          indicatorColor="primary"
-          textColor="primary"
-        >
-          <Tab className={this.props.classes.tab} label="Profile" />
-          <Tab className={this.props.classes.tab} label="Funds" />
-        </Tabs>
-        {this.renderTabPanel({
-          index: 0,
-          body: (
-            <Box m={2}>
-              <Box display="flex" alignItems="center">
-                <Box display="inline" mr={1}>
-                  <Avatar src={this.state.user.avatar} />
-                </Box>
-                <Box display="inline" style={{
-                  width: 'calc(100% - 40px - 8px)' // width is needed for ellipsis of  sub element
-                }}>
-                  <Typography variant="body2" noWrap style={{ overflow: 'hidden' }}>{this.state.user.name}</Typography>
-                  <Typography variant="body2" noWrap style={{ overflow: 'hidden' }}>
-                    <AiFillStar style={{ position: 'relative', top: 2 }} />  TOP RATED
-                  </Typography>
-                </Box>
-              </Box>
-              <Box mt={1}>
-                <Typography variant="body2" className={this.props.classes.progressText}>{this.state.progress}% completed</Typography>
-                <LinearProgress variant="determinate" value={this.state.progress} classes={{
-                  root: this.props.classes.progress,
-                  barColorPrimary: this.props.classes.progressThumb
-                }} />
-                <Typography variant="body2">Pass the US English - level 1 (+ 10%)</Typography>
-              </Box>
-            </Box>
-          )
-        })}
-      </CardContent>
-      <CardActions className={this.props.classes.cardActions}>
-        <Button fullWidth>View profile</Button>
-      </CardActions>
-    </CompactCard>
-  )
-
-  renderMembershipCard = () => (
-    <CompactCard>
-      <CardHeader
-        title="Membership"
-        titleTypographyProps={{
-          variant: 'subtitle1'
-        }}
-        className={this.props.classes.cardHeader}
-      />
-      <CardContent>
-        <Typography variant="body2">Current membership</Typography>
-        <Box display="flex" alignItems="center" mt={1} mb={2}>
-          <img alt="" className={this.props.classes.logo} src={require('../assets/images/gotlancer-logo-long.svg')} />
-          <Box ml={1}>
-            <Typography variant="body1">Basic</Typography>
-          </Box>
-        </Box>
-        <Button variant="outlined" fullWidth>Upgrade membership</Button>
-      </CardContent>
-    </CompactCard>
-  )
-
-  renderBidCredit = () => (
-    <CompactCard>
-      <CardHeader
-        title="Bid Credit"
-        titleTypographyProps={{
-          variant: 'subtitle1'
-        }}
-        className={this.props.classes.cardHeader}
-      />
-      <CardContent>
-        <Typography variant="body2">Available Bids</Typography>
-        <Box my={1}>
-          <Typography variant="body1">76</Typography>
-        </Box>
-        <Button variant="outlined" fullWidth>Buy Bid Credit</Button>
-      </CardContent>
-    </CompactCard>
   )
 
   renderList = () => (
@@ -411,27 +263,32 @@ class FindJob extends PureComponent {
 
   renderDesktopCard = (record, index) => (
     <Box flex={1}>
-      <Box display="flex" justifyContent="space-between">
-        <Typography variant="subtitle1">{record.title}</Typography>
-        <Typography variant="h6">${record.budget.min}-${record.budget.max} USD</Typography>
-      </Box>
-      <Box mt={1} display="flex" justifyContent="space-between" alignItems="center">
-        <ChipContainer chips={record.badges} readOnly />
-        <Typography variant="body2" color="textSecondary">{record.type}</Typography>
-      </Box>
-      <Box mt={1.5}>
-        <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
-      </Box>
-      <Box mt={1} mb={1.5} display="flex" justifyContent="space-between">
-        <ChipContainer chips={record.skills} readOnly />
-        <Typography variant="body2" color="textSecondary">Posted {moment(record.postedAt).fromNow()}</Typography>
+      <Box display="flex" alignItems="center">
+        <img alt="" src={record.thumbnail} className={this.props.classes.thumbnail} />
+        <Box flex={1}>
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="subtitle1">{record.title}</Typography>
+            <Typography variant="h6">{formatCurrency(record.budget)}</Typography>
+          </Box>
+          <Box mt={1} display="flex" justifyContent="space-between" alignItems="center">
+            <ChipContainer chips={record.badges} readOnly />
+            <Typography variant="body2" color="textSecondary">{record.type}</Typography>
+          </Box>
+          <Box mt={1.5}>
+            <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
+          </Box>
+          <Box mt={1} mb={1.5} display="flex" justifyContent="space-between">
+            <ChipContainer chips={record.skills} readOnly />
+            <Typography variant="body2" color="textSecondary">Posted {moment(record.postedAt).fromNow()}</Typography>
+          </Box>
+        </Box>
       </Box>
       <Divider />
       <Box mt={1.5} display="flex" justifyContent="space-between" alignItems="center" flexWrap="wrap">
         {this.renderDeadline(record.closedAt)}
-        {this.renderPaymentMethod(record.paymentMethod)}
+        {this.renderEntryCount(record.entries)}
         {this.renderReview(record.reviewCount, record.reviewAverage)}
-        {this.renderLocation(record.location)}
+        {this.renderStatus(record.status)}
         <Box display="inline-block">
           <Box display="flex" alignItems="center">
             <IconButton
@@ -468,7 +325,7 @@ class FindJob extends PureComponent {
         <Typography variant="body2" className={this.props.classes.description}>{record.description}</Typography>
       </Box>
       <Box mt={1.5} display="flex" justifyContent="space-between" alignItems="center">
-        <Typography variant="h6">${record.budget.min}-${record.budget.max} USD</Typography>
+        <Typography variant="h6">{formatCurrency(record.budget)}</Typography>
         <Typography variant="body2" color="textSecondary">Posted {moment(record.postedAt).fromNow()}</Typography>
       </Box>
       <Box mt={1.5}>
@@ -478,11 +335,11 @@ class FindJob extends PureComponent {
         <ChipContainer chips={record.skills} readOnly />
       </Box>
       <Divider />
-      <Box mt={1.5} display="flex" alignItems="center" flexWrap="wrap">
+      <Box mt={1.5} display="flex" flexWrap="wrap">
         {this.renderDeadline(record.closedAt)}
-        {this.renderPaymentMethod(record.paymentMethod)}
+        {this.renderEntryCount(record.entries)}
         {this.renderReview(record.reviewCount, record.reviewAverage)}
-        {this.renderLocation(record.location)}
+        {this.renderStatus(record.status)}
         <Box display="inline-block">
           <Box display="flex" alignItems="center">
             <IconButton
@@ -516,21 +373,21 @@ class FindJob extends PureComponent {
           <AiFillClockCircle />
         </Avatar>
         <Box ml={1}>
-          <Typography variant="body2" noWrap>Apply before</Typography>
+          <Typography variant="body2" noWrap>Submit before</Typography>
           <Typography variant="body2" noWrap color="textSecondary">{moment(value).fromNow(true)}</Typography>
         </Box>
       </Box>
     </Box>
   )
 
-  renderPaymentMethod = (value) => (
+  renderEntryCount = (value) => (
     <Box mr={2} display="inline-block">
       <Box display="flex" alignItems="center">
         <Avatar className={this.props.classes.actionIcon}>
           <AiFillDollarCircle />
         </Avatar>
         <Box ml={1}>
-          <Typography variant="body2" noWrap>Payment method</Typography>
+          <Typography variant="body2" noWrap>Entries</Typography>
           <Typography variant="body2" noWrap color="textSecondary">{value ? 'Verified' : 'Not verified'}</Typography>
         </Box>
       </Box>
@@ -553,15 +410,15 @@ class FindJob extends PureComponent {
     </Box>
   )
 
-  renderLocation = (value) => (
+  renderStatus = (value) => (
     <Box mr={2} display="inline-block">
       <Box display="flex" alignItems="center">
         <Avatar className={this.props.classes.actionIcon}>
           <AiFillEnvironment />
         </Avatar>
         <Box ml={1}>
-          <Typography variant="body2" noWrap>Buyer country</Typography>
-          <Typography variant="body2" noWrap color="textSecondary" style={{ width: this.props.theme.spacing(11) }}>{value}</Typography>
+          <Typography variant="body2" noWrap>Status</Typography>
+          <Typography variant="body2" noWrap color="textPrimary">{value}</Typography>
         </Box>
       </Box>
     </Box>
@@ -677,12 +534,42 @@ class FindJob extends PureComponent {
           />
         </Box>
       </Box>
+      <Box mt={2}>
+        <Typography variant="subtitle2">Budget</Typography>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Any budget</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Box>
+          <FormControlLabel
+            control={(
+              <Checkbox onClick={(e) => e.stopPropagation()} />
+            )}
+            label={<Typography variant="body2">Custom budget</Typography>}
+            onClick={() => {}}
+          />
+        </Box>
+        <Slider
+          value={this.state.budgetRange}
+          onChange={this.handleBudgetChange}
+          valueLabelDisplay="auto"
+        />
+      </Box>
     </Fragment>
   )
+
+  handleBudgetChange = (event, newValue) => {
+    this.setState({ budgetRange: newValue });
+  }
 }
 
 export default compose(
   withStyles(styles),
   withTheme,
   withWidth()
-)(FindJob);
+)(FindContest);

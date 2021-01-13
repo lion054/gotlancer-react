@@ -178,7 +178,7 @@ class Header extends PureComponent {
                       getContentAnchorEl={null} // menu should be display below anchor
                       anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} // menu should be display below anchor
                     >
-                      <MenuItem className={this.props.classes.label}>Find Contest</MenuItem>
+                      <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/find_contest')}>Find Contest</MenuItem>
                       <MenuItem className={this.props.classes.label}>Saved Contest</MenuItem>
                       <MenuItem className={this.props.classes.label} onClick={() => this.props.history.push('/exams')}>Browse Exam</MenuItem>
                     </Menu>

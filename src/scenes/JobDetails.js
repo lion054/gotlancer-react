@@ -74,6 +74,7 @@ class JobDetails extends PureComponent {
     attachments: [],
     skills: [],
     saved: false,
+    closedAt: faker.date.future(),
     address: {
       country: {
         iso2: 'us',
@@ -207,7 +208,7 @@ class JobDetails extends PureComponent {
                         </Box>
                         <Box display="flex" alignItems="center" mt={1}>
                           <WatchLater className={this.props.classes.sideIcon} htmlColor={this.props.theme.palette.action.active} />
-                          <Typography variant="body2">Apply before 6 d, 23 hrs</Typography>
+                          <Typography variant="body2">Apply before {moment(this.state.closedAt).fromNow(true)}</Typography>
                         </Box>
                         <Box display="flex" alignItems="center" mt={1}>
                           <PeopleAlt className={this.props.classes.sideIcon} htmlColor={this.props.theme.palette.action.active} />

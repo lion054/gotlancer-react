@@ -24,6 +24,7 @@ import BrowseOffers from './scenes/BrowseOffers';
 import OfferDetails from './scenes/OfferDetails';
 import Offer from './scenes/Offer';
 import FindFreelancer from './scenes/FindFreelancer';
+import FindContest from './scenes/FindContest';
 
 import BuyBidCredit from './scenes/Finance/BuyBidCredit';
 import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
@@ -118,6 +119,9 @@ const routes = [{
 },{
   path: '/find_freelancer',
   component: FindFreelancer
+},{
+  path: '/find_contest',
+  component: FindContest
 },{
   path: '/notifications',
   component: Notifications

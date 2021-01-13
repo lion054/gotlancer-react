@@ -475,7 +475,7 @@ class Proposals extends PureComponent {
           <Star />
         </Avatar>
         <Box ml={1}>
-          <Typography variant="body2" noWrap>{pluralize('Review', count, true)}</Typography>
+          <Typography variant="body2" noWrap>{pluralize('review', count, true)}</Typography>
           <Box style={{ lineHeight: 1 }}>
             <Rating name="read-only" value={average} readOnly size="small" />
           </Box>
