@@ -4,8 +4,6 @@ import { Autocomplete } from '@material-ui/lab';
 import PropTypes from 'prop-types';
 
 import { allCountries } from 'material-ui-phone-number/src/country_data';
-import 'material-ui-phone-number/src/styles.less';
-import 'material-ui-phone-number/src/flags.png';
 
 const styles = (theme) => ({
   country: {

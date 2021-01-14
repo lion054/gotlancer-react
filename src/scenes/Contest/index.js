@@ -61,7 +61,7 @@ class Contest extends PureComponent {
     status: 'Winner Selected',
     budget: faker.random.number({ min: 0, max: 1000 }),
     closedAt: faker.date.future(),
-    activeTab: 3
+    activeTab: 0
   }
 
   componentDidMount() {

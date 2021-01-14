@@ -19,6 +19,7 @@ import { TiCancel } from 'react-icons/ti';
 import { v4 as uuidv4 } from 'uuid';
 import { cloneDeep } from 'lodash';
 import faker from 'faker';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 import SideBar from './SideBar';
@@ -232,7 +233,7 @@ class Entries extends PureComponent {
               <Typography variant="body2">2. File Handover</Typography>
               <Typography variant="body2">3. Release Fund</Typography>
               <Typography variant="body2">4. Provide Feedback to freelancer</Typography>
-              <Button variant="contained">Handover File</Button>
+              <Button variant="contained" onClick={() => this.props.history.push('/contest/file_handover')}>Handover File</Button>
             </Box>
           </Grid>
         </Grid>
@@ -284,6 +285,7 @@ class Entries extends PureComponent {
 }
 
 export default compose(
+  withRouter,
   withStyles(styles),
   withTheme
 )(Entries);

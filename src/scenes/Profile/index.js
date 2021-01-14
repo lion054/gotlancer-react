@@ -38,9 +38,6 @@ import moment from 'moment';
 import faker from 'faker';
 import { compose } from 'redux';
 
-import 'material-ui-phone-number/src/styles.less';
-import 'material-ui-phone-number/src/flags.png';
-
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ScoreReview from '../../components/ScoreReview';

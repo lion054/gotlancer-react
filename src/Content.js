@@ -26,12 +26,13 @@ import Offer from './scenes/Offer';
 import FindFreelancer from './scenes/FindFreelancer';
 import FindContest from './scenes/FindContest';
 import Contest from './scenes/Contest';
+import FileHandover from './scenes/Contest/FileHandover';
 
 import BuyBidCredit from './scenes/Finance/BuyBidCredit';
 import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
 import DepositFund from './scenes/Finance/DepositFund';
 import PaymentHistory from './scenes/Finance/PaymentHistory';
-import Disputation from './scenes/Finance/Disputation';
+import Dispute from './scenes/Finance/Dispute';
 import WithdrawFund from './scenes/Finance/WithdrawFund';
 
 import AddBank from './scenes/Settings/PaymentsPayouts/AddBank';
@@ -82,8 +83,8 @@ const routes = [{
   path: '/profile',
   component: Profile
 },{
-  path: '/disputation',
-  component: Disputation
+  path: '/dispute',
+  component: Dispute
 },{
   path: '/withdraw_fund',
   component: WithdrawFund
@@ -126,6 +127,9 @@ const routes = [{
 },{
   path: '/contest',
   component: Contest
+},{
+  path: '/contest/file_handover',
+  component: FileHandover
 },{
   path: '/notifications',
   component: Notifications
