@@ -27,6 +27,7 @@ import FindFreelancer from './scenes/FindFreelancer';
 import FindContest from './scenes/FindContest';
 import Contest from './scenes/Contest';
 import FileHandover from './scenes/Contest/FileHandover';
+import SubmitDesign from './scenes/Contest/SubmitDesign';
 
 import BuyBidCredit from './scenes/Finance/BuyBidCredit';
 import Checkout from './scenes/Finance/BuyBidCredit/Checkout';
@@ -130,6 +131,9 @@ const routes = [{
 },{
   path: '/contest/file_handover',
   component: FileHandover
+},{
+  path: '/contest/submit_design',
+  component: SubmitDesign
 },{
   path: '/notifications',
   component: Notifications

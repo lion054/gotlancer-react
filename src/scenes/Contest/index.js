@@ -13,6 +13,7 @@ import {
 import { AiFillPicture, AiOutlinePlus } from 'react-icons/ai';
 import moment from 'moment';
 import faker from 'faker';
+import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
 import Header from '../../components/Header';
@@ -119,7 +120,7 @@ class Contest extends PureComponent {
                   </Box>
                 </Box>
                 <Box className={this.props.classes.submit}>
-                  <Button variant="outlined" startIcon={<AiFillPicture />}>Submit Desgin</Button>
+                  <Button variant="outlined" startIcon={<AiFillPicture />} onClick={() => this.props.history.push('/contest/submit_design')}>Submit Desgin</Button>
                 </Box>
               </Box>
             </Box>
@@ -167,6 +168,7 @@ class Contest extends PureComponent {
 }
 
 export default compose(
+  withRouter,
   withStyles(styles),
   withTheme
 )(Contest);

@@ -52,7 +52,7 @@ class Complete extends PureComponent {
         rows={5}
       />
       <Box my={4}>
-        <Button variant="contained" size="large">Submit Complete</Button>
+        <Button variant="contained" size="large">Submit Feedback</Button>
       </Box>
     </Box>
   )

@@ -11,7 +11,17 @@ import {
   Typography,
   withStyles
 } from '@material-ui/core';
-import { Close, CloudUpload, Description } from '@material-ui/icons';
+import {
+  AiFillFile,
+  AiFillFileExcel,
+  AiFillFileImage,
+  AiFillFilePdf,
+  AiFillFileText,
+  AiFillFileWord,
+  AiFillFileZip,
+  AiOutlineClose,
+  AiOutlineCloudUpload
+} from 'react-icons/ai';
 import { v4 as uuidv4 } from 'uuid';
 import { cloneDeep } from 'lodash';
 import Dropzone from 'react-dropzone';
@@ -77,9 +87,18 @@ class FileUpload extends PureComponent {
       'image/jpg',
       'image/png',
       'image/gif',
-      'image/x-icon',
       'application/pdf',
-      'application/msword'
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.ms-excel',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/x-bzip',
+      'application/x-bzip2',
+      'application/gzip',
+      'application/vnd.rar',
+      'application/zip',
+      'application/x-7z-compressed',
+      'text/plain'
     ];
     if (mimeTypes.indexOf(file.type) === -1) {
       return false;
@@ -88,6 +107,35 @@ class FileUpload extends PureComponent {
       return false;
     }
     return true;
+  }
+
+  getFileIcon(mimeType) {
+    switch (mimeType) {
+      case 'image/jpeg':
+      case 'image/jpg':
+      case 'image/png':
+      case 'image/gif':
+        return <AiFillFileImage size={24} />;
+      case 'application/pdf':
+        return <AiFillFilePdf size={24} />;
+      case 'application/msword':
+      case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        return <AiFillFileWord size={24} />;
+      case 'application/vnd.ms-excel':
+      case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
+        return <AiFillFileExcel size={24} />;
+      case 'application/x-bzip':
+      case 'application/x-bzip2':
+      case 'application/gzip':
+      case 'application/vnd.rar':
+      case 'application/zip':
+      case 'application/x-7z-compressed':
+        return <AiFillFileZip size={24} />;
+      case 'text/plain':
+        return <AiFillFileText size={24} />;
+      default:
+        return <AiFillFile size={24} />;
+    }
   }
 
   onDropAccepted = (acceptedFiles, evt) => {
@@ -113,7 +161,7 @@ class FileUpload extends PureComponent {
               className: clsx(this.props.classes.root, isDragActive && this.props.classes.active)
             })}
           >
-            <CloudUpload />
+            <AiOutlineCloudUpload size={24} />
             <Box mb={1}>
               <Typography variant="body1">Drag &amp; Drop your files to import it</Typography>
             </Box>
@@ -135,7 +183,7 @@ class FileUpload extends PureComponent {
         {this.state.selectedFiles.map((file, index) => (
           <ListItem key={index} disableGutters className={this.props.classes.item}>
             <ListItemIcon>
-              <Description />
+              {this.getFileIcon(file.type)}
             </ListItemIcon>
             <ListItemText
               primary={file.name}
@@ -149,7 +197,7 @@ class FileUpload extends PureComponent {
                 selectedFiles.splice(index, 1);
                 this.setState({ selectedFiles });
               }}>
-                <Close />
+                <AiOutlineClose />
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>
