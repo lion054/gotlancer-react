@@ -13,7 +13,7 @@ import {
   withTheme
 } from '@material-ui/core';
 import { Rating } from '@material-ui/lab';
-import { AiFillDelete } from 'react-icons/ai';
+import { AiFillDelete, AiOutlineTrophy } from 'react-icons/ai';
 import { FiSettings, FiThumbsUp } from 'react-icons/fi';
 import { TiCancel } from 'react-icons/ti';
 import { v4 as uuidv4 } from 'uuid';
@@ -61,6 +61,17 @@ const styles = (theme) => ({
     alignItems: 'center',
     borderTop: `solid 1px ${theme.palette.divider}`,
     borderBottom: `solid 1px ${theme.palette.divider}`
+  },
+  tag: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    borderRadius: theme.spacing(0.5),
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0.5, 1),
+    backgroundColor: theme.palette.warning.main,
+    color: theme.palette.common.white
   }
 });
 
@@ -81,16 +92,19 @@ class Entries extends PureComponent {
   componentDidMount() {
     const records = [];
     for (let i = 0; i < 9; i++) {
-      records.push({
+      const record = {
         id: uuidv4(),
         ticketNum: faker.random.number({ min: 100, max: 1000 }),
         author: faker.name.findName(),
-        thumb: faker.image.image(),
         score: faker.random.number({ min: 0, max: 5 }),
         likes: faker.random.number({ min: 0, max: 1000 }),
         liked: faker.random.boolean(),
-        status: faker.random.arrayElement(['Winner', 'Rejected', 'Withdrawn'])
-      });
+        status: faker.random.arrayElement(['Winner', 'Rejected', 'Withdrawn', ''])
+      };
+      if (record.status !== 'Rejected' && record.status !== 'Withdrawn') {
+        record.thumb = faker.image.image();
+      }
+      records.push(record);
     }
     this.setState({ records });
   }
@@ -150,6 +164,14 @@ class Entries extends PureComponent {
                         <Box textAlign="center">
                           <AiFillDelete size={32} color={this.props.theme.palette.action.active} />
                           <Typography variant="body1" style={{ textTransform: 'uppercase' }}>{record.status}</Typography>
+                        </Box>
+                      </Box>
+                    ) : record.status === 'Winner' ? (
+                      <Box position="relative">
+                        <img alt="" src={record.thumb} style={{ width: '100%', height: 192 }} />
+                        <Box className={this.props.classes.tag}>
+                          <AiOutlineTrophy style={{ marginRight: 4 }} />
+                          <Typography variant="body2">WINNER</Typography>
                         </Box>
                       </Box>
                     ) : (
