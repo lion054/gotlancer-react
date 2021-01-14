@@ -28,16 +28,23 @@ class TablePaginationActions extends PureComponent {
   render = () => (
     <div className={this.props.classes.root}>
       <IconButton
+        size="small"
         onClick={this.handleFirst}
         disabled={this.props.page === 0}
         aria-label="first page"
       >
         {this.props.theme.direction === 'rtl' ? <LastPage /> : <FirstPage />}
       </IconButton>
-      <IconButton onClick={this.handleBack} disabled={this.props.page === 0} aria-label="previous page">
+      <IconButton
+        size="small"
+        onClick={this.handleBack}
+        disabled={this.props.page === 0}
+        aria-label="previous page"
+      >
         {this.props.theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
       </IconButton>
       <IconButton
+        size="small"
         onClick={this.handleNext}
         disabled={this.props.page >= Math.ceil(this.props.count / this.props.rowsPerPage) - 1}
         aria-label="next page"
@@ -45,6 +52,7 @@ class TablePaginationActions extends PureComponent {
         {this.props.theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
       </IconButton>
       <IconButton
+        size="small"
         onClick={this.handleLast}
         disabled={this.props.page >= Math.ceil(this.props.count / this.props.rowsPerPage) - 1}
         aria-label="last page"

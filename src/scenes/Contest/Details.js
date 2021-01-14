@@ -7,22 +7,20 @@ import {
   CardHeader,
   Divider,
   Grid,
-  IconButton,
   List,
   ListItem,
   ListItemIcon,
-  ListItemSecondaryAction,
   ListItemText,
   Typography,
   withStyles,
-  withTheme
+  withTheme,
+  withWidth
 } from '@material-ui/core';
-import { AttachFile, ChevronRight, Delete } from '@material-ui/icons';
+import { AiOutlinePaperClip, AiOutlineRight } from 'react-icons/ai';
 import moment from 'moment';
 import faker from 'faker';
 import { compose } from 'redux';
 
-import AddFile from './AddFile';
 import SideBar from './SideBar';
 import ChipContainer from '../../components/ChipContainer';
 import SelectBadge from '../../components/SelectBadge';
@@ -48,7 +46,6 @@ class Details extends PureComponent {
     id: faker.random.number({ min: 100000, max: 1000000 }),
     details: faker.lorem.paragraphs(3),
     attachments: [],
-    addingFile: false,
     skills: []
   }
 
@@ -76,13 +73,13 @@ class Details extends PureComponent {
   render = () => (
     <Box className={this.props.classes.outerMargin}>
       <Grid container>
-        <Grid item md={8} xs={12}>
+        <Grid item md={9} xs={12}>
           <Box className={this.props.classes.innerPadding}>
             <CompactCard>
               <CardHeader
                 title={(
                   <Box display="flex" justifyContent="space-between" alignItems="center">
-                    <Typography variant="subtitle2">Project Details</Typography>
+                    <Typography variant="subtitle2">Contest Details</Typography>
                     <Button variant="outlined">Edit</Button>
                   </Box>
                 )}
@@ -103,7 +100,7 @@ class Details extends PureComponent {
                 title={(
                   <Box display="flex" justifyContent="space-between" alignItems="center">
                     <Typography variant="subtitle2">Attachments</Typography>
-                    <Button variant="outlined" onClick={() => this.setState({ addingFile: true })}>Upload</Button>
+                    <Button variant="outlined">Upload</Button>
                   </Box>
                 )}
               />
@@ -113,7 +110,7 @@ class Details extends PureComponent {
                   {this.state.attachments.map((file, index) => (
                     <ListItem key={index} disableGutters>
                       <ListItemIcon>
-                        <AttachFile />
+                        <AiOutlinePaperClip size={24} />
                       </ListItemIcon>
                       <ListItemText
                         primary={file}
@@ -121,11 +118,6 @@ class Details extends PureComponent {
                           variant: 'body2'
                         }}
                       />
-                      <ListItemSecondaryAction>
-                        <IconButton>
-                          <Delete />
-                        </IconButton>
-                      </ListItemSecondaryAction>
                     </ListItem>
                   ))}
                 </List>
@@ -143,7 +135,7 @@ class Details extends PureComponent {
               <Divider />
               <CardContent>
                 <Typography variant="body1">Category and Sub-Category</Typography>
-                <Breadcrumbs aria-label="breadcrumb" separator={<ChevronRight />}>
+                <Breadcrumbs aria-label="breadcrumb" separator={<AiOutlineRight />}>
                   <Typography variant="body2">IT and Website</Typography>
                   <Typography variant="body2">Frontend Developer</Typography>
                 </Breadcrumbs>
@@ -158,19 +150,16 @@ class Details extends PureComponent {
             <SelectBadge />
           </Box>
         </Grid>
-        <Grid item md={4} xs={12}>
+        <Grid item md={3} xs={12}>
           <SideBar />
         </Grid>
       </Grid>
-      <AddFile
-        open={this.state.addingFile}
-        onClose={() => this.setState({ addingFile: false })}
-      />
     </Box>
   )
 }
 
 export default compose(
   withStyles(styles),
-  withTheme
+  withTheme,
+  withWidth()
 )(Details);

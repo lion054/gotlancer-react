@@ -13,8 +13,8 @@ const styles = (theme) => ({
       margin: theme.spacing(0.5)
     }
   },
-  button: {
-    border: `solid 1px ${theme.palette.divider}`,
+  plus: {
+    border: `solid 1px ${theme.palette.action.disabled}`,
     padding: theme.spacing(0.5)
   }
 });
@@ -39,7 +39,7 @@ class ChipContainer extends PureComponent {
           key={index}
           label={title}
           deleteIcon={!this.props.readOnly ? (
-            <Avatar>
+            <Avatar style={{ border: `solid 1px ${this.props.theme.palette.action.disabled}` }}>
               <Close />
             </Avatar>
           ) : null}
@@ -49,7 +49,7 @@ class ChipContainer extends PureComponent {
       ))}
       {!this.props.readOnly && (
         <Tooltip title={this.props.buttonTitle}>
-          <IconButton className={this.props.classes.button}>
+          <IconButton className={this.props.classes.plus}>
             <Add htmlColor={this.props.theme.palette.success.main} />
           </IconButton>
         </Tooltip>

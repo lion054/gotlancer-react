@@ -4,14 +4,12 @@ import {
   CardHeader,
   CardContent,
   Checkbox,
-  Chip,
   Divider,
   FormControlLabel,
   Grid,
   InputAdornment,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
   MenuItem,
   OutlinedInput,
@@ -22,8 +20,6 @@ import {
   Button
 } from '@material-ui/core';
 import { AttachMoney } from '@material-ui/icons';
-import { AiFillCheckSquare, AiOutlineBorder } from 'react-icons/ai';
-import { cloneDeep } from 'lodash';
 import faker from 'faker';
 import { compose } from 'redux';
 
@@ -31,7 +27,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FileUpload from '../components/FileUpload';
 import PlaceholderSelect from '../components/PlaceholderSelect';
-import { CompactCard, CompactTab, formatCurrency } from '../global';
+import SelectBadge from '../components/SelectBadge';
+import { CompactCard, CompactTab } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -110,12 +107,6 @@ class PostJob extends PureComponent {
 
   handleTabChange = (event, newValue) => {
     this.setState({ activeTab: newValue });
-  }
-
-  handleBadge = (index) => (e) => {
-    const badges = cloneDeep(this.state.badges);
-    badges[index].checked = !badges[index].checked;
-    this.setState({ badges });
   }
 
   render = () => (
@@ -283,20 +274,7 @@ class PostJob extends PureComponent {
                             </Grid>
                           </Grid>
                         </Box>
-                        <Box mt={3}>
-                          <Typography variant="subtitle2">Select your listing</Typography>
-                        </Box>
-                        <Box my={1}>
-                          <Typography variant="body2">Upgrade your listing from below and get dozens of skilled freelancers for your project instantly.</Typography>
-                        </Box>
-                        {this.renderBadgeList()}
-                        <Box mt={1} mb={3}>
-                          <Divider />
-                        </Box>
-                        <Typography variant="body1" align="right">Total: {formatCurrency(0)}</Typography>
-                        <Box my={3}>
-                          <Divider />
-                        </Box>
+                        <SelectBadge noCard noSubmit />
                         <FormControlLabel
                           control={(
                             <Checkbox onClick={(e) => e.stopPropagation()} />
@@ -327,44 +305,6 @@ class PostJob extends PureComponent {
       </Box>
       <Footer />
     </div>
-  )
-
-  renderBadgeList = () => (
-    <List disablePadding>
-      {this.state.badges.map((badge, index) => (
-        <ListItem key={index} disableGutters button onClick={this.handleBadge(index)}>
-          <ListItemIcon style={{ minWidth: 32 }}>
-            {!badge.checked ? (
-              <AiOutlineBorder size={24} />
-            ) : (
-              <AiFillCheckSquare color={this.props.theme.palette.secondary.main} size={24} />
-            )}
-          </ListItemIcon>
-          <Box
-            flex={1}
-            className={this.props.classes.innerPadding}
-            borderRadius={4}
-            border={`solid 1px ${badge.checked ? this.props.theme.palette.success.main : this.props.theme.palette.divider}`}
-            bgcolor={this.props.theme.palette.background.paper}
-          >
-            <Grid container alignItems="center">
-              <Grid item sm={2} xs={3}>
-                <Chip label={badge.title} style={{
-                  backgroundColor: badge.color,
-                  color: this.props.theme.palette.common.white
-                }} />
-              </Grid>
-              <Grid item sm={8} xs={7}>
-                <Typography variant="body2">{badge.description}</Typography>
-              </Grid>
-              <Grid item sm={2} xs={2}>
-                <Typography variant="body2" align="right">{formatCurrency(badge.price)}</Typography>
-              </Grid>
-            </Grid>
-          </Box>
-        </ListItem>
-      ))}
-    </List>
   )
 
   renderFaqCard = () => (

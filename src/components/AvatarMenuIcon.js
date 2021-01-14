@@ -75,7 +75,7 @@ class AvatarMenuIcon extends PureComponent {
 
   renderCollapseButton = (dir) => (
     <ListItemSecondaryAction>
-      <IconButton onClick={() => this.handleSubList(dir)}>
+      <IconButton size="small" onClick={() => this.handleSubList(dir)}>
         {this.state.currentDir === dir ? (
           <FaChevronUp color={this.props.theme.palette.text.secondary} size={16} />
         ) : (
@@ -121,7 +121,7 @@ class AvatarMenuIcon extends PureComponent {
                     <Typography variant="body2" display="block" noWrap>{formatCurrency(100)}</Typography>
                   </Box>
                 </Box>
-                <IconButton onClick={this.handleDrawer}>
+                <IconButton size="small" onClick={this.handleDrawer}>
                   <FaTimes color={this.props.theme.palette.text.secondary} size={20} />
                 </IconButton>
               </Box>

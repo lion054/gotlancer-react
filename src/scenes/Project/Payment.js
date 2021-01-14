@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   CardContent,
-  CardHeader,
   Divider,
   Grid,
   IconButton,
@@ -17,20 +16,13 @@ import {
   withTheme,
   withWidth
 } from '@material-ui/core';
-import { Check, MoreVert } from '@material-ui/icons';
-import {
-  Timeline,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-  TimelineItem,
-  TimelineSeparator
-} from '@material-ui/lab';
+import { MoreVert } from '@material-ui/icons';
 import moment from 'moment';
 import faker from 'faker';
 import { v4 as uuidv4 } from 'uuid';
 import { compose } from 'redux';
 
+import SideBar from './SideBar';
 import CustomTablePagination from '../../components/pagination/CustomTablePagination';
 import { CompactCard, formatCurrency } from '../../global';
 
@@ -59,21 +51,12 @@ const styles = (theme) => ({
   }
 });
 
-const OddTimelineItem = withStyles({
-  missingOppositeContent: {
-    '&:before': {
-      display: 'none'
-    }
-  }
-})(TimelineItem);
-
 class Payment extends PureComponent {
   state = {
     total: 1000,
     records: [],
     rowsPerPage: 10,
     page: 0,
-    roadmap: [],
     moreEl: null,
     moreId: ''
   }
@@ -91,28 +74,7 @@ class Payment extends PureComponent {
         amount: faker.random.number({ min: 100, max: 1000 })
       });
     }
-    const roadmap = [{
-      title: 'Project Post',
-      subtitle: 'Provide your job details',
-      checked: true
-    },{
-      title: 'Hired Freelancer',
-      subtitle: 'Hire a talent from all proposals',
-      checked: true
-    },{
-      title: 'Create Milestone',
-      subtitle: 'Deposit a fund on your job'
-    },{
-      title: 'Release Milestone',
-      subtitle: 'Sattle all of pending payment'
-    },{
-      title: 'End Contract',
-      subtitle: 'End contract from hired list'
-    },{
-      title: 'Give Feedback',
-      subtitle: 'Rate your freelancer'
-    }];
-    this.setState({ records, roadmap });
+    this.setState({ records });
   }
 
   handleChangePage = (e, page) => this.setState({ page })
@@ -212,41 +174,7 @@ class Payment extends PureComponent {
           </Box>
         </Grid>
         <Grid item md={4} xs={12}>
-          <Box className={this.props.classes.innerPadding}>
-            <CompactCard>
-              <CardHeader
-                title="Project Status"
-                titleTypographyProps={{
-                  variant: 'body1'
-                }}
-              />
-              <Divider />
-              <Timeline>
-                {this.state.roadmap.map((point, index) => (
-                  <OddTimelineItem key={index}>
-                    <TimelineSeparator>
-                      {!!point.checked ? (
-                        <TimelineDot style={{ backgroundColor: this.props.theme.palette.success.main }}>
-                          <Check fontSize="small" />
-                        </TimelineDot>
-                      ) : (
-                        <TimelineDot color="grey" style={{ width: 20, height: 20 }} />
-                      )}
-                      {index < this.state.roadmap.length - 1 && (
-                        <TimelineConnector style={!!point.checked ? {
-                          backgroundColor: this.props.theme.palette.success.main
-                        } : {}} />
-                      )}
-                    </TimelineSeparator>
-                    <TimelineContent>
-                      <Typography variant="body1">{point.title}</Typography>
-                      <Typography variant="body2">{point.subtitle}</Typography>
-                    </TimelineContent>
-                  </OddTimelineItem>
-                ))}
-              </Timeline>
-            </CompactCard>
-          </Box>
+          <SideBar />
         </Grid>
       </Grid>
     </Box>

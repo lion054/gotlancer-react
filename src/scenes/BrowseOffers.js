@@ -140,8 +140,8 @@ class BrowseOffers extends PureComponent {
                                   <UserAvatar
                                     url={record.authorAvatar}
                                     online
-                                    size={this.props.theme.spacing(4)}
-                                    sizeSM={this.props.theme.spacing(3)}
+                                    size={this.props.theme.spacing(6)}
+                                    sizeSM={this.props.theme.spacing(4.5)}
                                     marginRight={this.props.theme.spacing(2)}
                                     marginRightSM={this.props.theme.spacing(1)}
                                   />
@@ -150,7 +150,7 @@ class BrowseOffers extends PureComponent {
                                     <Typography variant="body2" color="textSecondary">Level {record.authorLevel}</Typography>
                                   </Box>
                                 </Box>
-                                <IconButton onClick={() => {
+                                <IconButton style={{ border: `solid 1px ${this.props.theme.palette.action.disabled}` }} onClick={() => {
                                   const records = cloneDeep(this.state.records);
                                   records[index].saved = !records[index].saved;
                                   this.setState({ records });
@@ -227,7 +227,7 @@ class BrowseOffers extends PureComponent {
           endAdornment={(
             <InputAdornment position="end">
               <IconButton>
-                <AiOutlineSearch size={16} />
+                <AiOutlineSearch size={20} />
               </IconButton>
             </InputAdornment>
           )}

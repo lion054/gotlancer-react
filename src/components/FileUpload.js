@@ -43,6 +43,10 @@ const styles = (theme) => ({
   },
   item: {
     paddingLeft: theme.spacing(1)
+  },
+  close: {
+    border: `solid 1px ${theme.palette.action.disabled}`,
+    padding: theme.spacing(0.5)
   }
 });
 
@@ -140,7 +144,7 @@ class FileUpload extends PureComponent {
               }}
             />
             <ListItemSecondaryAction>
-              <IconButton onClick={() => {
+              <IconButton className={this.props.classes.close} onClick={() => {
                 const selectedFiles = cloneDeep(this.state.selectedFiles);
                 selectedFiles.splice(index, 1);
                 this.setState({ selectedFiles });

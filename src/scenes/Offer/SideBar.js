@@ -47,11 +47,7 @@ const OddTimelineItem = withStyles({
 class SideBar extends PureComponent {
   state = {
     authorName: faker.name.findName(),
-    roadmap: []
-  }
-
-  componentDidMount() {
-    const roadmap = [{
+    roadmap: [{
       title: 'Buy Offer',
       subtitle: 'Provide your job details',
       checked: true
@@ -65,8 +61,7 @@ class SideBar extends PureComponent {
     },{
       title: 'Give SideBar',
       subtitle: 'Rate your freelancer'
-    }];
-    this.setState({ roadmap });
+    }]
   }
 
   render = () => (

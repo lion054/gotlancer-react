@@ -73,7 +73,7 @@ const styles = (theme) => ({
     height: 112,
     borderRadius: 56
   },
-  relatedAvatar: {
+  relatedThumb: {
     width: 100,
     height: 80,
     borderRadius: 4,
@@ -93,8 +93,7 @@ const styles = (theme) => ({
     height: 64,
     borderRadius: 32,
     marginRight: theme.spacing(2)
-  },
-  reviewIcon: {}
+  }
 });
 
 class OfferDetails extends PureComponent {
@@ -152,7 +151,7 @@ class OfferDetails extends PureComponent {
     const relatedOffers = [];
     for (let i = 0; i < 4; i++) {
       relatedOffers.push({
-        avatar: faker.image.image(),
+        thumb: faker.image.image(),
         title: faker.lorem.sentence(),
         price: faker.random.number({ min: 0, max: 100 }),
         deadline: faker.random.number({ min: 1, max: 7 }),
@@ -281,7 +280,7 @@ class OfferDetails extends PureComponent {
                                   <Typography variant="body2">{moment(review.createdAt).format('LL')}</Typography>
                                 </Box>
                               </Box>
-                              <Box mt={1} p={1} borderRadius={4} bgcolor={this.props.theme.palette.action.disabledBackground}>
+                              <Box mt={1} p={1} borderRadius={4} bgcolor={this.props.theme.palette.action.selected}>
                                 <Typography variant="body2">
                                   <FaQuoteLeft style={{ marginRight: 4 }} />
                                   <Box fontStyle="italic" component="span">{review.comment}</Box>
@@ -388,9 +387,9 @@ class OfferDetails extends PureComponent {
           <Divider />
           <CardContent>
             <List disablePadding>
-              {this.state.relatedOffers.map(({ avatar, title, price, deadline, score }, index) => (
+              {this.state.relatedOffers.map(({ thumb, title, price, deadline, score }, index) => (
                 <ListItem key={index} disableGutters style={{ overflow: 'hidden' }}>
-                  <img alt="" src={avatar} className={this.props.classes.relatedAvatar} />
+                  <img alt="" src={thumb} className={this.props.classes.relatedThumb} />
                   <Box className={this.props.classes.relatedBody}>
                     <Typography variant="body2" className={this.props.classes.noWrap}>{title}</Typography>
                     <Typography variant="body2" style={{ color: this.props.theme.palette.success.main }}>{formatCurrency(price)}</Typography>

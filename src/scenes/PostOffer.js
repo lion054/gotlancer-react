@@ -5,7 +5,6 @@ import {
   CardHeader,
   CardContent,
   Checkbox,
-  Chip,
   Divider,
   FormControlLabel,
   Grid,
@@ -14,7 +13,6 @@ import {
   Link,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
   MenuItem,
   OutlinedInput,
@@ -23,8 +21,6 @@ import {
   withTheme
 } from '@material-ui/core';
 import { Add, AttachMoney, Close } from '@material-ui/icons';
-import { AiFillCheckSquare, AiOutlineBorder } from 'react-icons/ai';
-import { cloneDeep } from 'lodash';
 import faker from 'faker';
 import { compose } from 'redux';
 
@@ -32,7 +28,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import FileUpload from '../components/FileUpload';
 import PlaceholderSelect from '../components/PlaceholderSelect';
-import { CompactCard, GreenButton, formatCurrency } from '../global';
+import SelectBadge from '../components/SelectBadge';
+import { CompactCard, GreenButton } from '../global';
 
 const styles = (theme) => ({
   root: {
@@ -59,7 +56,6 @@ class PostOffer extends PureComponent {
   state = {
     faqList: [],
     categories: [],
-    badges: [],
     optionalServices: []
   }
 
@@ -75,12 +71,6 @@ class PostOffer extends PureComponent {
     for (let i = 0; i < 5; i++) {
       categories.push(faker.lorem.words(2));
     }
-    const badges = [{
-      color: this.props.theme.palette.info.main,
-      title: 'Featured',
-      description: 'Featured projects attract higher-quality bids and are displayed prominently in the `Featured Jobs and Contests` page.',
-      price: 5
-    }];
     const optionalServices = [];
     for (let i = 0; i < 2; i++) {
       optionalServices.push({
@@ -89,13 +79,7 @@ class PostOffer extends PureComponent {
         deadline: faker.random.number({ min: 1, max: 14 })
       });
     }
-    this.setState({ faqList, categories, badges, optionalServices });
-  }
-
-  handleBadge = (index) => (e) => {
-    const badges = cloneDeep(this.state.badges);
-    badges[index].checked = !badges[index].checked;
-    this.setState({ badges });
+    this.setState({ faqList, categories, optionalServices });
   }
 
   render = () => (
@@ -326,20 +310,7 @@ class PostOffer extends PureComponent {
                             onClick={() => {}}
                           />
                         </Box>
-                        <Box mt={3}>
-                          <Typography variant="subtitle2">Select your listing</Typography>
-                        </Box>
-                        <Box my={1}>
-                          <Typography variant="body2">Upgrade your listing from below and get dozens of skilled freelancers for your project instantly.</Typography>
-                        </Box>
-                        {this.renderBadgeList()}
-                        <Box mt={1} mb={3}>
-                          <Divider />
-                        </Box>
-                        <Typography variant="body1" align="right">Total: {formatCurrency(0)}</Typography>
-                        <Box my={3}>
-                          <Divider />
-                        </Box>
+                        <SelectBadge noCard noSubmit />
                         <FormControlLabel
                           control={(
                             <Checkbox onClick={(e) => e.stopPropagation()} />
@@ -370,44 +341,6 @@ class PostOffer extends PureComponent {
       </Box>
       <Footer />
     </div>
-  )
-
-  renderBadgeList = () => (
-    <List disablePadding>
-      {this.state.badges.map((badge, index) => (
-        <ListItem key={index} disableGutters button onClick={this.handleBadge(index)}>
-          <ListItemIcon style={{ minWidth: 32 }}>
-            {!badge.checked ? (
-              <AiOutlineBorder size={24} />
-            ) : (
-              <AiFillCheckSquare color={this.props.theme.palette.secondary.main} size={24} />
-            )}
-          </ListItemIcon>
-          <Box
-            flex={1}
-            className={this.props.classes.innerPadding}
-            borderRadius={4}
-            border={`solid 1px ${badge.checked ? this.props.theme.palette.secondary.main : this.props.theme.palette.divider}`}
-            bgcolor={this.props.theme.palette.background.paper}
-          >
-            <Grid container alignItems="center">
-              <Grid item sm={2} xs={3}>
-                <Chip label={badge.title} style={{
-                  backgroundColor: badge.color,
-                  color: this.props.theme.palette.common.white
-                }} />
-              </Grid>
-              <Grid item sm={8} xs={7}>
-                <Typography variant="body2">{badge.description}</Typography>
-              </Grid>
-              <Grid item sm={2} xs={2}>
-                <Typography variant="body2" align="right">{formatCurrency(badge.price)}</Typography>
-              </Grid>
-            </Grid>
-          </Box>
-        </ListItem>
-      ))}
-    </List>
   )
 
   renderFaqCard = () => (

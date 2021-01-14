@@ -48,13 +48,14 @@ const GreenText = withStyles((theme) => ({
   }
 }))(Typography);
 
-class Project extends PureComponent {
+class Offer extends PureComponent {
   state = {
-    badges: [],
+    status: 'In progress',
+    budget: {
+      min: 10,
+      max: 30
+    },
     activeTab: 0
-  }
-
-  componentDidMount() {
   }
 
   handleTabChange = (event, newValue) => {
@@ -73,8 +74,8 @@ class Project extends PureComponent {
                 <Typography variant="h5">I need a WordPress Site (5 pages) and a Logo Design</Typography>
               </Box>
               <Box className={this.props.classes.titleRight}>
-                <GreenText variant="body2">In progress</GreenText>
-                <Typography variant="body2">&nbsp;$10-$30 USD/hr</Typography>
+                <GreenText variant="body2">{this.state.status}</GreenText>
+                <Typography variant="body2">&nbsp;${this.state.budget.min}-${this.state.budget.max} USD/hr</Typography>
               </Box>
             </Box>
             <Tabs
@@ -123,4 +124,4 @@ class Project extends PureComponent {
 export default compose(
   withStyles(styles),
   withTheme
-)(Project);
+)(Offer);

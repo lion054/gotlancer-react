@@ -1,13 +1,17 @@
 import React, { PureComponent } from 'react';
 import {
   Box,
+  Button,
   Divider,
   Grid,
+  IconButton,
   Tabs,
   Typography,
   withStyles,
   withTheme
 } from '@material-ui/core';
+import { AiFillPicture, AiOutlinePlus } from 'react-icons/ai';
+import moment from 'moment';
 import faker from 'faker';
 import { compose } from 'redux';
 
@@ -15,14 +19,12 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ChipContainer from '../../components/ChipContainer';
 import Details from './Details';
-import Proposals from './Proposals';
-import Hired from './Hired';
+import Entries from './Entries';
 import Payment from './Payment';
-import WorkDiary from './WorkDiary';
+import Discussion from './Discussion';
 import { CompactTab } from '../../global';
 
 const styles = (theme) => ({
-  root: {},
   titleBar: {
     display: 'block',
     [theme.breakpoints.up('md')]: {
@@ -31,11 +33,8 @@ const styles = (theme) => ({
     }
   },
   titleRight: {
-    textAlign: 'right',
-    [theme.breakpoints.down('sm')]: {
-      '& > .MuiTypography-root': {
-        display: 'inline-block'
-      }
+    [theme.breakpoints.up('md')]: {
+      textAlign: 'right'
     }
   },
   innerPadding: {
@@ -43,24 +42,26 @@ const styles = (theme) => ({
     [theme.breakpoints.only('xs')]: {
       padding: theme.spacing(1)
     }
+  },
+  plus: {
+    border: `solid 1px ${theme.palette.action.disabled}`,
+    padding: theme.spacing(0.5)
+  },
+  submit: {
+    margin: theme.spacing(2, 0),
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(1, 0)
+    }
   }
 });
 
-const GreenText = withStyles((theme) => ({
-  root: {
-    color: theme.palette.success.main
-  }
-}))(Typography);
-
-class Project extends PureComponent {
+class Contest extends PureComponent {
   state = {
-    status: 'In progress',
-    budget: {
-      min: 10,
-      max: 30
-    },
     badges: [],
-    activeTab: 1
+    status: 'Winner Selected',
+    budget: faker.random.number({ min: 0, max: 1000 }),
+    closedAt: faker.date.future(),
+    activeTab: 3
   }
 
   componentDidMount() {
@@ -105,8 +106,21 @@ class Project extends PureComponent {
                 <ChipContainer chips={this.state.badges} readOnly />
               </Box>
               <Box className={this.props.classes.titleRight}>
-                <GreenText variant="body2">{this.state.status}</GreenText>
-                <Typography variant="body2">&nbsp;${this.state.budget.min}-${this.state.budget.max} USD/hr</Typography>
+                <Typography variant="body2" style={{ color: this.props.theme.palette.success.main }}>{this.state.status}</Typography>
+                <Box display="flex" alignItems="center">
+                  <Box>
+                    <Typography variant="body1">${this.state.budget} Prize</Typography>
+                    <Typography variant="body2">Ending in <span style={{ color: this.props.theme.palette.success.main }}>{moment(this.state.closedAt).fromNow(true)}</span></Typography>
+                  </Box>
+                  <Box ml={1}>
+                    <IconButton className={this.props.classes.plus}>
+                      <AiOutlinePlus />
+                    </IconButton>
+                  </Box>
+                </Box>
+                <Box className={this.props.classes.submit}>
+                  <Button variant="outlined" startIcon={<AiFillPicture />}>Submit Desgin</Button>
+                </Box>
               </Box>
             </Box>
             <Tabs
@@ -118,10 +132,9 @@ class Project extends PureComponent {
               textColor="primary"
             >
               <CompactTab label="Details" />
-              <CompactTab label="Proposals (10)" />
-              <CompactTab label="Hired (2)" />
+              <CompactTab label="Entries (10)" />
               <CompactTab label="Payment (33)" />
-              <CompactTab label="Work Diary" />
+              <CompactTab label="Discussion (5)" />
             </Tabs>
           </Grid>
           <Grid item lg={2} />
@@ -136,16 +149,13 @@ class Project extends PureComponent {
               <Details />
             </div>
             <div role="tabpanel" hidden={this.state.activeTab !== 1}>
-              <Proposals />
+              <Entries />
             </div>
             <div role="tabpanel" hidden={this.state.activeTab !== 2}>
-              <Hired />
-            </div>
-            <div role="tabpanel" hidden={this.state.activeTab !== 3}>
               <Payment />
             </div>
-            <div role="tabpanel" hidden={this.state.activeTab !== 4}>
-              <WorkDiary />
+            <div role="tabpanel" hidden={this.state.activeTab !== 3}>
+              <Discussion />
             </div>
           </Grid>
           <Grid item lg={2} />
@@ -159,4 +169,4 @@ class Project extends PureComponent {
 export default compose(
   withStyles(styles),
   withTheme
-)(Project);
+)(Contest);
