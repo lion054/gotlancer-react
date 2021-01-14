@@ -9,18 +9,19 @@ import {
   IconButton,
   List,
   ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
   OutlinedInput,
   Typography,
   withStyles,
   withTheme
 } from '@material-ui/core';
-import { AiFillCheckCircle, AiOutlineClockCircle } from 'react-icons/ai';
+import { AiFillCheckCircle, AiOutlineClockCircle, AiOutlineFolderView } from 'react-icons/ai';
 import { FaReply } from 'react-icons/fa';
 import moment from 'moment';
 import faker from 'faker';
 import { compose } from 'redux';
 
-import SideBar from './SideBar';
 import CompactPagination from '../../components/CompactPagination';
 import { CompactCard } from '../../global';
 
@@ -50,7 +51,8 @@ const styles = (theme) => ({
 
 class Discussion extends PureComponent {
   state = {
-    records: []
+    records: [],
+    topics: []
   }
 
   componentDidMount() {
@@ -67,7 +69,11 @@ class Discussion extends PureComponent {
       }
       records.push(record);
     }
-    this.setState({ records });
+    const topics = [];
+    for (let i = 0; i < 4; i++) {
+      topics.push(faker.lorem.sentence());
+    }
+    this.setState({ records, topics });
   }
 
   render = () => (
@@ -139,10 +145,41 @@ class Discussion extends PureComponent {
           </Box>
         </Grid>
         <Grid item md={3} xs={12}>
-          <SideBar />
+          {this.renderSideBar()}
         </Grid>
       </Grid>
     </Box>
+  )
+
+  renderSideBar = () => (
+    <CompactCard>
+      <CardHeader
+        title="Popular Topics"
+        titleTypographyProps={{
+          variant: 'subtitle1'
+        }}
+      />
+      <Divider />
+      <CardContent>
+        <List disablePadding>
+          {this.state.topics.map((topic, index) => (
+            <ListItem key={index} disableGutters>
+              <ListItemText
+                primary={topic}
+                primaryTypographyProps={{
+                  variant: 'body2'
+                }}
+              />
+              <ListItemSecondaryAction>
+                <IconButton style={{ marginLeft: 8 }}>
+                  <AiOutlineFolderView />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          ))}
+        </List>
+      </CardContent>
+    </CompactCard>
   )
 }
 
