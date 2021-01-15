@@ -15,8 +15,6 @@ import {
   ListItemText,
   ListItemSecondaryAction,
   OutlinedInput,
-  Radio,
-  RadioGroup,
   Typography,
   colors,
   withStyles,
@@ -29,7 +27,7 @@ import { compose } from 'redux';
 import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import UploadPreview from '../../../components/UploadPreview';
-import SelectBadge from '../../../components/SelectBadge';
+import SelectBadge from './SelectBadge';
 import { CompactCard } from '../../../global';
 
 const styles = (theme) => ({

@@ -3,11 +3,6 @@ import {
   Box,
   Button,
   IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
   Typography,
   withStyles,
   withTheme
@@ -41,9 +36,6 @@ const styles = (theme) => ({
     backgroundSize: '150% 100%',
     borderColor: theme.palette.primary.light,
     borderStyle: 'solid'
-  },
-  item: {
-    paddingLeft: theme.spacing(1)
   },
   close: {
     border: `solid 1px ${theme.palette.action.disabled}`,

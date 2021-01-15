@@ -142,16 +142,16 @@ class SelectBadge extends PureComponent {
             border={`solid 1px ${badge.checked ? this.props.theme.palette.secondary.main : this.props.theme.palette.divider}`}
           >
             <Grid container alignItems="center">
-              <Grid item sm={2} xs={3}>
+              <Grid item sm={3} xs={3}>
                 <Chip label={badge.title} style={{
                   backgroundColor: badge.color,
                   color: this.props.theme.palette.common.white
                 }} />
               </Grid>
-              <Grid item sm={8} xs={7}>
+              <Grid item sm={6} xs={7}>
                 <Typography variant="body2">{badge.description}</Typography>
               </Grid>
-              <Grid item sm={2} xs={2}>
+              <Grid item sm={3} xs={2}>
                 <Typography variant="body2" align="right">{formatCurrency(badge.price)}</Typography>
               </Grid>
             </Grid>
