@@ -24,6 +24,7 @@ import BrowseOffers from './scenes/BrowseOffers';
 import OfferDetails from './scenes/OfferDetails';
 import Offer from './scenes/Offer';
 import FindFreelancer from './scenes/FindFreelancer';
+import PostContest from './scenes/PostContest';
 import FindContest from './scenes/FindContest';
 import Contest from './scenes/Contest';
 import FileHandover from './scenes/Contest/FileHandover';
@@ -122,6 +123,9 @@ const routes = [{
 },{
   path: '/find_freelancer',
   component: FindFreelancer
+},{
+  path: '/post_contest',
+  component: PostContest
 },{
   path: '/find_contest',
   component: FindContest

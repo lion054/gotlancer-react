@@ -14,8 +14,6 @@ import { AiFillCheckSquare, AiOutlineBorder } from 'react-icons/ai';
 import { cloneDeep } from 'lodash';
 import { compose } from 'redux';
 
-import { formatCurrency } from '../../../global';
-
 const styles = (theme) => ({
   innerPadding: {
     padding: theme.spacing(2),
